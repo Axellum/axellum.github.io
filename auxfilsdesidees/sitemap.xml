@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://auxfilsdesidees.fr/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/"/>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/waveshare-7b.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-fr.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://auxfilsdesidees.fr/en/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/"/>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/waveshare-7b.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-en.webp</image:loc></image:image>
+  </url>
+</urlset>

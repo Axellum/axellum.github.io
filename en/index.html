@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aux fils des idées · Axel Duviella's projects</title>
+<meta name="description" content="Axel Duviella's personal projects, shared in case they help: a native Home Assistant screen for the M5Stack Tab5 and Waveshare ESP32-P4, and Vigie, the world's alerts in one place (website, API, screen).">
+<link rel="canonical" href="https://auxfilsdesidees.fr/en/">
+<link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/">
+<link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/">
+<link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:site_name" content="Aux fils des idées">
+<meta property="og:title" content="Aux fils des idées · Axel Duviella's projects">
+<meta property="og:description" content="A native Home Assistant screen for ESP32-P4, and Vigie, the world's alerts in one place. Personal projects, made with AI, shared in case they help.">
+<meta property="og:url" content="https://auxfilsdesidees.fr/en/">
+<meta property="og:image" content="https://auxfilsdesidees.fr/assets/partage.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/assets/icone.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebSite",
+			"@id": "https://auxfilsdesidees.fr/#site",
+			"url": "https://auxfilsdesidees.fr/",
+			"name": "Aux fils des idées",
+			"inLanguage": ["fr", "en"],
+			"publisher": { "@id": "https://auxfilsdesidees.fr/#axel" }
+		},
+		{
+			"@type": "Person",
+			"@id": "https://auxfilsdesidees.fr/#axel",
+			"name": "Axel Duviella",
+			"url": "https://auxfilsdesidees.fr/",
+			"sameAs": ["https://github.com/Axellum"]
+		},
+		{
+			"@type": "SoftwareSourceCode",
+			"name": "Home Assistant screen for the M5Stack Tab5 and Waveshare ESP32-P4 7B",
+			"description": "Native Home Assistant screen (ESPHome + LVGL) for ESP32-P4, no browser.",
+			"codeRepository": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL",
+			"url": "https://axellum.github.io/M5-Tab5-ESPHome-LVGL/",
+			"programmingLanguage": ["C++", "YAML"],
+			"author": { "@id": "https://auxfilsdesidees.fr/#axel" }
+		},
+		{
+			"@type": "WebApplication",
+			"name": "Vigie",
+			"description": "The world's alerts in one place: official weather warnings and natural hazards on a map.",
+			"url": "https://vigie.auxfilsdesidees.fr/",
+			"isAccessibleForFree": true,
+			"author": { "@id": "https://auxfilsdesidees.fr/#axel" }
+		},
+		{
+			"@type": "SoftwareSourceCode",
+			"name": "Vigie API",
+			"codeRepository": "https://github.com/Axellum/vigie-api",
+			"programmingLanguage": "Python",
+			"author": { "@id": "https://auxfilsdesidees.fr/#axel" }
+		},
+		{
+			"@type": "SoftwareSourceCode",
+			"name": "Vigie Web",
+			"codeRepository": "https://github.com/Axellum/vigie-web",
+			"programmingLanguage": "TypeScript",
+			"author": { "@id": "https://auxfilsdesidees.fr/#axel" }
+		},
+		{
+			"@type": "SoftwareSourceCode",
+			"name": "Vigie Display",
+			"codeRepository": "https://github.com/Axellum/vigie-display",
+			"programmingLanguage": ["C++", "YAML"],
+			"author": { "@id": "https://auxfilsdesidees.fr/#axel" }
+		}
+	]
+}
+</script>
+</head>
+<body>
+<div class="page">
+<header class="haut">
+	<div class="ligne">
+		<p class="marque">Aux fils des idées</p>
+		<a class="langue" href="/" hreflang="fr" lang="fr">Français</a>
+	</div>
+	<h1>My projects, shared in case they help</h1>
+	<p class="chapeau">I'm Axel. I build screens and tools for my home, with the help of AI, and share them in case they are useful to someone else. Everything is free and open source, with no ads and no tracking.</p>
+</header>
+
+<main>
+<section class="projet" id="screen" aria-labelledby="title-screen">
+	<div class="corps">
+		<div class="texte">
+			<span class="etiquette">Home Assistant · ESP32-P4</span>
+			<h2 id="title-screen">Native Home Assistant screen</h2>
+			<p>My home's screen, connected to Home Assistant. It runs on the screen itself (ESPHome and LVGL), with no browser: Home Assistant pushes the data, the screen never polls.</p>
+			<p>Weather and warnings, lights, shutters, climate, solar energy, music, calendar, alarm clock, voice assistant with a local wake word. 21 themes, 7 languages, installed from the browser.</p>
+			<p>For the M5Stack Tab5, and the Waveshare ESP32-P4 7-inch (experimental, it is my daily screen).</p>
+			<ul class="liens">
+				<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/">Documentation</a></li>
+				<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Install</a></li>
+				<li><a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL">Code on GitHub</a></li>
+			</ul>
+		</div>
+		<figure><img src="/assets/tab5.webp" width="800" height="600" alt="Axel's M5Stack Tab5 on its stand: the time, two temperatures, a climate setpoint and a five-day forecast"></figure>
+	</div>
+	<div class="galerie">
+		<div>
+			<figure><img src="/assets/waveshare-7b.webp" width="800" height="469" loading="lazy" alt="The home screen on the Waveshare ESP32-P4 7-inch, at 1024 × 600"></figure>
+		</div>
+		<div class="brique">
+			<h3>Two screens</h3>
+			<p>The M5Stack Tab5 (1280 × 720) and the Waveshare ESP32-P4 7-inch (1024 × 600). The same firmware, the same setup in Home Assistant.</p>
+			<a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/waveshare-7b/">The Waveshare 7B</a>
+		</div>
+	</div>
+</section>
+
+<section class="projet" id="vigie" aria-labelledby="title-vigie">
+	<div class="corps">
+		<div class="texte">
+			<span class="etiquette">Alerts · world map</span>
+			<h2 id="title-vigie">Vigie</h2>
+			<p>The world's alerts in one place: official weather warnings, earthquakes, cyclones, volcanoes, floods, fires seen by satellite. On a world map, with a "Near me" page for a given place.</p>
+			<p>Vigie gathers official sources (MeteoAlarm, DWD, Environment Canada, NWS, MetService, Vigicrues, the WMO registry…) without replacing them: always follow your authorities' instructions.</p>
+			<ul class="liens">
+				<li><a class="principal" href="https://vigie.auxfilsdesidees.fr/?lang=en">Open Vigie</a></li>
+				<li><a href="https://vigie.auxfilsdesidees.fr/countries?lang=en">Countries covered</a></li>
+			</ul>
+		</div>
+		<figure class="entier"><img src="/assets/vigie-en.webp" width="960" height="600" alt="Vigie: the world map with the current alerts, and the list of alerts by level on the left"></figure>
+	</div>
+	<div class="briques">
+		<div class="brique">
+			<h3>The API</h3>
+			<p>The official sources in one format (GeoJSON, CAP 1.2), with a Home Assistant integration. Python, FastAPI.</p>
+			<a href="https://github.com/Axellum/vigie-api">vigie-api on GitHub</a>
+		</div>
+		<div class="brique">
+			<h3>The website</h3>
+			<p>The site above: maps, country pages, accounts by invitation with passkeys. SvelteKit and MapLibre.</p>
+			<a href="https://github.com/Axellum/vigie-web">vigie-web on GitHub</a>
+		</div>
+		<div class="brique">
+			<h3>The screen</h3>
+			<p>A standalone alert screen, no Home Assistant needed, for the Waveshare ESP32-P4 7-inch. ESPHome and LVGL.</p>
+			<a href="https://github.com/Axellum/vigie-display">vigie-display on GitHub</a>
+		</div>
+	</div>
+</section>
+</main>
+
+<footer class="bas">
+	<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. Feedback welcome on <a href="https://github.com/Axellum">GitHub</a>.</p>
+	<p>Publisher: Axel Duviella, a private individual, non-commercial (France). Contact: <a href="https://github.com/Axellum">github.com/Axellum</a>. Host: OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/en/">ovhcloud.com</a>). This page sets no cookie and does not count its visits.</p>
+</footer>
+</div>
+</body>
+</html>

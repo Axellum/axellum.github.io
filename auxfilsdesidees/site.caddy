@@ -1,0 +1,21 @@
+# auxfilsdesidees.fr : la page des projets, fichiers statiques (installée par deploy.sh dans ~/vigie/sites/ du serveur Vigie).
+# Caddy de Vigie importe /etc/caddy/sites/*.caddy ; le dossier ~/vigie/sites y est monté en lecture seule.
+auxfilsdesidees.fr {
+	encode zstd gzip
+	header Strict-Transport-Security "max-age=31536000"
+	header X-Content-Type-Options nosniff
+	header Referrer-Policy strict-origin-when-cross-origin
+	@ecriture not method GET HEAD
+	respond @ecriture 405
+	@fixes path /assets/*
+	header @fixes Cache-Control "public, max-age=604800"
+	root * /etc/caddy/sites/auxfilsdesidees
+	file_server
+	handle_errors {
+		respond "{err.status_code}" {err.status_code}
+	}
+}
+
+www.auxfilsdesidees.fr {
+	redir https://auxfilsdesidees.fr{uri} permanent
+}

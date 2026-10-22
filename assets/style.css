@@ -1,0 +1,96 @@
+/* Aux fils des idées — page des projets. Aucune police ni script externe. */
+:root {
+	--fond: #f6f5f1;
+	--carte: #ffffff;
+	--texte: #1d232b;
+	--doux: #5b6470;
+	--trait: #e3e0d8;
+	--accent: #b4521f;
+	--accent-fond: #f6e7dc;
+	--lien: #1f5fa8;
+	color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--fond: #10151c;
+		--carte: #18202a;
+		--texte: #e8ecf1;
+		--doux: #9aa6b4;
+		--trait: #2a3542;
+		--accent: #f0a46f;
+		--accent-fond: #3a2a20;
+		--lien: #8fc0ff;
+	}
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+	margin: 0;
+	background: var(--fond);
+	color: var(--texte);
+	font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+a { color: var(--lien); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.page { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+header.haut { padding: 40px 0 8px; }
+.haut .ligne { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.marque { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--doux); margin: 0; }
+.langue { font-size: 15px; }
+h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.15; margin: 18px 0 12px; letter-spacing: -.01em; }
+.chapeau { font-size: 19px; color: var(--doux); max-width: 46em; margin: 0 0 8px; }
+
+main { padding-bottom: 24px; }
+section.projet {
+	background: var(--carte);
+	border: 1px solid var(--trait);
+	border-radius: 16px;
+	margin: 28px 0;
+	overflow: hidden;
+}
+.projet .corps { display: grid; grid-template-columns: 1.05fr 1fr; gap: 0; }
+.projet .texte { padding: 28px 28px 24px; }
+.projet figure { margin: 0; background: #0d1522; display: flex; align-items: center; justify-content: center; }
+.projet figure img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.etiquette {
+	display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+	color: var(--accent); background: var(--accent-fond); border-radius: 999px; padding: 3px 10px;
+}
+h2 { font-size: 27px; line-height: 1.2; margin: 12px 0 10px; }
+h3 { font-size: 18px; margin: 0 0 4px; }
+.projet p { margin: 0 0 12px; }
+.liens { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; padding: 0; list-style: none; }
+.liens a {
+	display: inline-block; padding: 9px 16px; border-radius: 10px; border: 1px solid var(--trait);
+	text-decoration: none; font-weight: 600; font-size: 15px; color: var(--texte); background: var(--fond);
+}
+.liens a.principal { background: var(--accent); border-color: var(--accent); color: #fff; }
+@media (prefers-color-scheme: dark) { .liens a.principal { color: #1a1008; } }
+.liens a:hover { border-color: var(--accent); }
+
+.briques { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--trait); }
+.brique { padding: 20px 24px 22px; border-left: 1px solid var(--trait); }
+.brique:first-child { border-left: 0; }
+.brique p { color: var(--doux); font-size: 15.5px; margin: 0 0 8px; }
+.brique a { font-weight: 600; font-size: 15px; }
+
+.galerie { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--trait); }
+.galerie figure { aspect-ratio: auto; }
+.galerie figcaption { font-size: 14px; color: var(--doux); padding: 8px 14px 12px; background: var(--carte); }
+.galerie > div { display: flex; flex-direction: column; border-left: 1px solid var(--trait); }
+.galerie > div:first-child { border-left: 0; }
+
+footer.bas { border-top: 1px solid var(--trait); color: var(--doux); font-size: 15px; padding: 24px 0 40px; }
+footer.bas p { margin: 0 0 8px; max-width: 52em; }
+
+@media (max-width: 760px) {
+	header.haut { padding-top: 24px; }
+	.projet .corps { grid-template-columns: 1fr; }
+	.projet figure { order: -1; max-height: 320px; }
+	.projet .texte { padding: 20px 18px; }
+	.briques, .galerie { grid-template-columns: 1fr; }
+	.brique, .galerie > div { border-left: 0; border-top: 1px solid var(--trait); }
+	.brique:first-child, .galerie > div:first-child { border-top: 0; }
+}
+.projet figure.entier img { object-fit: contain; height: auto; }
