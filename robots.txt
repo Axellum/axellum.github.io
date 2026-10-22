@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://axellum.github.io/M5-Tab5-ESPHome-LVGL/sitemap.xml
