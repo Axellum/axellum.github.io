@@ -9,6 +9,8 @@ auxfilsdesidees.fr {
 	respond @ecriture 405
 	@fixes path /assets/*
 	header @fixes Cache-Control "public, max-age=604800"
+	@pages not path /assets/*
+	header @pages Cache-Control "public, max-age=3600"
 	root * /etc/caddy/sites/auxfilsdesidees
 	file_server
 	handle_errors {
@@ -16,6 +18,7 @@ auxfilsdesidees.fr {
 	}
 }
 
-www.auxfilsdesidees.fr {
+# En http comme en https : une seule redirection vers https://auxfilsdesidees.fr, au lieu de deux.
+www.auxfilsdesidees.fr, http://www.auxfilsdesidees.fr {
 	redir https://auxfilsdesidees.fr{uri} permanent
 }
