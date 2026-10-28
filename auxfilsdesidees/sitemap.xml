@@ -39,11 +39,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/ai-engine/"/>
   </url>
   <url>
-    <loc>https://auxfilsdesidees.fr/ecrans-meteo-nextion/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/ecrans-meteo-nextion/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/nextion-weather-screens/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/nextion-weather-screens/"/>
-    <image:image><image:loc>https://auxfilsdesidees.fr/assets/nextion-photo.webp</image:loc></image:image>
+    <loc>https://auxfilsdesidees.fr/m5stack-tab5/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/m5stack-tab5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/m5stack-tab5/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/m5stack-tab5/"/>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5-photo-lumieres.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5-photo-accueil.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5-photo-chauffage.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/vigie/</loc>
@@ -51,6 +53,15 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie/"/>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-fr.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://auxfilsdesidees.fr/waveshare-esp32-p4-7b/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/waveshare-esp32-p4-7b/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/"/>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/7b-accueil.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/7b-lumieres.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/7b-energie.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/about/</loc>
@@ -91,11 +102,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/ai-engine/"/>
   </url>
   <url>
-    <loc>https://auxfilsdesidees.fr/en/nextion-weather-screens/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/ecrans-meteo-nextion/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/nextion-weather-screens/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/nextion-weather-screens/"/>
-    <image:image><image:loc>https://auxfilsdesidees.fr/assets/nextion-photo.webp</image:loc></image:image>
+    <loc>https://auxfilsdesidees.fr/en/m5stack-tab5/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/m5stack-tab5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/m5stack-tab5/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/m5stack-tab5/"/>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5-photo-lumieres.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5-photo-accueil.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5-photo-chauffage.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/vigie/</loc>
@@ -103,5 +116,14 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie/"/>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-en.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/waveshare-esp32-p4-7b/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/"/>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/7b-accueil.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/7b-lumieres.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/7b-energie.webp</image:loc></image:image>
   </url>
 </urlset>

@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M5Stack Tab5 as a Home Assistant display: ST7123, ST7121 and ILI9881C versions · Aux fils des idées</title>
+<meta name="description" content="The M5Stack Tab5 (ESP32-P4, 5 inch, 1280 × 720) as a native Home Assistant display. The three display versions (ST7123, ST7121, ILI9881C), how to recognise yours, what is tested, specifications and power draw.">
+<link rel="canonical" href="https://auxfilsdesidees.fr/en/m5stack-tab5/">
+<link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/m5stack-tab5/">
+<link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/m5stack-tab5/">
+<link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/m5stack-tab5/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:site_name" content="Aux fils des idées">
+<meta property="og:title" content="M5Stack Tab5 as a Home Assistant display: ST7123, ST7121 and ILI9881C versions · Aux fils des idées">
+<meta property="og:description" content="The M5Stack Tab5 (ESP32-P4, 5 inch, 1280 × 720) as a native Home Assistant display. The three display versions (ST7123, ST7121, ILI9881C), how to recognise yours, what is tested, specifications and power draw.">
+<meta property="og:url" content="https://auxfilsdesidees.fr/en/m5stack-tab5/">
+<meta property="og:image" content="https://auxfilsdesidees.fr/assets/tab5-photo-lumieres.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/assets/icone.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css?v=c3f36a1124">
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebSite",
+			"@id": "https://auxfilsdesidees.fr/#site",
+			"url": "https://auxfilsdesidees.fr/",
+			"name": "Aux fils des idées",
+			"inLanguage": [
+				"fr",
+				"en"
+			],
+			"publisher": {
+				"@id": "https://auxfilsdesidees.fr/#axel"
+			}
+		},
+		{
+			"@type": "Person",
+			"@id": "https://auxfilsdesidees.fr/#axel",
+			"name": "Axel Duviella",
+			"url": "https://auxfilsdesidees.fr/",
+			"sameAs": [
+				"https://github.com/Axellum"
+			]
+		},
+		{
+			"@type": "WebPage",
+			"@id": "https://auxfilsdesidees.fr/en/m5stack-tab5/#page",
+			"url": "https://auxfilsdesidees.fr/en/m5stack-tab5/",
+			"name": "M5Stack Tab5 as a Home Assistant display: ST7123, ST7121 and ILI9881C versions · Aux fils des idées",
+			"description": "The M5Stack Tab5 (ESP32-P4, 5 inch, 1280 × 720) as a native Home Assistant display. The three display versions (ST7123, ST7121, ILI9881C), how to recognise yours, what is tested, specifications and power draw.",
+			"inLanguage": "en",
+			"isPartOf": {
+				"@id": "https://auxfilsdesidees.fr/#site"
+			},
+			"primaryImageOfPage": "https://auxfilsdesidees.fr/assets/tab5-photo-lumieres.webp"
+		},
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{
+					"@type": "ListItem",
+					"position": 1,
+					"name": "Home",
+					"item": "https://auxfilsdesidees.fr/en/"
+				},
+				{
+					"@type": "ListItem",
+					"position": 2,
+					"name": "M5Stack Tab5",
+					"item": "https://auxfilsdesidees.fr/en/m5stack-tab5/"
+				}
+			]
+		},
+		{
+			"@type": "TechArticle",
+			"headline": "M5Stack Tab5 as a Home Assistant display: ST7123, ST7121 and ILI9881C versions",
+			"about": {
+				"@type": "Product",
+				"name": "M5Stack Tab5",
+				"brand": {
+					"@type": "Brand",
+					"name": "M5Stack"
+				}
+			},
+			"inLanguage": "en",
+			"image": "https://auxfilsdesidees.fr/assets/tab5-photo-lumieres.webp",
+			"author": {
+				"@id": "https://auxfilsdesidees.fr/#axel"
+			}
+		}
+	]
+}
+</script>
+</head>
+<body>
+<div class="page">
+<header class="haut">
+	<div class="ligne">
+		<a class="marque" href="/en/">Aux fils des idées</a>
+		<a class="langue" href="/m5stack-tab5/" hreflang="fr" lang="fr">Français</a>
+	</div>
+	<nav class="menu" aria-label="Main navigation"><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/m5stack-tab5/" aria-current="page">M5Stack Tab5</a></li><li><a href="/en/waveshare-esp32-p4-7b/">Waveshare 7B</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/">About</a></li></ul></nav>
+</header>
+
+<main>
+<nav class="fil" aria-label="Breadcrumb"><a href="/en/">Home</a> <span aria-hidden="true">›</span> <span aria-current="page">M5Stack Tab5</span></nav>
+<div class="heros">
+	<div>
+		<span class="etiquette">M5Stack · ESP32-P4 · 5 inch</span>
+		<h1>M5Stack Tab5 as a Home Assistant display</h1>
+		<p class="chapeau">The tablet the project was born for: a 5-inch 1280 × 720 touch screen built around an ESP32-P4. M5Stack has made it with three different display chips; the firmware exists for all three.</p>
+		<ul class="liens">
+			<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Install from the browser</a></li>
+			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/hardware/">Hardware reference</a></li>
+		</ul>
+	</div>
+	<figure><img src="/assets/tab5-photo-lumieres.webp" width="800" height="602" alt="Photo of an M5Stack Tab5 on a stand: the lights popup with three bulbs, the brightness arc at 100% and twelve colours"></figure>
+</div>
+
+<dl class="faits">
+	<div><dt>Screen</dt><dd>5", 1280 × 720</dd></div>
+	<div><dt>Processor</dt><dd>ESP32-P4</dd></div>
+	<div><dt>Memory</dt><dd>32 MB PSRAM, 16 MB flash</dd></div>
+	<div><dt>Radio</dt><dd>ESP32-C6, Wi-Fi 6, BLE 5</dd></div>
+	<div><dt>Display versions</dt><dd>3</dd></div>
+</dl>
+
+<section class="bloc" aria-labelledby="versions">
+	<h2 id="versions">The three versions of the Tab5</h2>
+	<p>M5Stack has changed the chip driving the screen and touch several times. Each needs its own firmware: they are not interchangeable. The install page asks you to pick yours.</p>
+	<div class="grille">
+		<div>
+			<h3>ST7123</h3>
+			<p>Made from 14 October 2025 to 28 April 2026. Display and touch in a single chip.</p>
+			<p><strong>Supported</strong>: it is my tablet, the one everything is developed and checked on. It is the default.</p>
+		</div>
+		<div>
+			<h3>ST7121</h3>
+			<p>Made since 28 April 2026. Display and touch in a single chip.</p>
+			<p><strong>Runs for a user</strong> since October 2026: display, touch and wake word. I don't have one.</p>
+		</div>
+		<div>
+			<h3>ILI9881C</h3>
+			<p>The original version, made from 9 May to 14 October 2025, with a separate GT911 touch chip.</p>
+			<p><strong>Builds, never tried</strong>: the firmware is built on every change, but nobody has run it on this version yet.</p>
+		</div>
+	</div>
+	<div class="note"><p><strong>How to tell which one you have</strong>: the display chip is printed on the sticker on the back, just above the Espressif logo. Beware, a unit labelled "ST7123" may carry an ST7121: if unsure, try one firmware then the other.</p></div>
+	<p>Have an ST7121 or an ILI9881C and willing to try? Tell how it went in <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/discussions/categories/hardware-compatibility">the hardware compatibility Discussions</a>: that is what moves these versions forward.</p>
+</section>
+
+<section class="bloc" aria-labelledby="photos">
+	<h2 id="photos">On the real tablet</h2>
+	<div class="grille vignettes">
+		<figure><img src="/assets/tab5-photo-accueil.webp" width="800" height="602" loading="lazy" alt="Photo of the Tab5: the home screen with the time, weather and forecast"><figcaption>Home screen</figcaption></figure>
+		<figure><img src="/assets/tab5-photo-lumieres.webp" width="800" height="602" loading="lazy" alt="Photo of the Tab5: the lights popup"><figcaption>Lights</figcaption></figure>
+		<figure><img src="/assets/tab5-photo-chauffage.webp" width="800" height="602" loading="lazy" alt="Photo of the Tab5: the heating popup with the thermostat"><figcaption>Heating</figcaption></figure>
+	</div>
+	<p class="legende">The screen texts in these photos are in French; the display speaks seven languages.</p>
+</section>
+
+<section class="bloc" aria-labelledby="specs">
+	<h2 id="specs">What is inside</h2>
+	<ul>
+		<li><strong>ESP32-P4</strong>: dual-core RISC-V processor running the whole firmware; 32 MB of PSRAM, essential to hold the 1280 × 720 image in memory, and 16 MB of flash.</li>
+		<li><strong>A separate ESP32-C6</strong> for Wi-Fi 6 and Bluetooth 5, linked to the P4; transparent for ESPHome.</li>
+		<li><strong>Backed-up clock</strong> (RX8130CE): time and alarm are right from boot, before the network.</li>
+		<li><strong>Sound and microphones</strong>: an ES8388 converter for the speaker, an ES7210 for the wake-word microphones.</li>
+		<li><strong>Motion sensor</strong>, used by the games you play by tilting the tablet.</li>
+		<li><strong>Optional 2S lithium battery</strong>, with charger and voltage reading; the firmware turns the charger off when there is no battery or when the tablet gets hot.</li>
+	</ul>
+	<p><strong>Measured power draw</strong> at the USB input: 2.6 W with the screen at 100%, 1.7 W at 50%, 1.2 W with the screen off.</p>
+</section>
+
+<section class="bloc" aria-labelledby="install">
+	<h2 id="install">Install it</h2>
+	<ol class="etapes">
+		<li>Connect the tablet to a computer with a USB-C cable that carries data, and open <a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">the install page</a> in Chrome or Edge.</li>
+		<li>Pick your display version (ST7123, ST7121 or ILI9881C), install, then give it the Wi-Fi.</li>
+		<li>Follow the <a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/installation/">Home Assistant steps</a>: files, adding the device, weather sources, blueprint.</li>
+	</ol>
+	<p>What the screen does once installed: <a href="/en/home-assistant-display/">the native Home Assistant display</a>. Another board, bigger and cheaper: <a href="/en/waveshare-esp32-p4-7b/">the Waveshare ESP32-P4 7B</a>.</p>
+</section>
+</main>
+
+<footer class="bas">
+	<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. Feedback welcome on <a href="https://github.com/Axellum">GitHub</a>.</p>
+	<p>Publisher: Axel Duviella, private individual, non-professional (France). Contact: <a href="https://github.com/Axellum">github.com/Axellum</a>. Host: OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/en/">ovhcloud.com</a>). This site sets no cookies and does not measure its visits.</p>
+</footer>
+</div>
+</body>
+</html>

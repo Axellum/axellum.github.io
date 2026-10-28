@@ -1,0 +1,90 @@
+chemin: /en/waveshare-esp32-p4-7b/
+paire: waveshare-7b
+titre: Waveshare ESP32-P4 7B as a Home Assistant display (ESPHome, 1024 × 600) · Aux fils des idées
+description: The Waveshare ESP32-P4-WIFI6-Touch-LCD-7B as a native Home Assistant display: 7 inch at 1024 × 600, the same firmware as the M5Stack Tab5, install from the browser. What changes, what is missing, the problems solved and the measurements.
+image: 7b-accueil.webp
+fil: Waveshare ESP32-P4 7B
+menu: Waveshare 7B
+ordre: 3
+---
+<!--ld {
+	"@type": "TechArticle",
+	"headline": "Waveshare ESP32-P4 7B as a Home Assistant display",
+	"about": { "@type": "Product", "name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-7B", "brand": { "@type": "Brand", "name": "Waveshare" } },
+	"inLanguage": "en",
+	"image": "https://auxfilsdesidees.fr/assets/7b-accueil.webp"
+} ld-->
+<div class="heros">
+	<div>
+		<span class="etiquette">Waveshare · ESP32-P4 · 7 inch</span>
+		<h1>Waveshare ESP32-P4 7B as a Home Assistant display</h1>
+		<p class="chapeau">A 7-inch 1024 × 600 touch screen built around the same chips as the Tab5. Bigger, cheaper, with fewer things on board. It has been the screen of my house since 14 October 2026.</p>
+		<ul class="liens">
+			<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Install from the browser</a></li>
+			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/waveshare-7b/">7B documentation</a></li>
+		</ul>
+	</div>
+	<figure><img src="/assets/7b-accueil.webp" width="1024" height="600" alt="The home screen on the Waveshare 7B at 1024 × 600: clock, Ok Nabu frame, central card and five forecast cards"></figure>
+</div>
+
+<dl class="faits">
+	<div><dt>Screen</dt><dd>7", 1024 × 600</dd></div>
+	<div><dt>Processor</dt><dd>ESP32-P4 at 400 MHz</dd></div>
+	<div><dt>Memory</dt><dd>32 MB PSRAM, 32 MB flash</dd></div>
+	<div><dt>Radio</dt><dd>ESP32-C6, 2.4 GHz Wi-Fi</dd></div>
+	<div><dt>Status</dt><dd>Supported since 3.9.0</dd></div>
+</dl>
+
+<section class="bloc" aria-labelledby="screen">
+	<h2 id="screen">What changes on screen</h2>
+	<p>The same firmware as the Tab5, built for this board. The home screen and every popup keep the Tab5's layout, brought down to 1024 × 600: same places, same proportions, smaller. Large fonts are scaled down, small ones keep their size to stay readable. In Home Assistant the board presents itself as a Tab5: the packages and the blueprint find it without any change.</p>
+	<div class="grille vignettes">
+		<figure><img src="/assets/7b-accueil.webp" width="1024" height="600" loading="lazy" alt="The home screen on the 7B"><figcaption>Home screen</figcaption></figure>
+		<figure><img src="/assets/7b-lumieres.webp" width="640" height="375" loading="lazy" alt="The lights popup on the 7B: bulbs, brightness ring and colours"><figcaption>Lights</figcaption></figure>
+		<figure><img src="/assets/7b-energie.webp" width="640" height="375" loading="lazy" alt="The energy popup on the 7B: the sun's path, production bars and the best slot"><figcaption>Energy</figcaption></figure>
+	</div>
+	<p class="legende">Renders of the firmware on a PC at 1024 × 600, the same pixels as on the board (French screen texts).</p>
+</section>
+
+<section class="bloc" aria-labelledby="missing">
+	<h2 id="missing">What the board does not have</h2>
+	<ul>
+		<li><strong>No motion sensor</strong>: the eight games are left out by default (you can add them by building yourself, but the tilt games get no input).</li>
+		<li><strong>No clock chip</strong>: the time comes from the network at each boot; after a power cut, the alarm waits for the Wi-Fi.</li>
+		<li><strong>A battery connector, but no gauge</strong>: this firmware does not read the battery yet.</li>
+		<li><strong>No headphone jack</strong>, and 2.4 GHz Wi-Fi only.</li>
+	</ul>
+</section>
+
+<section class="bloc" aria-labelledby="install">
+	<h2 id="install">Install it</h2>
+	<ol class="etapes">
+		<li>Connect the ESP32-P4's USB-C port to the computer and open <a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">the install page</a> in Chrome or Edge.</li>
+		<li>Pick "Waveshare ESP32-P4 7B", install, then give it the Wi-Fi.</li>
+		<li>Follow the same <a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/installation/">Home Assistant steps</a> as for a Tab5.</li>
+	</ol>
+	<p>Updates then come through Home Assistant, from this board's own folder. Board mounted upside down? The device's "Screen direction" setting in Home Assistant flips the image at once, without rebuilding. Replacing a Tab5? Disable the old device in Home Assistant first.</p>
+	<div class="note"><p>Not yet tried from the install page on a real board: mine got the published firmware through an over-the-air update. Not checked on the board either: the microphone and wake word, cameras. If you try it, tell us in <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/discussions/categories/hardware-compatibility">the Discussions</a>.</p></div>
+</section>
+
+<section class="bloc" aria-labelledby="problems">
+	<h2 id="problems">Problems solved when it arrived</h2>
+	<p>All already fixed in the firmware; useful if you start from scratch with ESPHome on this board.</p>
+	<ul>
+		<li><strong>Boot loops</strong>: ESPHome 2026.9.0 crashes when setting up the display of revision 3 ESP32-P4 chips; ESPHome 2026.9.1 at least is needed.</li>
+		<li><strong>No Wi-Fi</strong>: the ESP32-C6 reset is active high, as on the Tab5.</li>
+		<li><strong>Touch almost dead</strong>: the panel is mounted upside down relative to the driver, and the GT911 touch controller must be reset through GPIO 23.</li>
+		<li><strong>Clipping speaker</strong>: the ES8311 driver goes up to +32 dB; the volume is capped at 0 dB and its bottom raised, for clean sound across the slider.</li>
+		<li><strong>Boot loop after a software restart</strong>: the link with the Wi-Fi chip stayed stuck; every restart now resets the whole digital core.</li>
+	</ul>
+</section>
+
+<section class="bloc" aria-labelledby="measures">
+	<h2 id="measures">Measured on the board</h2>
+	<ul>
+		<li><strong>Boot</strong>: backlight at 1 s, first image at 4.8 s, Wi-Fi at 9.4 s.</li>
+		<li><strong>Power draw</strong> at the USB input: 1.56 W on the home screen at the usual brightness (USB meter, average at 100 samples per second), 3.1 W with the screen at 100%, 1.2 W with the screen off.</li>
+		<li><strong>Components</strong>: EK79007 MIPI-DSI display, GT911 touch, ES8311 sound and NS4150B amplifier, two microphones on an ES7210, 17 free GPIOs on two connectors.</li>
+	</ul>
+	<p>Details (pins, schematic, measuring method) are in the <a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/waveshare-7b/">7B documentation</a>. The original tablet: <a href="/en/m5stack-tab5/">the M5Stack Tab5 and its versions</a>.</p>
+</section>
