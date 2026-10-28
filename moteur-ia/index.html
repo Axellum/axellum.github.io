@@ -18,10 +18,10 @@
 <meta property="og:url" content="https://auxfilsdesidees.fr/moteur-ia/">
 <meta property="og:image" content="https://auxfilsdesidees.fr/assets/partage.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
-<link rel="icon" href="/assets/icone.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css?v=733da18cfa">
+<meta name="theme-color" content="#0e1319" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/assets/icone.svg?v=8d13847f41" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css?v=8842c3fdcc">
 <script type="application/ld+json">
 {
 	"@context": "https://schema.org",
@@ -97,18 +97,18 @@
 </script>
 </head>
 <body>
-<div class="page">
+<a class="evitement" href="#contenu">Aller au contenu</a>
 <header class="haut">
-	<div class="ligne">
-		<a class="marque" href="/">Aux fils des idées</a>
+	<div class="page ligne">
+		<a class="marque" href="/"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#10151c"/><path d="M30 55V41C30 33 23 29 20 21M30 41C30 35 35 31 39 29" fill="none" stroke="#f0a46f" stroke-width="4.8" stroke-linecap="round"/><path d="M39 29C40.5 24.5 41.5 20 43 15.5M39 29C43 28 47 28 50.5 25.5" fill="none" stroke="#f0a46f" stroke-width="3.8" stroke-linecap="round"/><circle cx="19.2" cy="18.6" r="5" fill="#8fc0ff"/><circle cx="43.6" cy="13.2" r="4.4" fill="#f0a46f"/><circle cx="52.2" cy="24.4" r="4.2" fill="#e8ecf1"/></svg><span>Aux fils des idées</span></a>
+		<nav class="menu" aria-label="Navigation principale"><ul><li><a href="/ecran-home-assistant/">Écran Home Assistant</a></li><li><a href="/vigie/">Vigie</a></li><li><a href="/moteur-ia/" aria-current="page">Moteur IA</a></li><li><a href="/a-propos/">À propos</a></li></ul></nav>
 		<a class="langue" href="/en/ai-engine/" hreflang="en" lang="en">English</a>
 	</div>
-	<nav class="menu" aria-label="Navigation principale"><ul><li><a href="/ecran-home-assistant/">Écran Home Assistant</a></li><li><a href="/vigie/">Vigie</a></li><li><a href="/moteur-ia/" aria-current="page">Moteur IA</a></li><li><a href="/a-propos/">À propos</a></li></ul></nav>
+	<div class="progression" aria-hidden="true"><span></span></div>
 </header>
 
-<div class="colonnes">
-<aside class="cote unique"><nav aria-label="Pages du projet"><p class="cote-titre"><a href="/moteur-ia/">Moteur IA</a></p><ul><li><a href="/moteur-ia/" aria-current="page">Moteur IA</a><ul class="sections"><li><a href="#fonctions">Ce qu'il fait</a></li><li><a href="#pile">La technique</a></li></ul></li></ul></nav></aside>
-<main>
+<div class="page avec-sommaire">
+<main id="contenu">
 <nav class="fil" aria-label="Fil d'Ariane"><a href="/">Accueil</a> <span aria-hidden="true">›</span> <span aria-current="page">Moteur IA</span></nav>
 <div class="heros">
 	<div>
@@ -120,11 +120,7 @@
 			<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/README.fr.md">Lire en français</a></li>
 		</ul>
 	</div>
-	<div class="bloc citation">
-		<h2>En une phrase</h2>
-		<p>« Async multi-agent LLM orchestrator with Elo routing, self-healing, and an OpenAI-compatible Proxy API. Built for Home Assistant, usable everywhere. »</p>
-		<p class="source">Description du dépôt vromvrom-engine.</p>
-	</div>
+	<figure class="schema"><svg viewBox="0 0 400 300" role="img" aria-label="Schéma : le moteur au centre, relié à six fournisseurs d'IA"><rect width="400" height="300" fill="#0d1522"/><g class="flux" fill="none" stroke="#f0a46f" stroke-opacity=".7" stroke-width="1.6"><path d="M200 150L84 66"/><path d="M200 150L200 52"/><path d="M200 150L316 66"/><path d="M200 150L316 234"/><path d="M200 150L200 248"/><path d="M200 150L84 234"/></g><g fill="#8fc0ff"><circle cx="84" cy="66" r="7"/><circle cx="200" cy="52" r="7"/><circle cx="316" cy="66" r="7"/><circle cx="316" cy="234" r="7"/><circle cx="200" cy="248" r="7"/><circle cx="84" cy="234" r="7"/></g><g fill="#9aa6b4" font-size="13" text-anchor="middle"><text x="84" y="46">Gemini</text><text x="200" y="32">Anthropic</text><text x="316" y="46">DeepSeek</text><text x="316" y="266">Mistral</text><text x="200" y="282">OpenRouter</text><text x="84" y="266">Ollama</text></g><image href="/assets/logo-moteur.svg" x="160" y="110" width="80" height="80"/></svg></figure>
 </div>
 
 <dl class="faits">
@@ -134,6 +130,11 @@
 	<div><dt>Licence</dt><dd>MIT</dd></div>
 	<div><dt>Statut</dt><dd>Développement actif</dd></div>
 </dl>
+
+<blockquote class="citation">
+	<p>« Async multi-agent LLM orchestrator with Elo routing, self-healing, and an OpenAI-compatible Proxy API. Built for Home Assistant, usable everywhere. »</p>
+	<p class="source">Description du dépôt vromvrom-engine.</p>
+</blockquote>
 
 <section class="bloc" aria-labelledby="fonctions">
 	<h2 id="fonctions">Ce qu'il fait</h2>
@@ -175,12 +176,84 @@
 	<div class="note"><p>Outil personnel partagé tel quel : le tableau de bord a encore des angles vifs, et aucune version n'est publiée pour l'instant.</p></div>
 </section>
 </main>
+<aside class="sommaire"><nav aria-label="Sur cette page"><p class="sommaire-titre">Sur cette page</p><ul><li><a href="#fonctions">Ce qu'il fait</a></li><li><a href="#pile">La technique</a></li></ul></nav></aside>
 </div>
+<button class="sommaire-bouton" type="button" popovertarget="sommaire-mobile" aria-label="Sur cette page"><span>Sur cette page</span></button>
+<nav id="sommaire-mobile" class="sommaire-mobile" popover aria-label="Sur cette page"><p class="sommaire-titre">Sur cette page</p><ul><li><a href="#fonctions">Ce qu'il fait</a></li><li><a href="#pile">La technique</a></li></ul></nav>
 
 <footer class="bas">
-	<p>Projets personnels, non commerciaux, faits avec l'aide de l'IA et testés surtout chez moi. Retours bienvenus sur <a href="https://github.com/Axellum">GitHub</a>.</p>
+	<div class="page">
+		<div class="bas-haut">
+			<div><a class="marque" href="/"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#10151c"/><path d="M30 55V41C30 33 23 29 20 21M30 41C30 35 35 31 39 29" fill="none" stroke="#f0a46f" stroke-width="4.8" stroke-linecap="round"/><path d="M39 29C40.5 24.5 41.5 20 43 15.5M39 29C43 28 47 28 50.5 25.5" fill="none" stroke="#f0a46f" stroke-width="3.8" stroke-linecap="round"/><circle cx="19.2" cy="18.6" r="5" fill="#8fc0ff"/><circle cx="43.6" cy="13.2" r="4.4" fill="#f0a46f"/><circle cx="52.2" cy="24.4" r="4.2" fill="#e8ecf1"/></svg><span>Aux fils des idées</span></a><p>Des écrans et des outils pour la maison, faits avec l'IA et partagés au cas où.</p></div>
+			<nav aria-label="Projets"><p class="bas-titre">Projets</p><ul><li><a href="/ecran-home-assistant/">Écran Home Assistant</a></li><li><a href="/vigie/">Vigie</a></li><li><a href="/moteur-ia/">Moteur IA</a></li><li><a href="/a-propos/">À propos</a></li></ul></nav>
+			<nav aria-label="Ailleurs"><p class="bas-titre">Ailleurs</p><ul><li><a href="https://github.com/Axellum">GitHub</a></li><li><a href="https://vigie.auxfilsdesidees.fr/">Vigie</a></li><li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/">Doc du Tab5</a></li></ul></nav>
+		</div>
+		<p>Projets personnels, non commerciaux, faits avec l'aide de l'IA et testés surtout chez moi. Retours bienvenus sur <a href="https://github.com/Axellum">GitHub</a>.</p>
 	<p>Éditeur : Axel Duviella, particulier, à titre non professionnel (France). Contact : <a href="https://github.com/Axellum">github.com/Axellum</a>. Hébergeur : OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/fr/">ovhcloud.com</a>). Ce site ne dépose aucun cookie et ne mesure pas ses visites.</p>
+	</div>
 </footer>
-</div>
+<script>
+/* Aux fils des idées : progression de lecture, sommaire qui suit la lecture, apparitions au défilement,
+   agrandissement des images. Sans bibliothèque ; rien ne bouge si le système demande moins d'animations. */
+(() => {
+	const d = document, h = d.documentElement, calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
+	h.classList.add("js");
+	const liens = [...d.querySelectorAll(".sommaire a, .sommaire-mobile a")];
+	const titres = [...new Set(liens.map(a => a.hash))].map(x => d.getElementById(x.slice(1))).filter(Boolean);
+	const pastille = d.querySelector(".sommaire-bouton span");
+	let actif = null, attente = false;
+	const maj = () => {
+		attente = false;
+		const max = h.scrollHeight - innerHeight;
+		h.style.setProperty("--p", max > 0 ? Math.min(scrollY / max, 1) : 0);
+		h.classList.toggle("defile", scrollY > 240);
+		let courant = null;
+		for (const t of titres) if (t.getBoundingClientRect().top < innerHeight * 0.32) courant = t;
+		if (courant !== actif) {
+			actif = courant;
+			for (const a of liens) a.classList.toggle("actif", !!courant && a.hash === "#" + courant.id);
+			if (pastille) pastille.textContent = courant ? courant.textContent : pastille.dataset.vide;
+		}
+	};
+	if (pastille) pastille.dataset.vide = pastille.textContent;
+	addEventListener("scroll", () => { if (!attente) { attente = true; requestAnimationFrame(maj); } }, { passive: true });
+	addEventListener("resize", maj);
+	maj();
+	d.getElementById("sommaire-mobile")?.addEventListener("click", e => e.target.closest("a") && e.currentTarget.hidePopover());
+	if (!calme && "IntersectionObserver" in window) {
+		const vu = new IntersectionObserver(es => es.forEach(e => {
+			if (e.isIntersecting) {
+				const x = e.target;
+				x.classList.add("vu");
+				vu.unobserve(x);
+				setTimeout(() => x.style.transitionDelay = "", 900);
+			}
+		}), { rootMargin: "0px 0px -6% 0px" });
+		d.querySelectorAll("main > section > :not(.grille, .cartes), main > .faits, .grille > *, .cartes > *, .journal li").forEach(x => {
+			if (x.getBoundingClientRect().top < innerHeight) return;
+			const rang = [...x.parentElement.children].indexOf(x);
+			if (x.parentElement.matches(".grille, .cartes, .journal ul")) x.style.transitionDelay = Math.min(rang, 4) * 70 + "ms";
+			x.classList.add("revele");
+			vu.observe(x);
+		});
+	}
+	const loupe = d.createElement("dialog");
+	loupe.className = "loupe";
+	loupe.innerHTML = '<img alt="">';
+	loupe.setAttribute("aria-label", h.lang === "fr" ? "Image agrandie" : "Enlarged image");
+	loupe.addEventListener("click", () => loupe.close());
+	d.body.append(loupe);
+	d.querySelectorAll("main figure img").forEach(img => {
+		if (img.closest(".diaporama, .collage")) return;
+		img.classList.add("agrandir");
+		img.addEventListener("click", () => {
+			const grande = loupe.firstChild;
+			grande.src = img.currentSrc || img.src;
+			grande.alt = img.alt;
+			loupe.showModal();
+		});
+	});
+})();
+</script>
 </body>
 </html>

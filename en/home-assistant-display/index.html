@@ -18,10 +18,10 @@
 <meta property="og:url" content="https://auxfilsdesidees.fr/en/home-assistant-display/">
 <meta property="og:image" content="https://auxfilsdesidees.fr/assets/tab5-themes-en.webp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
-<link rel="icon" href="/assets/icone.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css?v=733da18cfa">
+<meta name="theme-color" content="#0e1319" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/assets/icone.svg?v=8d13847f41" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css?v=8842c3fdcc">
 <script type="application/ld+json">
 {
 	"@context": "https://schema.org",
@@ -101,24 +101,25 @@
 </script>
 </head>
 <body>
-<div class="page">
+<a class="evitement" href="#contenu">Skip to content</a>
 <header class="haut">
-	<div class="ligne">
-		<a class="marque" href="/en/">Aux fils des idées</a>
+	<div class="page ligne">
+		<a class="marque" href="/en/"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#10151c"/><path d="M30 55V41C30 33 23 29 20 21M30 41C30 35 35 31 39 29" fill="none" stroke="#f0a46f" stroke-width="4.8" stroke-linecap="round"/><path d="M39 29C40.5 24.5 41.5 20 43 15.5M39 29C43 28 47 28 50.5 25.5" fill="none" stroke="#f0a46f" stroke-width="3.8" stroke-linecap="round"/><circle cx="19.2" cy="18.6" r="5" fill="#8fc0ff"/><circle cx="43.6" cy="13.2" r="4.4" fill="#f0a46f"/><circle cx="52.2" cy="24.4" r="4.2" fill="#e8ecf1"/></svg><span>Aux fils des idées</span></a>
+		<nav class="menu" aria-label="Main navigation"><ul><li><a href="/en/home-assistant-display/" aria-current="page">Home Assistant display</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/">About</a></li></ul></nav>
 		<a class="langue" href="/ecran-home-assistant/" hreflang="fr" lang="fr">Français</a>
 	</div>
-	<nav class="menu" aria-label="Main navigation"><ul><li><a href="/en/home-assistant-display/" aria-current="page">Home Assistant display</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/">About</a></li></ul></nav>
+	<div class="progression" aria-hidden="true"><span></span></div>
 </header>
 
-<div class="colonnes">
-<aside class="cote"><nav aria-label="Project pages"><p class="cote-titre"><a href="/en/home-assistant-display/">Home Assistant display</a></p><ul><li><a href="/en/home-assistant-display/" aria-current="page">Overview</a><ul class="sections"><li><a href="#features">What the display does</a></li><li><a href="#screens">What it looks like</a></li><li><a href="#hardware">Supported screens</a></li><li><a href="#install">Install</a></li><li><a href="#how">How it works</a></li><li><a href="#docs">Useful documentation</a></li></ul></li><li><a href="/en/m5stack-tab5/">M5Stack Tab5</a></li><li><a href="/en/waveshare-esp32-p4-7b/">Waveshare 7B</a></li></ul></nav></aside>
-<main>
+<div class="page avec-sommaire">
+<main id="contenu">
 <nav class="fil" aria-label="Breadcrumb"><a href="/en/">Home</a> <span aria-hidden="true">›</span> <span aria-current="page">Home Assistant display</span></nav>
+<nav class="onglets" aria-label="Project pages"><span class="onglets-projet"><img src="/assets/logo-ecran.svg" width="26" height="26" alt="">Home Assistant display</span><ul><li><a href="/en/home-assistant-display/" aria-current="page">Overview</a></li><li><a href="/en/m5stack-tab5/">M5Stack Tab5</a></li><li><a href="/en/waveshare-esp32-p4-7b/">Waveshare 7B</a></li></ul></nav>
 <div class="heros">
 	<div>
 		<span class="etiquette">Home Assistant · ESP32-P4</span>
 		<h1>Native Home Assistant display</h1>
-		<p class="chapeau">A wall display that runs directly on the M5Stack Tab5, with no browser: Home Assistant pushes what changed, and the screen redraws only that. It is the screen of my house.</p>
+		<p class="chapeau">A wall display that runs directly on an M5Stack Tab5 or a Waveshare ESP32-P4 7B, with no browser: Home Assistant pushes what changed, and the screen redraws only that. It is the screen of my house.</p>
 		<ul class="liens">
 			<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Install from the browser</a></li>
 			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/">Documentation</a></li>
@@ -198,19 +199,26 @@
 
 <section class="bloc" aria-labelledby="hardware">
 	<h2 id="hardware">Supported screens</h2>
-	<div class="grille">
-		<div>
-			<h3>M5Stack Tab5</h3>
-			<p>1280 × 720, ESP32-P4. Three display chips exist: ST7123 (mine), ST7121 (works for another user), ILI9881C (builds, untested).</p>
-			<a href="/en/m5stack-tab5/">The Tab5 and its three versions</a>
-		</div>
-		<div>
-			<h3>Waveshare ESP32-P4 7B</h3>
-			<p>1024 × 600, experimental, but it has been my everyday screen since 14 October 2026. No motion sensor, clock chip or battery; one energy page is not adapted to its screen yet.</p>
-			<a href="/en/waveshare-esp32-p4-7b/">The Waveshare 7B in detail</a>
-		</div>
+	<div class="choix">
+		<article class="carte">
+			<figure><img src="/assets/tab5-photo-accueil.webp" width="800" height="602" loading="lazy" alt="Photo of the Tab5: the home screen with the time, weather and forecast"></figure>
+			<div>
+				<span class="etiquette">5 inches · 1280 × 720</span>
+				<h3><a href="/en/m5stack-tab5/">M5Stack Tab5</a></h3>
+				<p>Three display chips exist: ST7123 (the development one), ST7121 (runs for a user, tried at home), ILI9881C (builds, untested).</p>
+				<span class="suite">The Tab5 and its three versions</span>
+			</div>
+		</article>
+		<article class="carte">
+			<figure><img src="/assets/waveshare-7b.webp" width="800" height="469" loading="lazy" alt="The home screen on the 7-inch Waveshare ESP32-P4, at 1024 × 600"></figure>
+			<div>
+				<span class="etiquette">7 inches · 1024 × 600</span>
+				<h3><a href="/en/waveshare-esp32-p4-7b/">Waveshare ESP32-P4 7B</a></h3>
+				<p>No longer experimental since 3.9.0: it has been the screen of my house since 14 October 2026. No motion sensor (so no games by default), clock chip or battery.</p>
+				<span class="suite">The Waveshare 7B in detail</span>
+			</div>
+		</article>
 	</div>
-	<figure><img src="/assets/waveshare-7b.webp" width="800" height="469" loading="lazy" alt="The home screen on the 7-inch Waveshare ESP32-P4, at 1024 × 600"><figcaption>The same firmware on the Waveshare 7B.</figcaption></figure>
 </section>
 
 <section class="bloc" aria-labelledby="install">
@@ -268,12 +276,84 @@
 	<div class="note"><p>A personal project, made with the help of AI. The seven languages were translated by AI; only French has been proofread. Warnings outside Météo-France have only been tried with simulated data.</p></div>
 </section>
 </main>
+<aside class="sommaire"><nav aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#features">What the display does</a></li><li><a href="#screens">What it looks like</a></li><li><a href="#hardware">Supported screens</a></li><li><a href="#install">Install</a></li><li><a href="#how">How it works</a></li><li><a href="#docs">Useful documentation</a></li></ul></nav></aside>
 </div>
+<button class="sommaire-bouton" type="button" popovertarget="sommaire-mobile" aria-label="On this page"><span>On this page</span></button>
+<nav id="sommaire-mobile" class="sommaire-mobile" popover aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#features">What the display does</a></li><li><a href="#screens">What it looks like</a></li><li><a href="#hardware">Supported screens</a></li><li><a href="#install">Install</a></li><li><a href="#how">How it works</a></li><li><a href="#docs">Useful documentation</a></li></ul></nav>
 
 <footer class="bas">
-	<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. Feedback welcome on <a href="https://github.com/Axellum">GitHub</a>.</p>
+	<div class="page">
+		<div class="bas-haut">
+			<div><a class="marque" href="/en/"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#10151c"/><path d="M30 55V41C30 33 23 29 20 21M30 41C30 35 35 31 39 29" fill="none" stroke="#f0a46f" stroke-width="4.8" stroke-linecap="round"/><path d="M39 29C40.5 24.5 41.5 20 43 15.5M39 29C43 28 47 28 50.5 25.5" fill="none" stroke="#f0a46f" stroke-width="3.8" stroke-linecap="round"/><circle cx="19.2" cy="18.6" r="5" fill="#8fc0ff"/><circle cx="43.6" cy="13.2" r="4.4" fill="#f0a46f"/><circle cx="52.2" cy="24.4" r="4.2" fill="#e8ecf1"/></svg><span>Aux fils des idées</span></a><p>Screens and tools for the home, made with AI and shared in case they help.</p></div>
+			<nav aria-label="Projects"><p class="bas-titre">Projects</p><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/">About</a></li></ul></nav>
+			<nav aria-label="Elsewhere"><p class="bas-titre">Elsewhere</p><ul><li><a href="https://github.com/Axellum">GitHub</a></li><li><a href="https://vigie.auxfilsdesidees.fr/">Vigie</a></li><li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/">Tab5 docs</a></li></ul></nav>
+		</div>
+		<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. Feedback welcome on <a href="https://github.com/Axellum">GitHub</a>.</p>
 	<p>Publisher: Axel Duviella, private individual, non-professional (France). Contact: <a href="https://github.com/Axellum">github.com/Axellum</a>. Host: OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/en/">ovhcloud.com</a>). This site sets no cookies and does not measure its visits.</p>
+	</div>
 </footer>
-</div>
+<script>
+/* Aux fils des idées : progression de lecture, sommaire qui suit la lecture, apparitions au défilement,
+   agrandissement des images. Sans bibliothèque ; rien ne bouge si le système demande moins d'animations. */
+(() => {
+	const d = document, h = d.documentElement, calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
+	h.classList.add("js");
+	const liens = [...d.querySelectorAll(".sommaire a, .sommaire-mobile a")];
+	const titres = [...new Set(liens.map(a => a.hash))].map(x => d.getElementById(x.slice(1))).filter(Boolean);
+	const pastille = d.querySelector(".sommaire-bouton span");
+	let actif = null, attente = false;
+	const maj = () => {
+		attente = false;
+		const max = h.scrollHeight - innerHeight;
+		h.style.setProperty("--p", max > 0 ? Math.min(scrollY / max, 1) : 0);
+		h.classList.toggle("defile", scrollY > 240);
+		let courant = null;
+		for (const t of titres) if (t.getBoundingClientRect().top < innerHeight * 0.32) courant = t;
+		if (courant !== actif) {
+			actif = courant;
+			for (const a of liens) a.classList.toggle("actif", !!courant && a.hash === "#" + courant.id);
+			if (pastille) pastille.textContent = courant ? courant.textContent : pastille.dataset.vide;
+		}
+	};
+	if (pastille) pastille.dataset.vide = pastille.textContent;
+	addEventListener("scroll", () => { if (!attente) { attente = true; requestAnimationFrame(maj); } }, { passive: true });
+	addEventListener("resize", maj);
+	maj();
+	d.getElementById("sommaire-mobile")?.addEventListener("click", e => e.target.closest("a") && e.currentTarget.hidePopover());
+	if (!calme && "IntersectionObserver" in window) {
+		const vu = new IntersectionObserver(es => es.forEach(e => {
+			if (e.isIntersecting) {
+				const x = e.target;
+				x.classList.add("vu");
+				vu.unobserve(x);
+				setTimeout(() => x.style.transitionDelay = "", 900);
+			}
+		}), { rootMargin: "0px 0px -6% 0px" });
+		d.querySelectorAll("main > section > :not(.grille, .cartes), main > .faits, .grille > *, .cartes > *, .journal li").forEach(x => {
+			if (x.getBoundingClientRect().top < innerHeight) return;
+			const rang = [...x.parentElement.children].indexOf(x);
+			if (x.parentElement.matches(".grille, .cartes, .journal ul")) x.style.transitionDelay = Math.min(rang, 4) * 70 + "ms";
+			x.classList.add("revele");
+			vu.observe(x);
+		});
+	}
+	const loupe = d.createElement("dialog");
+	loupe.className = "loupe";
+	loupe.innerHTML = '<img alt="">';
+	loupe.setAttribute("aria-label", h.lang === "fr" ? "Image agrandie" : "Enlarged image");
+	loupe.addEventListener("click", () => loupe.close());
+	d.body.append(loupe);
+	d.querySelectorAll("main figure img").forEach(img => {
+		if (img.closest(".diaporama, .collage")) return;
+		img.classList.add("agrandir");
+		img.addEventListener("click", () => {
+			const grande = loupe.firstChild;
+			grande.src = img.currentSrc || img.src;
+			grande.alt = img.alt;
+			loupe.showModal();
+		});
+	});
+})();
+</script>
 </body>
 </html>
