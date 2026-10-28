@@ -95,7 +95,7 @@ LOGO = (
 	'<circle cx="52.2" cy="24.4" r="4.2" fill="#e8ecf1"/></svg>'
 )
 # Script de la page (progression de lecture, sommaire, apparitions, agrandissement des images), mis en ligne
-# dans chaque page : moins de 2 Ko, aucune requête de plus.
+# dans chaque page : environ 3 Ko (1,4 Ko compressé), aucune requête de plus.
 SCRIPT = (ICI / "gabarits" / "site.js").read_text(encoding="utf-8").strip()
 PERSONNE = {
 	"@type": "Person",
