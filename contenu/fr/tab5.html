@@ -1,0 +1,92 @@
+chemin: /m5stack-tab5/
+paire: tab5
+titre: M5Stack Tab5 en écran Home Assistant : versions ST7123, ST7121 et ILI9881C · Aux fils des idées
+description: Le M5Stack Tab5 (ESP32-P4, 5 pouces, 1280 × 720) en écran Home Assistant natif. Les trois versions d'écran (ST7123, ST7121, ILI9881C), comment reconnaître la vôtre, ce qui est testé, les caractéristiques et la consommation.
+image: tab5-photo-lumieres.webp
+fil: M5Stack Tab5
+menu: M5Stack Tab5
+ordre: 2
+---
+<!--ld {
+	"@type": "TechArticle",
+	"headline": "M5Stack Tab5 en écran Home Assistant : versions ST7123, ST7121 et ILI9881C",
+	"about": { "@type": "Product", "name": "M5Stack Tab5", "brand": { "@type": "Brand", "name": "M5Stack" } },
+	"inLanguage": "fr",
+	"image": "https://auxfilsdesidees.fr/assets/tab5-photo-lumieres.webp"
+} ld-->
+<div class="heros">
+	<div>
+		<span class="etiquette">M5Stack · ESP32-P4 · 5 pouces</span>
+		<h1>M5Stack Tab5 en écran Home Assistant</h1>
+		<p class="chapeau">La tablette pour laquelle le projet est né : un écran tactile de 5 pouces en 1280 × 720 autour d'un ESP32-P4. M5Stack l'a fabriquée avec trois puces d'écran différentes ; le micrologiciel existe pour les trois.</p>
+		<ul class="liens">
+			<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Installer depuis le navigateur</a></li>
+			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/fr/hardware/">Référence matérielle</a></li>
+		</ul>
+	</div>
+	<figure><img src="/assets/tab5-photo-lumieres.webp" width="800" height="602" alt="Photo d'un M5Stack Tab5 sur un pied : la fenêtre des lumières avec trois ampoules, l'arc de luminosité à 100 % et douze couleurs"></figure>
+</div>
+
+<dl class="faits">
+	<div><dt>Écran</dt><dd>5", 1280 × 720</dd></div>
+	<div><dt>Processeur</dt><dd>ESP32-P4</dd></div>
+	<div><dt>Mémoire</dt><dd>32 Mo PSRAM, 16 Mo flash</dd></div>
+	<div><dt>Radio</dt><dd>ESP32-C6, Wi-Fi 6, BLE 5</dd></div>
+	<div><dt>Versions d'écran</dt><dd>3</dd></div>
+</dl>
+
+<section class="bloc" aria-labelledby="versions">
+	<h2 id="versions">Les trois versions du Tab5</h2>
+	<p>M5Stack a changé plusieurs fois la puce qui pilote l'écran et le tactile. Chacune demande son propre micrologiciel : ils ne sont pas interchangeables. La page d'installation vous fait choisir la vôtre.</p>
+	<div class="grille">
+		<div>
+			<h3>ST7123</h3>
+			<p>Fabriquée du 14 octobre 2025 au 28 avril 2026. Écran et tactile dans une seule puce.</p>
+			<p><strong>Prise en charge</strong> : c'est ma tablette, celle sur laquelle tout est développé et vérifié. C'est le choix par défaut.</p>
+		</div>
+		<div>
+			<h3>ST7121</h3>
+			<p>Fabriquée depuis le 28 avril 2026. Écran et tactile dans une seule puce.</p>
+			<p><strong>Tourne chez un utilisateur</strong> depuis octobre 2026 : écran, tactile et mot d'éveil. Je n'en ai pas.</p>
+		</div>
+		<div>
+			<h3>ILI9881C</h3>
+			<p>La version d'origine, fabriquée du 9 mai au 14 octobre 2025, avec une puce tactile GT911 séparée.</p>
+			<p><strong>Compile, jamais essayée</strong> : le micrologiciel est construit à chaque changement, mais personne ne l'a encore lancé sur cette version.</p>
+		</div>
+	</div>
+	<div class="note"><p><strong>Comment savoir laquelle vous avez</strong> : la puce d'écran est écrite sur l'autocollant au dos, juste au-dessus du logo Espressif. Attention, un appareil marqué « ST7123 » peut contenir une ST7121 : dans le doute, essayez l'un puis l'autre micrologiciel.</p></div>
+	<p>Vous avez une ST7121 ou une ILI9881C et vous voulez bien essayer ? Racontez ce que ça a donné dans <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/discussions/categories/hardware-compatibility">la rubrique de compatibilité des Discussions</a> : c'est ce qui fait avancer ces versions.</p>
+</section>
+
+<section class="bloc" aria-labelledby="photos">
+	<h2 id="photos">Sur la vraie tablette</h2>
+	<div class="grille vignettes">
+		<figure><img src="/assets/tab5-photo-accueil.webp" width="800" height="602" loading="lazy" alt="Photo du Tab5 : l'écran d'accueil avec l'heure, la météo et les prévisions"><figcaption>L'accueil</figcaption></figure>
+		<figure><img src="/assets/tab5-photo-lumieres.webp" width="800" height="602" loading="lazy" alt="Photo du Tab5 : la fenêtre des lumières"><figcaption>Les lumières</figcaption></figure>
+		<figure><img src="/assets/tab5-photo-chauffage.webp" width="800" height="602" loading="lazy" alt="Photo du Tab5 : la fenêtre du chauffage avec le thermostat"><figcaption>Le chauffage</figcaption></figure>
+	</div>
+</section>
+
+<section class="bloc" aria-labelledby="caracteristiques">
+	<h2 id="caracteristiques">Ce qu'il y a dedans</h2>
+	<ul>
+		<li><strong>ESP32-P4</strong> : processeur RISC-V double cœur, qui fait tourner tout le micrologiciel ; 32 Mo de PSRAM, indispensables pour l'image de 1280 × 720 en mémoire, et 16 Mo de flash.</li>
+		<li><strong>ESP32-C6</strong> à part pour le Wi-Fi 6 et le Bluetooth 5, relié au P4 ; transparent pour ESPHome.</li>
+		<li><strong>Horloge sauvegardée</strong> (RX8130CE) : l'heure et le réveil sont justes dès le démarrage, avant le réseau.</li>
+		<li><strong>Son et micros</strong> : un convertisseur ES8388 pour le haut-parleur, un ES7210 pour les micros du mot d'éveil.</li>
+		<li><strong>Capteur de mouvement</strong>, utilisé par les jeux qui se jouent en inclinant la tablette.</li>
+		<li><strong>Batterie lithium 2S en option</strong>, avec chargeur et mesure de tension ; le micrologiciel coupe le chargeur quand il n'y a pas de batterie ou quand la tablette chauffe.</li>
+	</ul>
+	<p><strong>Consommation mesurée</strong> à l'entrée USB : 2,6 W écran à 100 %, 1,7 W à 50 %, 1,2 W écran éteint.</p>
+</section>
+
+<section class="bloc" aria-labelledby="installer">
+	<h2 id="installer">L'installer</h2>
+	<ol class="etapes">
+		<li>Branchez la tablette à un ordinateur avec un câble USB-C qui transmet les données, et ouvrez <a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">la page d'installation</a> dans Chrome ou Edge.</li>
+		<li>Choisissez votre version d'écran (ST7123, ST7121 ou ILI9881C), installez, puis donnez le Wi-Fi.</li>
+		<li>Suivez les <a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/fr/installation/">étapes Home Assistant</a> : fichiers, ajout de l'appareil, sources météo, blueprint.</li>
+	</ol>
+	<p>Ce que fait l'écran une fois installé : <a href="/ecran-home-assistant/">l'écran Home Assistant natif</a>. Une autre carte, plus grande et moins chère : <a href="/waveshare-esp32-p4-7b/">la Waveshare ESP32-P4 7B</a>.</p>
+</section>

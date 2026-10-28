@@ -141,6 +141,7 @@ details { border-top: 1px solid var(--trait); padding: 12px 0; }
 details:last-of-type { border-bottom: 1px solid var(--trait); }
 summary { cursor: pointer; font-weight: 600; }
 details p { margin: 8px 0 0; }
+.legende { color: var(--doux); font-size: 15px; }
 .citation { margin: 0; }
 .citation h2 { margin-top: 0; }
 .citation .source { color: var(--doux); font-size: 15px; margin: 0; }
