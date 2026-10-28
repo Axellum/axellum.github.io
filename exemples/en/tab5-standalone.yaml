@@ -1,0 +1,254 @@
+# M5Stack Tab5 with ESPHome, without Home Assistant: display, touch, Wi-Fi and backlight, and
+# the screen reads a web API by itself to show the temperature and the weather warning of a
+# place (the /v1/point route of the public Vigie API). Pins and settings of the Vigie display
+# firmware, which runs on a Tab5 ST7121; this example itself is compiled with ESPHome 2026.9.1
+# but not tried as is.
+substitutions:
+  # The display chip is printed on the back of the Tab5, above the Espressif logo:
+  #   ST7123   : M5STACK-TAB5-ST7123, touch st7123, 100ms
+  #   ST7121   : M5STACK-TAB5-ST7121, touch st7123, 100ms
+  #   ILI9881C : M5STACK-TAB5,        touch gt911,  never
+  panel_model: M5STACK-TAB5-ST7123
+  touch_chip: st7123
+  touch_interval: 100ms
+  # The place shown (Paris here).
+  latitude: "48.86"
+  longitude: "2.35"
+
+esphome:
+  name: tab5-standalone
+  friendly_name: Tab5 standalone
+  min_version: 2026.9.0
+  on_boot:
+    # The panel reset goes through a PI4IOE5V6408 I/O expander, which needs a second after
+    # start-up: without this wait, black screen after a software restart. A C delay(): ESPHome's
+    # "delay:" does not hold the display setup back.
+    - priority: 700
+      then:
+        - lambda: "delay(1000);"
+
+esp32:
+  board: esp32-p4-evboard
+  flash_size: 16MB
+  framework:
+    type: esp-idf
+    advanced:
+      enable_idf_experimental_features: true
+      execute_from_psram: true
+
+# 32 MB of PSRAM, where LVGL keeps the whole picture (buffer_size: 100% below).
+psram:
+  mode: hex
+  speed: 200MHz
+
+# Wi-Fi is on a second chip, an ESP32-C6, linked over SDIO. Its reset is active high:
+# active_high: false gives "sdmmc_card_init failed".
+esp32_hosted:
+  variant: esp32c6
+  active_high: true
+  clk_pin: GPIO12
+  cmd_pin: GPIO13
+  d0_pin: GPIO11
+  d1_pin: GPIO10
+  d2_pin: GPIO9
+  d3_pin: GPIO8
+  reset_pin: GPIO15
+  slot: 1
+  sdio_frequency: 20MHz
+  use_psram: true
+
+# No "api:": nothing links the screen to Home Assistant. No password in the file: Wi-Fi is given
+# after the install, over USB (Improv, from ESPHome Web) or through the "Tab5 setup" access
+# point and its settings page.
+wifi:
+  ap:
+    ssid: "Tab5 setup"
+
+improv_serial:
+
+captive_portal:
+
+ota:
+  - platform: esphome
+
+logger:
+  hardware_uart: USB_SERIAL_JTAG
+
+# One I2C bus for the touch, the two I/O expanders and the audio chips.
+i2c:
+  - id: bsp_bus
+    sda: GPIO31
+    scl: GPIO32
+    frequency: 400kHz
+
+pi4ioe5v6408:
+  - id: pi4ioe1
+    address: 0x43
+  - id: pi4ioe2
+    address: 0x44
+
+# Power rails behind the expanders. "wifi_power" feeds the ESP32-C6: the expander starts off,
+# and without this the Wi-Fi never comes up ("sdmmc_card_init failed"). The charger stays off,
+# as with no battery.
+switch:
+  - platform: gpio
+    id: wifi_power
+    pin:
+      pi4ioe5v6408: pi4ioe2
+      number: 0
+    restore_mode: ALWAYS_ON
+  - platform: gpio
+    id: usb_5v_power
+    pin:
+      pi4ioe5v6408: pi4ioe2
+      number: 3
+    restore_mode: ALWAYS_ON
+  - platform: gpio
+    id: external_5v_power
+    pin:
+      pi4ioe5v6408: pi4ioe1
+      number: 2
+    restore_mode: ALWAYS_ON
+  - platform: gpio
+    id: charge_enable
+    pin:
+      pi4ioe5v6408: pi4ioe2
+      number: 7
+    restore_mode: ALWAYS_OFF
+
+# Supply of the display's MIPI-DSI link: LDO 3 at 2.5 V.
+esp_ldo:
+  - voltage: 2.5V
+    channel: 3
+
+# The panel is portrait (720 × 1280): LVGL turns it to landscape below.
+display:
+  - id: panel
+    platform: mipi_dsi
+    model: ${panel_model}
+    dimensions:
+      width: 720
+      height: 1280
+    reset_pin:
+      pi4ioe5v6408: pi4ioe1
+      number: 4
+    pixel_mode: 16bit
+    color_order: RGB
+    update_interval: never
+    auto_clear_enabled: false
+
+# Same pins on the three versions. No mirroring (it corrupts the picture on an ST7121): LVGL
+# turns the touches with the picture.
+touchscreen:
+  - id: touch
+    platform: ${touch_chip}
+    update_interval: ${touch_interval}
+    interrupt_pin: GPIO23
+    reset_pin:
+      pi4ioe5v6408: pi4ioe1
+      number: 5
+    calibration:
+      x_min: 0
+      x_max: 720
+      y_min: 0
+      y_max: 1280
+
+output:
+  - platform: ledc
+    id: backlight_pwm
+    pin: GPIO22
+    frequency: 1000Hz
+
+light:
+  - platform: monochromatic
+    id: backlight
+    name: "Backlight"
+    output: backlight_pwm
+    restore_mode: RESTORE_DEFAULT_ON
+
+# The screen fetches its data by itself, over HTTPS. verify_ssl: false: the server certificate
+# is not checked, as in Vigie display; fine for public data, never for a password.
+http_request:
+  id: web
+  timeout: 8s
+  verify_ssl: false
+
+interval:
+  # /v1/point takes 10 requests per minute and per address: one every 5 minutes is plenty.
+  - interval: 5min
+    startup_delay: 10s
+    then:
+      - if:
+          condition:
+            wifi.connected:
+          then:
+            - http_request.get:
+                url: "https://vigie.auxfilsdesidees.fr/v1/point?lat=${latitude}&lon=${longitude}"
+                capture_response: true
+                max_response_buffer_size: 16384
+                on_response:
+                  then:
+                    - lambda: |-
+                        if (response->status_code != 200) {
+                          ESP_LOGW("exemple", "HTTP %d", response->status_code);
+                          return;
+                        }
+                        json::parse_json(body, [](JsonObject root) -> bool {
+                          // Highest weather warning at the point: GREEN, YELLOW, ORANGE or RED.
+                          std::string level = root["local_alert_level"] | "";
+                          const char *text = "No warning";
+                          uint32_t colour = 0x3FA34D;
+                          if (level == "YELLOW") { text = "Yellow warning"; colour = 0xF2C230; }
+                          if (level == "ORANGE") { text = "Orange warning"; colour = 0xF08A24; }
+                          if (level == "RED") { text = "Red warning"; colour = 0xE5484D; }
+                          lv_label_set_text(id(level_label), text);
+                          lv_obj_set_style_text_color(id(level_label), lv_color_hex(colour), LV_PART_MAIN);
+                          // A missing value stays missing: nothing is made up.
+                          JsonVariant temperature = root["current"]["temp_c"];
+                          if (temperature.is<float>()) {
+                            char value[16];
+                            snprintf(value, sizeof(value), "%.1f °C", temperature.as<float>());
+                            lv_label_set_text(id(temperature_label), value);
+                          }
+                          return true;
+                        });
+                on_error:
+                  then:
+                    - logger.log: "No answer (network or timeout)"
+
+# LVGL's built-in fonts have no accented letters: Roboto, downloaded at build time (it only
+# lacks combining accents, hence ignore_missing_glyphs).
+font:
+  - file: "gfonts://Roboto"
+    id: font_text
+    size: 32
+    glyphsets: [GF_Latin_Core]
+    ignore_missing_glyphs: true
+  - file: "gfonts://Roboto@700"
+    id: font_big
+    size: 80
+    glyphsets: [GF_Latin_Core]
+    ignore_missing_glyphs: true
+
+lvgl:
+  displays: [panel]
+  touchscreens: [touch]
+  rotation: 270
+  color_depth: 16
+  byte_order: little_endian
+  buffer_size: 100%
+  default_font: font_text
+  pages:
+    - id: home_page
+      widgets:
+        - label:
+            id: temperature_label
+            align: CENTER
+            y: -60
+            text: "--"
+            text_font: font_big
+        - label:
+            id: level_label
+            align: CENTER
+            y: 80
+            text: "Waiting for data"

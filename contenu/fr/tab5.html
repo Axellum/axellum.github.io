@@ -1,7 +1,7 @@
 chemin: /m5stack-tab5/
 paire: tab5
 titre: M5Stack Tab5 ST7121, ST7123, ILI9881C : écran Home Assistant
-description: Le M5Stack Tab5 (ESP32-P4, 5 pouces) en écran Home Assistant : les versions ST7121, ST7123 et ILI9881C, comment reconnaître la vôtre, ce qui est testé.
+description: Le M5Stack Tab5 (ESP32-P4) en écran Home Assistant : les versions ST7121, ST7123 et ILI9881C, comment la reconnaître, une configuration ESPHome à copier.
 maj: 2026-10-28
 image: tab5-photo-lumieres.webp
 fil: M5Stack Tab5
@@ -23,6 +23,7 @@ parent: ecran
 		<p class="chapeau">La tablette pour laquelle le projet est né : un écran tactile de 5 pouces en 1280 × 720 autour d'un ESP32-P4. M5Stack l'a fabriquée avec trois puces d'écran différentes ; le micrologiciel existe pour les trois.</p>
 		<ul class="liens">
 			<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Installer depuis le navigateur</a></li>
+			<li><a href="#configuration">La configuration ESPHome</a></li>
 			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/fr/hardware/">Référence matérielle</a></li>
 		</ul>
 	</div>
@@ -59,6 +60,23 @@ parent: ecran
 	</div>
 	<div class="note"><p><strong>Comment savoir laquelle vous avez</strong> : la puce d'écran est écrite sur l'autocollant au dos, juste au-dessus du logo Espressif. Attention, un appareil marqué « ST7123 » peut contenir une ST7121 : dans le doute, essayez l'un puis l'autre micrologiciel.</p></div>
 	<p>Vous avez une ST7121 ou une ILI9881C et vous voulez bien essayer ? Racontez ce que ça a donné dans <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/discussions/categories/hardware-compatibility">la rubrique de compatibilité des Discussions</a> : c'est ce qui fait avancer ces versions.</p>
+</section>
+
+<section class="bloc" aria-labelledby="configuration">
+	<h2 id="configuration">La configuration ESPHome</h2>
+	<p>Pour partir de zéro avec ESPHome sur le Tab5 : un exemple complet et court, qui allume l'écran, le tactile, le Wi-Fi et le rétroéclairage, montre une température de Home Assistant et allume une lumière. Choisissez la puce de votre tablette en tête du fichier, puis remplacez les deux entités par les vôtres.</p>
+	<!--exemple tab5-home-assistant-->
+	<p class="legende">Validé et compilé avec ESPHome 2026.9.1 le 28/10/2026, pas essayé tel quel sur la tablette : ses broches et ses réglages sont ceux du micrologiciel complet, qui tourne sur la mienne.</p>
+	<h3>Les réglages qui comptent sur cette tablette</h3>
+	<ul>
+		<li><strong>L'ESP32-C6, qui porte le Wi-Fi, est alimenté par un expandeur</strong> (PI4IOE5V6408, broche 0 du second) : sans l'interrupteur <code>wifi_power</code> allumé au démarrage, le lien SDIO ne monte jamais (« sdmmc_card_init failed »). Son reset, GPIO15, est actif à l'état haut.</li>
+		<li><strong>Le reset de l'écran passe par l'autre expandeur</strong>, qui demande une seconde après le démarrage : sans l'attente de la ligne <code>on_boot</code>, écran noir après un redémarrage logiciel. Elle doit bloquer, d'où le <code>delay()</code> en C.</li>
+		<li><strong>La dalle est en portrait</strong> (720 × 1280) : LVGL la tourne en paysage par <code>rotation: 270</code>, et tourne les appuis avec elle.</li>
+		<li><strong>Pas de miroir</strong> sur l'écran ni sur le tactile : il abîme l'image d'une ST7121.</li>
+		<li><strong>Le lien MIPI-DSI</strong> est alimenté par le LDO 3 de l'ESP32-P4, à 2,5 V (<code>esp_ldo</code>).</li>
+		<li><strong>Home Assistant attend</strong> : sans client de l'API, ESPHome redémarre au bout de 15 minutes par défaut, d'où <code>reboot_timeout: 60min</code>. Pour que le bouton agisse, autorisez l'appareil à effectuer des actions dans ses options ESPHome.</li>
+	</ul>
+	<p>Le micrologiciel complet range le matériel dans <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/blob/main/Tab5/paquets/tab5-hardware.yaml">tab5-hardware.yaml</a> (son, micros, horloge, batterie compris) et la puce d'écran dans <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/tree/main/Tab5/paquets">un fichier par version</a> (ecran-st7123.yaml, ecran-st7121.yaml, ecran-ili9881c.yaml). La même tablette sans Home Assistant : <a href="/vigie/m5stack-tab5/">Vigie sur le Tab5</a>.</p>
 </section>
 
 <section class="bloc" aria-labelledby="photos">

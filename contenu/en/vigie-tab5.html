@@ -1,0 +1,89 @@
+chemin: /en/vigie/m5stack-tab5/
+paire: vigie-tab5
+titre: M5Stack Tab5 without Home Assistant: ESPHome config
+description: The M5Stack Tab5 as a standalone alert display, without Home Assistant: a full ESPHome and LVGL configuration for the ST7121, ST7123 and ILI9881C versions.
+maj: 2026-10-28
+image: vigie-ecran-tab5-en.webp
+fil: M5Stack Tab5
+menu: M5Stack Tab5
+ordre: 1
+parent: vigie
+---
+<!--ld {
+	"@type": "TechArticle",
+	"headline": "M5Stack Tab5 without Home Assistant: Vigie alert display and ESPHome configuration",
+	"about": { "@type": "Product", "name": "M5Stack Tab5", "brand": { "@type": "Brand", "name": "M5Stack" } },
+	"inLanguage": "en",
+	"image": "https://auxfilsdesidees.fr/assets/vigie-ecran-tab5-en.webp"
+} ld-->
+<div class="heros">
+	<div>
+		<span class="etiquette">Vigie · M5Stack · no Home Assistant</span>
+		<h1>Vigie on the M5Stack Tab5</h1>
+		<p class="chapeau">The 5-inch tablet as a standalone alert display: the world map of current hazards, the five most severe and the weather of your zones, at 1280 × 720. ESPHome without Home Assistant: the screen fetches its data by itself, over Wi-Fi.</p>
+		<ul class="liens">
+			<li><a class="principal" href="#configuration">The ESPHome configuration</a></li>
+			<li><a href="https://github.com/Axellum/vigie-display/blob/main/docs/installation.md">Installation guide</a></li>
+			<li><a href="https://github.com/Axellum/vigie-display">Code on GitHub</a></li>
+		</ul>
+	</div>
+	<figure><img fetchpriority="high" src="/assets/vigie-ecran-tab5-en.webp" width="1280" height="720" alt="The Vigie screen on the M5Stack Tab5 at 1280 × 720: status bar, world map with current hazards, list of the five most severe and weather panel"></figure>
+</div>
+
+<dl class="faits">
+	<div><dt>Screen</dt><dd>5", 1280 × 720</dd></div>
+	<div><dt>Firmware</dt><dd>ESPHome 2026.9.1+, LVGL</dd></div>
+	<div><dt>Home Assistant</dt><dd>Not needed</dd></div>
+	<div><dt>Data</dt><dd>Vigie API, every minute</dd></div>
+	<div><dt>Status</dt><dd>ST7121 tested on 2026-10-28</dd></div>
+</dl>
+
+<div class="note"><p>Vigie does not replace official warnings: always follow the instructions of your authorities.</p></div>
+
+<section class="bloc" aria-labelledby="screen">
+	<h2 id="screen">What the screen shows</h2>
+	<p>The Waveshare 7B layout, scaled up by 20 % to fill the Tab5's sharper screen: the status bar (link to the API, date and time of the zone), the world map with hazards as dots coloured by severity, the five most severe with their distance and direction, and the weather panel of the zone. Touch the panel to go to the next zone.</p>
+	<p>Each part in detail, and what the screen does when the API stops answering: <a href="/en/vigie/#display">the Vigie alert display</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="versions">
+	<h2 id="versions">The three versions of the Tab5</h2>
+	<p>M5Stack changed the chip that drives the display and the touch twice; each one is picked at build time.</p>
+	<ul>
+		<li><strong>ST7121</strong> (since 2026-04-28): Vigie has run on one since 2026-10-28, Wi-Fi and data from the public API over HTTPS.</li>
+		<li><strong>ST7123</strong> (2025-10-14 to 2026-04-28): compiled, not yet run with Vigie on a tablet.</li>
+		<li><strong>ILI9881C</strong> (the first one, 2025-05-09 to 2025-10-14): compiled, never run.</li>
+	</ul>
+	<p>The chip is printed on the back of the tablet, above the Espressif logo; how to tell, and the traps: <a href="/en/m5stack-tab5/#versions">the versions of the Tab5</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="configuration">
+	<h2 id="configuration">The ESPHome configuration, without Home Assistant</h2>
+	<p>No <code>api:</code> component: nothing links the screen to Home Assistant. Wi-Fi is given after the install (Improv over USB, or the access point the screen opens by itself), the data comes through <code>http_request</code> and LVGL draws it.</p>
+	<p>Below, a short, complete example on the same hardware base as Vigie: it shows the temperature and the weather warning of a place, read from <a href="/en/vigie/#api">the public Vigie API</a>. Pick your Tab5's chip at the top of the file; change the latitude and longitude, or the address, to read another API.</p>
+	<!--exemple tab5-standalone-->
+	<p class="legende">Validated and compiled with ESPHome 2026.9.1 on 2026-10-28, not yet tried as is on the tablet: its hardware settings are those of Vigie display, which runs on a Tab5 ST7121.</p>
+	<h3>The settings that matter on this tablet</h3>
+	<ul>
+		<li><strong>The ESP32-C6, which carries the Wi-Fi, is powered through an I/O expander</strong> (PI4IOE5V6408, pin 0 of the second one): without the <code>wifi_power</code> switch turned on at start-up, the SDIO link never comes up ("sdmmc_card_init failed", seen on an ST7121 on 2026-10-28). Its reset, GPIO15, is active high.</li>
+		<li><strong>The panel reset goes through the other expander</strong>, which needs a second after start-up: without the wait in <code>on_boot</code>, black screen after a software restart. It has to block, hence the C <code>delay()</code>.</li>
+		<li><strong>The panel is portrait</strong> (720 × 1280): LVGL turns it to landscape with <code>rotation: 270</code>, and turns the touches with it.</li>
+		<li><strong>No mirroring</strong> on the display or the touch: it corrupts the picture on an ST7121.</li>
+		<li><strong>The MIPI-DSI link</strong> is powered by LDO 3 of the ESP32-P4, at 2.5 V (<code>esp_ldo</code>).</li>
+		<li><strong>The display model and the touch chip change with the version</strong>: M5STACK-TAB5-ST7123 or -ST7121 with the <code>st7123</code> touch, M5STACK-TAB5 with the <code>gt911</code> for the ILI9881C.</li>
+	</ul>
+	<h3>The full firmware</h3>
+	<p><a href="https://github.com/Axellum/vigie-display/blob/main/vigie.yaml">vigie.yaml</a> puts packages together: the tablet hardware (<a href="https://github.com/Axellum/vigie-display/blob/main/firmware/packages/board-tab5.yaml">board-tab5.yaml</a>, power rails and charger included), the size of the screen, the world map and the fonts (<a href="https://github.com/Axellum/vigie-display/blob/main/firmware/packages/layout-tab5.yaml">layout-tab5.yaml</a>), the LVGL screen, drawn in C++, and the API client: one request a minute, a frame refused if its size or checksum does not match.</p>
+</section>
+
+<section class="bloc" aria-labelledby="install">
+	<h2 id="install">Install Vigie</h2>
+	<p>No published release to install from the browser yet: you build the firmware yourself. Allow half an hour, mostly for the first build.</p>
+	<ol class="etapes">
+		<li>Install ESPHome 2026.9.1 or newer and get the <a href="https://github.com/Axellum/vigie-display">vigie-display</a> repository.</li>
+		<li>Create a signing key: once installed, the screen only accepts updates signed with the same key. Keep a copy.</li>
+		<li>Build for the Tab5: <code>esphome -s vigie_board tab5 -s vigie_api_url https://vigie.auxfilsdesidees.fr -s vigie_signing_key vigie_signing_key.pem compile vigie.yaml</code>. With an ST7121, add <code>-s board_tab5_panel M5STACK-TAB5-ST7121</code>; with an ILI9881C, <code>-s board_tab5_panel M5STACK-TAB5 -s board_tab5_touch gt911 -s board_tab5_touch_interval never</code>. Then install over USB with ESPHome or from <a href="https://web.esphome.io">ESPHome Web</a>.</li>
+		<li>Give it Wi-Fi over USB (Improv) or through the "Vigie setup" access point the screen opens after a minute. Within a minute, the status bar reads "Up to date".</li>
+	</ol>
+	<p>Settings and common problems are in <a href="https://github.com/Axellum/vigie-display/blob/main/docs/installation.md">the installation guide</a>. Later updates go over Wi-Fi. The same tablet as a Home Assistant display: <a href="/en/m5stack-tab5/">the M5Stack Tab5</a>.</p>
+</section>

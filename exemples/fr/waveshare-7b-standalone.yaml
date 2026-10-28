@@ -1,0 +1,208 @@
+# Waveshare ESP32-P4-WIFI6-Touch-LCD-7B avec ESPHome, sans Home Assistant : écran, tactile,
+# Wi-Fi et rétroéclairage, et l'écran lit lui-même une API web pour afficher la température
+# et la vigilance météo d'un lieu (route /v1/point de l'API publique de Vigie). Broches et
+# réglages du micrologiciel Vigie display, qui tourne sur la carte ; cet exemple, lui, est
+# compilé avec ESPHome 2026.9.1 mais pas essayé tel quel.
+substitutions:
+  # Le lieu affiché (ici Paris).
+  latitude: "48.86"
+  longitude: "2.35"
+
+esphome:
+  name: waveshare-7b-autonome
+  friendly_name: Waveshare 7B autonome
+  # ESPHome 2026.9.0 plante en réglant l'écran d'un ESP32-P4 révision 3 : 2026.9.1 au moins.
+  min_version: 2026.9.1
+
+esp32:
+  variant: esp32p4
+  # ESP32-P4 révision 3 (de série), dont 400 MHz est la fréquence normale.
+  engineering_sample: false
+  cpu_frequency: 400MHz
+  flash_size: 32MB
+  framework:
+    type: esp-idf
+    advanced:
+      enable_idf_experimental_features: true
+      execute_from_psram: true
+
+# À sa vitesse par défaut, la PSRAM donnait une trentaine de « lcd.dsi underrun » par seconde.
+psram:
+  mode: hex
+  speed: 200MHz
+
+# Le Wi-Fi est sur une deuxième puce, un ESP32-C6, reliée en SDIO.
+# Son reset (GPIO54) est actif à l'état haut : false donne « sdmmc_card_init failed ».
+esp32_hosted:
+  variant: esp32c6
+  active_high: true
+  clk_pin: GPIO18
+  cmd_pin: GPIO19
+  d0_pin: GPIO14
+  d1_pin: GPIO15
+  d2_pin: GPIO16
+  d3_pin: GPIO17
+  reset_pin: GPIO54
+  slot: 1
+  sdio_frequency: 20MHz
+  use_psram: true
+
+# Pas de « api: » : rien ne relie l'écran à Home Assistant. Pas de mot de passe dans le
+# fichier : le Wi-Fi se donne après l'installation, par USB (Improv, depuis ESPHome Web) ou
+# par le point d'accès « Waveshare 7B reglages » et sa page de réglage.
+wifi:
+  ap:
+    ssid: "Waveshare 7B reglages"
+
+improv_serial:
+
+captive_portal:
+
+ota:
+  - platform: esphome
+
+logger:
+  hardware_uart: USB_SERIAL_JTAG
+
+# Bus du tactile GT911 et des puces audio.
+i2c:
+  - id: bsp_bus
+    sda: GPIO7
+    scl: GPIO8
+    frequency: 400kHz
+
+# Alimentation du lien MIPI-DSI de l'écran : LDO 3 à 2,5 V.
+esp_ldo:
+  - voltage: 2.5V
+    channel: 3
+
+# Écran EK79007 : le modèle d'ESPHome connaît la carte (reset GPIO33 compris).
+display:
+  - id: panel
+    platform: mipi_dsi
+    model: WAVESHARE-ESP32-P4-WIFI6-TOUCH-LCD-7B
+    dimensions:
+      width: 1024
+      height: 600
+    pixel_mode: 16bit
+    color_order: RGB
+    update_interval: never
+    auto_clear_enabled: false
+
+# Le code de Waveshare dit le reset du GT911 non relié, mais il est sur GPIO23 : sans lui
+# et sans les deux miroirs, un seul appui reconnu en cinq minutes.
+touchscreen:
+  - id: touch
+    platform: gt911
+    reset_pin: GPIO23
+    update_interval: 50ms
+    transform:
+      swap_xy: false
+      mirror_x: true
+      mirror_y: true
+
+# Rétroéclairage : sortie inversée, à 5 kHz.
+output:
+  - platform: ledc
+    id: backlight_pwm
+    pin:
+      number: GPIO32
+      inverted: true
+    frequency: 5000Hz
+
+light:
+  - platform: monochromatic
+    id: backlight
+    name: "Rétroéclairage"
+    output: backlight_pwm
+    restore_mode: RESTORE_DEFAULT_ON
+
+# L'écran va chercher ses données lui-même, en HTTPS. verify_ssl: false : le certificat
+# du serveur n'est pas vérifié, comme dans Vigie display ; assez pour des données
+# publiques, jamais pour un mot de passe.
+http_request:
+  id: web
+  timeout: 8s
+  verify_ssl: false
+
+interval:
+  # /v1/point accepte 10 requêtes par minute et par adresse : une toutes les 5 minutes suffit.
+  - interval: 5min
+    startup_delay: 10s
+    then:
+      - if:
+          condition:
+            wifi.connected:
+          then:
+            - http_request.get:
+                url: "https://vigie.auxfilsdesidees.fr/v1/point?lat=${latitude}&lon=${longitude}"
+                capture_response: true
+                max_response_buffer_size: 16384
+                on_response:
+                  then:
+                    - lambda: |-
+                        if (response->status_code != 200) {
+                          ESP_LOGW("exemple", "HTTP %d", response->status_code);
+                          return;
+                        }
+                        json::parse_json(body, [](JsonObject racine) -> bool {
+                          // Vigilance la plus forte au point : GREEN, YELLOW, ORANGE ou RED.
+                          std::string niveau = racine["local_alert_level"] | "";
+                          const char *texte = "Pas de vigilance";
+                          uint32_t couleur = 0x3FA34D;
+                          if (niveau == "YELLOW") { texte = "Vigilance jaune"; couleur = 0xF2C230; }
+                          if (niveau == "ORANGE") { texte = "Vigilance orange"; couleur = 0xF08A24; }
+                          if (niveau == "RED") { texte = "Vigilance rouge"; couleur = 0xE5484D; }
+                          lv_label_set_text(id(level_label), texte);
+                          lv_obj_set_style_text_color(id(level_label), lv_color_hex(couleur), LV_PART_MAIN);
+                          // Une valeur absente reste absente : rien n'est inventé.
+                          JsonVariant temperature = racine["current"]["temp_c"];
+                          if (temperature.is<float>()) {
+                            char valeur[16];
+                            snprintf(valeur, sizeof(valeur), "%.1f °C", temperature.as<float>());
+                            lv_label_set_text(id(temperature_label), valeur);
+                          }
+                          return true;
+                        });
+                on_error:
+                  then:
+                    - logger.log: "Pas de réponse (réseau ou délai dépassé)"
+
+# Les polices intégrées à LVGL n'ont pas les accents : Roboto, téléchargée à la compilation
+# (il ne lui manque que des accents combinants, d'où ignore_missing_glyphs).
+font:
+  - file: "gfonts://Roboto"
+    id: font_text
+    size: 28
+    glyphsets: [GF_Latin_Core]
+    ignore_missing_glyphs: true
+  - file: "gfonts://Roboto@700"
+    id: font_big
+    size: 64
+    glyphsets: [GF_Latin_Core]
+    ignore_missing_glyphs: true
+
+lvgl:
+  displays: [panel]
+  touchscreens: [touch]
+  # La dalle est montée à l'envers par rapport au pilote : 180 pour la carte à l'endroit,
+  # 0 si vous la montez à l'envers. Le tactile suit tout seul.
+  rotation: 180
+  color_depth: 16
+  byte_order: little_endian
+  buffer_size: 100%
+  default_font: font_text
+  pages:
+    - id: home_page
+      widgets:
+        - label:
+            id: temperature_label
+            align: CENTER
+            y: -50
+            text: "--"
+            text_font: font_big
+        - label:
+            id: level_label
+            align: CENTER
+            y: 70
+            text: "En attente des données"

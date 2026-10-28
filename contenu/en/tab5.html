@@ -1,7 +1,7 @@
 chemin: /en/m5stack-tab5/
 paire: tab5
 titre: M5Stack Tab5 ST7121, ST7123, ILI9881C: Home Assistant screen
-description: The M5Stack Tab5 (ESP32-P4, 5 inch) as a Home Assistant display: the ST7121, ST7123 and ILI9881C versions, how to tell yours, and what is tested.
+description: The M5Stack Tab5 (ESP32-P4) as a Home Assistant display: the ST7121, ST7123 and ILI9881C versions, how to tell yours, an ESPHome config to copy.
 maj: 2026-10-28
 image: tab5-photo-lumieres.webp
 fil: M5Stack Tab5
@@ -23,6 +23,7 @@ parent: ecran
 		<p class="chapeau">The tablet the project was born for: a 5-inch 1280 × 720 touch screen built around an ESP32-P4. M5Stack has made it with three different display chips; the firmware exists for all three.</p>
 		<ul class="liens">
 			<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Install from the browser</a></li>
+			<li><a href="#configuration">The ESPHome configuration</a></li>
 			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/hardware/">Hardware reference</a></li>
 		</ul>
 	</div>
@@ -59,6 +60,23 @@ parent: ecran
 	</div>
 	<div class="note"><p><strong>How to tell which one you have</strong>: the display chip is printed on the sticker on the back, just above the Espressif logo. Beware, a unit labelled "ST7123" may carry an ST7121: if unsure, try one firmware then the other.</p></div>
 	<p>Have an ST7121 or an ILI9881C and willing to try? Tell how it went in <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/discussions/categories/hardware-compatibility">the hardware compatibility Discussions</a>: that is what moves these versions forward.</p>
+</section>
+
+<section class="bloc" aria-labelledby="configuration">
+	<h2 id="configuration">The ESPHome configuration</h2>
+	<p>To start from scratch with ESPHome on the Tab5: a short, complete example that brings up the display, the touch, Wi-Fi and the backlight, shows a Home Assistant temperature and turns a light on. Pick your tablet's chip at the top of the file, then replace the two entities with your own.</p>
+	<!--exemple tab5-home-assistant-->
+	<p class="legende">Validated and compiled with ESPHome 2026.9.1 on 2026-10-28, not tried as is on the tablet: its pins and settings are those of the full firmware, which runs on mine.</p>
+	<h3>The settings that matter on this tablet</h3>
+	<ul>
+		<li><strong>The ESP32-C6, which carries the Wi-Fi, is powered through an I/O expander</strong> (PI4IOE5V6408, pin 0 of the second one): without the <code>wifi_power</code> switch turned on at start-up, the SDIO link never comes up ("sdmmc_card_init failed"). Its reset, GPIO15, is active high.</li>
+		<li><strong>The panel reset goes through the other expander</strong>, which needs a second after start-up: without the wait in <code>on_boot</code>, black screen after a software restart. It has to block, hence the C <code>delay()</code>.</li>
+		<li><strong>The panel is portrait</strong> (720 × 1280): LVGL turns it to landscape with <code>rotation: 270</code>, and turns the touches with it.</li>
+		<li><strong>No mirroring</strong> on the display or the touch: it corrupts the picture on an ST7121.</li>
+		<li><strong>The MIPI-DSI link</strong> is powered by LDO 3 of the ESP32-P4, at 2.5 V (<code>esp_ldo</code>).</li>
+		<li><strong>Home Assistant takes its time</strong>: with no API client, ESPHome restarts after 15 minutes by default, hence <code>reboot_timeout: 60min</code>. For the button to act, allow the device to perform actions in its ESPHome options.</li>
+	</ul>
+	<p>The full firmware keeps the hardware in <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/blob/main/Tab5/paquets/tab5-hardware.yaml">tab5-hardware.yaml</a> (sound, microphones, clock and battery included) and the display chip in <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/tree/main/Tab5/paquets">one file per version</a> (ecran-st7123.yaml, ecran-st7121.yaml, ecran-ili9881c.yaml). The same tablet without Home Assistant: <a href="/en/vigie/m5stack-tab5/">Vigie on the Tab5</a>.</p>
 </section>
 
 <section class="bloc" aria-labelledby="photos">

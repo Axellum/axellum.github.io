@@ -1,7 +1,7 @@
 chemin: /waveshare-esp32-p4-7b/
 paire: waveshare-7b
 titre: Waveshare ESP32-P4 7B en écran Home Assistant (ESPHome)
-description: La Waveshare ESP32-P4-WIFI6-Touch-LCD-7B en écran Home Assistant : 7 pouces, 1024 × 600, le même micrologiciel que le Tab5, installé depuis le navigateur.
+description: La Waveshare ESP32-P4-WIFI6-Touch-LCD-7B en écran Home Assistant : 7 pouces, 1024 × 600, installée du navigateur, et une configuration ESPHome à copier.
 maj: 2026-10-28
 image: 7b-accueil.webp
 fil: Waveshare ESP32-P4 7B
@@ -23,6 +23,7 @@ parent: ecran
 		<p class="chapeau">Un écran tactile de 7 pouces en 1024 × 600, construit autour des mêmes puces que le Tab5. Plus grand, moins cher, avec moins de choses à bord. C'est l'écran de ma maison depuis le 14 octobre 2026.</p>
 		<ul class="liens">
 			<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Installer depuis le navigateur</a></li>
+			<li><a href="#configuration">La configuration ESPHome</a></li>
 			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/fr/waveshare-7b/">Documentation de la 7B</a></li>
 		</ul>
 	</div>
@@ -48,6 +49,26 @@ parent: ecran
 	<p class="legende">Rendus du micrologiciel sur PC en 1024 × 600 : les mêmes pixels que sur la carte.</p>
 </section>
 
+<section class="bloc" aria-labelledby="configuration">
+	<h2 id="configuration">La configuration ESPHome</h2>
+	<p>Pour partir de zéro avec ESPHome sur cette carte : un exemple complet et court, qui allume l'écran, le tactile, le Wi-Fi et le rétroéclairage, montre une température de Home Assistant et allume une lumière. Remplacez les deux entités par les vôtres.</p>
+	<!--exemple waveshare-7b-home-assistant-->
+	<p class="legende">Validé et compilé avec ESPHome 2026.9.1 le 28/10/2026, pas essayé tel quel sur la carte : ses broches et ses réglages sont ceux du micrologiciel complet, qui tourne sur la mienne.</p>
+	<p>Chaque réglage particulier est expliqué en commentaire, et le problème qu'il règle juste en dessous. Deux choses n'y sont pas : le son (ES8311 et ampli, deux micros sur ES7210) et la remise à zéro complète après un redémarrage logiciel ; elles sont dans <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/blob/main/Tab5/paquets/carte-waveshare-7b.yaml">carte-waveshare-7b.yaml</a>, le fichier de la carte dans le micrologiciel complet. La même carte sans Home Assistant : <a href="/vigie/waveshare-esp32-p4-7b/">Vigie sur la 7B</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="problemes">
+	<h2 id="problemes">Les problèmes réglés à son arrivée</h2>
+	<p>Tout est déjà corrigé dans le micrologiciel ; c'est utile si vous partez de zéro avec ESPHome sur cette carte.</p>
+	<ul>
+		<li><strong>Redémarrages en boucle</strong> : ESPHome 2026.9.0 plante en réglant l'écran des ESP32-P4 révision 3 ; il faut ESPHome 2026.9.1 au moins.</li>
+		<li><strong>Pas de Wi-Fi</strong> : le reset de l'ESP32-C6 est actif à l'état haut, comme sur le Tab5.</li>
+		<li><strong>Tactile presque mort</strong> : la dalle est montée à l'envers par rapport au pilote, et le contrôleur tactile GT911 doit être réinitialisé par GPIO 23.</li>
+		<li><strong>Haut-parleur qui sature</strong> : le pilote ES8311 monte jusqu'à +32 dB ; le volume est plafonné à 0 dB et son bas de course relevé, pour un son propre sur tout le curseur.</li>
+		<li><strong>Boucle de redémarrages après un redémarrage logiciel</strong> : le lien avec la puce Wi-Fi restait bloqué ; chaque redémarrage remet maintenant à zéro tout le cœur numérique.</li>
+	</ul>
+</section>
+
 <section class="bloc" aria-labelledby="manque">
 	<h2 id="manque">Ce que la carte n'a pas</h2>
 	<ul>
@@ -67,18 +88,6 @@ parent: ecran
 	</ol>
 	<p>Les mises à jour arrivent ensuite par Home Assistant, depuis le dossier de cette carte. Carte montée à l'envers ? Le réglage « Screen direction » de l'appareil dans Home Assistant retourne l'image aussitôt, sans recompiler. Elle remplace un Tab5 ? Désactivez d'abord l'ancien appareil dans Home Assistant.</p>
 	<div class="note"><p>Pas encore essayé depuis la page d'installation sur une vraie carte : la mienne a reçu le micrologiciel publié par une mise à jour sans fil. Pas vérifiés non plus sur la carte : le micro et le mot d'éveil, les caméras. Si vous l'essayez, racontez-le dans <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/discussions/categories/hardware-compatibility">les Discussions</a>.</p></div>
-</section>
-
-<section class="bloc" aria-labelledby="problemes">
-	<h2 id="problemes">Les problèmes réglés à son arrivée</h2>
-	<p>Tout est déjà corrigé dans le micrologiciel ; c'est utile si vous partez de zéro avec ESPHome sur cette carte.</p>
-	<ul>
-		<li><strong>Redémarrages en boucle</strong> : ESPHome 2026.9.0 plante en réglant l'écran des ESP32-P4 révision 3 ; il faut ESPHome 2026.9.1 au moins.</li>
-		<li><strong>Pas de Wi-Fi</strong> : le reset de l'ESP32-C6 est actif à l'état haut, comme sur le Tab5.</li>
-		<li><strong>Tactile presque mort</strong> : la dalle est montée à l'envers par rapport au pilote, et le contrôleur tactile GT911 doit être réinitialisé par GPIO 23.</li>
-		<li><strong>Haut-parleur qui sature</strong> : le pilote ES8311 monte jusqu'à +32 dB ; le volume est plafonné à 0 dB et son bas de course relevé, pour un son propre sur tout le curseur.</li>
-		<li><strong>Boucle de redémarrages après un redémarrage logiciel</strong> : le lien avec la puce Wi-Fi restait bloqué ; chaque redémarrage remet maintenant à zéro tout le cœur numérique.</li>
-	</ul>
 </section>
 
 <section class="bloc" aria-labelledby="mesures">

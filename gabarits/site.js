@@ -1,5 +1,6 @@
 /* Aux fils des idées : progression de lecture, sommaire qui suit la lecture, apparitions au défilement,
-   agrandissement des images. Sans bibliothèque ; rien ne bouge si le système demande moins d'animations. */
+   agrandissement des images, bouton « Copier » des exemples de code. Sans bibliothèque ; rien ne bouge si le
+   système demande moins d'animations. */
 (() => {
 	const d = document, h = d.documentElement, calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
 	h.classList.add("js");
@@ -42,10 +43,21 @@
 			vu.observe(x);
 		});
 	}
+	const fr = h.lang === "fr";
+	d.querySelectorAll(".code").forEach(bloc => {
+		const b = d.createElement("button"), code = bloc.querySelector("code");
+		const dire = (oui, non) => { b.textContent = fr ? oui : non; setTimeout(() => b.textContent = fr ? "Copier" : "Copy", 2500); };
+		b.type = "button";
+		b.textContent = fr ? "Copier" : "Copy";
+		// Copie refusée (page sans le focus, navigateur ancien) : le code reste sélectionné, prêt pour Ctrl+C
+		b.addEventListener("click", () => (navigator.clipboard ? navigator.clipboard.writeText(code.textContent) : Promise.reject())
+			.then(() => dire("Copié", "Copied"), () => { getSelection().selectAllChildren(code); dire("Sélectionné", "Selected"); }));
+		bloc.firstChild.append(b);
+	});
 	const loupe = d.createElement("dialog");
 	loupe.className = "loupe";
 	loupe.innerHTML = '<img alt="">';
-	loupe.setAttribute("aria-label", h.lang === "fr" ? "Image agrandie" : "Enlarged image");
+	loupe.setAttribute("aria-label", fr ? "Image agrandie" : "Enlarged image");
 	loupe.addEventListener("click", () => loupe.close());
 	d.body.append(loupe);
 	d.querySelectorAll("main figure img").forEach(img => {

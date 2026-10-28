@@ -1,0 +1,79 @@
+chemin: /en/vigie/waveshare-esp32-p4-7b/
+paire: vigie-7b
+titre: Waveshare ESP32-P4 7B without Home Assistant: ESPHome config
+description: The Waveshare ESP32-P4 7B as a standalone alert display, without Home Assistant: a full ESPHome and LVGL config, Wi-Fi through the ESP32-C6, HTTPS data.
+maj: 2026-10-28
+image: vigie-ecran-waveshare-7b-en.webp
+fil: Waveshare ESP32-P4 7B
+menu: Waveshare 7B
+ordre: 2
+parent: vigie
+---
+<!--ld {
+	"@type": "TechArticle",
+	"headline": "Waveshare ESP32-P4 7B without Home Assistant: Vigie alert display and ESPHome configuration",
+	"about": { "@type": "Product", "name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-7B", "brand": { "@type": "Brand", "name": "Waveshare" } },
+	"inLanguage": "en",
+	"image": "https://auxfilsdesidees.fr/assets/vigie-ecran-waveshare-7b-en.webp"
+} ld-->
+<div class="heros">
+	<div>
+		<span class="etiquette">Vigie · Waveshare · no Home Assistant</span>
+		<h1>Vigie on the Waveshare ESP32-P4 7B</h1>
+		<p class="chapeau">The 7-inch board as a standalone alert display: the world map of current hazards, the five most severe and the weather of your zones. ESPHome without Home Assistant: the screen fetches its data by itself, over Wi-Fi.</p>
+		<ul class="liens">
+			<li><a class="principal" href="#configuration">The ESPHome configuration</a></li>
+			<li><a href="https://github.com/Axellum/vigie-display/blob/main/docs/installation.md">Installation guide</a></li>
+			<li><a href="https://github.com/Axellum/vigie-display">Code on GitHub</a></li>
+		</ul>
+	</div>
+	<figure><img fetchpriority="high" src="/assets/vigie-ecran-waveshare-7b-en.webp" width="1024" height="600" alt="The Vigie screen on the Waveshare 7B: status bar, world map with current hazards, list of the five most severe and weather panel of the active zone"></figure>
+</div>
+
+<dl class="faits">
+	<div><dt>Screen</dt><dd>7", 1024 × 600</dd></div>
+	<div><dt>Firmware</dt><dd>ESPHome 2026.9.1+, LVGL</dd></div>
+	<div><dt>Home Assistant</dt><dd>Not needed</dd></div>
+	<div><dt>Data</dt><dd>Vigie API, every minute</dd></div>
+	<div><dt>Status</dt><dd>Tested on the board on 2026-10-20</dd></div>
+</dl>
+
+<div class="note"><p>Vigie does not replace official warnings: always follow the instructions of your authorities.</p></div>
+
+<section class="bloc" aria-labelledby="screen">
+	<h2 id="screen">What the screen shows</h2>
+	<p>The Vigie layout is drawn for this screen, to the pixel: the status bar (link to the API, date and time of the zone), the world map with hazards as dots coloured by severity, the five most severe with their distance and direction, and the weather panel of the zone. Touch the panel to go to the next zone.</p>
+	<p>Each part in detail, and what the screen does when the API stops answering: <a href="/en/vigie/#display">the Vigie alert display</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="configuration">
+	<h2 id="configuration">The ESPHome configuration, without Home Assistant</h2>
+	<p>No <code>api:</code> component: nothing links the screen to Home Assistant. Wi-Fi is given after the install (Improv over USB, or the access point the screen opens by itself), the data comes through <code>http_request</code> and LVGL draws it.</p>
+	<p>Below, a short, complete example on the same hardware base as Vigie: it shows the temperature and the weather warning of a place, read from <a href="/en/vigie/#api">the public Vigie API</a>. Change the latitude and longitude, or the address, to read another API.</p>
+	<!--exemple waveshare-7b-standalone-->
+	<p class="legende">Validated and compiled with ESPHome 2026.9.1 on 2026-10-28, not yet tried as is on the board: its hardware settings are those of Vigie display, which runs on mine.</p>
+	<h3>The settings that matter on this board</h3>
+	<ul>
+		<li><strong>ESPHome 2026.9.1 at least</strong>: 2026.9.0 crashes while setting up the display of ESP32-P4 revision 3 chips.</li>
+		<li><strong>Wi-Fi goes through the ESP32-C6</strong>, linked over SDIO (<code>esp32_hosted</code>); its reset, GPIO54, is active high.</li>
+		<li><strong>PSRAM at 200 MHz</strong>: at its default speed, the display dropped out about thirty times a second ("lcd.dsi underrun").</li>
+		<li><strong>The GT911 touch</strong> has its reset on GPIO23, even though Waveshare's code says it is not connected, and it is mirrored in X and Y.</li>
+		<li><strong>The backlight</strong> is an inverted output on GPIO32, at 5 kHz.</li>
+		<li><strong>Picture direction</strong>: the panel is mounted upside down compared with its driver, hence <code>rotation: 180</code> for a board the right way up, 0 for a board mounted upside down. Vigie display starts from 0, the way my board is mounted: add <code>-s board_rotation 180</code> if the picture is upside down.</li>
+		<li><strong>After a software restart</strong>, the link to the ESP32-C6 may not come back until a power cut. Vigie display turns every software restart into a reset of the whole digital core (<a href="https://github.com/Axellum/vigie-display/blob/main/firmware/display/c6_link.cpp">c6_link.cpp</a>); the example does not.</li>
+	</ul>
+	<h3>The full firmware</h3>
+	<p><a href="https://github.com/Axellum/vigie-display/blob/main/vigie.yaml">vigie.yaml</a> puts packages together: the board hardware (<a href="https://github.com/Axellum/vigie-display/blob/main/firmware/packages/board-waveshare-7b.yaml">board-waveshare-7b.yaml</a>), the size of the screen, the world map and the fonts (<a href="https://github.com/Axellum/vigie-display/blob/main/firmware/packages/layout-waveshare-7b.yaml">layout-waveshare-7b.yaml</a>), the LVGL screen, drawn in C++, and the API client: one request a minute, a frame refused if its size or checksum does not match.</p>
+</section>
+
+<section class="bloc" aria-labelledby="install">
+	<h2 id="install">Install Vigie</h2>
+	<p>No published release to install from the browser yet: you build the firmware yourself. Allow half an hour, mostly for the first build.</p>
+	<ol class="etapes">
+		<li>Install ESPHome 2026.9.1 or newer and get the <a href="https://github.com/Axellum/vigie-display">vigie-display</a> repository.</li>
+		<li>Create a signing key: once installed, the screen only accepts updates signed with the same key. Keep a copy.</li>
+		<li>Build: the 7B is the default board. <code>esphome -s vigie_api_url https://vigie.auxfilsdesidees.fr -s vigie_signing_key vigie_signing_key.pem compile vigie.yaml</code>, then install over USB with ESPHome or from <a href="https://web.esphome.io">ESPHome Web</a>.</li>
+		<li>Give it Wi-Fi over USB (Improv) or through the "Vigie setup" access point the screen opens after a minute. Within a minute, the status bar reads "Up to date".</li>
+	</ol>
+	<p>Settings and common problems are in <a href="https://github.com/Axellum/vigie-display/blob/main/docs/installation.md">the installation guide</a>. Later updates go over Wi-Fi. The same board as a Home Assistant display: <a href="/en/waveshare-esp32-p4-7b/">the Waveshare 7B</a>.</p>
+</section>

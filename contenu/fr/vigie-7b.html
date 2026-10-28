@@ -1,0 +1,79 @@
+chemin: /vigie/waveshare-esp32-p4-7b/
+paire: vigie-7b
+titre: Waveshare ESP32-P4 7B sans Home Assistant : config ESPHome
+description: La Waveshare ESP32-P4 7B en écran d'alerte autonome, sans Home Assistant : une configuration ESPHome et LVGL complète, Wi-Fi par l'ESP32-C6, HTTPS.
+maj: 2026-10-28
+image: vigie-ecran-waveshare-7b-fr.webp
+fil: Waveshare ESP32-P4 7B
+menu: Waveshare 7B
+ordre: 2
+parent: vigie
+---
+<!--ld {
+	"@type": "TechArticle",
+	"headline": "Waveshare ESP32-P4 7B sans Home Assistant : écran d'alerte Vigie et configuration ESPHome",
+	"about": { "@type": "Product", "name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-7B", "brand": { "@type": "Brand", "name": "Waveshare" } },
+	"inLanguage": "fr",
+	"image": "https://auxfilsdesidees.fr/assets/vigie-ecran-waveshare-7b-fr.webp"
+} ld-->
+<div class="heros">
+	<div>
+		<span class="etiquette">Vigie · Waveshare · sans Home Assistant</span>
+		<h1>Vigie sur la Waveshare ESP32-P4 7B</h1>
+		<p class="chapeau">L'écran de 7 pouces en écran d'alerte autonome : la carte du monde des aléas en cours, les cinq plus graves et la météo de vos zones. ESPHome sans Home Assistant : l'écran va chercher ses données lui-même, par le Wi-Fi.</p>
+		<ul class="liens">
+			<li><a class="principal" href="#configuration">La configuration ESPHome</a></li>
+			<li><a href="https://github.com/Axellum/vigie-display/blob/main/docs/installation.md">Guide d'installation</a></li>
+			<li><a href="https://github.com/Axellum/vigie-display">Code sur GitHub</a></li>
+		</ul>
+	</div>
+	<figure><img fetchpriority="high" src="/assets/vigie-ecran-waveshare-7b-fr.webp" width="1024" height="600" alt="L'écran Vigie sur la Waveshare 7B : barre d'état, carte du monde avec les aléas en cours, liste des cinq plus graves et panneau météo de la zone active"></figure>
+</div>
+
+<dl class="faits">
+	<div><dt>Écran</dt><dd>7", 1024 × 600</dd></div>
+	<div><dt>Micrologiciel</dt><dd>ESPHome 2026.9.1+, LVGL</dd></div>
+	<div><dt>Home Assistant</dt><dd>Pas nécessaire</dd></div>
+	<div><dt>Données</dt><dd>API Vigie, chaque minute</dd></div>
+	<div><dt>Statut</dt><dd>Testée sur la carte le 20/10/2026</dd></div>
+</dl>
+
+<div class="note"><p>Vigie ne remplace pas les alertes officielles : suivez toujours les consignes de vos autorités.</p></div>
+
+<section class="bloc" aria-labelledby="ecran">
+	<h2 id="ecran">Ce que montre l'écran</h2>
+	<p>La mise en page de Vigie est dessinée pour cet écran, au pixel près : la barre d'état (lien avec l'API, date et heure de la zone), la carte du monde avec les aléas en points colorés selon leur gravité, les cinq plus graves avec leur distance et leur direction, et le panneau météo de la zone. Un appui sur le panneau passe à la zone suivante.</p>
+	<p>Le détail de chaque partie, et ce que l'écran fait quand l'API ne répond plus : <a href="/vigie/#ecran">l'écran d'alerte Vigie</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="configuration">
+	<h2 id="configuration">La configuration ESPHome, sans Home Assistant</h2>
+	<p>Pas de composant <code>api:</code> : rien ne relie l'écran à Home Assistant. Le Wi-Fi se donne après l'installation (Improv par USB, ou le point d'accès que l'écran ouvre seul), les données arrivent par <code>http_request</code> et LVGL les dessine.</p>
+	<p>Ci-dessous, un exemple complet et court, sur la même base matérielle que Vigie : il affiche la température et la vigilance météo d'un lieu, lues dans <a href="/vigie/#api">l'API publique de Vigie</a>. Changez la latitude et la longitude, ou l'adresse, pour lire une autre API.</p>
+	<!--exemple waveshare-7b-standalone-->
+	<p class="legende">Validé et compilé avec ESPHome 2026.9.1 le 28/10/2026, pas encore essayé tel quel sur la carte : ses réglages matériels sont ceux de Vigie display, qui tourne sur la mienne.</p>
+	<h3>Les réglages qui comptent sur cette carte</h3>
+	<ul>
+		<li><strong>ESPHome 2026.9.1 au moins</strong> : la 2026.9.0 plante en réglant l'écran des ESP32-P4 révision 3.</li>
+		<li><strong>Le Wi-Fi passe par l'ESP32-C6</strong>, relié en SDIO (<code>esp32_hosted</code>) ; son reset, GPIO54, est actif à l'état haut.</li>
+		<li><strong>La PSRAM à 200 MHz</strong> : à sa vitesse par défaut, l'écran décrochait une trentaine de fois par seconde (« lcd.dsi underrun »).</li>
+		<li><strong>Le tactile GT911</strong> a son reset sur GPIO23, même si le code de Waveshare le dit non relié, et il est inversé en X et en Y.</li>
+		<li><strong>Le rétroéclairage</strong> est une sortie inversée sur GPIO32, à 5 kHz.</li>
+		<li><strong>Le sens de l'image</strong> : la dalle est montée à l'envers par rapport à son pilote, d'où <code>rotation: 180</code> pour une carte à l'endroit, 0 pour une carte montée à l'envers. Vigie display part de 0, le sens de ma carte : ajoutez <code>-s board_rotation 180</code> si l'image est à l'envers.</li>
+		<li><strong>Après un redémarrage logiciel</strong>, le lien avec l'ESP32-C6 peut ne plus monter, jusqu'à une coupure de courant. Vigie display fait de chaque redémarrage logiciel une remise à zéro de tout le cœur numérique (<a href="https://github.com/Axellum/vigie-display/blob/main/firmware/display/c6_link.cpp">c6_link.cpp</a>) ; l'exemple ne le fait pas.</li>
+	</ul>
+	<h3>Le micrologiciel complet</h3>
+	<p><a href="https://github.com/Axellum/vigie-display/blob/main/vigie.yaml">vigie.yaml</a> assemble des packages : le matériel de la carte (<a href="https://github.com/Axellum/vigie-display/blob/main/firmware/packages/board-waveshare-7b.yaml">board-waveshare-7b.yaml</a>), la taille de l'écran, de la carte du monde et des polices (<a href="https://github.com/Axellum/vigie-display/blob/main/firmware/packages/layout-waveshare-7b.yaml">layout-waveshare-7b.yaml</a>), l'écran LVGL, dessiné en C++, et le client de l'API : une requête par minute, une trame refusée si sa taille ou sa somme de contrôle ne collent pas.</p>
+</section>
+
+<section class="bloc" aria-labelledby="installer">
+	<h2 id="installer">Installer Vigie</h2>
+	<p>Pas encore de version publiée à installer depuis le navigateur : il faut compiler le micrologiciel soi-même. Comptez une demi-heure, surtout pour la première compilation.</p>
+	<ol class="etapes">
+		<li>Installez ESPHome 2026.9.1 ou plus récent et récupérez le dépôt <a href="https://github.com/Axellum/vigie-display">vigie-display</a>.</li>
+		<li>Créez une clé de signature : une fois installé, l'écran n'accepte que les mises à jour signées avec la même clé. Gardez-en une copie.</li>
+		<li>Compilez : la 7B est la carte par défaut. <code>esphome -s vigie_api_url https://vigie.auxfilsdesidees.fr -s vigie_language fr -s vigie_signing_key vigie_signing_key.pem compile vigie.yaml</code>, puis installez par USB avec ESPHome ou depuis <a href="https://web.esphome.io">ESPHome Web</a>.</li>
+		<li>Donnez le Wi-Fi par USB (Improv) ou par le point d'accès « Vigie setup » que l'écran ouvre au bout d'une minute. Moins d'une minute après, la barre d'état affiche « À jour ».</li>
+	</ol>
+	<p>Les réglages et les pannes courantes sont dans <a href="https://github.com/Axellum/vigie-display/blob/main/docs/installation.md">le guide d'installation</a> (en anglais). Les mises à jour suivantes passent par le Wi-Fi. La même carte en écran Home Assistant : <a href="/waveshare-esp32-p4-7b/">la Waveshare 7B</a>.</p>
+</section>

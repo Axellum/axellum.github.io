@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>M5Stack Tab5 ST7121, ST7123, ILI9881C: Home Assistant screen</title>
-<meta name="description" content="The M5Stack Tab5 (ESP32-P4, 5 inch) as a Home Assistant display: the ST7121, ST7123 and ILI9881C versions, how to tell yours, and what is tested.">
+<meta name="description" content="The M5Stack Tab5 (ESP32-P4) as a Home Assistant display: the ST7121, ST7123 and ILI9881C versions, how to tell yours, an ESPHome config to copy.">
 <link rel="canonical" href="https://auxfilsdesidees.fr/en/m5stack-tab5/">
 <link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/m5stack-tab5/">
 <link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/m5stack-tab5/">
@@ -15,7 +15,7 @@
 <meta property="og:locale:alternate" content="fr_FR">
 <meta property="og:site_name" content="Aux fils des idées">
 <meta property="og:title" content="M5Stack Tab5 ST7121, ST7123, ILI9881C: Home Assistant screen">
-<meta property="og:description" content="The M5Stack Tab5 (ESP32-P4, 5 inch) as a Home Assistant display: the ST7121, ST7123 and ILI9881C versions, how to tell yours, and what is tested.">
+<meta property="og:description" content="The M5Stack Tab5 (ESP32-P4) as a Home Assistant display: the ST7121, ST7123 and ILI9881C versions, how to tell yours, an ESPHome config to copy.">
 <meta property="og:url" content="https://auxfilsdesidees.fr/en/m5stack-tab5/">
 <meta property="og:image" content="https://auxfilsdesidees.fr/assets/partage/en-tab5.jpg">
 <meta property="og:image:width" content="1200">
@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0e1319" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
 <link rel="icon" href="/assets/icone.svg?v=8d13847f41" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css?v=0d55d1d9f5">
+<link rel="stylesheet" href="/assets/style.css?v=081a595722">
 <script type="application/ld+json">
 {
 	"@context": "https://schema.org",
@@ -57,7 +57,7 @@
 			"@id": "https://auxfilsdesidees.fr/en/m5stack-tab5/#page",
 			"url": "https://auxfilsdesidees.fr/en/m5stack-tab5/",
 			"name": "M5Stack Tab5 ST7121, ST7123, ILI9881C: Home Assistant screen",
-			"description": "The M5Stack Tab5 (ESP32-P4, 5 inch) as a Home Assistant display: the ST7121, ST7123 and ILI9881C versions, how to tell yours, and what is tested.",
+			"description": "The M5Stack Tab5 (ESP32-P4) as a Home Assistant display: the ST7121, ST7123 and ILI9881C versions, how to tell yours, an ESPHome config to copy.",
 			"inLanguage": "en",
 			"isPartOf": {
 				"@id": "https://auxfilsdesidees.fr/#site"
@@ -131,6 +131,7 @@
 		<p class="chapeau">The tablet the project was born for: a 5-inch 1280 × 720 touch screen built around an ESP32-P4. M5Stack has made it with three different display chips; the firmware exists for all three.</p>
 		<ul class="liens">
 			<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Install from the browser</a></li>
+			<li><a href="#configuration">The ESPHome configuration</a></li>
 			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/hardware/">Hardware reference</a></li>
 		</ul>
 	</div>
@@ -169,6 +170,248 @@
 	<p>Have an ST7121 or an ILI9881C and willing to try? Tell how it went in <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/discussions/categories/hardware-compatibility">the hardware compatibility Discussions</a>: that is what moves these versions forward.</p>
 </section>
 
+<section class="bloc" aria-labelledby="configuration">
+	<h2 id="configuration">The ESPHome configuration</h2>
+	<p>To start from scratch with ESPHome on the Tab5: a short, complete example that brings up the display, the touch, Wi-Fi and the backlight, shows a Home Assistant temperature and turns a light on. Pick your tablet's chip at the top of the file, then replace the two entities with your own.</p>
+	<div class="code"><div class="code-tete"><span>tab5-home-assistant.yaml</span><a href="https://github.com/Axellum/axellum.github.io/blob/main/exemples/en/tab5-home-assistant.yaml">GitHub</a></div>
+<pre><code><span class="c"># M5Stack Tab5 with ESPHome and Home Assistant: display, touch, Wi-Fi and backlight, a Home</span>
+<span class="c"># Assistant temperature in the middle and a button that turns a light on. Pins and settings of</span>
+<span class="c"># the "Home Assistant display" firmware (3.9.0), which runs on the tablet; this example itself</span>
+<span class="c"># is compiled with ESPHome 2026.9.1 but not tried as is.</span>
+<span class="k">substitutions</span>:
+<span class="c">  # The display chip is printed on the back of the Tab5, above the Espressif logo:</span>
+<span class="c">  #   ST7123   : M5STACK-TAB5-ST7123, touch st7123, 100ms</span>
+<span class="c">  #   ST7121   : M5STACK-TAB5-ST7121, touch st7123, 100ms</span>
+<span class="c">  #   ILI9881C : M5STACK-TAB5,        touch gt911,  never</span>
+  <span class="k">panel_model</span>: M5STACK-TAB5-ST7123
+  <span class="k">touch_chip</span>: st7123
+  <span class="k">touch_interval</span>: 100ms
+
+<span class="k">esphome</span>:
+  <span class="k">name</span>: tab5
+  <span class="k">friendly_name</span>: Tab5
+  <span class="k">min_version</span>: 2026.9.0
+  <span class="k">on_boot</span>:
+<span class="c">    # The panel reset goes through a PI4IOE5V6408 I/O expander, which needs a second after</span>
+<span class="c">    # start-up: without this wait, black screen after a software restart. A C delay(): ESPHome's</span>
+<span class="c">    # "delay:" does not hold the display setup back.</span>
+    - <span class="k">priority</span>: 700
+      <span class="k">then</span>:
+        - <span class="k">lambda</span>: "delay(1000);"
+
+<span class="k">esp32</span>:
+  <span class="k">board</span>: esp32-p4-evboard
+  <span class="k">flash_size</span>: 16MB
+  <span class="k">framework</span>:
+    <span class="k">type</span>: esp-idf
+    <span class="k">advanced</span>:
+      <span class="k">enable_idf_experimental_features</span>: true
+      <span class="k">execute_from_psram</span>: true
+
+<span class="c"># 32 MB of PSRAM, where LVGL keeps the whole picture (buffer_size: 100% below).</span>
+<span class="k">psram</span>:
+  <span class="k">mode</span>: hex
+  <span class="k">speed</span>: 200MHz
+
+<span class="c"># Wi-Fi is on a second chip, an ESP32-C6, linked over SDIO. Its reset is active high:</span>
+<span class="c"># active_high: false gives "sdmmc_card_init failed".</span>
+<span class="k">esp32_hosted</span>:
+  <span class="k">variant</span>: esp32c6
+  <span class="k">active_high</span>: true
+  <span class="k">clk_pin</span>: GPIO12
+  <span class="k">cmd_pin</span>: GPIO13
+  <span class="k">d0_pin</span>: GPIO11
+  <span class="k">d1_pin</span>: GPIO10
+  <span class="k">d2_pin</span>: GPIO9
+  <span class="k">d3_pin</span>: GPIO8
+  <span class="k">reset_pin</span>: GPIO15
+  <span class="k">slot</span>: 1
+  <span class="k">sdio_frequency</span>: 20MHz
+  <span class="k">use_psram</span>: true
+
+<span class="k">wifi</span>:
+  <span class="k">ssid</span>: !secret wifi_ssid
+  <span class="k">password</span>: !secret wifi_password
+  <span class="k">ap</span>:
+    <span class="k">ssid</span>: "Tab5 fallback"
+
+<span class="k">captive_portal</span>:
+
+<span class="k">api</span>:
+  <span class="k">encryption</span>:
+    <span class="k">key</span>: !secret api_encryption_key
+<span class="c">  # With no Home Assistant connected, ESPHome restarts after 15 min by default.</span>
+  <span class="k">reboot_timeout</span>: 60min
+
+<span class="k">ota</span>:
+  - <span class="k">platform</span>: esphome
+
+<span class="k">logger</span>:
+  <span class="k">hardware_uart</span>: USB_SERIAL_JTAG
+
+<span class="c"># One I2C bus for the touch, the two I/O expanders and the audio chips.</span>
+<span class="k">i2c</span>:
+  - <span class="k">id</span>: bsp_bus
+    <span class="k">sda</span>: GPIO31
+    <span class="k">scl</span>: GPIO32
+    <span class="k">frequency</span>: 400kHz
+
+<span class="k">pi4ioe5v6408</span>:
+  - <span class="k">id</span>: pi4ioe1
+    <span class="k">address</span>: 0x43
+  - <span class="k">id</span>: pi4ioe2
+    <span class="k">address</span>: 0x44
+
+<span class="c"># Power rails behind the expanders. "wifi_power" feeds the ESP32-C6: the expander starts off,</span>
+<span class="c"># and without this the Wi-Fi never comes up ("sdmmc_card_init failed"). The charger stays off,</span>
+<span class="c"># as with no battery.</span>
+<span class="k">switch</span>:
+  - <span class="k">platform</span>: gpio
+    <span class="k">id</span>: wifi_power
+    <span class="k">pin</span>:
+      <span class="k">pi4ioe5v6408</span>: pi4ioe2
+      <span class="k">number</span>: 0
+    <span class="k">restore_mode</span>: ALWAYS_ON
+  - <span class="k">platform</span>: gpio
+    <span class="k">id</span>: usb_5v_power
+    <span class="k">pin</span>:
+      <span class="k">pi4ioe5v6408</span>: pi4ioe2
+      <span class="k">number</span>: 3
+    <span class="k">restore_mode</span>: ALWAYS_ON
+  - <span class="k">platform</span>: gpio
+    <span class="k">id</span>: external_5v_power
+    <span class="k">pin</span>:
+      <span class="k">pi4ioe5v6408</span>: pi4ioe1
+      <span class="k">number</span>: 2
+    <span class="k">restore_mode</span>: ALWAYS_ON
+  - <span class="k">platform</span>: gpio
+    <span class="k">id</span>: charge_enable
+    <span class="k">pin</span>:
+      <span class="k">pi4ioe5v6408</span>: pi4ioe2
+      <span class="k">number</span>: 7
+    <span class="k">restore_mode</span>: ALWAYS_OFF
+
+<span class="c"># Supply of the display's MIPI-DSI link: LDO 3 at 2.5 V.</span>
+<span class="k">esp_ldo</span>:
+  - <span class="k">voltage</span>: 2.5V
+    <span class="k">channel</span>: 3
+
+<span class="c"># The panel is portrait (720 × 1280): LVGL turns it to landscape below.</span>
+<span class="k">display</span>:
+  - <span class="k">id</span>: panel
+    <span class="k">platform</span>: mipi_dsi
+    <span class="k">model</span>: ${panel_model}
+    <span class="k">dimensions</span>:
+      <span class="k">width</span>: 720
+      <span class="k">height</span>: 1280
+    <span class="k">reset_pin</span>:
+      <span class="k">pi4ioe5v6408</span>: pi4ioe1
+      <span class="k">number</span>: 4
+    <span class="k">pixel_mode</span>: 16bit
+    <span class="k">color_order</span>: RGB
+    <span class="k">update_interval</span>: never
+    <span class="k">auto_clear_enabled</span>: false
+
+<span class="c"># Same pins on the three versions. No mirroring (it corrupts the picture on an ST7121): LVGL</span>
+<span class="c"># turns the touches with the picture.</span>
+<span class="k">touchscreen</span>:
+  - <span class="k">id</span>: touch
+    <span class="k">platform</span>: ${touch_chip}
+    <span class="k">update_interval</span>: ${touch_interval}
+    <span class="k">interrupt_pin</span>: GPIO23
+    <span class="k">reset_pin</span>:
+      <span class="k">pi4ioe5v6408</span>: pi4ioe1
+      <span class="k">number</span>: 5
+    <span class="k">calibration</span>:
+      <span class="k">x_min</span>: 0
+      <span class="k">x_max</span>: 720
+      <span class="k">y_min</span>: 0
+      <span class="k">y_max</span>: 1280
+
+<span class="k">output</span>:
+  - <span class="k">platform</span>: ledc
+    <span class="k">id</span>: backlight_pwm
+    <span class="k">pin</span>: GPIO22
+    <span class="k">frequency</span>: 1000Hz
+
+<span class="k">light</span>:
+  - <span class="k">platform</span>: monochromatic
+    <span class="k">id</span>: backlight
+    <span class="k">name</span>: "Backlight"
+    <span class="k">output</span>: backlight_pwm
+    <span class="k">restore_mode</span>: RESTORE_DEFAULT_ON
+
+<span class="c"># Replace with your own entities. For the button, tick "Allow the device to perform Home</span>
+<span class="c"># Assistant actions" in Home Assistant (options of the ESPHome device).</span>
+<span class="k">sensor</span>:
+  - <span class="k">platform</span>: homeassistant
+    <span class="k">id</span>: living_room_temperature
+    <span class="k">entity_id</span>: sensor.living_room_temperature
+    <span class="k">on_value</span>:
+      - lvgl.label.update:
+          <span class="k">id</span>: temperature_label
+          <span class="k">text</span>:
+            <span class="k">format</span>: "%.1f °C"
+            <span class="k">args</span>: [x]
+
+<span class="c"># LVGL's built-in fonts have no accented letters: Roboto, downloaded at build time (it only</span>
+<span class="c"># lacks combining accents, hence ignore_missing_glyphs).</span>
+<span class="k">font</span>:
+  - <span class="k">file</span>: "gfonts://Roboto"
+    <span class="k">id</span>: font_text
+    <span class="k">size</span>: 32
+    <span class="k">glyphsets</span>: [GF_Latin_Core]
+    <span class="k">ignore_missing_glyphs</span>: true
+  - <span class="k">file</span>: "gfonts://Roboto@700"
+    <span class="k">id</span>: font_big
+    <span class="k">size</span>: 80
+    <span class="k">glyphsets</span>: [GF_Latin_Core]
+    <span class="k">ignore_missing_glyphs</span>: true
+
+<span class="k">lvgl</span>:
+  <span class="k">displays</span>: [panel]
+  <span class="k">touchscreens</span>: [touch]
+  <span class="k">rotation</span>: 270
+  <span class="k">color_depth</span>: 16
+  <span class="k">byte_order</span>: little_endian
+  <span class="k">buffer_size</span>: 100%
+  <span class="k">default_font</span>: font_text
+  <span class="k">pages</span>:
+    - <span class="k">id</span>: home_page
+      <span class="k">widgets</span>:
+        - <span class="k">label</span>:
+            <span class="k">id</span>: temperature_label
+            <span class="k">align</span>: CENTER
+            <span class="k">y</span>: -80
+            <span class="k">text</span>: "--"
+            <span class="k">text_font</span>: font_big
+        - <span class="k">button</span>:
+            <span class="k">align</span>: CENTER
+            <span class="k">y</span>: 120
+            <span class="k">width</span>: 360
+            <span class="k">height</span>: 120
+            <span class="k">widgets</span>:
+              - <span class="k">label</span>:
+                  <span class="k">align</span>: CENTER
+                  <span class="k">text</span>: "Living room light"
+            <span class="k">on_click</span>:
+              - homeassistant.action:
+                  <span class="k">action</span>: light.toggle
+                  <span class="k">data</span>:
+                    <span class="k">entity_id</span>: light.living_room</code></pre></div>
+	<p class="legende">Validated and compiled with ESPHome 2026.9.1 on 2026-10-28, not tried as is on the tablet: its pins and settings are those of the full firmware, which runs on mine.</p>
+	<h3>The settings that matter on this tablet</h3>
+	<ul>
+		<li><strong>The ESP32-C6, which carries the Wi-Fi, is powered through an I/O expander</strong> (PI4IOE5V6408, pin 0 of the second one): without the <code>wifi_power</code> switch turned on at start-up, the SDIO link never comes up ("sdmmc_card_init failed"). Its reset, GPIO15, is active high.</li>
+		<li><strong>The panel reset goes through the other expander</strong>, which needs a second after start-up: without the wait in <code>on_boot</code>, black screen after a software restart. It has to block, hence the C <code>delay()</code>.</li>
+		<li><strong>The panel is portrait</strong> (720 × 1280): LVGL turns it to landscape with <code>rotation: 270</code>, and turns the touches with it.</li>
+		<li><strong>No mirroring</strong> on the display or the touch: it corrupts the picture on an ST7121.</li>
+		<li><strong>The MIPI-DSI link</strong> is powered by LDO 3 of the ESP32-P4, at 2.5 V (<code>esp_ldo</code>).</li>
+		<li><strong>Home Assistant takes its time</strong>: with no API client, ESPHome restarts after 15 minutes by default, hence <code>reboot_timeout: 60min</code>. For the button to act, allow the device to perform actions in its ESPHome options.</li>
+	</ul>
+	<p>The full firmware keeps the hardware in <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/blob/main/Tab5/paquets/tab5-hardware.yaml">tab5-hardware.yaml</a> (sound, microphones, clock and battery included) and the display chip in <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/tree/main/Tab5/paquets">one file per version</a> (ecran-st7123.yaml, ecran-st7121.yaml, ecran-ili9881c.yaml). The same tablet without Home Assistant: <a href="/en/vigie/m5stack-tab5/">Vigie on the Tab5</a>.</p>
+</section>
+
 <section class="bloc" aria-labelledby="photos">
 	<h2 id="photos">On the real tablet</h2>
 	<div class="grille vignettes">
@@ -202,10 +445,10 @@
 	<p>What the screen does once installed: <a href="/en/home-assistant-display/">the native Home Assistant display</a>. Another board, bigger and cheaper: <a href="/en/waveshare-esp32-p4-7b/">the Waveshare ESP32-P4 7B</a>.</p>
 </section>
 </main>
-<aside class="sommaire"><nav aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#versions">The three versions of the Tab5</a></li><li><a href="#photos">On the real tablet</a></li><li><a href="#specs">What is inside</a></li><li><a href="#install">Install it</a></li></ul></nav></aside>
+<aside class="sommaire"><nav aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#versions">The three versions of the Tab5</a></li><li><a href="#configuration">The ESPHome configuration</a></li><li><a href="#photos">On the real tablet</a></li><li><a href="#specs">What is inside</a></li><li><a href="#install">Install it</a></li></ul></nav></aside>
 </div>
 <button class="sommaire-bouton" type="button" popovertarget="sommaire-mobile" aria-label="On this page"><span>On this page</span></button>
-<nav id="sommaire-mobile" class="sommaire-mobile" popover aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#versions">The three versions of the Tab5</a></li><li><a href="#photos">On the real tablet</a></li><li><a href="#specs">What is inside</a></li><li><a href="#install">Install it</a></li></ul></nav>
+<nav id="sommaire-mobile" class="sommaire-mobile" popover aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#versions">The three versions of the Tab5</a></li><li><a href="#configuration">The ESPHome configuration</a></li><li><a href="#photos">On the real tablet</a></li><li><a href="#specs">What is inside</a></li><li><a href="#install">Install it</a></li></ul></nav>
 
 <footer class="bas">
 	<div class="page">
@@ -220,7 +463,8 @@
 </footer>
 <script>
 /* Aux fils des idées : progression de lecture, sommaire qui suit la lecture, apparitions au défilement,
-   agrandissement des images. Sans bibliothèque ; rien ne bouge si le système demande moins d'animations. */
+   agrandissement des images, bouton « Copier » des exemples de code. Sans bibliothèque ; rien ne bouge si le
+   système demande moins d'animations. */
 (() => {
 	const d = document, h = d.documentElement, calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
 	h.classList.add("js");
@@ -263,10 +507,21 @@
 			vu.observe(x);
 		});
 	}
+	const fr = h.lang === "fr";
+	d.querySelectorAll(".code").forEach(bloc => {
+		const b = d.createElement("button"), code = bloc.querySelector("code");
+		const dire = (oui, non) => { b.textContent = fr ? oui : non; setTimeout(() => b.textContent = fr ? "Copier" : "Copy", 2500); };
+		b.type = "button";
+		b.textContent = fr ? "Copier" : "Copy";
+		// Copie refusée (page sans le focus, navigateur ancien) : le code reste sélectionné, prêt pour Ctrl+C
+		b.addEventListener("click", () => (navigator.clipboard ? navigator.clipboard.writeText(code.textContent) : Promise.reject())
+			.then(() => dire("Copié", "Copied"), () => { getSelection().selectAllChildren(code); dire("Sélectionné", "Selected"); }));
+		bloc.firstChild.append(b);
+	});
 	const loupe = d.createElement("dialog");
 	loupe.className = "loupe";
 	loupe.innerHTML = '<img alt="">';
-	loupe.setAttribute("aria-label", h.lang === "fr" ? "Image agrandie" : "Enlarged image");
+	loupe.setAttribute("aria-label", fr ? "Image agrandie" : "Enlarged image");
 	loupe.addEventListener("click", () => loupe.close());
 	d.body.append(loupe);
 	d.querySelectorAll("main figure img").forEach(img => {

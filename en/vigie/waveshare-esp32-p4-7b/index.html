@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Waveshare ESP32-P4 7B without Home Assistant: ESPHome config</title>
+<meta name="description" content="The Waveshare ESP32-P4 7B as a standalone alert display, without Home Assistant: a full ESPHome and LVGL config, Wi-Fi through the ESP32-C6, HTTPS data.">
+<link rel="canonical" href="https://auxfilsdesidees.fr/en/vigie/waveshare-esp32-p4-7b/">
+<link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/vigie/waveshare-esp32-p4-7b/">
+<link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie/waveshare-esp32-p4-7b/">
+<link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie/waveshare-esp32-p4-7b/">
+<link rel="alternate" type="application/rss+xml" title="What&#x27;s new · Aux fils des idées" href="/en/news/rss.xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:site_name" content="Aux fils des idées">
+<meta property="og:title" content="Waveshare ESP32-P4 7B without Home Assistant: ESPHome config">
+<meta property="og:description" content="The Waveshare ESP32-P4 7B as a standalone alert display, without Home Assistant: a full ESPHome and LVGL config, Wi-Fi through the ESP32-C6, HTTPS data.">
+<meta property="og:url" content="https://auxfilsdesidees.fr/en/vigie/waveshare-esp32-p4-7b/">
+<meta property="og:image" content="https://auxfilsdesidees.fr/assets/partage/en-vigie-7b.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Waveshare ESP32-P4 7B without Home Assistant: ESPHome config">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0e1319" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/assets/icone.svg?v=8d13847f41" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css?v=081a595722">
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebSite",
+			"@id": "https://auxfilsdesidees.fr/#site",
+			"url": "https://auxfilsdesidees.fr/",
+			"name": "Aux fils des idées",
+			"inLanguage": [
+				"fr",
+				"en"
+			],
+			"publisher": {
+				"@id": "https://auxfilsdesidees.fr/#axel"
+			}
+		},
+		{
+			"@type": "Person",
+			"@id": "https://auxfilsdesidees.fr/#axel",
+			"name": "Axel Duviella",
+			"url": "https://auxfilsdesidees.fr/",
+			"sameAs": [
+				"https://github.com/Axellum"
+			]
+		},
+		{
+			"@type": "WebPage",
+			"@id": "https://auxfilsdesidees.fr/en/vigie/waveshare-esp32-p4-7b/#page",
+			"url": "https://auxfilsdesidees.fr/en/vigie/waveshare-esp32-p4-7b/",
+			"name": "Waveshare ESP32-P4 7B without Home Assistant: ESPHome config",
+			"description": "The Waveshare ESP32-P4 7B as a standalone alert display, without Home Assistant: a full ESPHome and LVGL config, Wi-Fi through the ESP32-C6, HTTPS data.",
+			"inLanguage": "en",
+			"isPartOf": {
+				"@id": "https://auxfilsdesidees.fr/#site"
+			},
+			"primaryImageOfPage": "https://auxfilsdesidees.fr/assets/vigie-ecran-waveshare-7b-en.webp",
+			"dateModified": "2026-10-28"
+		},
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{
+					"@type": "ListItem",
+					"position": 1,
+					"name": "Home",
+					"item": "https://auxfilsdesidees.fr/en/"
+				},
+				{
+					"@type": "ListItem",
+					"position": 2,
+					"name": "Vigie",
+					"item": "https://auxfilsdesidees.fr/en/vigie/"
+				},
+				{
+					"@type": "ListItem",
+					"position": 3,
+					"name": "Waveshare ESP32-P4 7B",
+					"item": "https://auxfilsdesidees.fr/en/vigie/waveshare-esp32-p4-7b/"
+				}
+			]
+		},
+		{
+			"@type": "TechArticle",
+			"headline": "Waveshare ESP32-P4 7B without Home Assistant: Vigie alert display and ESPHome configuration",
+			"about": {
+				"@type": "Product",
+				"name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-7B",
+				"brand": {
+					"@type": "Brand",
+					"name": "Waveshare"
+				}
+			},
+			"inLanguage": "en",
+			"image": "https://auxfilsdesidees.fr/assets/vigie-ecran-waveshare-7b-en.webp",
+			"author": {
+				"@id": "https://auxfilsdesidees.fr/#axel"
+			}
+		}
+	]
+}
+</script>
+</head>
+<body>
+<a class="evitement" href="#contenu">Skip to content</a>
+<header class="haut">
+	<div class="page ligne">
+		<a class="marque" href="/en/"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#10151c"/><path d="M30 55V41C30 33 23 29 20 21M30 41C30 35 35 31 39 29" fill="none" stroke="#f0a46f" stroke-width="4.8" stroke-linecap="round"/><path d="M39 29C40.5 24.5 41.5 20 43 15.5M39 29C43 28 47 28 50.5 25.5" fill="none" stroke="#f0a46f" stroke-width="3.8" stroke-linecap="round"/><circle cx="19.2" cy="18.6" r="5" fill="#8fc0ff"/><circle cx="43.6" cy="13.2" r="4.4" fill="#f0a46f"/><circle cx="52.2" cy="24.4" r="4.2" fill="#e8ecf1"/></svg><span>Aux fils des idées</span></a>
+		<nav class="menu" aria-label="Main navigation"><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie/" class="courant">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/">About</a></li></ul></nav>
+		<a class="langue" href="/vigie/waveshare-esp32-p4-7b/" hreflang="fr" lang="fr">Français</a>
+	</div>
+	<div class="progression" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="page avec-sommaire">
+<main id="contenu">
+<nav class="fil" aria-label="Breadcrumb"><a href="/en/">Home</a> <span aria-hidden="true">›</span> <a href="/en/vigie/">Vigie</a> <span aria-hidden="true">›</span> <span aria-current="page">Waveshare ESP32-P4 7B</span></nav>
+<nav class="onglets" aria-label="Project pages"><span class="onglets-projet"><img src="/assets/logo-vigie.svg" width="26" height="26" alt="">Vigie</span><ul><li><a href="/en/vigie/">Overview</a></li><li><a href="/en/vigie/m5stack-tab5/">M5Stack Tab5</a></li><li><a href="/en/vigie/waveshare-esp32-p4-7b/" aria-current="page">Waveshare 7B</a></li></ul></nav>
+<div class="heros">
+	<div>
+		<span class="etiquette">Vigie · Waveshare · no Home Assistant</span>
+		<h1>Vigie on the Waveshare ESP32-P4 7B</h1>
+		<p class="chapeau">The 7-inch board as a standalone alert display: the world map of current hazards, the five most severe and the weather of your zones. ESPHome without Home Assistant: the screen fetches its data by itself, over Wi-Fi.</p>
+		<ul class="liens">
+			<li><a class="principal" href="#configuration">The ESPHome configuration</a></li>
+			<li><a href="https://github.com/Axellum/vigie-display/blob/main/docs/installation.md">Installation guide</a></li>
+			<li><a href="https://github.com/Axellum/vigie-display">Code on GitHub</a></li>
+		</ul>
+	</div>
+	<figure><img fetchpriority="high" src="/assets/vigie-ecran-waveshare-7b-en.webp" width="1024" height="600" alt="The Vigie screen on the Waveshare 7B: status bar, world map with current hazards, list of the five most severe and weather panel of the active zone"></figure>
+</div>
+
+<dl class="faits">
+	<div><dt>Screen</dt><dd>7", 1024 × 600</dd></div>
+	<div><dt>Firmware</dt><dd>ESPHome 2026.9.1+, LVGL</dd></div>
+	<div><dt>Home Assistant</dt><dd>Not needed</dd></div>
+	<div><dt>Data</dt><dd>Vigie API, every minute</dd></div>
+	<div><dt>Status</dt><dd>Tested on the board on 2026-10-20</dd></div>
+</dl>
+
+<div class="note"><p>Vigie does not replace official warnings: always follow the instructions of your authorities.</p></div>
+
+<section class="bloc" aria-labelledby="screen">
+	<h2 id="screen">What the screen shows</h2>
+	<p>The Vigie layout is drawn for this screen, to the pixel: the status bar (link to the API, date and time of the zone), the world map with hazards as dots coloured by severity, the five most severe with their distance and direction, and the weather panel of the zone. Touch the panel to go to the next zone.</p>
+	<p>Each part in detail, and what the screen does when the API stops answering: <a href="/en/vigie/#display">the Vigie alert display</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="configuration">
+	<h2 id="configuration">The ESPHome configuration, without Home Assistant</h2>
+	<p>No <code>api:</code> component: nothing links the screen to Home Assistant. Wi-Fi is given after the install (Improv over USB, or the access point the screen opens by itself), the data comes through <code>http_request</code> and LVGL draws it.</p>
+	<p>Below, a short, complete example on the same hardware base as Vigie: it shows the temperature and the weather warning of a place, read from <a href="/en/vigie/#api">the public Vigie API</a>. Change the latitude and longitude, or the address, to read another API.</p>
+	<div class="code"><div class="code-tete"><span>waveshare-7b-standalone.yaml</span><a href="https://github.com/Axellum/axellum.github.io/blob/main/exemples/en/waveshare-7b-standalone.yaml">GitHub</a></div>
+<pre><code><span class="c"># Waveshare ESP32-P4-WIFI6-Touch-LCD-7B with ESPHome, without Home Assistant: display, touch,</span>
+<span class="c"># Wi-Fi and backlight, and the screen reads a web API by itself to show the temperature and the</span>
+<span class="c"># weather warning of a place (the /v1/point route of the public Vigie API). Pins and settings of</span>
+<span class="c"># the Vigie display firmware, which runs on the board; this example itself is compiled with</span>
+<span class="c"># ESPHome 2026.9.1 but not tried as is.</span>
+<span class="k">substitutions</span>:
+<span class="c">  # The place shown (Paris here).</span>
+  <span class="k">latitude</span>: "48.86"
+  <span class="k">longitude</span>: "2.35"
+
+<span class="k">esphome</span>:
+  <span class="k">name</span>: waveshare-7b-standalone
+  <span class="k">friendly_name</span>: Waveshare 7B standalone
+<span class="c">  # ESPHome 2026.9.0 crashes while setting up the display of an ESP32-P4 revision 3: 2026.9.1 at</span>
+<span class="c">  # least.</span>
+  <span class="k">min_version</span>: 2026.9.1
+
+<span class="k">esp32</span>:
+  <span class="k">variant</span>: esp32p4
+<span class="c">  # ESP32-P4 revision 3 (production silicon), whose normal frequency is 400 MHz.</span>
+  <span class="k">engineering_sample</span>: false
+  <span class="k">cpu_frequency</span>: 400MHz
+  <span class="k">flash_size</span>: 32MB
+  <span class="k">framework</span>:
+    <span class="k">type</span>: esp-idf
+    <span class="k">advanced</span>:
+      <span class="k">enable_idf_experimental_features</span>: true
+      <span class="k">execute_from_psram</span>: true
+
+<span class="c"># At its default speed, the PSRAM gave about thirty "lcd.dsi underrun" per second.</span>
+<span class="k">psram</span>:
+  <span class="k">mode</span>: hex
+  <span class="k">speed</span>: 200MHz
+
+<span class="c"># Wi-Fi is on a second chip, an ESP32-C6, linked over SDIO. Its reset (GPIO54) is active high:</span>
+<span class="c"># false gives "sdmmc_card_init failed".</span>
+<span class="k">esp32_hosted</span>:
+  <span class="k">variant</span>: esp32c6
+  <span class="k">active_high</span>: true
+  <span class="k">clk_pin</span>: GPIO18
+  <span class="k">cmd_pin</span>: GPIO19
+  <span class="k">d0_pin</span>: GPIO14
+  <span class="k">d1_pin</span>: GPIO15
+  <span class="k">d2_pin</span>: GPIO16
+  <span class="k">d3_pin</span>: GPIO17
+  <span class="k">reset_pin</span>: GPIO54
+  <span class="k">slot</span>: 1
+  <span class="k">sdio_frequency</span>: 20MHz
+  <span class="k">use_psram</span>: true
+
+<span class="c"># No "api:": nothing links the screen to Home Assistant. No password in the file: Wi-Fi is given</span>
+<span class="c"># after the install, over USB (Improv, from ESPHome Web) or through the "Waveshare 7B setup"</span>
+<span class="c"># access point and its settings page.</span>
+<span class="k">wifi</span>:
+  <span class="k">ap</span>:
+    <span class="k">ssid</span>: "Waveshare 7B setup"
+
+<span class="k">improv_serial</span>:
+
+<span class="k">captive_portal</span>:
+
+<span class="k">ota</span>:
+  - <span class="k">platform</span>: esphome
+
+<span class="k">logger</span>:
+  <span class="k">hardware_uart</span>: USB_SERIAL_JTAG
+
+<span class="c"># Bus of the GT911 touch and of the audio chips.</span>
+<span class="k">i2c</span>:
+  - <span class="k">id</span>: bsp_bus
+    <span class="k">sda</span>: GPIO7
+    <span class="k">scl</span>: GPIO8
+    <span class="k">frequency</span>: 400kHz
+
+<span class="c"># Supply of the display's MIPI-DSI link: LDO 3 at 2.5 V.</span>
+<span class="k">esp_ldo</span>:
+  - <span class="k">voltage</span>: 2.5V
+    <span class="k">channel</span>: 3
+
+<span class="c"># EK79007 panel: ESPHome's model knows the board (GPIO33 reset included).</span>
+<span class="k">display</span>:
+  - <span class="k">id</span>: panel
+    <span class="k">platform</span>: mipi_dsi
+    <span class="k">model</span>: WAVESHARE-ESP32-P4-WIFI6-TOUCH-LCD-7B
+    <span class="k">dimensions</span>:
+      <span class="k">width</span>: 1024
+      <span class="k">height</span>: 600
+    <span class="k">pixel_mode</span>: 16bit
+    <span class="k">color_order</span>: RGB
+    <span class="k">update_interval</span>: never
+    <span class="k">auto_clear_enabled</span>: false
+
+<span class="c"># Waveshare's code says the GT911 reset is not connected, but it is on GPIO23: without it and</span>
+<span class="c"># without both mirrors, one touch recognised in five minutes.</span>
+<span class="k">touchscreen</span>:
+  - <span class="k">id</span>: touch
+    <span class="k">platform</span>: gt911
+    <span class="k">reset_pin</span>: GPIO23
+    <span class="k">update_interval</span>: 50ms
+    <span class="k">transform</span>:
+      <span class="k">swap_xy</span>: false
+      <span class="k">mirror_x</span>: true
+      <span class="k">mirror_y</span>: true
+
+<span class="c"># Backlight: inverted output, at 5 kHz.</span>
+<span class="k">output</span>:
+  - <span class="k">platform</span>: ledc
+    <span class="k">id</span>: backlight_pwm
+    <span class="k">pin</span>:
+      <span class="k">number</span>: GPIO32
+      <span class="k">inverted</span>: true
+    <span class="k">frequency</span>: 5000Hz
+
+<span class="k">light</span>:
+  - <span class="k">platform</span>: monochromatic
+    <span class="k">id</span>: backlight
+    <span class="k">name</span>: "Backlight"
+    <span class="k">output</span>: backlight_pwm
+    <span class="k">restore_mode</span>: RESTORE_DEFAULT_ON
+
+<span class="c"># The screen fetches its data by itself, over HTTPS. verify_ssl: false: the server certificate</span>
+<span class="c"># is not checked, as in Vigie display; fine for public data, never for a password.</span>
+<span class="k">http_request</span>:
+  <span class="k">id</span>: web
+  <span class="k">timeout</span>: 8s
+  <span class="k">verify_ssl</span>: false
+
+<span class="k">interval</span>:
+<span class="c">  # /v1/point takes 10 requests per minute and per address: one every 5 minutes is plenty.</span>
+  - <span class="k">interval</span>: 5min
+    <span class="k">startup_delay</span>: 10s
+    <span class="k">then</span>:
+      - <span class="k">if</span>:
+          <span class="k">condition</span>:
+            wifi.connected:
+          <span class="k">then</span>:
+            - http_request.get:
+                <span class="k">url</span>: "https://vigie.auxfilsdesidees.fr/v1/point?lat=${latitude}&amp;lon=${longitude}"
+                <span class="k">capture_response</span>: true
+                <span class="k">max_response_buffer_size</span>: 16384
+                <span class="k">on_response</span>:
+                  <span class="k">then</span>:
+                    - <span class="k">lambda</span>: |-
+                        if (response-&gt;status_code != 200) {
+                          ESP_LOGW("exemple", "HTTP %d", response-&gt;status_code);
+                          return;
+                        }
+                        json::parse_json(body, [](JsonObject root) -&gt; bool {
+<span class="c">                          // Highest weather warning at the point: GREEN, YELLOW, ORANGE or RED.</span>
+                          std::string level = root["local_alert_level"] | "";
+                          const char *text = "No warning";
+                          uint32_t colour = 0x3FA34D;
+                          if (level == "YELLOW") { text = "Yellow warning"; colour = 0xF2C230; }
+                          if (level == "ORANGE") { text = "Orange warning"; colour = 0xF08A24; }
+                          if (level == "RED") { text = "Red warning"; colour = 0xE5484D; }
+                          lv_label_set_text(id(level_label), text);
+                          lv_obj_set_style_text_color(id(level_label), lv_color_hex(colour), LV_PART_MAIN);
+<span class="c">                          // A missing value stays missing: nothing is made up.</span>
+                          JsonVariant temperature = root["current"]["temp_c"];
+                          if (temperature.is&lt;float&gt;()) {
+                            char value[16];
+                            snprintf(value, sizeof(value), "%.1f °C", temperature.as&lt;float&gt;());
+                            lv_label_set_text(id(temperature_label), value);
+                          }
+                          return true;
+                        });
+                <span class="k">on_error</span>:
+                  <span class="k">then</span>:
+                    - logger.log: "No answer (network or timeout)"
+
+<span class="c"># LVGL's built-in fonts have no accented letters: Roboto, downloaded at build time (it only</span>
+<span class="c"># lacks combining accents, hence ignore_missing_glyphs).</span>
+<span class="k">font</span>:
+  - <span class="k">file</span>: "gfonts://Roboto"
+    <span class="k">id</span>: font_text
+    <span class="k">size</span>: 28
+    <span class="k">glyphsets</span>: [GF_Latin_Core]
+    <span class="k">ignore_missing_glyphs</span>: true
+  - <span class="k">file</span>: "gfonts://Roboto@700"
+    <span class="k">id</span>: font_big
+    <span class="k">size</span>: 64
+    <span class="k">glyphsets</span>: [GF_Latin_Core]
+    <span class="k">ignore_missing_glyphs</span>: true
+
+<span class="k">lvgl</span>:
+  <span class="k">displays</span>: [panel]
+  <span class="k">touchscreens</span>: [touch]
+<span class="c">  # The panel is mounted upside down compared with its driver: 180 for the board the right way</span>
+<span class="c">  # up, 0 if you mount it upside down. The touch follows by itself.</span>
+  <span class="k">rotation</span>: 180
+  <span class="k">color_depth</span>: 16
+  <span class="k">byte_order</span>: little_endian
+  <span class="k">buffer_size</span>: 100%
+  <span class="k">default_font</span>: font_text
+  <span class="k">pages</span>:
+    - <span class="k">id</span>: home_page
+      <span class="k">widgets</span>:
+        - <span class="k">label</span>:
+            <span class="k">id</span>: temperature_label
+            <span class="k">align</span>: CENTER
+            <span class="k">y</span>: -50
+            <span class="k">text</span>: "--"
+            <span class="k">text_font</span>: font_big
+        - <span class="k">label</span>:
+            <span class="k">id</span>: level_label
+            <span class="k">align</span>: CENTER
+            <span class="k">y</span>: 70
+            <span class="k">text</span>: "Waiting for data"</code></pre></div>
+	<p class="legende">Validated and compiled with ESPHome 2026.9.1 on 2026-10-28, not yet tried as is on the board: its hardware settings are those of Vigie display, which runs on mine.</p>
+	<h3>The settings that matter on this board</h3>
+	<ul>
+		<li><strong>ESPHome 2026.9.1 at least</strong>: 2026.9.0 crashes while setting up the display of ESP32-P4 revision 3 chips.</li>
+		<li><strong>Wi-Fi goes through the ESP32-C6</strong>, linked over SDIO (<code>esp32_hosted</code>); its reset, GPIO54, is active high.</li>
+		<li><strong>PSRAM at 200 MHz</strong>: at its default speed, the display dropped out about thirty times a second ("lcd.dsi underrun").</li>
+		<li><strong>The GT911 touch</strong> has its reset on GPIO23, even though Waveshare's code says it is not connected, and it is mirrored in X and Y.</li>
+		<li><strong>The backlight</strong> is an inverted output on GPIO32, at 5 kHz.</li>
+		<li><strong>Picture direction</strong>: the panel is mounted upside down compared with its driver, hence <code>rotation: 180</code> for a board the right way up, 0 for a board mounted upside down. Vigie display starts from 0, the way my board is mounted: add <code>-s board_rotation 180</code> if the picture is upside down.</li>
+		<li><strong>After a software restart</strong>, the link to the ESP32-C6 may not come back until a power cut. Vigie display turns every software restart into a reset of the whole digital core (<a href="https://github.com/Axellum/vigie-display/blob/main/firmware/display/c6_link.cpp">c6_link.cpp</a>); the example does not.</li>
+	</ul>
+	<h3>The full firmware</h3>
+	<p><a href="https://github.com/Axellum/vigie-display/blob/main/vigie.yaml">vigie.yaml</a> puts packages together: the board hardware (<a href="https://github.com/Axellum/vigie-display/blob/main/firmware/packages/board-waveshare-7b.yaml">board-waveshare-7b.yaml</a>), the size of the screen, the world map and the fonts (<a href="https://github.com/Axellum/vigie-display/blob/main/firmware/packages/layout-waveshare-7b.yaml">layout-waveshare-7b.yaml</a>), the LVGL screen, drawn in C++, and the API client: one request a minute, a frame refused if its size or checksum does not match.</p>
+</section>
+
+<section class="bloc" aria-labelledby="install">
+	<h2 id="install">Install Vigie</h2>
+	<p>No published release to install from the browser yet: you build the firmware yourself. Allow half an hour, mostly for the first build.</p>
+	<ol class="etapes">
+		<li>Install ESPHome 2026.9.1 or newer and get the <a href="https://github.com/Axellum/vigie-display">vigie-display</a> repository.</li>
+		<li>Create a signing key: once installed, the screen only accepts updates signed with the same key. Keep a copy.</li>
+		<li>Build: the 7B is the default board. <code>esphome -s vigie_api_url https://vigie.auxfilsdesidees.fr -s vigie_signing_key vigie_signing_key.pem compile vigie.yaml</code>, then install over USB with ESPHome or from <a href="https://web.esphome.io">ESPHome Web</a>.</li>
+		<li>Give it Wi-Fi over USB (Improv) or through the "Vigie setup" access point the screen opens after a minute. Within a minute, the status bar reads "Up to date".</li>
+	</ol>
+	<p>Settings and common problems are in <a href="https://github.com/Axellum/vigie-display/blob/main/docs/installation.md">the installation guide</a>. Later updates go over Wi-Fi. The same board as a Home Assistant display: <a href="/en/waveshare-esp32-p4-7b/">the Waveshare 7B</a>.</p>
+</section>
+</main>
+<aside class="sommaire"><nav aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#screen">What the screen shows</a></li><li><a href="#configuration">The ESPHome configuration, without Home Assistant</a></li><li><a href="#install">Install Vigie</a></li></ul></nav></aside>
+</div>
+<button class="sommaire-bouton" type="button" popovertarget="sommaire-mobile" aria-label="On this page"><span>On this page</span></button>
+<nav id="sommaire-mobile" class="sommaire-mobile" popover aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#screen">What the screen shows</a></li><li><a href="#configuration">The ESPHome configuration, without Home Assistant</a></li><li><a href="#install">Install Vigie</a></li></ul></nav>
+
+<footer class="bas">
+	<div class="page">
+		<div class="bas-haut">
+			<div><a class="marque" href="/en/"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#10151c"/><path d="M30 55V41C30 33 23 29 20 21M30 41C30 35 35 31 39 29" fill="none" stroke="#f0a46f" stroke-width="4.8" stroke-linecap="round"/><path d="M39 29C40.5 24.5 41.5 20 43 15.5M39 29C43 28 47 28 50.5 25.5" fill="none" stroke="#f0a46f" stroke-width="3.8" stroke-linecap="round"/><circle cx="19.2" cy="18.6" r="5" fill="#8fc0ff"/><circle cx="43.6" cy="13.2" r="4.4" fill="#f0a46f"/><circle cx="52.2" cy="24.4" r="4.2" fill="#e8ecf1"/></svg><span>Aux fils des idées</span></a><p>Screens and tools for the home, made with AI and shared in case they help.</p></div>
+			<nav aria-label="Projects"><p class="bas-titre">Projects</p><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/">About</a></li><li><a href="/en/news/">What's new</a></li></ul></nav>
+			<nav aria-label="Elsewhere"><p class="bas-titre">Elsewhere</p><ul><li><a href="https://github.com/Axellum">GitHub</a></li><li><a href="https://vigie.auxfilsdesidees.fr/">Vigie</a></li><li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/">Tab5 docs</a></li><li><a href="/en/news/rss.xml">RSS feed</a></li></ul></nav>
+		</div>
+		<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. Feedback welcome on <a href="https://github.com/Axellum">GitHub</a>.</p>
+	<p>Publisher: Axel Duviella, private individual, non-professional (France). Contact: <a href="https://github.com/Axellum">github.com/Axellum</a>. Host: OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/en/">ovhcloud.com</a>). This site sets no cookies and does not measure its visits.</p>
+	</div>
+</footer>
+<script>
+/* Aux fils des idées : progression de lecture, sommaire qui suit la lecture, apparitions au défilement,
+   agrandissement des images, bouton « Copier » des exemples de code. Sans bibliothèque ; rien ne bouge si le
+   système demande moins d'animations. */
+(() => {
+	const d = document, h = d.documentElement, calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
+	h.classList.add("js");
+	const liens = [...d.querySelectorAll(".sommaire a, .sommaire-mobile a")];
+	const titres = [...new Set(liens.map(a => a.hash))].map(x => d.getElementById(x.slice(1))).filter(Boolean);
+	const pastille = d.querySelector(".sommaire-bouton span");
+	let actif = null, attente = false;
+	const maj = () => {
+		attente = false;
+		const max = h.scrollHeight - innerHeight;
+		h.style.setProperty("--p", max > 0 ? Math.min(scrollY / max, 1) : 0);
+		h.classList.toggle("defile", scrollY > 240);
+		let courant = null;
+		for (const t of titres) if (t.getBoundingClientRect().top < innerHeight * 0.32) courant = t;
+		if (courant !== actif) {
+			actif = courant;
+			for (const a of liens) a.classList.toggle("actif", !!courant && a.hash === "#" + courant.id);
+			if (pastille) pastille.textContent = courant ? courant.textContent : pastille.dataset.vide;
+		}
+	};
+	if (pastille) pastille.dataset.vide = pastille.textContent;
+	addEventListener("scroll", () => { if (!attente) { attente = true; requestAnimationFrame(maj); } }, { passive: true });
+	addEventListener("resize", maj);
+	maj();
+	d.getElementById("sommaire-mobile")?.addEventListener("click", e => e.target.closest("a") && e.currentTarget.hidePopover());
+	if (!calme && "IntersectionObserver" in window) {
+		const vu = new IntersectionObserver(es => es.forEach(e => {
+			if (e.isIntersecting) {
+				const x = e.target;
+				x.classList.add("vu");
+				vu.unobserve(x);
+				setTimeout(() => x.style.transitionDelay = "", 900);
+			}
+		}), { rootMargin: "0px 0px -6% 0px" });
+		d.querySelectorAll("main > section > :not(.grille, .cartes), main > .faits, .grille > *, .cartes > *, .journal li").forEach(x => {
+			if (x.getBoundingClientRect().top < innerHeight) return;
+			const rang = [...x.parentElement.children].indexOf(x);
+			if (x.parentElement.matches(".grille, .cartes, .journal ul")) x.style.transitionDelay = Math.min(rang, 4) * 70 + "ms";
+			x.classList.add("revele");
+			vu.observe(x);
+		});
+	}
+	const fr = h.lang === "fr";
+	d.querySelectorAll(".code").forEach(bloc => {
+		const b = d.createElement("button"), code = bloc.querySelector("code");
+		const dire = (oui, non) => { b.textContent = fr ? oui : non; setTimeout(() => b.textContent = fr ? "Copier" : "Copy", 2500); };
+		b.type = "button";
+		b.textContent = fr ? "Copier" : "Copy";
+		// Copie refusée (page sans le focus, navigateur ancien) : le code reste sélectionné, prêt pour Ctrl+C
+		b.addEventListener("click", () => (navigator.clipboard ? navigator.clipboard.writeText(code.textContent) : Promise.reject())
+			.then(() => dire("Copié", "Copied"), () => { getSelection().selectAllChildren(code); dire("Sélectionné", "Selected"); }));
+		bloc.firstChild.append(b);
+	});
+	const loupe = d.createElement("dialog");
+	loupe.className = "loupe";
+	loupe.innerHTML = '<img alt="">';
+	loupe.setAttribute("aria-label", fr ? "Image agrandie" : "Enlarged image");
+	loupe.addEventListener("click", () => loupe.close());
+	d.body.append(loupe);
+	d.querySelectorAll("main figure img").forEach(img => {
+		if (img.closest(".diaporama, .collage")) return;
+		img.classList.add("agrandir");
+		img.addEventListener("click", () => {
+			const grande = loupe.firstChild;
+			grande.src = img.currentSrc || img.src;
+			grande.alt = img.alt;
+			loupe.showModal();
+		});
+	});
+})();
+</script>
+</body>
+</html>
