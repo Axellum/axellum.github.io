@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
+    <loc>https://auxfilsdesidees.fr/a-propos/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/a-propos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/about/"/>
+  </url>
+  <url>
     <loc>https://auxfilsdesidees.fr/</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/"/>
@@ -10,12 +16,92 @@
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-fr.webp</image:loc></image:image>
   </url>
   <url>
+    <loc>https://auxfilsdesidees.fr/ecran-home-assistant/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/ecran-home-assistant/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/home-assistant-display/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/home-assistant-display/"/>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-maison-fr.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-lumieres-fr.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-climatisation-fr.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-energie-fr.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-musique-fr.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-calendrier-fr.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-reveil-fr.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-assistant-fr.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5-themes-fr.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/waveshare-7b.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://auxfilsdesidees.fr/moteur-ia/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/moteur-ia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/ai-engine/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/ai-engine/"/>
+  </url>
+  <url>
+    <loc>https://auxfilsdesidees.fr/ecrans-meteo-nextion/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/ecrans-meteo-nextion/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/nextion-weather-screens/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/nextion-weather-screens/"/>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/nextion-photo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://auxfilsdesidees.fr/vigie/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/vigie/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie/"/>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-fr.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://auxfilsdesidees.fr/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/a-propos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/about/"/>
+  </url>
+  <url>
     <loc>https://auxfilsdesidees.fr/en/</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/"/>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/waveshare-7b.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-en.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://auxfilsdesidees.fr/en/home-assistant-display/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/ecran-home-assistant/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/home-assistant-display/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/home-assistant-display/"/>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-maison-en.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-lumieres-en.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-climatisation-en.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-energie-en.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-musique-en.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-calendrier-en.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-reveil-en.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-assistant-en.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5-themes-en.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/waveshare-7b.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://auxfilsdesidees.fr/en/ai-engine/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/moteur-ia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/ai-engine/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/ai-engine/"/>
+  </url>
+  <url>
+    <loc>https://auxfilsdesidees.fr/en/nextion-weather-screens/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/ecrans-meteo-nextion/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/nextion-weather-screens/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/nextion-weather-screens/"/>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/nextion-photo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://auxfilsdesidees.fr/en/vigie/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/vigie/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie/"/>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-en.webp</image:loc></image:image>
   </url>
 </urlset>

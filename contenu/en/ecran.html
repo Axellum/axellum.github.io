@@ -1,0 +1,175 @@
+chemin: /en/home-assistant-display/
+paire: ecran
+titre: Native Home Assistant display for the M5Stack Tab5 and Waveshare ESP32-P4 · Aux fils des idées
+description: A Home Assistant wall display that runs natively on the ESP32-P4 (ESPHome, LVGL), with no browser: weather, lights, shutters, heating, energy, music, calendar, alarm clock and voice. 21 themes, 7 languages, install from the browser.
+image: tab5-themes-en.webp
+fil: Home Assistant display
+menu: Home Assistant display
+ordre: 1
+---
+<!--ld {
+	"@type": "SoftwareSourceCode",
+	"name": "Home Assistant display for the M5Stack Tab5 and Waveshare ESP32-P4 7B",
+	"description": "Native Home Assistant display (ESPHome + LVGL) for the ESP32-P4, with no browser.",
+	"codeRepository": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL",
+	"url": "https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/",
+	"programmingLanguage": ["C++", "YAML"],
+	"runtimePlatform": "ESPHome",
+	"license": "https://opensource.org/licenses/MIT",
+	"softwareVersion": "3.9.0",
+	"dateCreated": "2026-05-16",
+	"image": "https://auxfilsdesidees.fr/assets/tab5-themes-en.webp"
+} ld-->
+<div class="heros">
+	<div>
+		<span class="etiquette">Home Assistant · ESP32-P4</span>
+		<h1>Native Home Assistant display</h1>
+		<p class="chapeau">A wall display that runs directly on the M5Stack Tab5, with no browser: Home Assistant pushes what changed, and the screen redraws only that. It is the screen of my house.</p>
+		<ul class="liens">
+			<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Install from the browser</a></li>
+			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/">Documentation</a></li>
+			<li><a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL">Code on GitHub</a></li>
+		</ul>
+	</div>
+	<figure><img src="/assets/tab5.webp" width="800" height="600" alt="The M5Stack Tab5 on its stand: the time, two temperatures, a heating setpoint and a five-day forecast"></figure>
+</div>
+
+<dl class="faits">
+	<div><dt>Version</dt><dd>3.9.0 (25 Oct 2026)</dd></div>
+	<div><dt>Screens</dt><dd>Tab5 · Waveshare 7B</dd></div>
+	<div><dt>Themes</dt><dd>21, light or dark</dd></div>
+	<div><dt>Languages</dt><dd>7</dd></div>
+	<div><dt>License</dt><dd>MIT</dd></div>
+	<div><dt>Requires</dt><dd>Home Assistant 2026.8+</dd></div>
+</dl>
+
+<section class="bloc" aria-labelledby="features">
+	<h2 id="features">What the display does</h2>
+	<p>Everything I need day to day, on a 5 or 7 inch touch screen, without opening an app.</p>
+	<div class="grille">
+		<div>
+			<h3>Weather</h3>
+			<p>Rain in the next hour in 9 bars, hourly and 15-day forecasts, official weather warnings. A central card rotates every 8 seconds: work hours, rain graph, warnings, a 3-day summary.</p>
+		</div>
+		<div>
+			<h3>The house</h3>
+			<p>Up to 10 rooms of 20 devices (lights, switches, shutters, players, scenes, sensors) and a "House" view with "all off".</p>
+		</div>
+		<div>
+			<h3>Lights and shutters</h3>
+			<p>Brightness arc, 3 whites and 12 colours. Shutters open, closed or at a position; saying "Stop" stops the shutter.</p>
+		</div>
+		<div>
+			<h3>Heating and cooling</h3>
+			<p>Modes, thermostat arc, presets, airflow, and the temperature history over 24 hours, 7 or 30 days.</p>
+		</div>
+		<div>
+			<h3>Energy</h3>
+			<p>Flows between solar panels, home, grid and battery, a learned production forecast, a monthly balance in kWh (optional).</p>
+		</div>
+		<div>
+			<h3>Music</h3>
+			<p>Any Home Assistant player, with cover art, volume, favourite playlists and multi-room with Music Assistant.</p>
+		</div>
+		<div>
+			<h3>Calendar and alarm</h3>
+			<p>A monthly calendar computed on the screen (work hours, public holidays, appointments) and an alarm clock with a spoken briefing of the day.</p>
+		</div>
+		<div>
+			<h3>Voice</h3>
+			<p>"Okay Nabu" detected on the screen itself, with a choice of two assistants.</p>
+		</div>
+		<div>
+			<h3>And more</h3>
+			<p>Plants (Bluetooth sensors), Samsung TV remote, still camera images, fridges and freezers, sensor tracking, a diagnostics console, and 8 small offline games (experimental).</p>
+		</div>
+	</div>
+</section>
+
+<section class="bloc" aria-labelledby="screens">
+	<h2 id="screens">What it looks like</h2>
+	<p>The screenshots below are renders of the firmware on a PC with demo data.</p>
+	<div class="grille vignettes">
+		<figure><img src="/assets/ecran-maison-en.webp" width="640" height="360" loading="lazy" alt="House view: five rooms in columns, each device with its state, and a Lights off button"><figcaption>The House view</figcaption></figure>
+		<figure><img src="/assets/ecran-lumieres-en.webp" width="640" height="360" loading="lazy" alt="Light popup: the room's lights, a brightness arc, 3 whites and 12 colours"><figcaption>Lights</figcaption></figure>
+		<figure><img src="/assets/ecran-climatisation-en.webp" width="640" height="360" loading="lazy" alt="Climate popup: modes, a thermostat arc set to 20 °C, presets and fan speed"><figcaption>Heating and cooling</figcaption></figure>
+		<figure><img src="/assets/ecran-energie-en.webp" width="640" height="360" loading="lazy" alt="Energy popup: solar, home, grid and battery linked by live power lines"><figcaption>Energy</figcaption></figure>
+		<figure><img src="/assets/ecran-musique-en.webp" width="640" height="360" loading="lazy" alt="Music popup: cover art, title, volume and playlists"><figcaption>Music</figcaption></figure>
+		<figure><img src="/assets/ecran-calendrier-en.webp" width="640" height="360" loading="lazy" alt="Monthly calendar with work hours, a public holiday, school holidays and appointments"><figcaption>Calendar</figcaption></figure>
+		<figure><img src="/assets/ecran-reveil-en.webp" width="640" height="360" loading="lazy" alt="Alarm clock screen with the alarm time and days"><figcaption>Alarm clock</figcaption></figure>
+		<figure><img src="/assets/ecran-assistant-en.webp" width="640" height="360" loading="lazy" alt="Voice assistant popup during a question"><figcaption>Voice assistant</figcaption></figure>
+	</div>
+	<figure><img src="/assets/tab5-themes-en.webp" width="1200" height="520" loading="lazy" alt="Six of the 21 home screen themes side by side"><figcaption>Six of the 21 themes, each light or dark.</figcaption></figure>
+</section>
+
+<section class="bloc" aria-labelledby="hardware">
+	<h2 id="hardware">Supported screens</h2>
+	<div class="grille">
+		<div>
+			<h3>M5Stack Tab5</h3>
+			<p>1280 × 720, ESP32-P4. Three display chips exist: ST7123 (mine), ST7121 (works for another user), ILI9881C (builds, untested).</p>
+			<a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/hardware/">Tab5 versions</a>
+		</div>
+		<div>
+			<h3>Waveshare ESP32-P4 7B</h3>
+			<p>1024 × 600, experimental, but it has been my everyday screen since 14 October 2026. No motion sensor, clock chip or battery; one energy page is not adapted to its screen yet.</p>
+			<a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/waveshare-7b/">The Waveshare 7B</a>
+		</div>
+	</div>
+	<figure><img src="/assets/waveshare-7b.webp" width="800" height="469" loading="lazy" alt="The home screen on the 7-inch Waveshare ESP32-P4, at 1024 × 600"><figcaption>The same firmware on the Waveshare 7B.</figcaption></figure>
+</section>
+
+<section class="bloc" aria-labelledby="install">
+	<h2 id="install">Install</h2>
+	<p>No need to compile: you need Chrome or Edge on a computer and a USB-C cable that carries data.</p>
+	<ol class="etapes">
+		<li>Add the Home Assistant files, with HACS (the "Tab5" integration) or with the archive to unzip into <code>config</code>.</li>
+		<li>Install the firmware from <a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">the install page</a>, then the Wi-Fi.</li>
+		<li>Add the screen to Home Assistant (ESPHome discovery).</li>
+		<li>Pick the weather sources and calendars.</li>
+		<li>Describe rooms, tiles and sensors with a blueprint, without reflashing.</li>
+	</ol>
+	<p>Updates then come through Home Assistant; the screen only accepts firmware signed by the project. Everything is in the <a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/installation/">installation guide</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="how">
+	<h2 id="how">How it works</h2>
+	<ul>
+		<li><strong>Home Assistant pushes, the screen never polls.</strong> The project's automations send changes to the screen, which redraws only what moved.</li>
+		<li><strong>The screen only sends events</strong>, which Home Assistant turns into actions from an allow list.</li>
+		<li><strong>ESPHome and LVGL 9.5</strong>, with the logic in C++; one board chosen at build time, with its own geometry.</li>
+		<li><strong>Tested off the tablet</strong>: C++ tests on a PC, screen renders in continuous integration, and more than 70 written architecture decisions.</li>
+	</ul>
+	<p>Going further: <a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/architecture/">the architecture</a>, <a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/demo_mode/">demo mode without Home Assistant</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="docs">
+	<h2 id="docs">Useful documentation</h2>
+	<div class="grille">
+		<div>
+			<h3>Get started</h3>
+			<ul>
+				<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/installation/">Installation guide</a></li>
+				<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/installation/home-assistant-files/">Home Assistant files (HACS)</a></li>
+				<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/installation/devices/">Your devices (blueprint)</a></li>
+			</ul>
+		</div>
+		<div>
+			<h3>Configure</h3>
+			<ul>
+				<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/installation/settings/">Theme, language, settings</a></li>
+				<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/installation/weather/">Weather providers</a></li>
+				<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/translations/">Screen languages</a></li>
+			</ul>
+		</div>
+		<div>
+			<h3>Day to day</h3>
+			<ul>
+				<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/notice/">User guide</a></li>
+				<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/troubleshooting/">Known issues</a></li>
+				<li><a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/discussions">Questions and ideas (Discussions)</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="note"><p>A personal project, made with the help of AI. The seven languages were translated by AI; only French has been proofread. Warnings outside Météo-France have only been tried with simulated data.</p></div>
+</section>

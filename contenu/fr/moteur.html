@@ -1,0 +1,81 @@
+chemin: /moteur-ia/
+paire: moteur
+titre: Moteur IA multi-agents pour Home Assistant (vromvrom-engine) · Aux fils des idées
+description: vromvrom-engine, un orchestrateur multi-agents en Python qui choisit le bon modèle d'IA pour chaque tâche (routage Elo appris de l'usage), se répare seul et expose une API compatible OpenAI. Né pour piloter un écran Home Assistant, utilisable partout.
+fil: Moteur IA
+menu: Moteur IA
+ordre: 3
+---
+<!--ld {
+	"@type": "SoftwareSourceCode",
+	"name": "vromvrom-engine",
+	"description": "Orchestrateur multi-agents LLM asynchrone avec routage Elo, auto-réparation et API compatible OpenAI.",
+	"codeRepository": "https://github.com/Axellum/vromvrom-engine",
+	"programmingLanguage": ["Python", "TypeScript"],
+	"license": "https://opensource.org/licenses/MIT",
+	"dateCreated": "2026-07-03"
+} ld-->
+<div class="heros">
+	<div>
+		<span class="etiquette">IA · Python · Home Assistant</span>
+		<h1>Le moteur IA multi-agents</h1>
+		<p class="chapeau">Un orchestrateur qui reçoit une demande, choisit le modèle d'IA le plus adapté, découpe le travail en tâches parallèles et bascule seul sur un autre fournisseur quand l'un tombe. Il est né pour piloter mon écran Home Assistant.</p>
+		<ul class="liens">
+			<li><a class="principal" href="https://github.com/Axellum/vromvrom-engine">Code sur GitHub</a></li>
+			<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/README.fr.md">Lire en français</a></li>
+		</ul>
+	</div>
+	<div class="bloc citation">
+		<h2>En une phrase</h2>
+		<p>« Async multi-agent LLM orchestrator with Elo routing, self-healing, and an OpenAI-compatible Proxy API. Built for Home Assistant, usable everywhere. »</p>
+		<p class="source">Description du dépôt vromvrom-engine.</p>
+	</div>
+</div>
+
+<dl class="faits">
+	<div><dt>Langage</dt><dd>Python 3.11+</dd></div>
+	<div><dt>API</dt><dd>Compatible OpenAI</dd></div>
+	<div><dt>Fournisseurs d'IA</dt><dd>13</dd></div>
+	<div><dt>Licence</dt><dd>MIT</dd></div>
+	<div><dt>Statut</dt><dd>Développement actif</dd></div>
+</dl>
+
+<section class="bloc" aria-labelledby="fonctions">
+	<h2 id="fonctions">Ce qu'il fait</h2>
+	<div class="grille">
+		<div>
+			<h3>Choisir le bon modèle</h3>
+			<p>Un routage en quatre étages : règles simples, petit classifieur, avis d'un modèle, puis un score Elo qui apprend de l'usage quel modèle réussit quel type de tâche.</p>
+		</div>
+		<div>
+			<h3>Travailler en parallèle</h3>
+			<p>Une demande complexe devient un graphe de tâches exécutées en même temps (asyncio).</p>
+		</div>
+		<div>
+			<h3>Se réparer seul</h3>
+			<p>Coupe-circuit, nouvelles tentatives espacées, bascule vers un autre fournisseur selon la disponibilité et le budget.</p>
+		</div>
+		<div>
+			<h3>Se souvenir</h3>
+			<p>Une recherche locale dans les documents (TF-IDF, BM25 et ChromaDB) pour répondre avec le contexte de la maison.</p>
+		</div>
+		<div>
+			<h3>Parler à vos outils</h3>
+			<p>Une API compatible OpenAI (<code>/v1/chat/completions</code>) utilisable depuis Cursor, Cline ou Continue, et des routes dédiées à Home Assistant.</p>
+		</div>
+		<div>
+			<h3>Garder la main</h3>
+			<p>Validation humaine des actions sensibles, système de plugins, travailleurs distants et un tableau de bord (FastAPI et React).</p>
+		</div>
+	</div>
+</section>
+
+<section class="bloc" aria-labelledby="pile">
+	<h2 id="pile">La technique</h2>
+	<ul>
+		<li>Python 3.11+, FastAPI, asyncio, SQLite, ChromaDB, scikit-learn ; tableau de bord en React, Vite et TypeScript.</li>
+		<li>13 fournisseurs d'IA pris en charge, dans le cloud (Gemini, GitHub Models, DeepSeek, Anthropic, Mistral, OpenRouter…) ou en local (LM Studio, Ollama).</li>
+		<li>Quatre stratégies de configuration documentées, une image Docker et docker-compose, des tests pytest et une intégration continue.</li>
+	</ul>
+	<div class="note"><p>Outil personnel partagé tel quel : le tableau de bord a encore des angles vifs, et aucune version n'est publiée pour l'instant.</p></div>
+</section>

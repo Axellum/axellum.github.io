@@ -1,8 +1,13 @@
 # axellum.github.io · auxfilsdesidees.fr
 
-La page des projets d'Axel Duviella, en français (`index.html`) et en anglais (`en/`).
+Les pages des projets d'Axel Duviella, en français et en anglais (`/en/…`).
 
-- **auxfilsdesidees.fr** : servie par le Caddy du serveur de Vigie. `./deploy.sh` y copie les pages, les images,
+- **Écrire** : le contenu est dans `contenu/fr/` et `contenu/en/` (un fichier par page, en-tête « clé: valeur » puis
+  le corps HTML ; voir `construire.py`). `python construire.py` écrit les pages (`index.html`, `vigie/`,
+  `en/vigie/`…) et `auxfilsdesidees/sitemap.xml`. Ne pas modifier les pages écrites à la main : la CI
+  (`python construire.py --verifier`) échoue si elles diffèrent du contenu.
+
+- **auxfilsdesidees.fr** : servie par le Caddy du serveur de Vigie. `./deploy.sh` y copie toutes les pages, les images,
   `auxfilsdesidees/robots.txt` et `auxfilsdesidees/sitemap.xml` ; `./deploy.sh caddy` installe aussi
   `auxfilsdesidees/site.caddy` (une fois, puis à chaque changement de ce fichier) et redémarre Caddy.
 - **axellum.github.io** : GitHub Pages sert ce dépôt tel quel. Le `robots.txt` de la racine est celui de ce domaine :
