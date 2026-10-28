@@ -101,6 +101,18 @@ nav.menu ul { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; m
 nav.menu a { color: var(--texte); text-decoration: none; font-size: 15.5px; font-weight: 500; padding: 2px 0; border-bottom: 2px solid transparent; }
 nav.menu a:hover { color: var(--accent); }
 nav.menu a[aria-current="page"] { border-bottom-color: var(--accent); }
+nav.menu li.groupe { position: relative; }
+nav.menu details { border: 0; padding: 0; }
+nav.menu summary { list-style: none; cursor: pointer; font-size: 15.5px; font-weight: 500; padding: 2px 0; border-bottom: 2px solid transparent; }
+nav.menu summary::-webkit-details-marker { display: none; }
+nav.menu summary::after { content: ""; display: inline-block; width: 6px; height: 6px; margin: 0 2px 3px 8px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); }
+nav.menu details[open] summary::after { transform: rotate(-135deg); margin-bottom: -1px; }
+nav.menu summary:hover { color: var(--accent); }
+nav.menu summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+nav.menu li.courant summary { border-bottom-color: var(--accent); }
+nav.menu details ul { position: absolute; top: calc(100% + 8px); left: -14px; z-index: 10; display: block; min-width: 230px; margin: 0; padding: 8px 0; background: var(--carte); border: 1px solid var(--trait); border-radius: 10px; box-shadow: 0 10px 28px rgba(0, 0, 0, .14); }
+nav.menu details li a { display: block; padding: 7px 14px; border-bottom: 0; }
+nav.menu details li a[aria-current="page"] { color: var(--accent); }
 nav.fil { font-size: 14px; color: var(--doux); margin: 22px 0 0; }
 nav.fil a { color: var(--doux); }
 

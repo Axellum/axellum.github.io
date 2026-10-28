@@ -21,7 +21,7 @@
 <meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
 <link rel="icon" href="/assets/icone.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css?v=c3f36a1124">
+<link rel="stylesheet" href="/assets/style.css?v=0436584783">
 <script type="application/ld+json">
 {
 	"@context": "https://schema.org",
@@ -103,7 +103,7 @@
 		<a class="marque" href="/en/">Aux fils des idées</a>
 		<a class="langue" href="/moteur-ia/" hreflang="fr" lang="fr">Français</a>
 	</div>
-	<nav class="menu" aria-label="Main navigation"><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/m5stack-tab5/">M5Stack Tab5</a></li><li><a href="/en/waveshare-esp32-p4-7b/">Waveshare 7B</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/" aria-current="page">AI engine</a></li><li><a href="/en/about/">About</a></li></ul></nav>
+	<nav class="menu" aria-label="Main navigation"><ul><li class="groupe"><details><summary>Displays</summary><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie-display/">Vigie display</a></li><li><a href="/en/m5stack-tab5/">M5Stack Tab5</a></li><li><a href="/en/waveshare-esp32-p4-7b/">Waveshare 7B</a></li></ul></details></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/" aria-current="page">AI engine</a></li><li><a href="/en/about/">About</a></li></ul></nav>
 </header>
 
 <main>
@@ -178,5 +178,10 @@
 	<p>Publisher: Axel Duviella, private individual, non-professional (France). Contact: <a href="https://github.com/Axellum">github.com/Axellum</a>. Host: OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/en/">ovhcloud.com</a>). This site sets no cookies and does not measure its visits.</p>
 </footer>
 </div>
+<script>
+/* Sous-menus : fermés par un clic ailleurs ou la touche Échap. */
+document.addEventListener("click", e => document.querySelectorAll("nav.menu details[open]").forEach(d => d.contains(e.target) || d.removeAttribute("open")));
+document.addEventListener("keydown", e => e.key === "Escape" && document.querySelectorAll("nav.menu details[open]").forEach(d => d.removeAttribute("open")));
+</script>
 </body>
 </html>
