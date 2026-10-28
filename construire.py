@@ -4,7 +4,8 @@
 Chaque fichier de contenu commence par un en-tête « clé: valeur » terminé par une ligne « --- », puis le corps HTML.
 Clés : chemin (adresse de la page, ex. /vigie/), paire (identifiant commun à la page FR et à la page EN),
 titre (balise <title>), description, image (partage, sous /assets/), fil (nom dans le fil d'Ariane, absent sur
-l'accueil), ordre (place dans la navigation, absent = hors navigation), menu (nom dans la navigation).
+l'accueil), ordre (place dans la navigation, absent = hors navigation), menu (nom dans la navigation),
+groupe (nom d'un sous-menu : les pages du même groupe sont rangées dessous, à la place de la première).
 Un bloc <!--ld … ld--> dans le corps est un objet JSON-LD de plus, ajouté au graphe de la page.
 
   python construire.py            # écrit les pages et auxfilsdesidees/sitemap.xml
@@ -92,10 +93,25 @@ def sortie(chemin: str) -> Path:
 def entete_navigation(page: dict, pages: list[dict], autre: dict) -> str:
 	t = TEXTES[page["langue"]]
 	accueil = "/" if page["langue"] == "fr" else "/en/"
-	liens = []
+	liens, groupes = [], {}
 	for p in sorted((p for p in pages if p["langue"] == page["langue"] and p.get("ordre")), key=lambda p: int(p["ordre"])):
 		courant = ' aria-current="page"' if p is page else ""
-		liens.append(f'<li><a href="{p["chemin"]}"{courant}>{html.escape(p.get("menu") or p["fil"])}</a></li>')
+		lien = f'<li><a href="{p["chemin"]}"{courant}>{html.escape(p.get("menu") or p["fil"])}</a></li>'
+		if not p.get("groupe"):
+			liens.append(lien)
+			continue
+		if p["groupe"] not in groupes:
+			groupes[p["groupe"]] = []
+			liens.append(p["groupe"])
+		groupes[p["groupe"]].append((lien, p is page))
+	for i, lien in enumerate(liens):
+		if lien in groupes:
+			sous = groupes[lien]
+			classe = "groupe courant" if any(c for _, c in sous) else "groupe"
+			liens[i] = (
+				f'<li class="{classe}"><details><summary>{html.escape(lien)}</summary>'
+				f'<ul>{"".join(l for l, _ in sous)}</ul></details></li>'
+			)
 	autre_langue = "en" if page["langue"] == "fr" else "fr"
 	return (
 		'<header class="haut">\n'
@@ -203,6 +219,11 @@ def rendre(page: dict, pages: list[dict], par_paire: dict) -> str:
 	{t["pied"]}
 </footer>
 </div>
+<script>
+/* Sous-menus : fermés par un clic ailleurs ou la touche Échap. */
+document.addEventListener("click", e => document.querySelectorAll("nav.menu details[open]").forEach(d => d.contains(e.target) || d.removeAttribute("open")));
+document.addEventListener("keydown", e => e.key === "Escape" && document.querySelectorAll("nav.menu details[open]").forEach(d => d.removeAttribute("open")));
+</script>
 </body>
 </html>
 """

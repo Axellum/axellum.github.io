@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Écran d&#x27;alerte Vigie sur ESP32-P4 (Waveshare 7B, M5Stack Tab5), sans Home Assistant · Aux fils des idées</title>
+<meta name="description" content="Vigie display transforme une Waveshare ESP32-P4 7B ou un M5Stack Tab5 en écran d&#x27;alerte autonome : carte du monde des aléas, les cinq plus graves avec distance et direction, météo des zones suivies. ESPHome et LVGL, sans Home Assistant.">
+<link rel="canonical" href="https://auxfilsdesidees.fr/ecran-vigie/">
+<link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/ecran-vigie/">
+<link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie-display/">
+<link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie-display/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:site_name" content="Aux fils des idées">
+<meta property="og:title" content="Écran d&#x27;alerte Vigie sur ESP32-P4 (Waveshare 7B, M5Stack Tab5), sans Home Assistant · Aux fils des idées">
+<meta property="og:description" content="Vigie display transforme une Waveshare ESP32-P4 7B ou un M5Stack Tab5 en écran d&#x27;alerte autonome : carte du monde des aléas, les cinq plus graves avec distance et direction, météo des zones suivies. ESPHome et LVGL, sans Home Assistant.">
+<meta property="og:url" content="https://auxfilsdesidees.fr/ecran-vigie/">
+<meta property="og:image" content="https://auxfilsdesidees.fr/assets/vigie-ecran-waveshare-7b-fr.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/assets/icone.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css?v=0436584783">
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebSite",
+			"@id": "https://auxfilsdesidees.fr/#site",
+			"url": "https://auxfilsdesidees.fr/",
+			"name": "Aux fils des idées",
+			"inLanguage": [
+				"fr",
+				"en"
+			],
+			"publisher": {
+				"@id": "https://auxfilsdesidees.fr/#axel"
+			}
+		},
+		{
+			"@type": "Person",
+			"@id": "https://auxfilsdesidees.fr/#axel",
+			"name": "Axel Duviella",
+			"url": "https://auxfilsdesidees.fr/",
+			"sameAs": [
+				"https://github.com/Axellum"
+			]
+		},
+		{
+			"@type": "WebPage",
+			"@id": "https://auxfilsdesidees.fr/ecran-vigie/#page",
+			"url": "https://auxfilsdesidees.fr/ecran-vigie/",
+			"name": "Écran d'alerte Vigie sur ESP32-P4 (Waveshare 7B, M5Stack Tab5), sans Home Assistant · Aux fils des idées",
+			"description": "Vigie display transforme une Waveshare ESP32-P4 7B ou un M5Stack Tab5 en écran d'alerte autonome : carte du monde des aléas, les cinq plus graves avec distance et direction, météo des zones suivies. ESPHome et LVGL, sans Home Assistant.",
+			"inLanguage": "fr",
+			"isPartOf": {
+				"@id": "https://auxfilsdesidees.fr/#site"
+			},
+			"primaryImageOfPage": "https://auxfilsdesidees.fr/assets/vigie-ecran-waveshare-7b-fr.webp"
+		},
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{
+					"@type": "ListItem",
+					"position": 1,
+					"name": "Accueil",
+					"item": "https://auxfilsdesidees.fr/"
+				},
+				{
+					"@type": "ListItem",
+					"position": 2,
+					"name": "Écran Vigie",
+					"item": "https://auxfilsdesidees.fr/ecran-vigie/"
+				}
+			]
+		},
+		{
+			"@type": "SoftwareSourceCode",
+			"name": "Vigie display",
+			"description": "Micrologiciel ESPHome et LVGL d'écran d'alerte autonome pour ESP32-P4, alimenté par l'API Vigie.",
+			"codeRepository": "https://github.com/Axellum/vigie-display",
+			"programmingLanguage": [
+				"C++",
+				"YAML"
+			],
+			"runtimePlatform": "ESPHome",
+			"license": "https://opensource.org/licenses/MIT",
+			"image": "https://auxfilsdesidees.fr/assets/vigie-ecran-waveshare-7b-fr.webp",
+			"author": {
+				"@id": "https://auxfilsdesidees.fr/#axel"
+			}
+		}
+	]
+}
+</script>
+</head>
+<body>
+<div class="page">
+<header class="haut">
+	<div class="ligne">
+		<a class="marque" href="/">Aux fils des idées</a>
+		<a class="langue" href="/en/vigie-display/" hreflang="en" lang="en">English</a>
+	</div>
+	<nav class="menu" aria-label="Navigation principale"><ul><li class="groupe courant"><details><summary>Écrans</summary><ul><li><a href="/ecran-home-assistant/">Écran Home Assistant</a></li><li><a href="/ecran-vigie/" aria-current="page">Écran Vigie</a></li><li><a href="/m5stack-tab5/">M5Stack Tab5</a></li><li><a href="/waveshare-esp32-p4-7b/">Waveshare 7B</a></li></ul></details></li><li><a href="/vigie/">Vigie</a></li><li><a href="/moteur-ia/">Moteur IA</a></li><li><a href="/a-propos/">À propos</a></li></ul></nav>
+</header>
+
+<main>
+<nav class="fil" aria-label="Fil d'Ariane"><a href="/">Accueil</a> <span aria-hidden="true">›</span> <span aria-current="page">Écran Vigie</span></nav>
+<div class="heros">
+	<div>
+		<span class="etiquette">Vigie · ESP32-P4 · sans Home Assistant</span>
+		<h1>L'écran d'alerte Vigie</h1>
+		<p class="chapeau">Un écran tactile posé dans la maison, qui montre les catastrophes en cours dans le monde et la météo des lieux qui comptent pour vous. Il se suffit à lui-même : pas de Home Assistant, pas d'application, juste le Wi-Fi.</p>
+		<ul class="liens">
+			<li><a class="principal" href="https://github.com/Axellum/vigie-display/blob/main/docs/installation.md">Guide d'installation</a></li>
+			<li><a href="https://axellum.github.io/vigie-display/">Page du projet</a></li>
+			<li><a href="https://github.com/Axellum/vigie-display">Code sur GitHub</a></li>
+		</ul>
+	</div>
+	<figure><img src="/assets/vigie-ecran-waveshare-7b-fr.webp" width="1024" height="600" alt="L'écran Vigie sur la Waveshare 7B : barre d'état, carte du monde avec les aléas en cours, liste des cinq plus graves et panneau météo de la zone active"></figure>
+</div>
+
+<dl class="faits">
+	<div><dt>Cartes</dt><dd>Waveshare 7B, M5Stack Tab5</dd></div>
+	<div><dt>Micrologiciel</dt><dd>ESPHome 2026.9.1+, LVGL 9.5</dd></div>
+	<div><dt>Données</dt><dd>API Vigie, chaque minute</dd></div>
+	<div><dt>Langues</dt><dd>Français, anglais</dd></div>
+	<div><dt>Licence</dt><dd>MIT</dd></div>
+</dl>
+
+<div class="note"><p>Vigie ne remplace pas les alertes officielles : suivez toujours les consignes de vos autorités.</p></div>
+
+<section class="bloc" aria-labelledby="voir">
+	<h2 id="voir">Ce que montre l'écran</h2>
+	<div class="grille">
+		<div>
+			<h3>La barre d'état</h3>
+			<p>Le lien avec l'API (à jour, en attente, injoignable, avec l'âge des données), la date et l'heure de la zone affichée.</p>
+		</div>
+		<div>
+			<h3>La carte du monde</h3>
+			<p>Les aléas en cours, en points colorés selon leur gravité (rouge, orange, jaune, vert), et les zones que vous suivez.</p>
+		</div>
+		<div>
+			<h3>Les cinq plus graves</h3>
+			<p>Séisme, cyclone, volcan, crue, feu… avec la magnitude quand elle existe, le titre de la source, la distance et la direction depuis la zone affichée, et l'âge de l'alerte.</p>
+		</div>
+		<div>
+			<h3>La météo</h3>
+			<p>Temps actuel, vent et rafales, humidité, pluie dans l'heure, qualité de l'air, vagues pour les zones côtières et prévisions sur cinq jours. Un appui sur le panneau passe à la zone suivante.</p>
+		</div>
+	</div>
+	<p>Une valeur que l'API ne connaît pas est absente de l'écran, jamais inventée.</p>
+</section>
+
+<section class="bloc" aria-labelledby="cartes">
+	<h2 id="cartes">Deux cartes, un seul micrologiciel</h2>
+	<p>Le même code, choisi pour la carte à la compilation. La mise en page de la 7B est la référence, au pixel près ; sur le Tab5, elle est agrandie de 20 % pour remplir son écran plus fin.</p>
+	<div class="grille">
+		<figure><img src="/assets/vigie-ecran-waveshare-7b-fr.webp" width="1024" height="600" loading="lazy" alt="Vigie sur la Waveshare 7B en 1024 × 600"><figcaption>Waveshare ESP32-P4 7B, 7 pouces, 1024 × 600</figcaption></figure>
+		<figure><img src="/assets/vigie-ecran-tab5-fr.webp" width="1280" height="720" loading="lazy" alt="Vigie sur le M5Stack Tab5 en 1280 × 720"><figcaption>M5Stack Tab5, 5 pouces, 1280 × 720</figcaption></figure>
+	</div>
+	<p class="legende">Rendus du micrologiciel lui-même, faits sur PC par l'intégration continue avec une trame réelle de l'API publique.</p>
+	<ul>
+		<li><strong>Waveshare 7B</strong> : testée sur la carte le 20/10/2026. Voir <a href="/waveshare-esp32-p4-7b/">la page de la 7B</a>.</li>
+		<li><strong>M5Stack Tab5 ST7121</strong> : Vigie y tourne depuis le 28/10/2026 (Wi-Fi, données de l'API publique en HTTPS).</li>
+		<li><strong>Tab5 ST7123 et ILI9881C</strong> : compilés, jamais lancés sur une vraie tablette. Pour savoir quelle version vous avez : <a href="/m5stack-tab5/">la page du Tab5</a>.</li>
+	</ul>
+	<p>Rien à souder : un câble USB-C pour l'alimentation et la première installation, le Wi-Fi pour le reste.</p>
+</section>
+
+<section class="bloc" aria-labelledby="fonctionnement">
+	<h2 id="fonctionnement">Comment il marche</h2>
+	<p>L'écran demande chaque minute une trame compacte à <a href="/vigie/">l'API Vigie</a>, qui rassemble elle-même les sources officielles et scientifiques. Il ne parle jamais directement aux sources, ni à Home Assistant.</p>
+	<div class="grille">
+		<div>
+			<h3>Avec l'API publique</h3>
+			<p>L'adresse <code>https://vigie.auxfilsdesidees.fr</code>, gratuite mais limitée et sans garantie de service. Les zones affichées sont celles de démonstration (Paris, Tokyo, Pointe-à-Pitre, San Francisco, Reykjavik en octobre 2026).</p>
+		</div>
+		<div>
+			<h3>Avec votre propre API</h3>
+			<p>L'API tourne sur un PC, un NAS ou un Raspberry Pi de votre réseau, et l'écran montre les zones que vous y ajoutez.</p>
+		</div>
+	</div>
+</section>
+
+<section class="bloc" aria-labelledby="installer">
+	<h2 id="installer">L'installer</h2>
+	<p>Pas encore de version publiée à installer depuis le navigateur : il faut compiler le micrologiciel soi-même avec ESPHome. Comptez une demi-heure, surtout pour la première compilation.</p>
+	<ol class="etapes">
+		<li>Installez ESPHome 2026.9.1 ou plus récent (la 2026.9.0 plante au démarrage de l'écran de la 7B) et récupérez le dépôt <a href="https://github.com/Axellum/vigie-display">vigie-display</a>.</li>
+		<li>Créez une clé de signature : une fois installé, l'écran n'accepte que les mises à jour signées avec la même clé. Gardez-en une copie.</li>
+		<li>Compilez en choisissant la carte, l'adresse de l'API et la langue, puis installez par USB avec ESPHome ou depuis <a href="https://web.esphome.io">ESPHome Web</a>.</li>
+		<li>Donnez le Wi-Fi par USB (Improv) ou par le point d'accès « Vigie setup » que l'écran ouvre au bout d'une minute. Moins d'une minute après, la barre d'état affiche « À jour ».</li>
+	</ol>
+	<p>Les commandes exactes, les réglages et les pannes courantes sont dans <a href="https://github.com/Axellum/vigie-display/blob/main/docs/installation.md">le guide d'installation</a> (en anglais). Les mises à jour suivantes passent par le Wi-Fi.</p>
+</section>
+</main>
+
+<footer class="bas">
+	<p>Projets personnels, non commerciaux, faits avec l'aide de l'IA et testés surtout chez moi. Retours bienvenus sur <a href="https://github.com/Axellum">GitHub</a>.</p>
+	<p>Éditeur : Axel Duviella, particulier, à titre non professionnel (France). Contact : <a href="https://github.com/Axellum">github.com/Axellum</a>. Hébergeur : OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/fr/">ovhcloud.com</a>). Ce site ne dépose aucun cookie et ne mesure pas ses visites.</p>
+</footer>
+</div>
+<script>
+/* Sous-menus : fermés par un clic ailleurs ou la touche Échap. */
+document.addEventListener("click", e => document.querySelectorAll("nav.menu details[open]").forEach(d => d.contains(e.target) || d.removeAttribute("open")));
+document.addEventListener("keydown", e => e.key === "Escape" && document.querySelectorAll("nav.menu details[open]").forEach(d => d.removeAttribute("open")));
+</script>
+</body>
+</html>
