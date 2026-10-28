@@ -21,7 +21,7 @@
 <meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
 <link rel="icon" href="/assets/icone.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css?v=0436584783">
+<link rel="stylesheet" href="/assets/style.css?v=733da18cfa">
 <script type="application/ld+json">
 {
 	"@context": "https://schema.org",
@@ -72,6 +72,12 @@
 				{
 					"@type": "ListItem",
 					"position": 2,
+					"name": "Home Assistant display",
+					"item": "https://auxfilsdesidees.fr/en/home-assistant-display/"
+				},
+				{
+					"@type": "ListItem",
+					"position": 3,
 					"name": "M5Stack Tab5",
 					"item": "https://auxfilsdesidees.fr/en/m5stack-tab5/"
 				}
@@ -105,11 +111,13 @@
 		<a class="marque" href="/en/">Aux fils des idées</a>
 		<a class="langue" href="/m5stack-tab5/" hreflang="fr" lang="fr">Français</a>
 	</div>
-	<nav class="menu" aria-label="Main navigation"><ul><li class="groupe courant"><details><summary>Displays</summary><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie-display/">Vigie display</a></li><li><a href="/en/m5stack-tab5/" aria-current="page">M5Stack Tab5</a></li><li><a href="/en/waveshare-esp32-p4-7b/">Waveshare 7B</a></li></ul></details></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/">About</a></li></ul></nav>
+	<nav class="menu" aria-label="Main navigation"><ul><li><a href="/en/home-assistant-display/" class="courant">Home Assistant display</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/">About</a></li></ul></nav>
 </header>
 
+<div class="colonnes">
+<aside class="cote"><nav aria-label="Project pages"><p class="cote-titre"><a href="/en/home-assistant-display/">Home Assistant display</a></p><ul><li><a href="/en/home-assistant-display/">Overview</a></li><li><a href="/en/m5stack-tab5/" aria-current="page">M5Stack Tab5</a><ul class="sections"><li><a href="#versions">The three versions of the Tab5</a></li><li><a href="#photos">On the real tablet</a></li><li><a href="#specs">What is inside</a></li><li><a href="#install">Install it</a></li></ul></li><li><a href="/en/waveshare-esp32-p4-7b/">Waveshare 7B</a></li></ul></nav></aside>
 <main>
-<nav class="fil" aria-label="Breadcrumb"><a href="/en/">Home</a> <span aria-hidden="true">›</span> <span aria-current="page">M5Stack Tab5</span></nav>
+<nav class="fil" aria-label="Breadcrumb"><a href="/en/">Home</a> <span aria-hidden="true">›</span> <a href="/en/home-assistant-display/">Home Assistant display</a> <span aria-hidden="true">›</span> <span aria-current="page">M5Stack Tab5</span></nav>
 <div class="heros">
 	<div>
 		<span class="etiquette">M5Stack · ESP32-P4 · 5 inch</span>
@@ -188,16 +196,12 @@
 	<p>What the screen does once installed: <a href="/en/home-assistant-display/">the native Home Assistant display</a>. Another board, bigger and cheaper: <a href="/en/waveshare-esp32-p4-7b/">the Waveshare ESP32-P4 7B</a>.</p>
 </section>
 </main>
+</div>
 
 <footer class="bas">
 	<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. Feedback welcome on <a href="https://github.com/Axellum">GitHub</a>.</p>
 	<p>Publisher: Axel Duviella, private individual, non-professional (France). Contact: <a href="https://github.com/Axellum">github.com/Axellum</a>. Host: OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/en/">ovhcloud.com</a>). This site sets no cookies and does not measure its visits.</p>
 </footer>
 </div>
-<script>
-/* Sous-menus : fermés par un clic ailleurs ou la touche Échap. */
-document.addEventListener("click", e => document.querySelectorAll("nav.menu details[open]").forEach(d => d.contains(e.target) || d.removeAttribute("open")));
-document.addEventListener("keydown", e => e.key === "Escape" && document.querySelectorAll("nav.menu details[open]").forEach(d => d.removeAttribute("open")));
-</script>
 </body>
 </html>
