@@ -20,8 +20,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0e1319" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
-<link rel="icon" href="/assets/icone.svg?v=20c74aaac4" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css?v=d5b5191410">
+<link rel="icon" href="/assets/icone.svg?v=8d13847f41" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css?v=8842c3fdcc">
 <script type="application/ld+json">
 {
 	"@context": "https://schema.org",
@@ -114,12 +114,12 @@
 <div class="page avec-sommaire">
 <main id="contenu">
 <nav class="fil" aria-label="Breadcrumb"><a href="/en/">Home</a> <span aria-hidden="true">›</span> <span aria-current="page">Home Assistant display</span></nav>
-<nav class="onglets" aria-label="Project pages"><span class="onglets-projet">Home Assistant display</span><ul><li><a href="/en/home-assistant-display/" aria-current="page">Overview</a></li><li><a href="/en/m5stack-tab5/">M5Stack Tab5</a></li><li><a href="/en/waveshare-esp32-p4-7b/">Waveshare 7B</a></li></ul></nav>
+<nav class="onglets" aria-label="Project pages"><span class="onglets-projet"><img src="/assets/logo-ecran.svg" width="26" height="26" alt="">Home Assistant display</span><ul><li><a href="/en/home-assistant-display/" aria-current="page">Overview</a></li><li><a href="/en/m5stack-tab5/">M5Stack Tab5</a></li><li><a href="/en/waveshare-esp32-p4-7b/">Waveshare 7B</a></li></ul></nav>
 <div class="heros">
 	<div>
 		<span class="etiquette">Home Assistant · ESP32-P4</span>
 		<h1>Native Home Assistant display</h1>
-		<p class="chapeau">A wall display that runs directly on the M5Stack Tab5, with no browser: Home Assistant pushes what changed, and the screen redraws only that. It is the screen of my house.</p>
+		<p class="chapeau">A wall display that runs directly on an M5Stack Tab5 or a Waveshare ESP32-P4 7B, with no browser: Home Assistant pushes what changed, and the screen redraws only that. It is the screen of my house.</p>
 		<ul class="liens">
 			<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Install from the browser</a></li>
 			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/">Documentation</a></li>
@@ -199,19 +199,26 @@
 
 <section class="bloc" aria-labelledby="hardware">
 	<h2 id="hardware">Supported screens</h2>
-	<div class="grille">
-		<div>
-			<h3>M5Stack Tab5</h3>
-			<p>1280 × 720, ESP32-P4. Three display chips exist: ST7123 (mine), ST7121 (works for another user), ILI9881C (builds, untested).</p>
-			<a href="/en/m5stack-tab5/">The Tab5 and its three versions</a>
-		</div>
-		<div>
-			<h3>Waveshare ESP32-P4 7B</h3>
-			<p>1024 × 600, experimental, but it has been my everyday screen since 14 October 2026. No motion sensor, clock chip or battery; one energy page is not adapted to its screen yet.</p>
-			<a href="/en/waveshare-esp32-p4-7b/">The Waveshare 7B in detail</a>
-		</div>
+	<div class="choix">
+		<article class="carte">
+			<figure><img src="/assets/tab5-photo-accueil.webp" width="800" height="602" loading="lazy" alt="Photo of the Tab5: the home screen with the time, weather and forecast"></figure>
+			<div>
+				<span class="etiquette">5 inches · 1280 × 720</span>
+				<h3><a href="/en/m5stack-tab5/">M5Stack Tab5</a></h3>
+				<p>Three display chips exist: ST7123 (the development one), ST7121 (runs for a user, tried at home), ILI9881C (builds, untested).</p>
+				<span class="suite">The Tab5 and its three versions</span>
+			</div>
+		</article>
+		<article class="carte">
+			<figure><img src="/assets/waveshare-7b.webp" width="800" height="469" loading="lazy" alt="The home screen on the 7-inch Waveshare ESP32-P4, at 1024 × 600"></figure>
+			<div>
+				<span class="etiquette">7 inches · 1024 × 600</span>
+				<h3><a href="/en/waveshare-esp32-p4-7b/">Waveshare ESP32-P4 7B</a></h3>
+				<p>No longer experimental since 3.9.0: it has been the screen of my house since 14 October 2026. No motion sensor (so no games by default), clock chip or battery.</p>
+				<span class="suite">The Waveshare 7B in detail</span>
+			</div>
+		</article>
 	</div>
-	<figure><img src="/assets/waveshare-7b.webp" width="800" height="469" loading="lazy" alt="The home screen on the 7-inch Waveshare ESP32-P4, at 1024 × 600"><figcaption>The same firmware on the Waveshare 7B.</figcaption></figure>
 </section>
 
 <section class="bloc" aria-labelledby="install">

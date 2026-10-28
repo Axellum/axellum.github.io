@@ -5,7 +5,8 @@ Chaque fichier de contenu commence par un en-tête « clé: valeur » terminé p
 Clés : chemin (adresse de la page, ex. /vigie/), paire (identifiant commun à la page FR et à la page EN),
 titre (balise <title>), description, image (partage, sous /assets/), fil (nom dans le fil d'Ariane, absent sur
 l'accueil), ordre (place dans la navigation, absent = hors navigation), menu (nom dans la navigation),
-parent (paire de la page du projet : la page est alors une sous-page, rangée par « ordre » dans le menu de gauche).
+parent (paire de la page du projet : la page est alors une sous-page, rangée par « ordre » dans le menu de gauche),
+logo (page d'un projet : son logo sous /assets/, montré devant le nom du projet au-dessus des onglets).
 Menu du haut : les projets. Menu de gauche : les pages du projet et les sections (<h2 id>) de la page ouverte.
 Un bloc <!--ld … ld--> dans le corps est un objet JSON-LD de plus, ajouté au graphe de la page.
 
@@ -170,8 +171,9 @@ def onglets(page: dict, pages: list[dict], projet: dict | None) -> str:
 		nom = t["presentation"] if p is projet else (p.get("menu") or p["fil"])
 		courant = ' aria-current="page"' if p is page else ""
 		liens.append(f'<li><a href="{p["chemin"]}"{courant}>{html.escape(nom)}</a></li>')
+	logo = f'<img src="/assets/{projet["logo"]}" width="26" height="26" alt="">' if projet.get("logo") else ""
 	return (
-		f'<nav class="onglets" aria-label="{t["cote"]}"><span class="onglets-projet">'
+		f'<nav class="onglets" aria-label="{t["cote"]}"><span class="onglets-projet">{logo}'
 		f'{html.escape(projet.get("menu") or projet["fil"])}</span><ul>{"".join(liens)}</ul></nav>\n'
 	)
 

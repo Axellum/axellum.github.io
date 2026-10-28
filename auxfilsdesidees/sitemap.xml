@@ -15,6 +15,9 @@
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/waveshare-7b.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-maison-fr.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/logo-ecran.svg</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/logo-vigie.svg</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/logo-moteur.svg</image:loc></image:image>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/ecran-home-assistant/</loc>
@@ -31,6 +34,7 @@
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-reveil-fr.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-assistant-fr.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5-themes-fr.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5-photo-accueil.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/waveshare-7b.webp</image:loc></image:image>
   </url>
   <url>
@@ -87,6 +91,9 @@
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/waveshare-7b.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-maison-en.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/logo-ecran.svg</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/logo-vigie.svg</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/logo-moteur.svg</image:loc></image:image>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/home-assistant-display/</loc>
@@ -103,6 +110,7 @@
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-reveil-en.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-assistant-en.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5-themes-en.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5-photo-accueil.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/waveshare-7b.webp</image:loc></image:image>
   </url>
   <url>

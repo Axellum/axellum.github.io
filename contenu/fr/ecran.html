@@ -6,6 +6,7 @@ image: tab5-themes-fr.webp
 fil: Écran Home Assistant
 menu: Écran Home Assistant
 ordre: 1
+logo: logo-ecran.svg
 ---
 <!--ld {
 	"@type": "SoftwareSourceCode",
@@ -24,7 +25,7 @@ ordre: 1
 	<div>
 		<span class="etiquette">Home Assistant · ESP32-P4</span>
 		<h1>Écran Home Assistant natif</h1>
-		<p class="chapeau">Un écran mural qui tourne directement sur le M5Stack Tab5, sans navigateur : Home Assistant lui pousse ce qui a changé, et l'écran ne redessine que cela. C'est l'écran de ma maison.</p>
+		<p class="chapeau">Un écran mural qui tourne directement sur un M5Stack Tab5 ou une Waveshare ESP32-P4 7B, sans navigateur : Home Assistant lui pousse ce qui a changé, et l'écran ne redessine que cela. C'est l'écran de ma maison.</p>
 		<ul class="liens">
 			<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Installer depuis le navigateur</a></li>
 			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/fr/">Documentation</a></li>
@@ -104,19 +105,26 @@ ordre: 1
 
 <section class="bloc" aria-labelledby="materiel">
 	<h2 id="materiel">Les écrans pris en charge</h2>
-	<div class="grille">
-		<div>
-			<h3>M5Stack Tab5</h3>
-			<p>1280 × 720, ESP32-P4. Trois puces d'affichage existent : ST7123 (le mien), ST7121 (fonctionne chez un autre utilisateur), ILI9881C (compile, non testée).</p>
-			<a href="/m5stack-tab5/">Le Tab5 et ses trois versions</a>
-		</div>
-		<div>
-			<h3>Waveshare ESP32-P4 7B</h3>
-			<p>1024 × 600, expérimentale, mais c'est mon écran de tous les jours depuis le 14/10/2026. Pas de capteur de mouvement, d'horloge ni de batterie ; une page de l'énergie n'est pas encore adaptée à son écran.</p>
-			<a href="/waveshare-esp32-p4-7b/">La Waveshare 7B en détail</a>
-		</div>
+	<div class="choix">
+		<article class="carte">
+			<figure><img src="/assets/tab5-photo-accueil.webp" width="800" height="602" loading="lazy" alt="Photo du Tab5 : l'écran d'accueil avec l'heure, la météo et les prévisions"></figure>
+			<div>
+				<span class="etiquette">5 pouces · 1280 × 720</span>
+				<h3><a href="/m5stack-tab5/">M5Stack Tab5</a></h3>
+				<p>Trois puces d'affichage existent : ST7123 (celle du développement), ST7121 (tourne chez un utilisateur, essayée chez moi), ILI9881C (compile, non testée).</p>
+				<span class="suite">Le Tab5 et ses trois versions</span>
+			</div>
+		</article>
+		<article class="carte">
+			<figure><img src="/assets/waveshare-7b.webp" width="800" height="469" loading="lazy" alt="L'écran d'accueil sur la Waveshare ESP32-P4 7 pouces, en 1024 × 600"></figure>
+			<div>
+				<span class="etiquette">7 pouces · 1024 × 600</span>
+				<h3><a href="/waveshare-esp32-p4-7b/">Waveshare ESP32-P4 7B</a></h3>
+				<p>Plus expérimentale depuis la 3.9.0 : c'est l'écran de ma maison depuis le 14/10/2026. Pas de capteur de mouvement (donc pas de jeux par défaut), d'horloge ni de batterie.</p>
+				<span class="suite">La Waveshare 7B en détail</span>
+			</div>
+		</article>
 	</div>
-	<figure><img src="/assets/waveshare-7b.webp" width="800" height="469" loading="lazy" alt="L'écran d'accueil sur la Waveshare ESP32-P4 7 pouces, en 1024 × 600"><figcaption>Le même micrologiciel sur la Waveshare 7B.</figcaption></figure>
 </section>
 
 <section class="bloc" aria-labelledby="installer">

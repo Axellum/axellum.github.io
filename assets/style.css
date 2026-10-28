@@ -85,7 +85,8 @@ nav.fil { font-size: 13.5px; color: var(--doux); margin: 26px 0 0; }
 nav.fil a { color: var(--doux); text-decoration: none; }
 nav.fil a:hover { color: var(--texte); text-decoration: underline; }
 .onglets { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; margin: 14px 0 0; }
-.onglets-projet { font-size: 12px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; color: var(--doux); }
+.onglets-projet { display: inline-flex; align-items: center; gap: 9px; font-size: 12px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; color: var(--doux); }
+.onglets-projet img { width: 26px; height: 26px; border-radius: 7px; }
 .onglets ul { display: flex; gap: 2px; margin: 0; padding: 3px; list-style: none; background: var(--fond-2); border: 1px solid var(--trait); border-radius: 12px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
 .onglets a { display: block; padding: 6px 14px; border-radius: 9px; color: var(--doux); text-decoration: none; font-size: 14.5px; font-weight: 550; white-space: nowrap; transition: color .2s, background .2s; }
 .onglets a:hover { color: var(--texte); }
@@ -101,10 +102,10 @@ h3 { font-size: 18px; line-height: 1.3; letter-spacing: -.01em; margin: 0 0 6px;
 	color: var(--accent); background: var(--accent-fond); border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
 	border-radius: 999px; padding: 3px 11px;
 }
-.liens { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; padding: 0; list-style: none; }
+.liens { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
 .liens a {
-	display: inline-block; padding: 10px 18px; border-radius: 11px; border: 1px solid var(--trait); background: var(--carte);
-	text-decoration: none; font-weight: 600; font-size: 15px; color: var(--texte); box-shadow: var(--ombre-legere);
+	display: inline-block; padding: 9px 15px; border-radius: 11px; border: 1px solid var(--trait); background: var(--carte);
+	text-decoration: none; font-weight: 600; font-size: 14.5px; color: var(--texte); box-shadow: var(--ombre-legere);
 	transition: transform .2s var(--courbe), box-shadow .2s, border-color .2s;
 }
 .liens a:hover { transform: translateY(-1px); border-color: var(--doux); box-shadow: var(--ombre); }
@@ -151,7 +152,10 @@ main { padding-bottom: 72px; min-width: 0; }
 .heros > div { animation: monte .7s var(--courbe) both; }
 .heros figure { margin: 0; border-radius: 18px; overflow: hidden; border: 1px solid var(--trait); background: #0d1522;
 	box-shadow: 0 30px 60px -28px color-mix(in srgb, var(--accent) 45%, transparent), var(--ombre); animation: monte .8s .1s var(--courbe) both; }
-.heros figure img { display: block; width: 100%; height: auto; }
+.heros figure img, .heros figure svg { display: block; width: 100%; height: auto; }
+/* Schéma animé (page du moteur) : les demandes circulent entre le moteur et les fournisseurs d'IA */
+.schema .flux path { stroke-dasharray: 3 7; animation: file 30s linear infinite; }
+.schema .flux path:nth-child(2n) { animation-direction: reverse; }
 .heros h1 { margin-top: 14px; font-size: clamp(32px, 3.8vw, 46px); }
 .avec-sommaire .heros { grid-template-columns: 1.2fr 1fr; gap: 36px; }
 @keyframes monte { from { opacity: 0; transform: translateY(18px); } }
@@ -160,12 +164,14 @@ main { padding-bottom: 72px; min-width: 0; }
 .diaporama img + img + img { animation-delay: 10s; }
 @keyframes diapo { 0% { opacity: 0; } 4%, 33% { opacity: 1; } 37%, 100% { opacity: 0; } }
 
-/* Chiffres clés en bandeau */
-.faits { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); margin: 0; padding: 0; border-block: 1px solid var(--trait); }
-.faits div { padding: 18px 20px; border-left: 1px solid var(--trait); }
+/* Chiffres clés en bandeau : une colonne par chiffre, large selon ce qu'elle contient (comme un tableau) */
+.faits { display: grid; grid-auto-flow: column; grid-auto-columns: auto; margin: 0; padding: 0; border-block: 1px solid var(--trait); }
+.faits div { padding: 16px 18px; border-left: 1px solid var(--trait); }
 .faits div:first-child { border-left: 0; padding-left: 0; }
 .faits dt { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--doux); }
-.faits dd { margin: 4px 0 0; font-weight: 700; font-size: 17.5px; letter-spacing: -.01em; line-height: 1.3; }
+.faits dd { margin: 4px 0 0; font-weight: 700; font-size: 16.5px; letter-spacing: -.01em; line-height: 1.3; text-wrap: balance; }
+.citation { margin: 30px 0 0; padding: 4px 0 4px 22px; border-left: 3px solid var(--accent); max-width: 46em; }
+.citation p { margin: 0 0 6px; font-size: 18px; color: var(--texte); }
 
 /* Sections : sans boîte, un trait d'accent avant le titre */
 .bloc { padding: 64px 0 0; }
@@ -182,6 +188,7 @@ main { padding-bottom: 72px; min-width: 0; }
 .grille > div:hover { transform: translateY(-3px); box-shadow: var(--ombre); border-color: color-mix(in srgb, var(--accent) 30%, var(--trait)); }
 .grille p, .grille ul { font-size: 15.5px; color: var(--doux); margin: 0 0 8px; }
 .grille p strong { color: var(--texte); }
+@media (min-width: 761px) { .grille:has(> :nth-child(4):last-child) { grid-template-columns: repeat(2, 1fr); } }
 .grille.vignettes { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 .grille.vignettes figure { margin: 0; }
 .grille.vignettes figure img, .bloc figure img { transition: transform .5s var(--courbe), box-shadow .3s; }
@@ -220,6 +227,8 @@ main { padding-bottom: 72px; min-width: 0; }
 .carte:hover figure img, .carte:hover figure svg { transform: scale(1.04); }
 .carte > div { padding: 18px 22px 22px; display: flex; flex-direction: column; flex: 1; }
 .carte .etiquette { align-self: flex-start; }
+/* Logo du projet à cheval sur l'image de la carte */
+.carte-logo { position: relative; width: 46px; height: 46px; margin: -42px 0 12px; border-radius: 12px; box-shadow: 0 8px 18px -6px rgb(0 0 0 / .55); }
 .carte h3 { font-size: 20px; margin: 10px 0 8px; }
 .carte h3 a { color: var(--texte); text-decoration: none; }
 .carte h3 a::after { content: ""; position: absolute; inset: 0; }
@@ -262,7 +271,7 @@ dialog.loupe { padding: 0; border: 0; background: transparent; max-width: min(12
 .js .revele.vu { opacity: 1; transform: none; }
 
 @media (max-width: 860px) {
-	.heros, .accueil-heros { grid-template-columns: 1fr; gap: 26px; }
+	.heros, .avec-sommaire .heros, .accueil-heros { grid-template-columns: 1fr; gap: 26px; }
 	.heros figure { order: -1; }
 	.accueil-heros { padding-top: 32px; }
 	.cartes, .choix, .principes { grid-template-columns: 1fr; }
@@ -278,7 +287,7 @@ dialog.loupe { padding: 0; border: 0; background: transparent; max-width: min(12
 	.onglets ul { width: 100%; }
 	.onglets li { flex: 1; }
 	.onglets a { padding: 6px 8px; font-size: 13.5px; text-align: center; }
-	.faits { grid-template-columns: 1fr 1fr; }
+	.faits { grid-auto-flow: row; grid-template-columns: 1fr 1fr; }
 	.faits div:nth-child(odd) { border-left: 0; padding-left: 0; }
 	.faits div { border-top: 1px solid var(--trait); }
 	.faits div:nth-child(-n+2) { border-top: 0; }

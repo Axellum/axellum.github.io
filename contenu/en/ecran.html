@@ -6,6 +6,7 @@ image: tab5-themes-en.webp
 fil: Home Assistant display
 menu: Home Assistant display
 ordre: 1
+logo: logo-ecran.svg
 ---
 <!--ld {
 	"@type": "SoftwareSourceCode",
@@ -24,7 +25,7 @@ ordre: 1
 	<div>
 		<span class="etiquette">Home Assistant · ESP32-P4</span>
 		<h1>Native Home Assistant display</h1>
-		<p class="chapeau">A wall display that runs directly on the M5Stack Tab5, with no browser: Home Assistant pushes what changed, and the screen redraws only that. It is the screen of my house.</p>
+		<p class="chapeau">A wall display that runs directly on an M5Stack Tab5 or a Waveshare ESP32-P4 7B, with no browser: Home Assistant pushes what changed, and the screen redraws only that. It is the screen of my house.</p>
 		<ul class="liens">
 			<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Install from the browser</a></li>
 			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/">Documentation</a></li>
@@ -104,19 +105,26 @@ ordre: 1
 
 <section class="bloc" aria-labelledby="hardware">
 	<h2 id="hardware">Supported screens</h2>
-	<div class="grille">
-		<div>
-			<h3>M5Stack Tab5</h3>
-			<p>1280 × 720, ESP32-P4. Three display chips exist: ST7123 (mine), ST7121 (works for another user), ILI9881C (builds, untested).</p>
-			<a href="/en/m5stack-tab5/">The Tab5 and its three versions</a>
-		</div>
-		<div>
-			<h3>Waveshare ESP32-P4 7B</h3>
-			<p>1024 × 600, experimental, but it has been my everyday screen since 14 October 2026. No motion sensor, clock chip or battery; one energy page is not adapted to its screen yet.</p>
-			<a href="/en/waveshare-esp32-p4-7b/">The Waveshare 7B in detail</a>
-		</div>
+	<div class="choix">
+		<article class="carte">
+			<figure><img src="/assets/tab5-photo-accueil.webp" width="800" height="602" loading="lazy" alt="Photo of the Tab5: the home screen with the time, weather and forecast"></figure>
+			<div>
+				<span class="etiquette">5 inches · 1280 × 720</span>
+				<h3><a href="/en/m5stack-tab5/">M5Stack Tab5</a></h3>
+				<p>Three display chips exist: ST7123 (the development one), ST7121 (runs for a user, tried at home), ILI9881C (builds, untested).</p>
+				<span class="suite">The Tab5 and its three versions</span>
+			</div>
+		</article>
+		<article class="carte">
+			<figure><img src="/assets/waveshare-7b.webp" width="800" height="469" loading="lazy" alt="The home screen on the 7-inch Waveshare ESP32-P4, at 1024 × 600"></figure>
+			<div>
+				<span class="etiquette">7 inches · 1024 × 600</span>
+				<h3><a href="/en/waveshare-esp32-p4-7b/">Waveshare ESP32-P4 7B</a></h3>
+				<p>No longer experimental since 3.9.0: it has been the screen of my house since 14 October 2026. No motion sensor (so no games by default), clock chip or battery.</p>
+				<span class="suite">The Waveshare 7B in detail</span>
+			</div>
+		</article>
 	</div>
-	<figure><img src="/assets/waveshare-7b.webp" width="800" height="469" loading="lazy" alt="The home screen on the 7-inch Waveshare ESP32-P4, at 1024 × 600"><figcaption>The same firmware on the Waveshare 7B.</figcaption></figure>
 </section>
 
 <section class="bloc" aria-labelledby="install">
