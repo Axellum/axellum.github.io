@@ -5,7 +5,8 @@ Chaque fichier de contenu commence par un en-tête « clé: valeur » terminé p
 Clés : chemin (adresse de la page, ex. /vigie/), paire (identifiant commun à la page FR et à la page EN),
 titre (balise <title>), description, image (partage, sous /assets/), fil (nom dans le fil d'Ariane, absent sur
 l'accueil), ordre (place dans la navigation, absent = hors navigation), menu (nom dans la navigation),
-groupe (nom d'un sous-menu : les pages du même groupe sont rangées dessous, à la place de la première).
+parent (paire de la page du projet : la page est alors une sous-page, rangée par « ordre » dans le menu de gauche).
+Menu du haut : les projets. Menu de gauche : les pages du projet et les sections (<h2 id>) de la page ouverte.
 Un bloc <!--ld … ld--> dans le corps est un objet JSON-LD de plus, ajouté au graphe de la page.
 
   python construire.py            # écrit les pages et auxfilsdesidees/sitemap.xml
@@ -30,6 +31,8 @@ TEXTES = {
 		"navigation": "Navigation principale",
 		"fil": "Fil d'Ariane",
 		"autre": "English",
+		"presentation": "Présentation",
+		"cote": "Pages du projet",
 		"locale": "fr_FR",
 		"pied": (
 			"<p>Projets personnels, non commerciaux, faits avec l'aide de l'IA et testés surtout chez moi. "
@@ -46,6 +49,8 @@ TEXTES = {
 		"navigation": "Main navigation",
 		"fil": "Breadcrumb",
 		"autre": "Français",
+		"presentation": "Overview",
+		"cote": "Project pages",
 		"locale": "en_US",
 		"pied": (
 			"<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. "
@@ -90,28 +95,21 @@ def sortie(chemin: str) -> Path:
 	return ICI / chemin.strip("/") / "index.html" if chemin != "/" else ICI / "index.html"
 
 
-def entete_navigation(page: dict, pages: list[dict], autre: dict) -> str:
+def projet_de(page: dict, par_paire: dict) -> dict | None:
+	"""Page du projet auquel appartient une page (elle-même, son parent, ou rien pour l'accueil)."""
+	if page.get("parent"):
+		return par_paire[page["parent"]][page["langue"]]
+	return page if page.get("ordre") else None
+
+
+def entete_navigation(page: dict, pages: list[dict], autre: dict, projet: dict | None) -> str:
 	t = TEXTES[page["langue"]]
 	accueil = "/" if page["langue"] == "fr" else "/en/"
-	liens, groupes = [], {}
-	for p in sorted((p for p in pages if p["langue"] == page["langue"] and p.get("ordre")), key=lambda p: int(p["ordre"])):
-		courant = ' aria-current="page"' if p is page else ""
-		lien = f'<li><a href="{p["chemin"]}"{courant}>{html.escape(p.get("menu") or p["fil"])}</a></li>'
-		if not p.get("groupe"):
-			liens.append(lien)
-			continue
-		if p["groupe"] not in groupes:
-			groupes[p["groupe"]] = []
-			liens.append(p["groupe"])
-		groupes[p["groupe"]].append((lien, p is page))
-	for i, lien in enumerate(liens):
-		if lien in groupes:
-			sous = groupes[lien]
-			classe = "groupe courant" if any(c for _, c in sous) else "groupe"
-			liens[i] = (
-				f'<li class="{classe}"><details><summary>{html.escape(lien)}</summary>'
-				f'<ul>{"".join(l for l, _ in sous)}</ul></details></li>'
-			)
+	liens = []
+	projets = (p for p in pages if p["langue"] == page["langue"] and p.get("ordre") and not p.get("parent"))
+	for p in sorted(projets, key=lambda p: int(p["ordre"])):
+		courant = ' aria-current="page"' if p is page else (' class="courant"' if p is projet else "")
+		liens.append(f'<li><a href="{p["chemin"]}"{courant}>{html.escape(p.get("menu") or p["fil"])}</a></li>')
 	autre_langue = "en" if page["langue"] == "fr" else "fr"
 	return (
 		'<header class="haut">\n'
@@ -124,20 +122,55 @@ def entete_navigation(page: dict, pages: list[dict], autre: dict) -> str:
 	)
 
 
-def fil_ariane(page: dict) -> tuple[str, dict | None]:
+def menu_cote(page: dict, pages: list[dict], projet: dict | None) -> str:
+	"""Menu de gauche : les pages du projet (la page du projet s'appelle « Présentation ») et, sous la page
+	ouverte, ses sections. Un projet d'une seule page ne montre que ses sections (rien sur téléphone)."""
+	if projet is None:
+		return ""
+	t = TEXTES[page["langue"]]
+	sous = sorted((p for p in pages if p.get("parent") == projet["paire"] and p["langue"] == page["langue"]),
+		key=lambda p: int(p["ordre"]))
+	sections = "".join(
+		f'<li><a href="#{ancre}">{texte}</a></li>'
+		for ancre, texte in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', page["corps"])
+	)
+	sections = f'<ul class="sections">{sections}</ul>' if sections else ""
+	if not sous:
+		elements = f'<li><a href="{page["chemin"]}" aria-current="page">{html.escape(page.get("menu") or page["fil"])}</a>{sections}</li>'
+	else:
+		elements = ""
+		for p in [projet, *sous]:
+			nom = t["presentation"] if p is projet else (p.get("menu") or p["fil"])
+			if p is page:
+				elements += f'<li><a href="{p["chemin"]}" aria-current="page">{html.escape(nom)}</a>{sections}</li>'
+			else:
+				elements += f'<li><a href="{p["chemin"]}">{html.escape(nom)}</a></li>'
+	titre = html.escape(projet.get("menu") or projet["fil"])
+	return (
+		f'<aside class="cote{"" if sous else " unique"}"><nav aria-label="{t["cote"]}">'
+		f'<p class="cote-titre"><a href="{projet["chemin"]}">{titre}</a></p><ul>{elements}</ul></nav></aside>\n'
+	)
+
+
+def fil_ariane(page: dict, projet: dict | None) -> tuple[str, dict | None]:
 	if not page.get("fil"):
 		return "", None
 	t = TEXTES[page["langue"]]
 	accueil = "/" if page["langue"] == "fr" else "/en/"
+	etapes = [(t["accueil"], accueil)]
+	if projet is not None and projet is not page:
+		etapes.append((projet["fil"], projet["chemin"]))
+	liens = "".join(f'<a href="{lien}">{html.escape(nom)}</a> <span aria-hidden="true">›</span> ' for nom, lien in etapes)
 	visible = (
-		f'<nav class="fil" aria-label="{t["fil"]}"><a href="{accueil}">{t["accueil"]}</a>'
-		f' <span aria-hidden="true">›</span> <span aria-current="page">{html.escape(page["fil"])}</span></nav>\n'
+		f'<nav class="fil" aria-label="{t["fil"]}">{liens}'
+		f'<span aria-current="page">{html.escape(page["fil"])}</span></nav>\n'
 	)
+	etapes.append((page["fil"], page["chemin"]))
 	ld = {
 		"@type": "BreadcrumbList",
 		"itemListElement": [
-			{"@type": "ListItem", "position": 1, "name": t["accueil"], "item": SITE + accueil},
-			{"@type": "ListItem", "position": 2, "name": page["fil"], "item": SITE + page["chemin"]},
+			{"@type": "ListItem", "position": i, "name": nom, "item": SITE + lien}
+			for i, (nom, lien) in enumerate(etapes, 1)
 		],
 	}
 	return visible, ld
@@ -149,7 +182,9 @@ def rendre(page: dict, pages: list[dict], par_paire: dict) -> str:
 	autre = en if page["langue"] == "fr" else fr
 	url = SITE + page["chemin"]
 	image = SITE + "/assets/" + (page.get("image") or "partage.jpg")
-	visible, ld_fil = fil_ariane(page)
+	projet = projet_de(page, par_paire)
+	visible, ld_fil = fil_ariane(page, projet)
+	cote = menu_cote(page, pages, projet)
 	graphe = [
 		{
 			"@type": "WebSite",
@@ -209,21 +244,18 @@ def rendre(page: dict, pages: list[dict], par_paire: dict) -> str:
 </head>
 <body>
 <div class="page">
-{entete_navigation(page, pages, autre)}
+{entete_navigation(page, pages, autre, projet)}
 
-<main>
+<div class="{"colonnes" if cote else "seule"}">
+{cote}<main>
 {visible}{page["corps"]}
 </main>
+</div>
 
 <footer class="bas">
 	{t["pied"]}
 </footer>
 </div>
-<script>
-/* Sous-menus : fermés par un clic ailleurs ou la touche Échap. */
-document.addEventListener("click", e => document.querySelectorAll("nav.menu details[open]").forEach(d => d.contains(e.target) || d.removeAttribute("open")));
-document.addEventListener("keydown", e => e.key === "Escape" && document.querySelectorAll("nav.menu details[open]").forEach(d => d.removeAttribute("open")));
-</script>
 </body>
 </html>
 """

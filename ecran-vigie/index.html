@@ -21,7 +21,7 @@
 <meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
 <link rel="icon" href="/assets/icone.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css?v=0436584783">
+<link rel="stylesheet" href="/assets/style.css?v=733da18cfa">
 <script type="application/ld+json">
 {
 	"@context": "https://schema.org",
@@ -72,6 +72,12 @@
 				{
 					"@type": "ListItem",
 					"position": 2,
+					"name": "Vigie",
+					"item": "https://auxfilsdesidees.fr/vigie/"
+				},
+				{
+					"@type": "ListItem",
+					"position": 3,
 					"name": "Écran Vigie",
 					"item": "https://auxfilsdesidees.fr/ecran-vigie/"
 				}
@@ -104,11 +110,13 @@
 		<a class="marque" href="/">Aux fils des idées</a>
 		<a class="langue" href="/en/vigie-display/" hreflang="en" lang="en">English</a>
 	</div>
-	<nav class="menu" aria-label="Navigation principale"><ul><li class="groupe courant"><details><summary>Écrans</summary><ul><li><a href="/ecran-home-assistant/">Écran Home Assistant</a></li><li><a href="/ecran-vigie/" aria-current="page">Écran Vigie</a></li><li><a href="/m5stack-tab5/">M5Stack Tab5</a></li><li><a href="/waveshare-esp32-p4-7b/">Waveshare 7B</a></li></ul></details></li><li><a href="/vigie/">Vigie</a></li><li><a href="/moteur-ia/">Moteur IA</a></li><li><a href="/a-propos/">À propos</a></li></ul></nav>
+	<nav class="menu" aria-label="Navigation principale"><ul><li><a href="/ecran-home-assistant/">Écran Home Assistant</a></li><li><a href="/vigie/" class="courant">Vigie</a></li><li><a href="/moteur-ia/">Moteur IA</a></li><li><a href="/a-propos/">À propos</a></li></ul></nav>
 </header>
 
+<div class="colonnes">
+<aside class="cote"><nav aria-label="Pages du projet"><p class="cote-titre"><a href="/vigie/">Vigie</a></p><ul><li><a href="/vigie/">Présentation</a></li><li><a href="/ecran-vigie/" aria-current="page">L&#x27;écran Vigie</a><ul class="sections"><li><a href="#voir">Ce que montre l'écran</a></li><li><a href="#cartes">Deux cartes, un seul micrologiciel</a></li><li><a href="#fonctionnement">Comment il marche</a></li><li><a href="#installer">L'installer</a></li></ul></li></ul></nav></aside>
 <main>
-<nav class="fil" aria-label="Fil d'Ariane"><a href="/">Accueil</a> <span aria-hidden="true">›</span> <span aria-current="page">Écran Vigie</span></nav>
+<nav class="fil" aria-label="Fil d'Ariane"><a href="/">Accueil</a> <span aria-hidden="true">›</span> <a href="/vigie/">Vigie</a> <span aria-hidden="true">›</span> <span aria-current="page">Écran Vigie</span></nav>
 <div class="heros">
 	<div>
 		<span class="etiquette">Vigie · ESP32-P4 · sans Home Assistant</span>
@@ -199,16 +207,12 @@
 	<p>Les commandes exactes, les réglages et les pannes courantes sont dans <a href="https://github.com/Axellum/vigie-display/blob/main/docs/installation.md">le guide d'installation</a> (en anglais). Les mises à jour suivantes passent par le Wi-Fi.</p>
 </section>
 </main>
+</div>
 
 <footer class="bas">
 	<p>Projets personnels, non commerciaux, faits avec l'aide de l'IA et testés surtout chez moi. Retours bienvenus sur <a href="https://github.com/Axellum">GitHub</a>.</p>
 	<p>Éditeur : Axel Duviella, particulier, à titre non professionnel (France). Contact : <a href="https://github.com/Axellum">github.com/Axellum</a>. Hébergeur : OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/fr/">ovhcloud.com</a>). Ce site ne dépose aucun cookie et ne mesure pas ses visites.</p>
 </footer>
 </div>
-<script>
-/* Sous-menus : fermés par un clic ailleurs ou la touche Échap. */
-document.addEventListener("click", e => document.querySelectorAll("nav.menu details[open]").forEach(d => d.contains(e.target) || d.removeAttribute("open")));
-document.addEventListener("keydown", e => e.key === "Escape" && document.querySelectorAll("nav.menu details[open]").forEach(d => d.removeAttribute("open")));
-</script>
 </body>
 </html>
