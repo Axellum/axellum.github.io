@@ -12,6 +12,7 @@ Un bloc <!--ld … ld--> dans le corps est un objet JSON-LD de plus, ajouté au 
 """
 from __future__ import annotations
 
+import hashlib
 import html
 import json
 import re
@@ -55,6 +56,9 @@ TEXTES = {
 		),
 	},
 }
+# Empreinte de la feuille de style dans son adresse : /assets/ est gardé 7 jours en cache par les navigateurs
+# (Caddy), une feuille modifiée doit changer d'adresse pour être rechargée.
+STYLE = "/assets/style.css?v=" + hashlib.sha256((ICI / "assets" / "style.css").read_text(encoding="utf-8").encode()).hexdigest()[:10]
 PERSONNE = {
 	"@type": "Person",
 	"@id": f"{SITE}/#axel",
@@ -182,7 +186,7 @@ def rendre(page: dict, pages: list[dict], par_paire: dict) -> str:
 <meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
 <link rel="icon" href="/assets/icone.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="{STYLE}">
 <script type="application/ld+json">
 {ld}
 </script>
