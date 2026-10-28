@@ -1,0 +1,59 @@
+chemin: /en/nextion-weather-screens/
+paire: nextion
+titre: Nextion weather screens with ESPHome and Météo-France · Aux fils des idées
+description: My first screens: 2.8 and 3.5 inch Nextion touch screens linked to Home Assistant through ESPHome, showing Météo-France forecasts and warnings and rain in the next hour. Open projects since 2020.
+image: nextion-photo.webp
+fil: Nextion weather screens
+menu: Nextion screens
+ordre: 4
+---
+<!--ld {
+	"@type": "SoftwareSourceCode",
+	"name": "NextionWeather Météo-France",
+	"description": "Nextion screen for Météo-France forecasts, warnings and rain in the next hour through ESPHome.",
+	"codeRepository": "https://github.com/Axellum/NextionWeather-Meteo-France",
+	"programmingLanguage": ["C++", "YAML"],
+	"dateCreated": "2023-03-24"
+} ld-->
+<div class="heros">
+	<div>
+		<span class="etiquette">ESPHome · Nextion · Météo-France</span>
+		<h1>Nextion weather screens</h1>
+		<p class="chapeau">Before the Tab5 display, there were small 2.8 and 3.5 inch Nextion touch screens, linked to Home Assistant by an ESP32: the time, the current weather, rain in the next hour and warnings, at a glance.</p>
+		<ul class="liens">
+			<li><a class="principal" href="https://github.com/Axellum/NextionWeather-Meteo-France">NextionWeather on GitHub</a></li>
+		</ul>
+	</div>
+	<figure><img src="/assets/nextion-photo.webp" width="826" height="531" alt="3.5 inch Nextion screen: cloudy, 13 °C, 90% humidity, 7:15, rain bars, warning icons and a four-day forecast"></figure>
+</div>
+
+<dl class="faits">
+	<div><dt>Screens</dt><dd>Nextion 2.8" and 3.5"</dd></div>
+	<div><dt>Board</dt><dd>ESP32</dd></div>
+	<div><dt>Since</dt><dd>2020</dd></div>
+	<div><dt>License</dt><dd>None declared</dd></div>
+</dl>
+
+<section class="bloc" aria-labelledby="nextionweather">
+	<h2 id="nextionweather">NextionWeather Météo-France</h2>
+	<p>The current project, updated in 2026. The screen shows the date and time, the current weather, frost, snow and UV risks, a 3-day forecast or an 8-day calendar, the next 8 hours, warnings and rain in 5-minute steps, with a brightness setting.</p>
+	<p>It comes in several versions: with Home Assistant (ESPHome sensors, or the recommended "push service" version, with no intermediate sensors), or without Home Assistant with an Arduino program that queries a weather service directly. It works with Nextion Basic, Enhanced and Intelligent screens. The documentation is in French.</p>
+	<div class="note"><p>Since March 2026, all the code and the presentation of this repository have been written by AI (Gemini). The "push service" version is in testing; the versions without Home Assistant are untested.</p></div>
+</section>
+
+<section class="bloc" aria-labelledby="early">
+	<h2 id="early">The first versions</h2>
+	<div class="grille">
+		<div>
+			<h3>Nextion weather screen with ESPHome (2020)</h3>
+			<p>A simplified version for the 3.5 inch screen: a 3-day forecast, 4 switch buttons and scripts for a colour bulb.</p>
+			<a href="https://github.com/Axellum/Ecran-meteo-Nextion-par-ESPHome">The repository</a>
+		</div>
+		<div>
+			<h3>Meteo (2020)</h3>
+			<p>The very first one, on a Nextion NX4832T035 and an ESP32 or ESP8266. The code is partly obsolete since Météo-France changed its API: kept as an archive.</p>
+			<a href="https://github.com/Axellum/Meteo">The repository</a>
+		</div>
+	</div>
+	<p>What came next is the <a href="/en/home-assistant-display/">native Home Assistant display</a> on the ESP32-P4.</p>
+</section>

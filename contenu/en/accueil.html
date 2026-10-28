@@ -1,0 +1,84 @@
+chemin: /en/
+paire: accueil
+titre: Aux fils des idées · Axel Duviella's projects
+description: Axel Duviella's personal projects, shared in case they help: a native Home Assistant display for the M5Stack Tab5 and Waveshare ESP32-P4, Vigie (the world's alerts in one place), a multi-agent AI engine and Nextion weather screens.
+---
+<h1>My projects, shared in case they help</h1>
+<p class="chapeau">I'm Axel. I build screens and tools for my home, with the help of AI, and share them in case they are useful to someone else. Everything is free, the code is open, with no ads or tracking.</p>
+
+<section class="projet" id="display" aria-labelledby="title-display">
+	<div class="corps">
+		<div class="texte">
+			<span class="etiquette">Home Assistant · ESP32-P4</span>
+			<h2 id="title-display">Native Home Assistant display</h2>
+			<p>The screen of my house, connected to Home Assistant. It runs directly on the device (ESPHome and LVGL), with no browser: Home Assistant sends it the data, the screen never polls.</p>
+			<p>Weather and warnings, lights, shutters, heating, solar energy, music, calendar, alarm clock, voice assistant with a local wake word. 21 themes, 7 languages, install from the browser.</p>
+			<ul class="liens">
+				<li><a class="principal" href="/en/home-assistant-display/">Discover the display</a></li>
+				<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Install</a></li>
+				<li><a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL">Code on GitHub</a></li>
+			</ul>
+		</div>
+		<figure><img src="/assets/tab5.webp" width="800" height="600" alt="Axel's M5Stack Tab5 on its stand: the time, two temperatures, a heating setpoint and a five-day forecast"></figure>
+	</div>
+	<div class="galerie">
+		<div>
+			<figure><img src="/assets/waveshare-7b.webp" width="800" height="469" loading="lazy" alt="The home screen on the 7-inch Waveshare ESP32-P4, at 1024 × 600"></figure>
+		</div>
+		<div class="brique">
+			<h3>Two screens</h3>
+			<p>The M5Stack Tab5 (1280 × 720) and the 7-inch Waveshare ESP32-P4 (1024 × 600). The same firmware, the same setup in Home Assistant.</p>
+			<a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/waveshare-7b/">The Waveshare 7B</a>
+		</div>
+	</div>
+</section>
+
+<section class="projet" id="vigie" aria-labelledby="title-vigie">
+	<div class="corps">
+		<div class="texte">
+			<span class="etiquette">Alerts · world map</span>
+			<h2 id="title-vigie">Vigie</h2>
+			<p>The world's alerts in one place: official weather warnings of 48 countries, earthquakes, cyclones, volcanoes, floods, fires seen by satellite. On a world map, and a "Near me" page for a given place.</p>
+			<p>Vigie gathers official sources without replacing them: always follow the instructions of your authorities.</p>
+			<ul class="liens">
+				<li><a class="principal" href="https://vigie.auxfilsdesidees.fr/">Open Vigie</a></li>
+				<li><a href="/en/vigie/">The project in detail</a></li>
+			</ul>
+		</div>
+		<figure class="entier"><img src="/assets/vigie-en.webp" width="960" height="600" alt="Vigie: the world map with current alerts, and the list of alerts by level on the left"></figure>
+	</div>
+	<div class="briques">
+		<div class="brique">
+			<h3>The API</h3>
+			<p>Official sources in a single format (GeoJSON, CAP 1.2), with a Home Assistant integration. Python, FastAPI.</p>
+			<a href="https://github.com/Axellum/vigie-api">vigie-api on GitHub</a>
+		</div>
+		<div class="brique">
+			<h3>The website</h3>
+			<p>Maps, country pages, invitation-only accounts with passkeys. SvelteKit and MapLibre.</p>
+			<a href="https://github.com/Axellum/vigie-web">vigie-web on GitHub</a>
+		</div>
+		<div class="brique">
+			<h3>The screen</h3>
+			<p>A standalone alert screen, without Home Assistant, for the 7-inch Waveshare ESP32-P4. ESPHome and LVGL.</p>
+			<a href="https://github.com/Axellum/vigie-display">vigie-display on GitHub</a>
+		</div>
+	</div>
+</section>
+
+<section class="projet" aria-labelledby="title-others">
+	<div class="briques deux">
+		<div class="brique">
+			<span class="etiquette">AI · Python</span>
+			<h2 id="title-others">Multi-agent AI engine</h2>
+			<p>An orchestrator that picks the right AI model for each task, works in parallel and heals itself. Born to drive the Home Assistant display.</p>
+			<a href="/en/ai-engine/">The engine in detail</a>
+		</div>
+		<div class="brique">
+			<span class="etiquette">ESPHome · Nextion</span>
+			<h2>Nextion weather screens</h2>
+			<p>My first screens, since 2020: small Nextion touch screens with Météo-France forecasts and warnings.</p>
+			<a href="/en/nextion-weather-screens/">The Nextion screens</a>
+		</div>
+	</div>
+</section>

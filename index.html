@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aux fils des idées · projets d'Axel Duviella</title>
-<meta name="description" content="Projets personnels d'Axel Duviella, partagés au cas où : un écran Home Assistant natif pour M5Stack Tab5 et Waveshare ESP32-P4, et Vigie, les alertes du monde au même endroit (site, API, écran).">
+<title>Aux fils des idées · projets d&#x27;Axel Duviella</title>
+<meta name="description" content="Projets personnels d&#x27;Axel Duviella, partagés au cas où : un écran Home Assistant natif pour M5Stack Tab5 et Waveshare ESP32-P4, Vigie (les alertes du monde au même endroit), un moteur IA multi-agents et des écrans météo Nextion.">
 <link rel="canonical" href="https://auxfilsdesidees.fr/">
 <link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/">
 <link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/">
@@ -13,12 +13,10 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:site_name" content="Aux fils des idées">
-<meta property="og:title" content="Aux fils des idées · projets d'Axel Duviella">
-<meta property="og:description" content="Un écran Home Assistant natif pour ESP32-P4, et Vigie, les alertes du monde au même endroit. Projets personnels, faits avec l'IA, partagés au cas où.">
+<meta property="og:title" content="Aux fils des idées · projets d&#x27;Axel Duviella">
+<meta property="og:description" content="Projets personnels d&#x27;Axel Duviella, partagés au cas où : un écran Home Assistant natif pour M5Stack Tab5 et Waveshare ESP32-P4, Vigie (les alertes du monde au même endroit), un moteur IA multi-agents et des écrans météo Nextion.">
 <meta property="og:url" content="https://auxfilsdesidees.fr/">
 <meta property="og:image" content="https://auxfilsdesidees.fr/assets/partage.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
@@ -33,53 +31,34 @@
 			"@id": "https://auxfilsdesidees.fr/#site",
 			"url": "https://auxfilsdesidees.fr/",
 			"name": "Aux fils des idées",
-			"inLanguage": ["fr", "en"],
-			"publisher": { "@id": "https://auxfilsdesidees.fr/#axel" }
+			"inLanguage": [
+				"fr",
+				"en"
+			],
+			"publisher": {
+				"@id": "https://auxfilsdesidees.fr/#axel"
+			}
 		},
 		{
 			"@type": "Person",
 			"@id": "https://auxfilsdesidees.fr/#axel",
 			"name": "Axel Duviella",
 			"url": "https://auxfilsdesidees.fr/",
-			"sameAs": ["https://github.com/Axellum"]
+			"sameAs": [
+				"https://github.com/Axellum"
+			]
 		},
 		{
-			"@type": "SoftwareSourceCode",
-			"name": "Écran Home Assistant pour M5Stack Tab5 et Waveshare ESP32-P4 7B",
-			"description": "Écran Home Assistant natif (ESPHome + LVGL) pour ESP32-P4, sans navigateur.",
-			"codeRepository": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL",
-			"url": "https://axellum.github.io/M5-Tab5-ESPHome-LVGL/",
-			"programmingLanguage": ["C++", "YAML"],
-			"author": { "@id": "https://auxfilsdesidees.fr/#axel" }
-		},
-		{
-			"@type": "WebApplication",
-			"name": "Vigie",
-			"description": "Les alertes du monde au même endroit : vigilances météo officielles et catastrophes naturelles sur une carte.",
-			"url": "https://vigie.auxfilsdesidees.fr/",
-			"isAccessibleForFree": true,
-			"author": { "@id": "https://auxfilsdesidees.fr/#axel" }
-		},
-		{
-			"@type": "SoftwareSourceCode",
-			"name": "Vigie API",
-			"codeRepository": "https://github.com/Axellum/vigie-api",
-			"programmingLanguage": "Python",
-			"author": { "@id": "https://auxfilsdesidees.fr/#axel" }
-		},
-		{
-			"@type": "SoftwareSourceCode",
-			"name": "Vigie Web",
-			"codeRepository": "https://github.com/Axellum/vigie-web",
-			"programmingLanguage": "TypeScript",
-			"author": { "@id": "https://auxfilsdesidees.fr/#axel" }
-		},
-		{
-			"@type": "SoftwareSourceCode",
-			"name": "Vigie Display",
-			"codeRepository": "https://github.com/Axellum/vigie-display",
-			"programmingLanguage": ["C++", "YAML"],
-			"author": { "@id": "https://auxfilsdesidees.fr/#axel" }
+			"@type": "WebPage",
+			"@id": "https://auxfilsdesidees.fr/#page",
+			"url": "https://auxfilsdesidees.fr/",
+			"name": "Aux fils des idées · projets d'Axel Duviella",
+			"description": "Projets personnels d'Axel Duviella, partagés au cas où : un écran Home Assistant natif pour M5Stack Tab5 et Waveshare ESP32-P4, Vigie (les alertes du monde au même endroit), un moteur IA multi-agents et des écrans météo Nextion.",
+			"inLanguage": "fr",
+			"isPartOf": {
+				"@id": "https://auxfilsdesidees.fr/#site"
+			},
+			"primaryImageOfPage": "https://auxfilsdesidees.fr/assets/partage.jpg"
 		}
 	]
 }
@@ -89,14 +68,16 @@
 <div class="page">
 <header class="haut">
 	<div class="ligne">
-		<p class="marque">Aux fils des idées</p>
+		<a class="marque" href="/">Aux fils des idées</a>
 		<a class="langue" href="/en/" hreflang="en" lang="en">English</a>
 	</div>
-	<h1>Mes projets, partagés au cas où</h1>
-	<p class="chapeau">Je m'appelle Axel. Je fabrique des écrans et des outils pour ma maison, avec l'aide de l'IA, et je les partage au cas où ils serviraient à quelqu'un d'autre. Tout est gratuit, le code est ouvert, sans publicité ni pistage.</p>
+	<nav class="menu" aria-label="Navigation principale"><ul><li><a href="/ecran-home-assistant/">Écran Home Assistant</a></li><li><a href="/vigie/">Vigie</a></li><li><a href="/moteur-ia/">Moteur IA</a></li><li><a href="/ecrans-meteo-nextion/">Écrans Nextion</a></li><li><a href="/a-propos/">À propos</a></li></ul></nav>
 </header>
 
 <main>
+<h1>Mes projets, partagés au cas où</h1>
+<p class="chapeau">Je m'appelle Axel. Je fabrique des écrans et des outils pour ma maison, avec l'aide de l'IA, et je les partage au cas où ils serviraient à quelqu'un d'autre. Tout est gratuit, le code est ouvert, sans publicité ni pistage.</p>
+
 <section class="projet" id="ecran" aria-labelledby="titre-ecran">
 	<div class="corps">
 		<div class="texte">
@@ -104,9 +85,8 @@
 			<h2 id="titre-ecran">Écran Home Assistant natif</h2>
 			<p>L'écran de ma maison, branché sur Home Assistant. Il tourne directement sur l'écran (ESPHome et LVGL), sans navigateur : Home Assistant lui envoie les données, l'écran n'interroge jamais.</p>
 			<p>Météo et vigilances, lumières, volets, chauffage, énergie solaire, musique, calendrier, réveil, assistant vocal avec mot d'éveil local. 21 thèmes, 7 langues, installation depuis le navigateur.</p>
-			<p>Pour le M5Stack Tab5, et la Waveshare ESP32-P4 de 7 pouces (expérimentale, c'est mon écran de tous les jours).</p>
 			<ul class="liens">
-				<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/fr/">Documentation</a></li>
+				<li><a class="principal" href="/ecran-home-assistant/">Découvrir l'écran</a></li>
 				<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Installer</a></li>
 				<li><a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL">Code sur GitHub</a></li>
 			</ul>
@@ -130,11 +110,11 @@
 		<div class="texte">
 			<span class="etiquette">Alertes · carte du monde</span>
 			<h2 id="titre-vigie">Vigie</h2>
-			<p>Les alertes du monde au même endroit : vigilances météo officielles, séismes, cyclones, volcans, crues, feux vus par satellite. Sur une carte du monde, et une page « Autour de moi » pour un lieu précis.</p>
-			<p>Vigie rassemble des sources officielles (MeteoAlarm, DWD, Environnement Canada, NWS, MetService, Vigicrues, registre de l'OMM…) sans les remplacer : suivez toujours les consignes de vos autorités.</p>
+			<p>Les alertes du monde au même endroit : vigilances météo officielles de 48 pays, séismes, cyclones, volcans, crues, feux vus par satellite. Sur une carte du monde, et une page « Autour de moi » pour un lieu précis.</p>
+			<p>Vigie rassemble des sources officielles sans les remplacer : suivez toujours les consignes de vos autorités.</p>
 			<ul class="liens">
 				<li><a class="principal" href="https://vigie.auxfilsdesidees.fr/">Ouvrir Vigie</a></li>
-				<li><a href="https://vigie.auxfilsdesidees.fr/countries">Pays couverts</a></li>
+				<li><a href="/vigie/">Le projet en détail</a></li>
 			</ul>
 		</div>
 		<figure class="entier"><img src="/assets/vigie-fr.webp" width="960" height="600" alt="Vigie : la carte du monde avec les alertes en cours, et la liste des alertes par niveau à gauche"></figure>
@@ -147,7 +127,7 @@
 		</div>
 		<div class="brique">
 			<h3>Le site</h3>
-			<p>Le site ci-dessus : cartes, pages pays, comptes sur invitation avec clé d'accès. SvelteKit et MapLibre.</p>
+			<p>Cartes, pages pays, comptes sur invitation avec clé d'accès. SvelteKit et MapLibre.</p>
 			<a href="https://github.com/Axellum/vigie-web">vigie-web sur GitHub</a>
 		</div>
 		<div class="brique">
@@ -157,11 +137,28 @@
 		</div>
 	</div>
 </section>
+
+<section class="projet" aria-labelledby="titre-autres">
+	<div class="briques deux">
+		<div class="brique">
+			<span class="etiquette">IA · Python</span>
+			<h2 id="titre-autres">Moteur IA multi-agents</h2>
+			<p>Un orchestrateur qui choisit le bon modèle d'IA pour chaque tâche, travaille en parallèle et se répare seul. Né pour piloter l'écran Home Assistant.</p>
+			<a href="/moteur-ia/">Le moteur en détail</a>
+		</div>
+		<div class="brique">
+			<span class="etiquette">ESPHome · Nextion</span>
+			<h2>Écrans météo Nextion</h2>
+			<p>Mes premiers écrans, depuis 2020 : de petits écrans tactiles Nextion avec les prévisions et les vigilances de Météo-France.</p>
+			<a href="/ecrans-meteo-nextion/">Les écrans Nextion</a>
+		</div>
+	</div>
+</section>
 </main>
 
 <footer class="bas">
 	<p>Projets personnels, non commerciaux, faits avec l'aide de l'IA et testés surtout chez moi. Retours bienvenus sur <a href="https://github.com/Axellum">GitHub</a>.</p>
-	<p>Éditeur : Axel Duviella, particulier, à titre non professionnel (France). Contact : <a href="https://github.com/Axellum">github.com/Axellum</a>. Hébergeur : OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/fr/">ovhcloud.com</a>). Cette page ne dépose aucun cookie et ne mesure pas ses visites.</p>
+	<p>Éditeur : Axel Duviella, particulier, à titre non professionnel (France). Contact : <a href="https://github.com/Axellum">github.com/Axellum</a>. Hébergeur : OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/fr/">ovhcloud.com</a>). Ce site ne dépose aucun cookie et ne mesure pas ses visites.</p>
 </footer>
 </div>
 </body>

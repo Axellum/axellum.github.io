@@ -1,0 +1,147 @@
+chemin: /en/vigie/
+paire: vigie
+titre: Vigie: the world's alerts in one place (website, API, Home Assistant, screen) · Aux fils des idées
+description: Vigie brings together on one map the official weather warnings of 48 countries and the world's natural disasters (earthquakes, cyclones, volcanoes, floods, fires), from 22 public sources. Free website, open API, Home Assistant integration and an ESP32-P4 screen.
+image: vigie-en.webp
+fil: Vigie
+menu: Vigie
+ordre: 2
+---
+<!--ld {
+	"@type": "WebApplication",
+	"name": "Vigie",
+	"description": "The world's alerts in one place: official weather warnings and natural disasters on a map.",
+	"url": "https://vigie.auxfilsdesidees.fr/",
+	"applicationCategory": "WeatherApplication",
+	"operatingSystem": "Web",
+	"isAccessibleForFree": true,
+	"inLanguage": ["fr", "en"],
+	"image": "https://auxfilsdesidees.fr/assets/vigie-en.webp"
+} ld-->
+<!--ld {
+	"@type": "SoftwareSourceCode",
+	"name": "Vigie API",
+	"codeRepository": "https://github.com/Axellum/vigie-api",
+	"programmingLanguage": "Python",
+	"license": "https://opensource.org/licenses/MIT",
+	"softwareVersion": "1.1.0"
+} ld-->
+<!--ld {
+	"@type": "SoftwareSourceCode",
+	"name": "Vigie Web",
+	"codeRepository": "https://github.com/Axellum/vigie-web",
+	"programmingLanguage": "TypeScript",
+	"license": "https://opensource.org/licenses/MIT"
+} ld-->
+<!--ld {
+	"@type": "SoftwareSourceCode",
+	"name": "Vigie Display",
+	"codeRepository": "https://github.com/Axellum/vigie-display",
+	"programmingLanguage": ["C++", "YAML"],
+	"license": "https://opensource.org/licenses/MIT"
+} ld-->
+<div class="heros">
+	<div>
+		<span class="etiquette">Alerts · world map</span>
+		<h1>Vigie, the world's alerts in one place</h1>
+		<p class="chapeau">The official weather warnings of 48 countries and natural disasters worldwide, on a map, on a "Near me" page and in Home Assistant.</p>
+		<ul class="liens">
+			<li><a class="principal" href="https://vigie.auxfilsdesidees.fr/">Open Vigie</a></li>
+			<li><a href="https://vigie.auxfilsdesidees.fr/countries">Countries covered</a></li>
+			<li><a href="https://github.com/Axellum/vigie-api">The API on GitHub</a></li>
+		</ul>
+	</div>
+	<figure><img src="/assets/vigie-en.webp" width="960" height="600" alt="Vigie: the world map with current alerts, and the list of alerts by level on the left"></figure>
+</div>
+
+<dl class="faits">
+	<div><dt>Official warnings</dt><dd>48 countries</dd></div>
+	<div><dt>Sources</dt><dd>22</dd></div>
+	<div><dt>Hazards</dt><dd>9 types</dd></div>
+	<div><dt>Languages</dt><dd>English, French</dd></div>
+	<div><dt>API</dt><dd>v1.1.0, open</dd></div>
+	<div><dt>Code license</dt><dd>MIT</dd></div>
+</dl>
+
+<div class="note"><p>Vigie does not replace official warnings: always follow the instructions of your authorities.</p></div>
+
+<section class="bloc" aria-labelledby="see">
+	<h2 id="see">What you will find</h2>
+	<div class="grille">
+		<div>
+			<h3>The world map</h3>
+			<p>All current alerts, with a list filtered by level and type, then a page per country, per area and per alert, where the issuer's text is kept unchanged.</p>
+		</div>
+		<div>
+			<h3>Near me</h3>
+			<p>A place chosen by name, the browser's location or a click on the map. The place stays in the browser; only a position rounded to about 5 km goes to the server, for the weather.</p>
+		</div>
+		<div>
+			<h3>Forecasts</h3>
+			<p>Cone and track of tropical storms, tsunami arrival times, and active fires seen by satellite (tick them on the map).</p>
+		</div>
+		<div>
+			<h3>Notifications</h3>
+			<p>For accounts, by invitation, with a passkey, no password or email: one alert per area and level, and at night only red alerts.</p>
+		</div>
+	</div>
+	<p>No ads, no audience measurement, no third-party script or font; the only cookie remembers the language.</p>
+</section>
+
+<section class="bloc" aria-labelledby="hazards">
+	<h2 id="hazards">Hazards and sources</h2>
+	<p><strong>Natural disasters</strong>: earthquakes, tsunamis, volcanoes, cyclones, tornadoes, floods, extreme rain, wildfires and solar storms. Sources: USGS, EMSC, GDACS, USGS Volcano, NHC, NOAA SWPC, NASA FIRMS.</p>
+	<p><strong>Official weather warnings</strong>, in green, yellow, orange and red (wind, rain, thunderstorms, snow and ice, heat, cold, floods, avalanches, coastal, fire, fog):</p>
+	<ul>
+		<li>MeteoAlarm (EUMETNET) for 37 European countries;</li>
+		<li>Deutscher Wetterdienst (Germany), AEMET (Spain), Vigicrues (floods in France);</li>
+		<li>Environment and Climate Change Canada, NWS/NOAA (United States), MetService (New Zealand);</li>
+		<li>the services of the WMO register for Algeria, Argentina, Barbados, Jamaica, Mexico and the Philippines;</li>
+		<li>tsunami messages from the NOAA warning centres.</li>
+	</ul>
+	<p>When a country is not covered, the reason is shown (for instance a license that forbids redistribution). The full list, with licenses, is on <a href="https://vigie.auxfilsdesidees.fr/sources">the sources page</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="parts">
+	<h2 id="parts">Four ways to use it</h2>
+	<div class="grille">
+		<div>
+			<h3>The website</h3>
+			<p>Maps, country pages, "Near me", accounts and notifications. SvelteKit and MapLibre, OpenFreeMap base map.</p>
+			<a href="https://github.com/Axellum/vigie-web">vigie-web on GitHub</a>
+		</div>
+		<div>
+			<h3>The API</h3>
+			<p>All sources in one format: GeoJSON, CAP 1.2, JSON, and a compact frame for small screens. An unknown value stays empty, never made up. Python and FastAPI.</p>
+			<a href="https://github.com/Axellum/vigie-api">vigie-api on GitHub</a>
+		</div>
+		<div>
+			<h3>Home Assistant</h3>
+			<p>An integration (through HACS, as a custom repository): highest warning level, active warning, start, upgrade and end events, strongest earthquake near the house. No key needed.</p>
+			<a href="https://github.com/Axellum/vigie-api/blob/main/docs/home-assistant.md">Install the integration</a>
+		</div>
+		<div>
+			<h3>The screen</h3>
+			<p>A standalone alert screen, without Home Assistant, for the 7-inch Waveshare ESP32-P4: world map, the 5 most severe hazards with distance and direction, weather. ESPHome and LVGL.</p>
+			<a href="https://github.com/Axellum/vigie-display">vigie-display on GitHub</a>
+		</div>
+	</div>
+</section>
+
+<section class="bloc" aria-labelledby="api">
+	<h2 id="api">The public API</h2>
+	<p>The public instance is at <code>https://vigie.auxfilsdesidees.fr/v1</code>, read only. A few routes:</p>
+	<ul>
+		<li><code>/v1/point?lat=…&amp;lon=…</code>: warnings, nearby hazards and weather for a place;</li>
+		<li><code>/v1/vigilances</code> and <code>/v1/vigilances.geojson</code>: current warnings;</li>
+		<li><code>/v1/geojson/hazards</code>: current disasters; <code>/v1/cap/alerts</code>: the same in CAP 1.2;</li>
+		<li><code>/v1/earthquakes</code>, <code>/v1/fires</code>, <code>/v1/history</code>;</li>
+		<li><code>/v1/stream</code>: a WebSocket to receive new alerts.</li>
+	</ul>
+	<p>Limits per address: 300 requests per minute, and 10 per minute (120 per hour) on <code>/v1/point</code>. You can also host your own instance: the code is MIT licensed; the data keeps its source's license.</p>
+</section>
+
+<section class="bloc" aria-labelledby="experimental">
+	<h2 id="experimental">Experimental: a pre-alert for Turkey</h2>
+	<p>Turkey has no reusable official feed. At the request of a user of the Home Assistant display, Vigie computes an unofficial pre-alert per province from the ECMWF model, available only in the API and as an option in the Home Assistant integration. Over the test year it caught 63% of episodes on the day and 71% the day before, and no wind episode: it in no way replaces the warnings of the Turkish weather service.</p>
+</section>

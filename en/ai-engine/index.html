@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multi-agent AI engine for Home Assistant (vromvrom-engine) · Aux fils des idées</title>
+<meta name="description" content="vromvrom-engine, a Python multi-agent orchestrator that picks the right AI model for each task (Elo routing learned from use), heals itself and exposes an OpenAI-compatible API. Born to drive a Home Assistant display, usable anywhere.">
+<link rel="canonical" href="https://auxfilsdesidees.fr/en/ai-engine/">
+<link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/moteur-ia/">
+<link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/ai-engine/">
+<link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/ai-engine/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:site_name" content="Aux fils des idées">
+<meta property="og:title" content="Multi-agent AI engine for Home Assistant (vromvrom-engine) · Aux fils des idées">
+<meta property="og:description" content="vromvrom-engine, a Python multi-agent orchestrator that picks the right AI model for each task (Elo routing learned from use), heals itself and exposes an OpenAI-compatible API. Born to drive a Home Assistant display, usable anywhere.">
+<meta property="og:url" content="https://auxfilsdesidees.fr/en/ai-engine/">
+<meta property="og:image" content="https://auxfilsdesidees.fr/assets/partage.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/assets/icone.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebSite",
+			"@id": "https://auxfilsdesidees.fr/#site",
+			"url": "https://auxfilsdesidees.fr/",
+			"name": "Aux fils des idées",
+			"inLanguage": [
+				"fr",
+				"en"
+			],
+			"publisher": {
+				"@id": "https://auxfilsdesidees.fr/#axel"
+			}
+		},
+		{
+			"@type": "Person",
+			"@id": "https://auxfilsdesidees.fr/#axel",
+			"name": "Axel Duviella",
+			"url": "https://auxfilsdesidees.fr/",
+			"sameAs": [
+				"https://github.com/Axellum"
+			]
+		},
+		{
+			"@type": "WebPage",
+			"@id": "https://auxfilsdesidees.fr/en/ai-engine/#page",
+			"url": "https://auxfilsdesidees.fr/en/ai-engine/",
+			"name": "Multi-agent AI engine for Home Assistant (vromvrom-engine) · Aux fils des idées",
+			"description": "vromvrom-engine, a Python multi-agent orchestrator that picks the right AI model for each task (Elo routing learned from use), heals itself and exposes an OpenAI-compatible API. Born to drive a Home Assistant display, usable anywhere.",
+			"inLanguage": "en",
+			"isPartOf": {
+				"@id": "https://auxfilsdesidees.fr/#site"
+			},
+			"primaryImageOfPage": "https://auxfilsdesidees.fr/assets/partage.jpg"
+		},
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{
+					"@type": "ListItem",
+					"position": 1,
+					"name": "Home",
+					"item": "https://auxfilsdesidees.fr/en/"
+				},
+				{
+					"@type": "ListItem",
+					"position": 2,
+					"name": "AI engine",
+					"item": "https://auxfilsdesidees.fr/en/ai-engine/"
+				}
+			]
+		},
+		{
+			"@type": "SoftwareSourceCode",
+			"name": "vromvrom-engine",
+			"description": "Async multi-agent LLM orchestrator with Elo routing, self-healing, and an OpenAI-compatible Proxy API.",
+			"codeRepository": "https://github.com/Axellum/vromvrom-engine",
+			"programmingLanguage": [
+				"Python",
+				"TypeScript"
+			],
+			"license": "https://opensource.org/licenses/MIT",
+			"dateCreated": "2026-07-03",
+			"author": {
+				"@id": "https://auxfilsdesidees.fr/#axel"
+			}
+		}
+	]
+}
+</script>
+</head>
+<body>
+<div class="page">
+<header class="haut">
+	<div class="ligne">
+		<a class="marque" href="/en/">Aux fils des idées</a>
+		<a class="langue" href="/moteur-ia/" hreflang="fr" lang="fr">Français</a>
+	</div>
+	<nav class="menu" aria-label="Main navigation"><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/" aria-current="page">AI engine</a></li><li><a href="/en/nextion-weather-screens/">Nextion screens</a></li><li><a href="/en/about/">About</a></li></ul></nav>
+</header>
+
+<main>
+<nav class="fil" aria-label="Breadcrumb"><a href="/en/">Home</a> <span aria-hidden="true">›</span> <span aria-current="page">AI engine</span></nav>
+<div class="heros">
+	<div>
+		<span class="etiquette">AI · Python · Home Assistant</span>
+		<h1>The multi-agent AI engine</h1>
+		<p class="chapeau">An orchestrator that takes a request, picks the best-suited AI model, splits the work into parallel tasks and switches to another provider on its own when one goes down. It was born to drive my Home Assistant display.</p>
+		<ul class="liens">
+			<li><a class="principal" href="https://github.com/Axellum/vromvrom-engine">Code on GitHub</a></li>
+		</ul>
+	</div>
+	<div class="bloc citation">
+		<h2>In one sentence</h2>
+		<p>"Async multi-agent LLM orchestrator with Elo routing, self-healing, and an OpenAI-compatible Proxy API. Built for Home Assistant, usable everywhere."</p>
+		<p class="source">Description of the vromvrom-engine repository.</p>
+	</div>
+</div>
+
+<dl class="faits">
+	<div><dt>Language</dt><dd>Python 3.11+</dd></div>
+	<div><dt>API</dt><dd>OpenAI-compatible</dd></div>
+	<div><dt>AI providers</dt><dd>13</dd></div>
+	<div><dt>License</dt><dd>MIT</dd></div>
+	<div><dt>Status</dt><dd>Active development</dd></div>
+</dl>
+
+<section class="bloc" aria-labelledby="features">
+	<h2 id="features">What it does</h2>
+	<div class="grille">
+		<div>
+			<h3>Pick the right model</h3>
+			<p>Four-stage routing: simple rules, a small classifier, a model's opinion, then an Elo score that learns from use which model succeeds at which kind of task.</p>
+		</div>
+		<div>
+			<h3>Work in parallel</h3>
+			<p>A complex request becomes a graph of tasks run at the same time (asyncio).</p>
+		</div>
+		<div>
+			<h3>Heal itself</h3>
+			<p>Circuit breakers, spaced retries, failover to another provider depending on availability and budget.</p>
+		</div>
+		<div>
+			<h3>Remember</h3>
+			<p>Local document search (TF-IDF, BM25 and ChromaDB) to answer with the house's context.</p>
+		</div>
+		<div>
+			<h3>Talk to your tools</h3>
+			<p>An OpenAI-compatible API (<code>/v1/chat/completions</code>) usable from Cursor, Cline or Continue, and routes dedicated to Home Assistant.</p>
+		</div>
+		<div>
+			<h3>Stay in control</h3>
+			<p>Human approval of sensitive actions, a plugin system, remote workers and a dashboard (FastAPI and React).</p>
+		</div>
+	</div>
+</section>
+
+<section class="bloc" aria-labelledby="stack">
+	<h2 id="stack">Under the hood</h2>
+	<ul>
+		<li>Python 3.11+, FastAPI, asyncio, SQLite, ChromaDB, scikit-learn; dashboard in React, Vite and TypeScript.</li>
+		<li>13 supported AI providers, in the cloud (Gemini, GitHub Models, DeepSeek, Anthropic, Mistral, OpenRouter…) or local (LM Studio, Ollama).</li>
+		<li>Four documented configuration strategies, a Docker image and docker-compose, pytest tests and continuous integration.</li>
+	</ul>
+	<div class="note"><p>A personal tool shared as is: the dashboard still has rough edges, and no release is published yet.</p></div>
+</section>
+</main>
+
+<footer class="bas">
+	<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. Feedback welcome on <a href="https://github.com/Axellum">GitHub</a>.</p>
+	<p>Publisher: Axel Duviella, private individual, non-professional (France). Contact: <a href="https://github.com/Axellum">github.com/Axellum</a>. Host: OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/en/">ovhcloud.com</a>). This site sets no cookies and does not measure its visits.</p>
+</footer>
+</div>
+</body>
+</html>

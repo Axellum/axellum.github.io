@@ -1,0 +1,147 @@
+chemin: /vigie/
+paire: vigie
+titre: Vigie : les alertes du monde au même endroit (site, API, Home Assistant, écran) · Aux fils des idées
+description: Vigie réunit sur une carte les vigilances météo officielles de 48 pays et les catastrophes naturelles du monde (séismes, cyclones, volcans, crues, feux), à partir de 22 sources publiques. Site gratuit, API ouverte, intégration Home Assistant et écran ESP32-P4.
+image: vigie-fr.webp
+fil: Vigie
+menu: Vigie
+ordre: 2
+---
+<!--ld {
+	"@type": "WebApplication",
+	"name": "Vigie",
+	"description": "Les alertes du monde au même endroit : vigilances météo officielles et catastrophes naturelles sur une carte.",
+	"url": "https://vigie.auxfilsdesidees.fr/",
+	"applicationCategory": "WeatherApplication",
+	"operatingSystem": "Web",
+	"isAccessibleForFree": true,
+	"inLanguage": ["fr", "en"],
+	"image": "https://auxfilsdesidees.fr/assets/vigie-fr.webp"
+} ld-->
+<!--ld {
+	"@type": "SoftwareSourceCode",
+	"name": "Vigie API",
+	"codeRepository": "https://github.com/Axellum/vigie-api",
+	"programmingLanguage": "Python",
+	"license": "https://opensource.org/licenses/MIT",
+	"softwareVersion": "1.1.0"
+} ld-->
+<!--ld {
+	"@type": "SoftwareSourceCode",
+	"name": "Vigie Web",
+	"codeRepository": "https://github.com/Axellum/vigie-web",
+	"programmingLanguage": "TypeScript",
+	"license": "https://opensource.org/licenses/MIT"
+} ld-->
+<!--ld {
+	"@type": "SoftwareSourceCode",
+	"name": "Vigie Display",
+	"codeRepository": "https://github.com/Axellum/vigie-display",
+	"programmingLanguage": ["C++", "YAML"],
+	"license": "https://opensource.org/licenses/MIT"
+} ld-->
+<div class="heros">
+	<div>
+		<span class="etiquette">Alertes · carte du monde</span>
+		<h1>Vigie, les alertes du monde au même endroit</h1>
+		<p class="chapeau">Les vigilances météo officielles de 48 pays et les catastrophes naturelles du monde entier, sur une carte, dans une page « Autour de moi » et dans Home Assistant.</p>
+		<ul class="liens">
+			<li><a class="principal" href="https://vigie.auxfilsdesidees.fr/">Ouvrir Vigie</a></li>
+			<li><a href="https://vigie.auxfilsdesidees.fr/countries">Pays couverts</a></li>
+			<li><a href="https://github.com/Axellum/vigie-api">L'API sur GitHub</a></li>
+		</ul>
+	</div>
+	<figure><img src="/assets/vigie-fr.webp" width="960" height="600" alt="Vigie : la carte du monde avec les alertes en cours, et la liste des alertes par niveau à gauche"></figure>
+</div>
+
+<dl class="faits">
+	<div><dt>Vigilances officielles</dt><dd>48 pays</dd></div>
+	<div><dt>Sources</dt><dd>22</dd></div>
+	<div><dt>Aléas suivis</dt><dd>9 types</dd></div>
+	<div><dt>Langues</dt><dd>Français, anglais</dd></div>
+	<div><dt>API</dt><dd>v1.1.0, ouverte</dd></div>
+	<div><dt>Licence du code</dt><dd>MIT</dd></div>
+</dl>
+
+<div class="note"><p>Vigie ne remplace pas les alertes officielles : suivez toujours les consignes de vos autorités.</p></div>
+
+<section class="bloc" aria-labelledby="voir">
+	<h2 id="voir">Ce que l'on y trouve</h2>
+	<div class="grille">
+		<div>
+			<h3>La carte du monde</h3>
+			<p>Toutes les alertes en cours, avec une liste filtrable par niveau et par type, puis une page par pays, par zone et par alerte, où le texte de l'émetteur est repris sans changement.</p>
+		</div>
+		<div>
+			<h3>Autour de moi</h3>
+			<p>Un lieu choisi par son nom, la position du navigateur ou un clic sur la carte. Le lieu reste dans le navigateur ; seule une position arrondie à 5 km environ part vers le serveur, pour la météo.</p>
+		</div>
+		<div>
+			<h3>Les prévisions</h3>
+			<p>Cône et trajectoire des tempêtes tropicales, heures d'arrivée des tsunamis, et les feux actifs vus par satellite (à cocher sur la carte).</p>
+		</div>
+		<div>
+			<h3>Les notifications</h3>
+			<p>Pour les comptes, sur invitation, avec une clé d'accès (passkey), sans mot de passe ni e-mail : une alerte par zone et par niveau, et la nuit seulement les alertes rouges.</p>
+		</div>
+	</div>
+	<p>Pas de publicité, pas de mesure d'audience, aucun script ni police tiers ; le seul cookie retient la langue.</p>
+</section>
+
+<section class="bloc" aria-labelledby="aleas">
+	<h2 id="aleas">Les aléas et les sources</h2>
+	<p><strong>Catastrophes naturelles</strong> : séismes, tsunamis, volcans, cyclones, tornades, inondations, pluies extrêmes, feux de forêt et tempêtes solaires. Sources : USGS, EMSC, GDACS, USGS Volcano, NHC, NOAA SWPC, NASA FIRMS.</p>
+	<p><strong>Vigilances météo officielles</strong>, en vert, jaune, orange et rouge (vent, pluie, orage, neige et verglas, canicule, froid, crue, avalanche, submersion, incendie, brouillard) :</p>
+	<ul>
+		<li>MeteoAlarm (EUMETNET) pour 37 pays d'Europe ;</li>
+		<li>Deutscher Wetterdienst (Allemagne), AEMET (Espagne), Vigicrues (crues en France) ;</li>
+		<li>Environnement et Changement climatique Canada, NWS/NOAA (États-Unis), MetService (Nouvelle-Zélande) ;</li>
+		<li>les services du registre de l'OMM pour l'Algérie, l'Argentine, la Barbade, la Jamaïque, le Mexique et les Philippines ;</li>
+		<li>les messages tsunami des centres d'alerte de la NOAA.</li>
+	</ul>
+	<p>Quand un pays n'est pas couvert, la raison est affichée (par exemple une licence qui interdit la redistribution). La liste complète, avec les licences, est sur <a href="https://vigie.auxfilsdesidees.fr/sources">la page des sources</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="briques">
+	<h2 id="briques">Quatre façons de l'utiliser</h2>
+	<div class="grille">
+		<div>
+			<h3>Le site</h3>
+			<p>Cartes, pages pays, « Autour de moi », comptes et notifications. SvelteKit et MapLibre, fond de carte OpenFreeMap.</p>
+			<a href="https://github.com/Axellum/vigie-web">vigie-web sur GitHub</a>
+		</div>
+		<div>
+			<h3>L'API</h3>
+			<p>Toutes les sources dans un seul format : GeoJSON, CAP 1.2, JSON, et une trame compacte pour les petits écrans. Une valeur inconnue reste vide, jamais inventée. Python et FastAPI.</p>
+			<a href="https://github.com/Axellum/vigie-api">vigie-api sur GitHub</a>
+		</div>
+		<div>
+			<h3>Home Assistant</h3>
+			<p>Une intégration (par HACS, en dépôt personnalisé) : niveau de vigilance maximal, vigilance active, événements de début, de hausse et de fin, séisme le plus fort autour de la maison. Sans clé.</p>
+			<a href="https://github.com/Axellum/vigie-api/blob/main/docs/home-assistant.md">Installer l'intégration</a>
+		</div>
+		<div>
+			<h3>L'écran</h3>
+			<p>Un écran d'alerte autonome, sans Home Assistant, pour la Waveshare ESP32-P4 de 7 pouces : carte du monde, les 5 aléas les plus graves avec distance et direction, météo. ESPHome et LVGL.</p>
+			<a href="https://github.com/Axellum/vigie-display">vigie-display sur GitHub</a>
+		</div>
+	</div>
+</section>
+
+<section class="bloc" aria-labelledby="api">
+	<h2 id="api">L'API publique</h2>
+	<p>L'instance publique est à <code>https://vigie.auxfilsdesidees.fr/v1</code>, en lecture seule. Quelques routes :</p>
+	<ul>
+		<li><code>/v1/point?lat=…&amp;lon=…</code> : vigilances, aléas proches et météo d'un lieu ;</li>
+		<li><code>/v1/vigilances</code> et <code>/v1/vigilances.geojson</code> : les vigilances en cours ;</li>
+		<li><code>/v1/geojson/hazards</code> : les catastrophes en cours ; <code>/v1/cap/alerts</code> : les mêmes en CAP 1.2 ;</li>
+		<li><code>/v1/earthquakes</code>, <code>/v1/fires</code>, <code>/v1/history</code> ;</li>
+		<li><code>/v1/stream</code> : un WebSocket pour recevoir les nouvelles alertes.</li>
+	</ul>
+	<p>Limites par adresse : 300 requêtes par minute, et 10 par minute (120 par heure) sur <code>/v1/point</code>. Vous pouvez aussi héberger votre propre instance : le code est sous licence MIT ; les données gardent la licence de leur source.</p>
+</section>
+
+<section class="bloc" aria-labelledby="experimental">
+	<h2 id="experimental">Expérimental : une pré-alerte pour la Turquie</h2>
+	<p>La Turquie n'a pas de flux officiel réutilisable. À la demande d'un utilisateur de l'écran Home Assistant, Vigie calcule une pré-alerte non officielle par province à partir du modèle ECMWF, disponible seulement dans l'API et en option dans l'intégration Home Assistant. Sur l'année de test, elle a repéré 63 % des épisodes le jour même et 71 % la veille, et aucun épisode de vent : elle ne remplace en rien les alertes du service météo turc.</p>
+</section>

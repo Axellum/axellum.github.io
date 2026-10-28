@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moteur IA multi-agents pour Home Assistant (vromvrom-engine) · Aux fils des idées</title>
+<meta name="description" content="vromvrom-engine, un orchestrateur multi-agents en Python qui choisit le bon modèle d&#x27;IA pour chaque tâche (routage Elo appris de l&#x27;usage), se répare seul et expose une API compatible OpenAI. Né pour piloter un écran Home Assistant, utilisable partout.">
+<link rel="canonical" href="https://auxfilsdesidees.fr/moteur-ia/">
+<link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/moteur-ia/">
+<link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/ai-engine/">
+<link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/ai-engine/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:site_name" content="Aux fils des idées">
+<meta property="og:title" content="Moteur IA multi-agents pour Home Assistant (vromvrom-engine) · Aux fils des idées">
+<meta property="og:description" content="vromvrom-engine, un orchestrateur multi-agents en Python qui choisit le bon modèle d&#x27;IA pour chaque tâche (routage Elo appris de l&#x27;usage), se répare seul et expose une API compatible OpenAI. Né pour piloter un écran Home Assistant, utilisable partout.">
+<meta property="og:url" content="https://auxfilsdesidees.fr/moteur-ia/">
+<meta property="og:image" content="https://auxfilsdesidees.fr/assets/partage.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/assets/icone.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebSite",
+			"@id": "https://auxfilsdesidees.fr/#site",
+			"url": "https://auxfilsdesidees.fr/",
+			"name": "Aux fils des idées",
+			"inLanguage": [
+				"fr",
+				"en"
+			],
+			"publisher": {
+				"@id": "https://auxfilsdesidees.fr/#axel"
+			}
+		},
+		{
+			"@type": "Person",
+			"@id": "https://auxfilsdesidees.fr/#axel",
+			"name": "Axel Duviella",
+			"url": "https://auxfilsdesidees.fr/",
+			"sameAs": [
+				"https://github.com/Axellum"
+			]
+		},
+		{
+			"@type": "WebPage",
+			"@id": "https://auxfilsdesidees.fr/moteur-ia/#page",
+			"url": "https://auxfilsdesidees.fr/moteur-ia/",
+			"name": "Moteur IA multi-agents pour Home Assistant (vromvrom-engine) · Aux fils des idées",
+			"description": "vromvrom-engine, un orchestrateur multi-agents en Python qui choisit le bon modèle d'IA pour chaque tâche (routage Elo appris de l'usage), se répare seul et expose une API compatible OpenAI. Né pour piloter un écran Home Assistant, utilisable partout.",
+			"inLanguage": "fr",
+			"isPartOf": {
+				"@id": "https://auxfilsdesidees.fr/#site"
+			},
+			"primaryImageOfPage": "https://auxfilsdesidees.fr/assets/partage.jpg"
+		},
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{
+					"@type": "ListItem",
+					"position": 1,
+					"name": "Accueil",
+					"item": "https://auxfilsdesidees.fr/"
+				},
+				{
+					"@type": "ListItem",
+					"position": 2,
+					"name": "Moteur IA",
+					"item": "https://auxfilsdesidees.fr/moteur-ia/"
+				}
+			]
+		},
+		{
+			"@type": "SoftwareSourceCode",
+			"name": "vromvrom-engine",
+			"description": "Orchestrateur multi-agents LLM asynchrone avec routage Elo, auto-réparation et API compatible OpenAI.",
+			"codeRepository": "https://github.com/Axellum/vromvrom-engine",
+			"programmingLanguage": [
+				"Python",
+				"TypeScript"
+			],
+			"license": "https://opensource.org/licenses/MIT",
+			"dateCreated": "2026-07-03",
+			"author": {
+				"@id": "https://auxfilsdesidees.fr/#axel"
+			}
+		}
+	]
+}
+</script>
+</head>
+<body>
+<div class="page">
+<header class="haut">
+	<div class="ligne">
+		<a class="marque" href="/">Aux fils des idées</a>
+		<a class="langue" href="/en/ai-engine/" hreflang="en" lang="en">English</a>
+	</div>
+	<nav class="menu" aria-label="Navigation principale"><ul><li><a href="/ecran-home-assistant/">Écran Home Assistant</a></li><li><a href="/vigie/">Vigie</a></li><li><a href="/moteur-ia/" aria-current="page">Moteur IA</a></li><li><a href="/ecrans-meteo-nextion/">Écrans Nextion</a></li><li><a href="/a-propos/">À propos</a></li></ul></nav>
+</header>
+
+<main>
+<nav class="fil" aria-label="Fil d'Ariane"><a href="/">Accueil</a> <span aria-hidden="true">›</span> <span aria-current="page">Moteur IA</span></nav>
+<div class="heros">
+	<div>
+		<span class="etiquette">IA · Python · Home Assistant</span>
+		<h1>Le moteur IA multi-agents</h1>
+		<p class="chapeau">Un orchestrateur qui reçoit une demande, choisit le modèle d'IA le plus adapté, découpe le travail en tâches parallèles et bascule seul sur un autre fournisseur quand l'un tombe. Il est né pour piloter mon écran Home Assistant.</p>
+		<ul class="liens">
+			<li><a class="principal" href="https://github.com/Axellum/vromvrom-engine">Code sur GitHub</a></li>
+			<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/README.fr.md">Lire en français</a></li>
+		</ul>
+	</div>
+	<div class="bloc citation">
+		<h2>En une phrase</h2>
+		<p>« Async multi-agent LLM orchestrator with Elo routing, self-healing, and an OpenAI-compatible Proxy API. Built for Home Assistant, usable everywhere. »</p>
+		<p class="source">Description du dépôt vromvrom-engine.</p>
+	</div>
+</div>
+
+<dl class="faits">
+	<div><dt>Langage</dt><dd>Python 3.11+</dd></div>
+	<div><dt>API</dt><dd>Compatible OpenAI</dd></div>
+	<div><dt>Fournisseurs d'IA</dt><dd>13</dd></div>
+	<div><dt>Licence</dt><dd>MIT</dd></div>
+	<div><dt>Statut</dt><dd>Développement actif</dd></div>
+</dl>
+
+<section class="bloc" aria-labelledby="fonctions">
+	<h2 id="fonctions">Ce qu'il fait</h2>
+	<div class="grille">
+		<div>
+			<h3>Choisir le bon modèle</h3>
+			<p>Un routage en quatre étages : règles simples, petit classifieur, avis d'un modèle, puis un score Elo qui apprend de l'usage quel modèle réussit quel type de tâche.</p>
+		</div>
+		<div>
+			<h3>Travailler en parallèle</h3>
+			<p>Une demande complexe devient un graphe de tâches exécutées en même temps (asyncio).</p>
+		</div>
+		<div>
+			<h3>Se réparer seul</h3>
+			<p>Coupe-circuit, nouvelles tentatives espacées, bascule vers un autre fournisseur selon la disponibilité et le budget.</p>
+		</div>
+		<div>
+			<h3>Se souvenir</h3>
+			<p>Une recherche locale dans les documents (TF-IDF, BM25 et ChromaDB) pour répondre avec le contexte de la maison.</p>
+		</div>
+		<div>
+			<h3>Parler à vos outils</h3>
+			<p>Une API compatible OpenAI (<code>/v1/chat/completions</code>) utilisable depuis Cursor, Cline ou Continue, et des routes dédiées à Home Assistant.</p>
+		</div>
+		<div>
+			<h3>Garder la main</h3>
+			<p>Validation humaine des actions sensibles, système de plugins, travailleurs distants et un tableau de bord (FastAPI et React).</p>
+		</div>
+	</div>
+</section>
+
+<section class="bloc" aria-labelledby="pile">
+	<h2 id="pile">La technique</h2>
+	<ul>
+		<li>Python 3.11+, FastAPI, asyncio, SQLite, ChromaDB, scikit-learn ; tableau de bord en React, Vite et TypeScript.</li>
+		<li>13 fournisseurs d'IA pris en charge, dans le cloud (Gemini, GitHub Models, DeepSeek, Anthropic, Mistral, OpenRouter…) ou en local (LM Studio, Ollama).</li>
+		<li>Quatre stratégies de configuration documentées, une image Docker et docker-compose, des tests pytest et une intégration continue.</li>
+	</ul>
+	<div class="note"><p>Outil personnel partagé tel quel : le tableau de bord a encore des angles vifs, et aucune version n'est publiée pour l'instant.</p></div>
+</section>
+</main>
+
+<footer class="bas">
+	<p>Projets personnels, non commerciaux, faits avec l'aide de l'IA et testés surtout chez moi. Retours bienvenus sur <a href="https://github.com/Axellum">GitHub</a>.</p>
+	<p>Éditeur : Axel Duviella, particulier, à titre non professionnel (France). Contact : <a href="https://github.com/Axellum">github.com/Axellum</a>. Hébergeur : OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/fr/">ovhcloud.com</a>). Ce site ne dépose aucun cookie et ne mesure pas ses visites.</p>
+</footer>
+</div>
+</body>
+</html>
