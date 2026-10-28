@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nouveautés · Aux fils des idées</title>
+    <link>https://auxfilsdesidees.fr/nouveautes/</link>
+    <atom:link href="https://auxfilsdesidees.fr/nouveautes/rss.xml" rel="self" type="application/rss+xml"/>
+    <description>Les versions publiées des projets d&#x27;Axel Duviella : l&#x27;écran Home Assistant, Vigie et le moteur IA.</description>
+    <language>fr</language>
+    <lastBuildDate>Tue, 27 Oct 2026 23:24:39 GMT</lastBuildDate>
+    <item>
+      <title>Vigie API 1.1.0 : La première version publiée, avec son image de conteneur prête à lancer</title>
+      <link>https://github.com/Axellum/vigie-api/releases/tag/v1.1.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/vigie-api/releases/tag/v1.1.0</guid>
+      <pubDate>Tue, 27 Oct 2026 23:24:39 GMT</pubDate>
+      <category>Vigie API</category>
+      <description>La première version publiée, avec son image de conteneur prête à lancer</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.9.0 : Une deuxième carte, plusieurs écrans, Home Assistant en anglais</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.9.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.9.0</guid>
+      <pubDate>Sun, 25 Oct 2026 20:52:06 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Une deuxième carte, plusieurs écrans, Home Assistant en anglais</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.8.1 : Patch de sécurité : verrou thermique anti-surchauffe et présence batterie</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.8.1</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.8.1</guid>
+      <pubDate>Sun, 11 Oct 2026 13:20:19 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Patch de sécurité : verrou thermique anti-surchauffe et présence batterie</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.8.0 : Musique, caméras, suivi, frigos, une fenêtre pour le serveur d&#x27;IA, l&#x27;énergie en pages</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.8.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.8.0</guid>
+      <pubDate>Sat, 10 Oct 2026 20:58:37 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Musique, caméras, suivi, frigos, une fenêtre pour le serveur d&#x27;IA, l&#x27;énergie en pages</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.7.0 : Fichiers Home Assistant par HACS, fenêtres comme un tableau de bord Home Assistant, alertes qui restent lues</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.7.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.7.0</guid>
+      <pubDate>Wed, 07 Oct 2026 12:17:44 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Fichiers Home Assistant par HACS, fenêtres comme un tableau de bord Home Assistant, alertes qui restent lues</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.6.0 : Thèmes, un accueil redessiné, l&#x27;énergie solaire</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.6.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.6.0</guid>
+      <pubDate>Mon, 05 Oct 2026 09:47:16 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Thèmes, un accueil redessiné, l&#x27;énergie solaire</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.5.0 : Le turc à l&#x27;écran, la météo hors de France</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.5.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.5.0</guid>
+      <pubDate>Fri, 02 Oct 2026 18:11:02 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Le turc à l&#x27;écran, la météo hors de France</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.4.0 : Du verre plein dans les fenêtres, un démarrage plus rapide</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.4.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.4.0</guid>
+      <pubDate>Fri, 02 Oct 2026 06:24:54 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Du verre plein dans les fenêtres, un démarrage plus rapide</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.3.2 : Corrections et vérifications issues d&#x27;un audit du code</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.3.2</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.3.2</guid>
+      <pubDate>Thu, 01 Oct 2026 07:22:06 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Corrections et vérifications issues d&#x27;un audit du code</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.3.1 : Une fenêtre pour chaque chauffage ou climatisation</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.3.1</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.3.1</guid>
+      <pubDate>Tue, 29 Sep 2026 21:50:35 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Une fenêtre pour chaque chauffage ou climatisation</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.3.0 : D&#x27;autres maisons : chauffage et climatisation de toute marque, vos propres calendriers</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.3.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.3.0</guid>
+      <pubDate>Tue, 29 Sep 2026 17:44:01 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>D&#x27;autres maisons : chauffage et climatisation de toute marque, vos propres calendriers</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.2.2 : Fournisseurs météo vérifiés avec de vraies données</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.2.2</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.2.2</guid>
+      <pubDate>Tue, 29 Sep 2026 10:17:26 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Fournisseurs météo vérifiés avec de vraies données</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.2.1 : Une carte centrale plus légère, et des corrections (décalage de l&#x27;écran, calendrier)</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.2.1</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.2.1</guid>
+      <pubDate>Tue, 29 Sep 2026 09:58:29 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Une carte centrale plus légère, et des corrections (décalage de l&#x27;écran, calendrier)</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.2.0 : Les pièces, et une installation dans Home Assistant sans rien à remplir</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.2.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.2.0</guid>
+      <pubDate>Mon, 28 Sep 2026 17:49:41 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Les pièces, et une installation dans Home Assistant sans rien à remplir</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.1.0 : Espagnol et italien, installation essayée dans un Home Assistant tout neuf</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.1.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.1.0</guid>
+      <pubDate>Mon, 28 Sep 2026 11:29:19 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Espagnol et italien, installation essayée dans un Home Assistant tout neuf</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.0.1 : Plus de fausse alerte de plantage après une installation, page d&#x27;installation plus claire</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.0.1</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.0.1</guid>
+      <pubDate>Mon, 28 Sep 2026 09:22:04 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Plus de fausse alerte de plantage après une installation, page d&#x27;installation plus claire</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 3.0.0 : Installation depuis le navigateur, choix de vos appareils dans Home Assistant</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.0.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.0.0</guid>
+      <pubDate>Mon, 28 Sep 2026 07:20:39 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Installation depuis le navigateur, choix de vos appareils dans Home Assistant</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 2.2.0 : Français ou anglais, et le fournisseur météo de votre choix</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v2.2.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v2.2.0</guid>
+      <pubDate>Sun, 27 Sep 2026 09:14:32 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Français ou anglais, et le fournisseur météo de votre choix</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 2.1.0 : Plus rapide, plus léger, et un premier pas vers les autres écrans du Tab5</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v2.1.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v2.1.0</guid>
+      <pubDate>Sun, 27 Sep 2026 06:40:27 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Plus rapide, plus léger, et un premier pas vers les autres écrans du Tab5</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 2.0.0 : Mise à jour sans fil chiffrée, un deuxième audit complet et des envois de Home Assistant bien plus légers</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v2.0.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v2.0.0</guid>
+      <pubDate>Fri, 25 Sep 2026 15:38:07 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Mise à jour sans fil chiffrée, un deuxième audit complet et des envois de Home Assistant bien plus légers</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 1.2.0 : Réveil, pilotage depuis Home Assistant, et un audit complet</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.2.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.2.0</guid>
+      <pubDate>Fri, 25 Sep 2026 09:21:14 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Réveil, pilotage depuis Home Assistant, et un audit complet</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 1.1.0 : Arcade, ESPHome 2026.7, et un tableau de bord bien plus rapide</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.1.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.1.0</guid>
+      <pubDate>Thu, 30 Jul 2026 07:18:47 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Arcade, ESPHome 2026.7, et un tableau de bord bien plus rapide</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 1.0.5 : Prête pour le concours : fenêtres en verre v2, télécommande TV, console v2, « Stop » sur l&#x27;appareil</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.0.5</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.0.5</guid>
+      <pubDate>Fri, 17 Jul 2026 06:07:45 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Prête pour le concours : fenêtres en verre v2, télécommande TV, console v2, « Stop » sur l&#x27;appareil</description>
+    </item>
+    <item>
+      <title>Écran Home Assistant 1.0.0 : Première version publiée</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.0.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.0.0</guid>
+      <pubDate>Mon, 06 Jul 2026 18:32:28 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>Première version publiée</description>
+    </item>
+  </channel>
+</rss>

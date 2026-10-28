@@ -5,7 +5,8 @@ Une carte par page, dans sa langue : logo, étiquette et titre de la page à gau
 construire.py les met dans og:image quand elles existent. À relancer quand un titre ou une image du haut change,
 puis python construire.py. Outil de poste (pas dans la CI) : il faut Chrome et Pillow.
 
-  python outils/cartes_partage.py
+  python outils/cartes_partage.py              # toutes les pages
+  python outils/cartes_partage.py nouveautes   # seulement ces paires (les autres images ne bougent pas)
 """
 from __future__ import annotations
 
@@ -106,10 +107,13 @@ def main() -> int:
 	par_paire: dict[str, dict] = {}
 	for page in pages:
 		par_paire.setdefault(page["paire"], {})[page["langue"]] = page
+	choix = set(sys.argv[1:])
 	sortie = ASSETS / "partage"
 	sortie.mkdir(exist_ok=True)
 	with tempfile.TemporaryDirectory() as tmp:
 		for page in pages:
+			if choix and page["paire"] not in choix:
+				continue
 			source = Path(tmp) / "carte.html"
 			source.write_text(carte(page, par_paire), encoding="utf-8")
 			png = Path(tmp) / "carte.png"

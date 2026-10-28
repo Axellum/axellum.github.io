@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>What&#x27;s new · Aux fils des idées</title>
+    <link>https://auxfilsdesidees.fr/en/news/</link>
+    <atom:link href="https://auxfilsdesidees.fr/en/news/rss.xml" rel="self" type="application/rss+xml"/>
+    <description>Released versions of Axel Duviella&#x27;s projects: the Home Assistant display, Vigie and the AI engine.</description>
+    <language>en</language>
+    <lastBuildDate>Tue, 27 Oct 2026 23:24:39 GMT</lastBuildDate>
+    <item>
+      <title>Vigie API 1.1.0: The first tagged release, with a ready-to-run container image</title>
+      <link>https://github.com/Axellum/vigie-api/releases/tag/v1.1.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/vigie-api/releases/tag/v1.1.0</guid>
+      <pubDate>Tue, 27 Oct 2026 23:24:39 GMT</pubDate>
+      <category>Vigie API</category>
+      <description>The first tagged release, with a ready-to-run container image</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.9.0: A second board, several screens, Home Assistant in English</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.9.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.9.0</guid>
+      <pubDate>Sun, 25 Oct 2026 20:52:06 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>A second board, several screens, Home Assistant in English</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.8.1: Security patch: thermal lock against overheating, and battery presence</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.8.1</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.8.1</guid>
+      <pubDate>Sun, 11 Oct 2026 13:20:19 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Security patch: thermal lock against overheating, and battery presence</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.8.0: Music, cameras, tracking, fridges, an AI server popup, energy in pages</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.8.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.8.0</guid>
+      <pubDate>Sat, 10 Oct 2026 20:58:37 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Music, cameras, tracking, fridges, an AI server popup, energy in pages</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.7.0: Home Assistant files with HACS, popups like a Home Assistant dashboard, alerts that stay read</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.7.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.7.0</guid>
+      <pubDate>Wed, 07 Oct 2026 12:17:44 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Home Assistant files with HACS, popups like a Home Assistant dashboard, alerts that stay read</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.6.0: Themes, a redrawn home screen, solar energy</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.6.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.6.0</guid>
+      <pubDate>Mon, 05 Oct 2026 09:47:16 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Themes, a redrawn home screen, solar energy</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.5.0: Turkish on screen, weather outside France</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.5.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.5.0</guid>
+      <pubDate>Fri, 02 Oct 2026 18:11:02 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Turkish on screen, weather outside France</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.4.0: Solid glass in the popups, a faster start</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.4.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.4.0</guid>
+      <pubDate>Fri, 02 Oct 2026 06:24:54 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Solid glass in the popups, a faster start</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.3.2: Fixes and checks from a code audit</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.3.2</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.3.2</guid>
+      <pubDate>Thu, 01 Oct 2026 07:22:06 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Fixes and checks from a code audit</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.3.1: A popup for every climate</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.3.1</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.3.1</guid>
+      <pubDate>Tue, 29 Sep 2026 21:50:35 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>A popup for every climate</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.3.0: Other homes: climate of any brand, your own calendars</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.3.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.3.0</guid>
+      <pubDate>Tue, 29 Sep 2026 17:44:01 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Other homes: climate of any brand, your own calendars</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.2.2: Weather providers checked with real data</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.2.2</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.2.2</guid>
+      <pubDate>Tue, 29 Sep 2026 10:17:26 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Weather providers checked with real data</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.2.1: A lighter centre card, and fixes (screen shift, calendar)</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.2.1</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.2.1</guid>
+      <pubDate>Tue, 29 Sep 2026 09:58:29 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>A lighter centre card, and fixes (screen shift, calendar)</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.2.0: Rooms, and a Home Assistant install with nothing to fill in</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.2.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.2.0</guid>
+      <pubDate>Mon, 28 Sep 2026 17:49:41 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Rooms, and a Home Assistant install with nothing to fill in</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.1.0: Spanish and Italian, install tested in a brand-new Home Assistant</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.1.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.1.0</guid>
+      <pubDate>Mon, 28 Sep 2026 11:29:19 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Spanish and Italian, install tested in a brand-new Home Assistant</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.0.1: No false crash alert after an install, clearer install page</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.0.1</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.0.1</guid>
+      <pubDate>Mon, 28 Sep 2026 09:22:04 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>No false crash alert after an install, clearer install page</description>
+    </item>
+    <item>
+      <title>Home Assistant display 3.0.0: Install from the browser, pick your devices in Home Assistant</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.0.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.0.0</guid>
+      <pubDate>Mon, 28 Sep 2026 07:20:39 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Install from the browser, pick your devices in Home Assistant</description>
+    </item>
+    <item>
+      <title>Home Assistant display 2.2.0: French or English, and the weather provider of your choice</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v2.2.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v2.2.0</guid>
+      <pubDate>Sun, 27 Sep 2026 09:14:32 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>French or English, and the weather provider of your choice</description>
+    </item>
+    <item>
+      <title>Home Assistant display 2.1.0: Faster, lighter, and a first step toward the other Tab5 screens</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v2.1.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v2.1.0</guid>
+      <pubDate>Sun, 27 Sep 2026 06:40:27 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Faster, lighter, and a first step toward the other Tab5 screens</description>
+    </item>
+    <item>
+      <title>Home Assistant display 2.0.0: Encrypted OTA, a second full audit, and a much lighter push</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v2.0.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v2.0.0</guid>
+      <pubDate>Fri, 25 Sep 2026 15:38:07 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Encrypted OTA, a second full audit, and a much lighter push</description>
+    </item>
+    <item>
+      <title>Home Assistant display 1.2.0: Alarm clock, remote control from Home Assistant, and a full audit</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.2.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.2.0</guid>
+      <pubDate>Fri, 25 Sep 2026 09:21:14 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Alarm clock, remote control from Home Assistant, and a full audit</description>
+    </item>
+    <item>
+      <title>Home Assistant display 1.1.0: Arcade, ESPHome 2026.7, and a much faster dashboard</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.1.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.1.0</guid>
+      <pubDate>Thu, 30 Jul 2026 07:18:47 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Arcade, ESPHome 2026.7, and a much faster dashboard</description>
+    </item>
+    <item>
+      <title>Home Assistant display 1.0.5: Contest-ready: glass popups v2, TV remote, console v2, on-device Stop</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.0.5</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.0.5</guid>
+      <pubDate>Fri, 17 Jul 2026 06:07:45 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>Contest-ready: glass popups v2, TV remote, console v2, on-device Stop</description>
+    </item>
+    <item>
+      <title>Home Assistant display 1.0.0: First tagged release</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.0.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.0.0</guid>
+      <pubDate>Mon, 06 Jul 2026 18:32:28 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>First tagged release</description>
+    </item>
+  </channel>
+</rss>

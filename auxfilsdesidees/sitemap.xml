@@ -48,6 +48,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/ai-engine/"/>
   </url>
   <url>
+    <loc>https://auxfilsdesidees.fr/nouveautes/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/nouveautes/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/news/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/news/"/>
+  </url>
+  <url>
     <loc>https://auxfilsdesidees.fr/m5stack-tab5/</loc>
     <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/m5stack-tab5/"/>
@@ -130,6 +137,13 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/moteur-ia/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/ai-engine/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/ai-engine/"/>
+  </url>
+  <url>
+    <loc>https://auxfilsdesidees.fr/en/news/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/nouveautes/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/news/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/news/"/>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/m5stack-tab5/</loc>
