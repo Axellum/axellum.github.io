@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vigie : les alertes du monde au même endroit (site, API, Home Assistant, écran) · Aux fils des idées</title>
-<meta name="description" content="Vigie réunit sur une carte les vigilances météo officielles de 48 pays et les catastrophes naturelles du monde (séismes, cyclones, volcans, crues, feux), à partir de 22 sources publiques. Site gratuit, API ouverte, intégration Home Assistant et écran ESP32-P4.">
+<title>Vigie : vigilances et catastrophes du monde sur une carte</title>
+<meta name="description" content="Les vigilances météo officielles de 48 pays et les catastrophes naturelles du monde sur une carte, de 22 sources publiques. Site gratuit, API ouverte.">
 <link rel="canonical" href="https://auxfilsdesidees.fr/vigie/">
 <link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/vigie/">
 <link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie/">
@@ -13,10 +13,13 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:site_name" content="Aux fils des idées">
-<meta property="og:title" content="Vigie : les alertes du monde au même endroit (site, API, Home Assistant, écran) · Aux fils des idées">
-<meta property="og:description" content="Vigie réunit sur une carte les vigilances météo officielles de 48 pays et les catastrophes naturelles du monde (séismes, cyclones, volcans, crues, feux), à partir de 22 sources publiques. Site gratuit, API ouverte, intégration Home Assistant et écran ESP32-P4.">
+<meta property="og:title" content="Vigie : vigilances et catastrophes du monde sur une carte">
+<meta property="og:description" content="Les vigilances météo officielles de 48 pays et les catastrophes naturelles du monde sur une carte, de 22 sources publiques. Site gratuit, API ouverte.">
 <meta property="og:url" content="https://auxfilsdesidees.fr/vigie/">
-<meta property="og:image" content="https://auxfilsdesidees.fr/assets/vigie-fr.webp">
+<meta property="og:image" content="https://auxfilsdesidees.fr/assets/partage/fr-vigie.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Vigie : vigilances et catastrophes du monde sur une carte">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0e1319" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
@@ -52,13 +55,14 @@
 			"@type": "WebPage",
 			"@id": "https://auxfilsdesidees.fr/vigie/#page",
 			"url": "https://auxfilsdesidees.fr/vigie/",
-			"name": "Vigie : les alertes du monde au même endroit (site, API, Home Assistant, écran) · Aux fils des idées",
-			"description": "Vigie réunit sur une carte les vigilances météo officielles de 48 pays et les catastrophes naturelles du monde (séismes, cyclones, volcans, crues, feux), à partir de 22 sources publiques. Site gratuit, API ouverte, intégration Home Assistant et écran ESP32-P4.",
+			"name": "Vigie : vigilances et catastrophes du monde sur une carte",
+			"description": "Les vigilances météo officielles de 48 pays et les catastrophes naturelles du monde sur une carte, de 22 sources publiques. Site gratuit, API ouverte.",
 			"inLanguage": "fr",
 			"isPartOf": {
 				"@id": "https://auxfilsdesidees.fr/#site"
 			},
-			"primaryImageOfPage": "https://auxfilsdesidees.fr/assets/vigie-fr.webp"
+			"primaryImageOfPage": "https://auxfilsdesidees.fr/assets/vigie-fr.webp",
+			"dateModified": "2026-10-28"
 		},
 		{
 			"@type": "BreadcrumbList",
@@ -158,7 +162,7 @@
 			<li><a href="https://github.com/Axellum/vigie-api">L'API sur GitHub</a></li>
 		</ul>
 	</div>
-	<figure><img src="/assets/vigie-fr.webp" width="960" height="600" alt="Vigie : la carte du monde avec les alertes en cours, et la liste des alertes par niveau à gauche"></figure>
+	<figure><img fetchpriority="high" src="/assets/vigie-fr.webp" width="960" height="600" alt="Vigie : la carte du monde avec les alertes en cours, et la liste des alertes par niveau à gauche"></figure>
 </div>
 
 <dl class="faits">

@@ -3,7 +3,9 @@
 
 Chaque fichier de contenu commence par un en-tête « clé: valeur » terminé par une ligne « --- », puis le corps HTML.
 Clés : chemin (adresse de la page, ex. /vigie/), paire (identifiant commun à la page FR et à la page EN),
-titre (balise <title>), description, image (partage, sous /assets/), fil (nom dans le fil d'Ariane, absent sur
+titre (balise <title>, 60 caractères au plus : Google coupe au-delà), description (155 au plus), maj (date de la
+dernière vraie mise à jour, AAAA-MM-JJ : <lastmod> du sitemap), image (image principale, sous /assets/ ; l'image de
+partage est assets/partage/<langue>-<paire>.jpg si elle existe, faite par outils/cartes_partage.py), fil (nom dans le fil d'Ariane, absent sur
 l'accueil), ordre (place dans la navigation, absent = hors navigation), menu (nom dans la navigation),
 parent (paire de la page du projet : la page est alors une sous-page, rangée par « ordre » dans le menu de gauche),
 logo (page d'un projet : son logo sous /assets/, montré devant le nom du projet au-dessus des onglets).
@@ -118,6 +120,9 @@ def lire(fichier: Path, langue: str) -> dict:
 	for cle in ("chemin", "paire", "titre", "description"):
 		if not page.get(cle):
 			sys.exit(f"{fichier} : clé « {cle} » manquante")
+	for cle, limite in (("titre", 60), ("description", 155)):
+		if len(page[cle]) > limite:
+			sys.exit(f"{fichier} : « {cle} » de {len(page[cle])} caractères, {limite} au plus (Google coupe au-delà)")
 	page["ld"] = [json.loads(bloc) for bloc in re.findall(r"<!--ld(.*?)ld-->", corps, re.S)]
 	page["corps"] = re.sub(r"\s*<!--ld.*?ld-->\s*", "\n", corps, flags=re.S).strip("\n")
 	return page
@@ -252,6 +257,13 @@ def rendre(page: dict, pages: list[dict], par_paire: dict) -> str:
 	autre = en if page["langue"] == "fr" else fr
 	url = SITE + page["chemin"]
 	image = SITE + "/assets/" + (page.get("image") or "partage.jpg")
+	carte = f"partage/{page['langue']}-{page['paire']}.jpg"
+	if (ICI / "assets" / carte).exists():
+		partage = (f'<meta property="og:image" content="{SITE}/assets/{carte}">\n'
+			'<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n'
+			f'<meta property="og:image:alt" content="{html.escape(page["titre"])}">')
+	else:
+		partage = f'<meta property="og:image" content="{image}">'
 	projet = projet_de(page, par_paire)
 	visible, ld_fil = fil_ariane(page, projet)
 	colonne, pastille = sommaire(page, projet)
@@ -276,6 +288,8 @@ def rendre(page: dict, pages: list[dict], par_paire: dict) -> str:
 			"primaryImageOfPage": image,
 		},
 	]
+	if page.get("maj"):
+		graphe[-1]["dateModified"] = page["maj"]
 	if ld_fil:
 		graphe.append(ld_fil)
 	for objet in page["ld"]:
@@ -302,7 +316,7 @@ def rendre(page: dict, pages: list[dict], par_paire: dict) -> str:
 <meta property="og:title" content="{e(page["titre"])}">
 <meta property="og:description" content="{e(page["description"])}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{image}">
+{partage}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0e1319" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
@@ -340,6 +354,8 @@ def sitemap(pages: list[dict], par_paire: dict) -> str:
 		paire = par_paire[page["paire"]]
 		lignes.append("  <url>")
 		lignes.append(f"    <loc>{SITE}{page['chemin']}</loc>")
+		if page.get("maj"):
+			lignes.append(f"    <lastmod>{page['maj']}</lastmod>")
 		for langue in LANGUES:
 			lignes.append(f'    <xhtml:link rel="alternate" hreflang="{langue}" href="{SITE}{paire[langue]["chemin"]}"/>')
 		lignes.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{SITE}{paire["en"]["chemin"]}"/>')

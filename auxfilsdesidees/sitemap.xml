@@ -2,12 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://auxfilsdesidees.fr/a-propos/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/a-propos/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/about/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/about/"/>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/"/>
@@ -21,6 +23,7 @@
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/ecran-home-assistant/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/ecran-home-assistant/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/home-assistant-display/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/home-assistant-display/"/>
@@ -39,12 +42,14 @@
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/moteur-ia/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/moteur-ia/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/ai-engine/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/ai-engine/"/>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/m5stack-tab5/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/m5stack-tab5/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/m5stack-tab5/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/m5stack-tab5/"/>
@@ -54,6 +59,7 @@
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/ecran-vigie/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/ecran-vigie/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie-display/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie-display/"/>
@@ -62,6 +68,7 @@
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/vigie/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/vigie/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie/"/>
@@ -69,6 +76,7 @@
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/waveshare-esp32-p4-7b/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/waveshare-esp32-p4-7b/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/"/>
@@ -78,12 +86,14 @@
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/about/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/a-propos/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/about/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/about/"/>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/"/>
@@ -97,6 +107,7 @@
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/home-assistant-display/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/ecran-home-assistant/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/home-assistant-display/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/home-assistant-display/"/>
@@ -115,12 +126,14 @@
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/ai-engine/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/moteur-ia/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/ai-engine/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/ai-engine/"/>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/m5stack-tab5/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/m5stack-tab5/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/m5stack-tab5/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/m5stack-tab5/"/>
@@ -130,6 +143,7 @@
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/vigie-display/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/ecran-vigie/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie-display/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie-display/"/>
@@ -138,6 +152,7 @@
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/vigie/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/vigie/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie/"/>
@@ -145,6 +160,7 @@
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/</loc>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/waveshare-esp32-p4-7b/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/"/>
