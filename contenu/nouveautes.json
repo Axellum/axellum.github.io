@@ -1,0 +1,290 @@
+[
+	{
+		"cle": "vigie-api@v1.1.0",
+		"projet": "vigie",
+		"depot": "vigie-api",
+		"version": "1.1.0",
+		"date": "2026-10-27T23:24:39Z",
+		"url": "https://github.com/Axellum/vigie-api/releases/tag/v1.1.0",
+		"titre": {
+			"en": "The first tagged release, with a ready-to-run container image",
+			"fr": "La première version publiée, avec son image de conteneur prête à lancer"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.9.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.9.0",
+		"date": "2026-10-25T20:52:06Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.9.0",
+		"titre": {
+			"en": "A second board, several screens, Home Assistant in English",
+			"fr": "Une deuxième carte, plusieurs écrans, Home Assistant en anglais"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.8.1",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.8.1",
+		"date": "2026-10-11T13:20:19Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.8.1",
+		"titre": {
+			"en": "Security patch: thermal lock against overheating, and battery presence",
+			"fr": "Patch de sécurité : verrou thermique anti-surchauffe et présence batterie"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.8.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.8.0",
+		"date": "2026-10-10T20:58:37Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.8.0",
+		"titre": {
+			"en": "Music, cameras, tracking, fridges, an AI server popup, energy in pages",
+			"fr": "Musique, caméras, suivi, frigos, une fenêtre pour le serveur d'IA, l'énergie en pages"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.7.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.7.0",
+		"date": "2026-10-07T12:17:44Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.7.0",
+		"titre": {
+			"en": "Home Assistant files with HACS, popups like a Home Assistant dashboard, alerts that stay read",
+			"fr": "Fichiers Home Assistant par HACS, fenêtres comme un tableau de bord Home Assistant, alertes qui restent lues"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.6.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.6.0",
+		"date": "2026-10-05T09:47:16Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.6.0",
+		"titre": {
+			"en": "Themes, a redrawn home screen, solar energy",
+			"fr": "Thèmes, un accueil redessiné, l'énergie solaire"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.5.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.5.0",
+		"date": "2026-10-02T18:11:02Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.5.0",
+		"titre": {
+			"en": "Turkish on screen, weather outside France",
+			"fr": "Le turc à l'écran, la météo hors de France"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.4.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.4.0",
+		"date": "2026-10-02T06:24:54Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.4.0",
+		"titre": {
+			"en": "Solid glass in the popups, a faster start",
+			"fr": "Du verre plein dans les fenêtres, un démarrage plus rapide"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.3.2",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.3.2",
+		"date": "2026-10-01T07:22:06Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.3.2",
+		"titre": {
+			"en": "Fixes and checks from a code audit",
+			"fr": "Corrections et vérifications issues d'un audit du code"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.3.1",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.3.1",
+		"date": "2026-09-29T21:50:35Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.3.1",
+		"titre": {
+			"en": "A popup for every climate",
+			"fr": "Une fenêtre pour chaque chauffage ou climatisation"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.3.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.3.0",
+		"date": "2026-09-29T17:44:01Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.3.0",
+		"titre": {
+			"en": "Other homes: climate of any brand, your own calendars",
+			"fr": "D'autres maisons : chauffage et climatisation de toute marque, vos propres calendriers"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.2.2",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.2.2",
+		"date": "2026-09-29T10:17:26Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.2.2",
+		"titre": {
+			"en": "Weather providers checked with real data",
+			"fr": "Fournisseurs météo vérifiés avec de vraies données"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.2.1",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.2.1",
+		"date": "2026-09-29T09:58:29Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.2.1",
+		"titre": {
+			"en": "A lighter centre card, and fixes (screen shift, calendar)",
+			"fr": "Une carte centrale plus légère, et des corrections (décalage de l'écran, calendrier)"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.2.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.2.0",
+		"date": "2026-09-28T17:49:41Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.2.0",
+		"titre": {
+			"en": "Rooms, and a Home Assistant install with nothing to fill in",
+			"fr": "Les pièces, et une installation dans Home Assistant sans rien à remplir"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.1.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.1.0",
+		"date": "2026-09-28T11:29:19Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.1.0",
+		"titre": {
+			"en": "Spanish and Italian, install tested in a brand-new Home Assistant",
+			"fr": "Espagnol et italien, installation essayée dans un Home Assistant tout neuf"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.0.1",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.0.1",
+		"date": "2026-09-28T09:22:04Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.0.1",
+		"titre": {
+			"en": "No false crash alert after an install, clearer install page",
+			"fr": "Plus de fausse alerte de plantage après une installation, page d'installation plus claire"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.0.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.0.0",
+		"date": "2026-09-28T07:20:39Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.0.0",
+		"titre": {
+			"en": "Install from the browser, pick your devices in Home Assistant",
+			"fr": "Installation depuis le navigateur, choix de vos appareils dans Home Assistant"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v2.2.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "2.2.0",
+		"date": "2026-09-27T09:14:32Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v2.2.0",
+		"titre": {
+			"en": "French or English, and the weather provider of your choice",
+			"fr": "Français ou anglais, et le fournisseur météo de votre choix"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v2.1.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "2.1.0",
+		"date": "2026-09-27T06:40:27Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v2.1.0",
+		"titre": {
+			"en": "Faster, lighter, and a first step toward the other Tab5 screens",
+			"fr": "Plus rapide, plus léger, et un premier pas vers les autres écrans du Tab5"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v2.0.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "2.0.0",
+		"date": "2026-09-25T15:38:07Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v2.0.0",
+		"titre": {
+			"en": "Encrypted OTA, a second full audit, and a much lighter push",
+			"fr": "Mise à jour sans fil chiffrée, un deuxième audit complet et des envois de Home Assistant bien plus légers"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v1.2.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "1.2.0",
+		"date": "2026-09-25T09:21:14Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.2.0",
+		"titre": {
+			"en": "Alarm clock, remote control from Home Assistant, and a full audit",
+			"fr": "Réveil, pilotage depuis Home Assistant, et un audit complet"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v1.1.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "1.1.0",
+		"date": "2026-07-30T07:18:47Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.1.0",
+		"titre": {
+			"en": "Arcade, ESPHome 2026.7, and a much faster dashboard",
+			"fr": "Arcade, ESPHome 2026.7, et un tableau de bord bien plus rapide"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v1.0.5",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "1.0.5",
+		"date": "2026-07-17T06:07:45Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.0.5",
+		"titre": {
+			"en": "Contest-ready: glass popups v2, TV remote, console v2, on-device Stop",
+			"fr": "Prête pour le concours : fenêtres en verre v2, télécommande TV, console v2, « Stop » sur l'appareil"
+		}
+	},
+	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v1.0.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "1.0.0",
+		"date": "2026-07-06T18:32:28Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v1.0.0",
+		"titre": {
+			"en": "First tagged release",
+			"fr": "Première version publiée"
+		}
+	}
+]

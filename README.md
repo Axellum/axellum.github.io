@@ -11,6 +11,10 @@ Les pages des projets d'Axel Duviella, en français et en anglais (`/en/…`).
 - **Images de partage** : `python outils/cartes_partage.py` (Chrome et Pillow, sur le poste) refait
   `assets/partage/<langue>-<paire>.jpg` (1200 × 630) à partir du titre et de l'image du haut de chaque page ; à relancer
   quand l'un des deux change, puis `python construire.py`.
+- **Nouveautés** : après une release GitHub d'un projet, `python outils/nouveautes.py` met à jour
+  `contenu/nouveautes.json` (versions publiées, hors préversions) ; écrire le titre français qu'il signale, puis
+  `python construire.py` refait la page `/nouveautes/` (`/en/news/`), les trois dernières versions de l'accueil et les
+  flux RSS (`rss.xml` dans le dossier de chaque page). La CI ne lit que le fichier, jamais GitHub.
 
 - **auxfilsdesidees.fr** : servie par le Caddy du serveur de Vigie. `./deploy.sh` y copie toutes les pages, les images,
   `auxfilsdesidees/robots.txt`, la clé IndexNow (`auxfilsdesidees/<clé>.txt`) et `auxfilsdesidees/sitemap.xml` ;

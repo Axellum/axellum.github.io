@@ -9,16 +9,22 @@ partage est assets/partage/<langue>-<paire>.jpg si elle existe, faite par outils
 l'accueil), ordre (place dans la navigation, absent = hors navigation), menu (nom dans la navigation),
 parent (paire de la page du projet : la page est alors une sous-page, rangée par « ordre » dans le menu de gauche),
 logo (page d'un projet : son logo sous /assets/, montré devant le nom du projet au-dessus des onglets).
-Menu du haut : les projets. Menu de gauche : les pages du projet et les sections (<h2 id>) de la page ouverte.
+Menu du haut : les projets. Sous le fil d'Ariane : les onglets du projet ; à droite, le sommaire (<h2 id>) de la page.
 Un bloc <!--ld … ld--> dans le corps est un objet JSON-LD de plus, ajouté au graphe de la page.
+Nouveautés : contenu/nouveautes.json (versions publiées, tenu à jour par outils/nouveautes.py). Dans un corps,
+<!--nouveautes--> devient la liste complète par mois, <!--nouveautes 3--> les trois dernières ; la page de paire
+« nouveautes » porte aussi le flux RSS de sa langue (rss.xml dans son dossier).
 
-  python construire.py            # écrit les pages et auxfilsdesidees/sitemap.xml
+  python construire.py            # écrit les pages, les flux RSS et auxfilsdesidees/sitemap.xml
   python construire.py --verifier # échoue si une page écrite diffère de ce que le contenu produit (CI)
 """
 from __future__ import annotations
 
+import datetime
+import email.utils
 import hashlib
 import html
+import itertools
 import json
 import re
 import sys
@@ -42,6 +48,15 @@ TEXTES = {
 		"ailleurs": "Ailleurs",
 		"doc_tab5": "Doc du Tab5",
 		"devise": "Des écrans et des outils pour la maison, faits avec l'IA et partagés au cas où.",
+		"nouveautes": "Nouveautés",
+		"notes": "Notes de version",
+		"flux": "Flux RSS",
+		"flux_titre": "Nouveautés · Aux fils des idées",
+		"flux_description": "Les versions publiées des projets d'Axel Duviella : l'écran Home Assistant, Vigie et le moteur IA.",
+		"deux_points": " : ",
+		"mois": ("janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre",
+			"novembre", "décembre"),
+		"mois_court": ("janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."),
 		"locale": "fr_FR",
 		"pied": (
 			"<p>Projets personnels, non commerciaux, faits avec l'aide de l'IA et testés surtout chez moi. "
@@ -66,6 +81,15 @@ TEXTES = {
 		"ailleurs": "Elsewhere",
 		"doc_tab5": "Tab5 docs",
 		"devise": "Screens and tools for the home, made with AI and shared in case they help.",
+		"nouveautes": "What's new",
+		"notes": "Release notes",
+		"flux": "RSS feed",
+		"flux_titre": "What's new · Aux fils des idées",
+		"flux_description": "Released versions of Axel Duviella's projects: the Home Assistant display, Vigie and the AI engine.",
+		"deux_points": ": ",
+		"mois": ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+			"November", "December"),
+		"mois_court": ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"),
 		"locale": "en_US",
 		"pied": (
 			"<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. "
@@ -106,6 +130,10 @@ PERSONNE = {
 	"url": f"{SITE}/",
 	"sameAs": ["https://github.com/Axellum"],
 }
+NOUVEAUTES = json.loads((ICI / "contenu" / "nouveautes.json").read_text(encoding="utf-8"))
+# Nom d'un dépôt dans les nouveautés, quand ce n'est pas celui de la page de son projet
+NOMS_DEPOTS = {"vigie-api": "Vigie API", "vigie-web": "Vigie Web", "vigie-display": "Vigie display"}
+FLUX = "rss.xml"
 
 
 def lire(fichier: Path, langue: str) -> dict:
@@ -210,6 +238,8 @@ def pied(page: dict, pages: list[dict]) -> str:
 	projets = sorted((p for p in pages if p["langue"] == page["langue"] and p.get("ordre") and not p.get("parent")),
 		key=lambda p: int(p["ordre"]))
 	liens = "".join(f'<li><a href="{p["chemin"]}">{html.escape(p.get("menu") or p["fil"])}</a></li>' for p in projets)
+	nouveautes = next(p for p in pages if p["paire"] == "nouveautes" and p["langue"] == page["langue"])
+	liens += f'<li><a href="{nouveautes["chemin"]}">{t["nouveautes"]}</a></li>'
 	return (
 		'<footer class="bas">\n'
 		'\t<div class="page">\n'
@@ -219,11 +249,94 @@ def pied(page: dict, pages: list[dict]) -> str:
 		f'\t\t\t<nav aria-label="{t["ailleurs"]}"><p class="bas-titre">{t["ailleurs"]}</p><ul>'
 		'<li><a href="https://github.com/Axellum">GitHub</a></li>'
 		'<li><a href="https://vigie.auxfilsdesidees.fr/">Vigie</a></li>'
-		'<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/">' + t["doc_tab5"] + '</a></li></ul></nav>\n'
+		'<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/">' + t["doc_tab5"] + '</a></li>'
+		f'<li><a href="{nouveautes["chemin"]}{FLUX}">{t["flux"]}</a></li></ul></nav>\n'
 		'\t\t</div>\n'
 		f'\t\t{t["pied"]}\n'
 		'\t</div>\n'
 		'</footer>'
+	)
+
+
+def nom_version(e: dict, langue: str, par_paire: dict) -> tuple[str, str, dict]:
+	"""(« Écran Home Assistant 3.9.0 », titre dans la langue ou à défaut en anglais, page du projet)."""
+	projet = par_paire[e["projet"]][langue]
+	nom = NOMS_DEPOTS.get(e["depot"], projet.get("menu") or projet["fil"])
+	return f'{nom} {e["version"]}', e["titre"].get(langue) or e["titre"]["en"], projet
+
+
+def nouveaute(e: dict, langue: str, par_paire: dict) -> str:
+	t = TEXTES[langue]
+	nom, titre, projet = nom_version(e, langue, par_paire)
+	annee, mois, jour = e["date"][:10].split("-")
+	langue_titre = "" if e["titre"].get(langue) else ' lang="en"'
+	resume = f'\t\t\t\t<p{langue_titre}>{html.escape(titre)}</p>\n' if titre else ""
+	return (
+		'\t\t<li>\n'
+		f'\t\t\t<time datetime="{e["date"][:10]}">{int(jour)} {t["mois_court"][int(mois) - 1]} {annee}</time>\n'
+		'\t\t\t<div>\n'
+		f'\t\t\t\t<strong><a href="{projet["chemin"]}">{html.escape(nom.rsplit(" ", 1)[0])}</a> {e["version"]}</strong>\n{resume}'
+		f'\t\t\t\t<a href="{e["url"]}">{t["notes"]}</a>\n'
+		'\t\t\t</div>\n'
+		'\t\t</li>\n'
+	)
+
+
+def deplier_nouveautes(corps: str, langue: str, par_paire: dict) -> str:
+	"""<!--nouveautes 3--> : les trois dernières versions ; <!--nouveautes--> : toutes, une section par mois."""
+	t = TEXTES[langue]
+
+	def liste(m: re.Match) -> str:
+		if m.group(1):
+			return "<ul>\n" + "".join(nouveaute(e, langue, par_paire) for e in NOUVEAUTES[:int(m.group(1))]) + "\t</ul>"
+		sections = []
+		for mois, groupe in itertools.groupby(NOUVEAUTES, key=lambda e: e["date"][:7]):
+			annee, numero = mois.split("-")
+			nom = f'{t["mois"][int(numero) - 1].capitalize()} {annee}'
+			sections.append(
+				f'<section class="bloc journal" aria-labelledby="m-{mois}">\n\t<h2 id="m-{mois}">{nom}</h2>\n\t<ul>\n'
+				+ "".join(nouveaute(e, langue, par_paire) for e in groupe) + "\t</ul>\n</section>"
+			)
+		return "\n\n".join(sections)
+
+	return re.sub(r"<!--nouveautes(?: (\d+))?-->", liste, corps)
+
+
+def flux_rss(langue: str, par_paire: dict) -> str:
+	"""Flux RSS 2.0 des versions publiées, dans une langue ; daté de la dernière version (stable d'une construction à l'autre)."""
+	t = TEXTES[langue]
+	page = par_paire["nouveautes"][langue]
+	x = html.escape
+
+	def date822(iso: str) -> str:
+		return email.utils.format_datetime(datetime.datetime.fromisoformat(iso.replace("Z", "+00:00")), usegmt=True)
+
+	articles = []
+	for e in NOUVEAUTES:
+		nom, titre, _ = nom_version(e, langue, par_paire)
+		articles.append(
+			"    <item>\n"
+			f"      <title>{x(nom + (t['deux_points'] + titre if titre else ''))}</title>\n"
+			f"      <link>{e['url']}</link>\n"
+			f"      <guid isPermaLink=\"true\">{e['url']}</guid>\n"
+			f"      <pubDate>{date822(e['date'])}</pubDate>\n"
+			f"      <category>{x(nom.rsplit(' ', 1)[0])}</category>\n"
+			f"      <description>{x(titre or nom)}</description>\n"
+			"    </item>"
+		)
+	return (
+		'<?xml version="1.0" encoding="UTF-8"?>\n'
+		'<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n'
+		"  <channel>\n"
+		f"    <title>{x(t['flux_titre'])}</title>\n"
+		f"    <link>{SITE}{page['chemin']}</link>\n"
+		f'    <atom:link href="{SITE}{page["chemin"]}{FLUX}" rel="self" type="application/rss+xml"/>\n'
+		f"    <description>{x(t['flux_description'])}</description>\n"
+		f"    <language>{langue}</language>\n"
+		f"    <lastBuildDate>{date822(NOUVEAUTES[0]['date'])}</lastBuildDate>\n"
+		+ "\n".join(articles) + "\n"
+		"  </channel>\n"
+		"</rss>\n"
 	)
 
 
@@ -309,6 +422,7 @@ def rendre(page: dict, pages: list[dict], par_paire: dict) -> str:
 <link rel="alternate" hreflang="fr" href="{SITE}{fr["chemin"]}">
 <link rel="alternate" hreflang="en" href="{SITE}{en["chemin"]}">
 <link rel="alternate" hreflang="x-default" href="{SITE}{en["chemin"]}">
+<link rel="alternate" type="application/rss+xml" title="{e(t["flux_titre"])}" href="{par_paire["nouveautes"][page["langue"]]["chemin"]}{FLUX}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="{t["locale"]}">
 <meta property="og:locale:alternate" content="{autre_locale}">
@@ -331,7 +445,7 @@ def rendre(page: dict, pages: list[dict], par_paire: dict) -> str:
 
 <div class="page{" avec-sommaire" if colonne else ""}">
 <main id="contenu">
-{visible}{onglets(page, pages, projet)}{page["corps"]}
+{visible}{onglets(page, pages, projet)}{deplier_nouveautes(page["corps"], page["langue"], par_paire)}
 </main>
 {colonne}</div>
 {pastille}
@@ -376,8 +490,14 @@ def main() -> int:
 	for paire, versions in par_paire.items():
 		if set(versions) != set(LANGUES):
 			sys.exit(f"page « {paire} » : il manque une langue ({', '.join(sorted(versions))})")
+	# Une page qui montre les nouveautés est à jour de la dernière version publiée
+	for page in pages:
+		if "<!--nouveautes" in page["corps"]:
+			page["maj"] = max(page.get("maj", ""), NOUVEAUTES[0]["date"][:10])
 	attendu = {sortie(p["chemin"]): rendre(p, pages, par_paire) for p in pages}
 	attendu[ICI / "auxfilsdesidees" / "sitemap.xml"] = sitemap(pages, par_paire)
+	for langue in LANGUES:
+		attendu[ICI / par_paire["nouveautes"][langue]["chemin"].strip("/") / FLUX] = flux_rss(langue, par_paire)
 	ecarts = []
 	for fichier, texte in attendu.items():
 		actuel = fichier.read_text(encoding="utf-8") if fichier.exists() else None
