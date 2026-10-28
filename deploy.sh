@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Publie la page des projets sur auxfilsdesidees.fr (serveur de Vigie, Caddy) :
+# Publie les pages des projets sur auxfilsdesidees.fr (serveur de Vigie, Caddy) :
 #   AFDI_HOST=<adresse> AFDI_SSH_KEY=<clé> ./deploy.sh          # pages, images, robots.txt, sitemap.xml
 #   AFDI_HOST=<adresse> AFDI_SSH_KEY=<clé> ./deploy.sh caddy    # + le bloc Caddy, puis redémarre Caddy (une fois)
 # GitHub Pages sert le même dépôt sur axellum.github.io ; le robots.txt de la racine est celui de github.io,
@@ -13,7 +13,10 @@ here=$(cd "$(dirname "$0")" && pwd)
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 mkdir -p "$tmp/www"
-cp -r "$here/index.html" "$here/en" "$here/assets" "$tmp/www/"
+python3 "$here/construire.py" --verifier >/dev/null || { echo "pages pas à jour : lancer python construire.py" >&2; exit 1; }
+cp -r "$here/index.html" "$here/assets" "$tmp/www/"
+# Chaque dossier qui contient une page (en/, vigie/, ecran-home-assistant/…), comme construire.py les écrit.
+for d in "$here"/*/; do [ -f "$d/index.html" ] && cp -r "${d%/}" "$tmp/www/"; done
 cp "$here/auxfilsdesidees/robots.txt" "$here/auxfilsdesidees/sitemap.xml" "$tmp/www/"
 tar -czf "$tmp/www.tgz" -C "$tmp/www" .
 scp -q "${opts[@]}" "$tmp/www.tgz" "$server:vigie/afdi.tgz"

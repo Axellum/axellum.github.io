@@ -1,0 +1,21 @@
+name: Pages à jour
+
+# Les pages sont écrites par construire.py à partir de contenu/ : elles doivent correspondre au contenu.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python construire.py --verifier

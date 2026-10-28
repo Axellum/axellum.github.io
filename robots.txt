@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+# Sources des pages (construire.py), pas des pages.
+Disallow: /contenu/
 
 Sitemap: https://axellum.github.io/M5-Tab5-ESPHome-LVGL/sitemap.xml
