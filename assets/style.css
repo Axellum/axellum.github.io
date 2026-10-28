@@ -62,10 +62,14 @@ header.haut {
 }
 .haut .ligne { display: flex; align-items: center; gap: 24px; height: 62px; }
 .marque { display: inline-flex; align-items: center; gap: 10px; color: var(--texte); text-decoration: none; font-weight: 650; font-size: 16px; letter-spacing: -.01em; white-space: nowrap; }
-.logo { width: 28px; height: 28px; flex: none; color: var(--accent); fill: var(--lien); }
-.logo path { stroke-dasharray: 40; stroke-dashoffset: 0; animation: trace 1.1s var(--courbe) both; }
-@keyframes trace { from { stroke-dashoffset: 40; } }
-.marque:hover .logo path { animation: trace .9s var(--courbe); }
+.logo { width: 30px; height: 30px; flex: none; border-radius: 7px; transition: transform .3s var(--courbe); }
+/* Le tronc pousse, puis les branches, puis les idées éclosent */
+.logo path { stroke-dasharray: 60; animation: pousse .8s var(--courbe) both; }
+.logo path + path { animation-delay: .4s; }
+.logo circle { transform-box: fill-box; transform-origin: center; animation: eclot .45s .75s var(--courbe) both; }
+@keyframes pousse { from { stroke-dashoffset: 60; } }
+@keyframes eclot { from { transform: scale(0); } }
+.marque:hover .logo { transform: rotate(-5deg) scale(1.06); }
 nav.menu { margin-left: auto; }
 nav.menu ul { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
 nav.menu a { display: block; padding: 7px 12px; border-radius: 8px; color: var(--doux); text-decoration: none; font-size: 15px; font-weight: 550; white-space: nowrap; transition: color .2s, background .2s; }

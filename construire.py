@@ -74,14 +74,24 @@ TEXTES = {
 		),
 	},
 }
-# Empreinte de la feuille de style dans son adresse : /assets/ est gardé 7 jours en cache par les navigateurs
-# (Caddy), une feuille modifiée doit changer d'adresse pour être rechargée.
-STYLE = "/assets/style.css?v=" + hashlib.sha256((ICI / "assets" / "style.css").read_text(encoding="utf-8").encode()).hexdigest()[:10]
-# Monogramme : un fil qui relie trois idées. Repris en ligne dans l'en-tête et le pied de page.
+# Empreinte de la feuille de style et de l'icône dans leur adresse : /assets/ est gardé 7 jours en cache par les
+# navigateurs (Caddy), un fichier modifié doit changer d'adresse pour être rechargé. Lu en texte pour que
+# l'empreinte ne dépende pas des fins de ligne (Windows ou CI).
+def empreinte(nom):
+	return f"/assets/{nom}?v=" + hashlib.sha256((ICI / "assets" / nom).read_text(encoding="utf-8").encode()).hexdigest()[:10]
+
+
+STYLE = empreinte("style.css")
+ICONE = empreinte("icone.svg")
+# Logo du site (choisi par Axel le 28/10/2026) : un fil qui se divise en arbre, chaque branche finit sur une idée.
+# Même dessin que l'icône d'onglet (assets/icone.svg), repris en ligne dans l'en-tête et le pied de page.
 LOGO = (
-	'<svg class="logo" viewBox="0 0 32 32" aria-hidden="true" focusable="false">'
-	'<path d="M5 24C10 10 15 9 18 16s8 9 9-8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>'
-	'<circle cx="5" cy="24" r="3"/><circle cx="18" cy="16" r="3"/><circle cx="27" cy="8" r="3"/></svg>'
+	'<svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false">'
+	'<rect width="64" height="64" rx="14" fill="#10151c"/>'
+	'<path d="M30 55V41C30 33 23 29 20 21M30 41C30 35 35 31 39 29" fill="none" stroke="#f0a46f" stroke-width="4.8" stroke-linecap="round"/>'
+	'<path d="M39 29C40.5 24.5 41.5 20 43 15.5M39 29C43 28 47 28 50.5 25.5" fill="none" stroke="#f0a46f" stroke-width="3.8" stroke-linecap="round"/>'
+	'<circle cx="19.2" cy="18.6" r="5" fill="#8fc0ff"/><circle cx="43.6" cy="13.2" r="4.4" fill="#f0a46f"/>'
+	'<circle cx="52.2" cy="24.4" r="4.2" fill="#e8ecf1"/></svg>'
 )
 # Script de la page (progression de lecture, sommaire, apparitions, agrandissement des images), mis en ligne
 # dans chaque page : moins de 2 Ko, aucune requête de plus.
@@ -294,7 +304,7 @@ def rendre(page: dict, pages: list[dict], par_paire: dict) -> str:
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0e1319" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
-<link rel="icon" href="/assets/icone.svg" type="image/svg+xml">
+<link rel="icon" href="{ICONE}" type="image/svg+xml">
 <link rel="stylesheet" href="{STYLE}">
 <script type="application/ld+json">
 {ld}
