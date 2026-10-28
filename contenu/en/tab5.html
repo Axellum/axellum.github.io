@@ -1,7 +1,8 @@
 chemin: /en/m5stack-tab5/
 paire: tab5
-titre: M5Stack Tab5 as a Home Assistant display: ST7123, ST7121 and ILI9881C versions · Aux fils des idées
-description: The M5Stack Tab5 (ESP32-P4, 5 inch, 1280 × 720) as a native Home Assistant display. The three display versions (ST7123, ST7121, ILI9881C), how to recognise yours, what is tested, specifications and power draw.
+titre: M5Stack Tab5 ST7121, ST7123, ILI9881C: Home Assistant screen
+description: The M5Stack Tab5 (ESP32-P4, 5 inch) as a Home Assistant display: the ST7121, ST7123 and ILI9881C versions, how to tell yours, and what is tested.
+maj: 2026-10-28
 image: tab5-photo-lumieres.webp
 fil: M5Stack Tab5
 menu: M5Stack Tab5
@@ -25,7 +26,7 @@ parent: ecran
 			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/hardware/">Hardware reference</a></li>
 		</ul>
 	</div>
-	<figure class="diaporama"><img src="/assets/tab5-photo-lumieres.webp" width="800" height="602" alt="Photo of an M5Stack Tab5 on a stand: the lights popup with three bulbs, the brightness arc at 100% and twelve colours"><img src="/assets/tab5-photo-accueil.webp" width="800" height="602" decoding="async" alt="Photo of the Tab5: the home screen with the time, weather and forecast"><img src="/assets/tab5-photo-chauffage.webp" width="800" height="602" decoding="async" alt="Photo of the Tab5: the heating popup with the thermostat"></figure>
+	<figure class="diaporama"><img fetchpriority="high" src="/assets/tab5-photo-lumieres.webp" width="800" height="602" alt="Photo of an M5Stack Tab5 on a stand: the lights popup with three bulbs, the brightness arc at 100% and twelve colours"><img src="/assets/tab5-photo-accueil.webp" width="800" height="602" decoding="async" alt="Photo of the Tab5: the home screen with the time, weather and forecast"><img src="/assets/tab5-photo-chauffage.webp" width="800" height="602" decoding="async" alt="Photo of the Tab5: the heating popup with the thermostat"></figure>
 </div>
 
 <dl class="faits">
@@ -41,17 +42,17 @@ parent: ecran
 	<p>M5Stack has changed the chip driving the screen and touch several times. Each needs its own firmware: they are not interchangeable. The install page asks you to pick yours.</p>
 	<div class="grille">
 		<div>
-			<h3>ST7123</h3>
+			<h3 id="st7123">ST7123</h3>
 			<p>Made from 14 October 2025 to 28 April 2026. Display and touch in a single chip.</p>
 			<p><strong>Supported</strong>: the version the project was developed and checked on, until my tablet failed on 11 October 2026. It is the default; the 3.9.0 firmware has not run on a device yet.</p>
 		</div>
 		<div>
-			<h3>ST7121</h3>
+			<h3 id="st7121">ST7121</h3>
 			<p>Made since 28 April 2026. Display and touch in a single chip.</p>
 			<p><strong>Runs for a user</strong> since October 2026 (display, touch and wake word); also installed on my second tablet on 21 October 2026.</p>
 		</div>
 		<div>
-			<h3>ILI9881C</h3>
+			<h3 id="ili9881c">ILI9881C</h3>
 			<p>The original version, made from 9 May to 14 October 2025, with a separate GT911 touch chip.</p>
 			<p><strong>Builds, never tried</strong>: the firmware is built on every change, but nobody has run it on this version yet.</p>
 		</div>

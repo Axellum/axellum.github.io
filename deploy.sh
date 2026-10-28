@@ -17,7 +17,8 @@ python3 "$here/construire.py" --verifier >/dev/null || { echo "pages pas à jour
 cp -r "$here/index.html" "$here/assets" "$tmp/www/"
 # Chaque dossier qui contient une page (en/, vigie/, ecran-home-assistant/…), comme construire.py les écrit.
 for d in "$here"/*/; do [ -f "$d/index.html" ] && cp -r "${d%/}" "$tmp/www/"; done
-cp "$here/auxfilsdesidees/robots.txt" "$here/auxfilsdesidees/sitemap.xml" "$tmp/www/"
+# robots.txt et la clé IndexNow (<clé>.txt, publique par principe : outils/indexnow.py), puis le sitemap.
+cp "$here"/auxfilsdesidees/*.txt "$here/auxfilsdesidees/sitemap.xml" "$tmp/www/"
 tar -czf "$tmp/www.tgz" -C "$tmp/www" .
 scp -q "${opts[@]}" "$tmp/www.tgz" "$server:vigie/afdi.tgz"
 ssh "${opts[@]}" "$server" 'set -e; d=~/vigie/sites/auxfilsdesidees; rm -rf "$d.new"; mkdir -p "$d.new"

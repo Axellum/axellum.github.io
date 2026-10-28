@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>M5Stack Tab5 en écran Home Assistant : versions ST7123, ST7121 et ILI9881C · Aux fils des idées</title>
-<meta name="description" content="Le M5Stack Tab5 (ESP32-P4, 5 pouces, 1280 × 720) en écran Home Assistant natif. Les trois versions d&#x27;écran (ST7123, ST7121, ILI9881C), comment reconnaître la vôtre, ce qui est testé, les caractéristiques et la consommation.">
+<title>M5Stack Tab5 ST7121, ST7123, ILI9881C : écran Home Assistant</title>
+<meta name="description" content="Le M5Stack Tab5 (ESP32-P4, 5 pouces) en écran Home Assistant : les versions ST7121, ST7123 et ILI9881C, comment reconnaître la vôtre, ce qui est testé.">
 <link rel="canonical" href="https://auxfilsdesidees.fr/m5stack-tab5/">
 <link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/m5stack-tab5/">
 <link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/m5stack-tab5/">
@@ -13,10 +13,13 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:site_name" content="Aux fils des idées">
-<meta property="og:title" content="M5Stack Tab5 en écran Home Assistant : versions ST7123, ST7121 et ILI9881C · Aux fils des idées">
-<meta property="og:description" content="Le M5Stack Tab5 (ESP32-P4, 5 pouces, 1280 × 720) en écran Home Assistant natif. Les trois versions d&#x27;écran (ST7123, ST7121, ILI9881C), comment reconnaître la vôtre, ce qui est testé, les caractéristiques et la consommation.">
+<meta property="og:title" content="M5Stack Tab5 ST7121, ST7123, ILI9881C : écran Home Assistant">
+<meta property="og:description" content="Le M5Stack Tab5 (ESP32-P4, 5 pouces) en écran Home Assistant : les versions ST7121, ST7123 et ILI9881C, comment reconnaître la vôtre, ce qui est testé.">
 <meta property="og:url" content="https://auxfilsdesidees.fr/m5stack-tab5/">
-<meta property="og:image" content="https://auxfilsdesidees.fr/assets/tab5-photo-lumieres.webp">
+<meta property="og:image" content="https://auxfilsdesidees.fr/assets/partage/fr-tab5.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="M5Stack Tab5 ST7121, ST7123, ILI9881C : écran Home Assistant">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0e1319" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
@@ -52,13 +55,14 @@
 			"@type": "WebPage",
 			"@id": "https://auxfilsdesidees.fr/m5stack-tab5/#page",
 			"url": "https://auxfilsdesidees.fr/m5stack-tab5/",
-			"name": "M5Stack Tab5 en écran Home Assistant : versions ST7123, ST7121 et ILI9881C · Aux fils des idées",
-			"description": "Le M5Stack Tab5 (ESP32-P4, 5 pouces, 1280 × 720) en écran Home Assistant natif. Les trois versions d'écran (ST7123, ST7121, ILI9881C), comment reconnaître la vôtre, ce qui est testé, les caractéristiques et la consommation.",
+			"name": "M5Stack Tab5 ST7121, ST7123, ILI9881C : écran Home Assistant",
+			"description": "Le M5Stack Tab5 (ESP32-P4, 5 pouces) en écran Home Assistant : les versions ST7121, ST7123 et ILI9881C, comment reconnaître la vôtre, ce qui est testé.",
 			"inLanguage": "fr",
 			"isPartOf": {
 				"@id": "https://auxfilsdesidees.fr/#site"
 			},
-			"primaryImageOfPage": "https://auxfilsdesidees.fr/assets/tab5-photo-lumieres.webp"
+			"primaryImageOfPage": "https://auxfilsdesidees.fr/assets/tab5-photo-lumieres.webp",
+			"dateModified": "2026-10-28"
 		},
 		{
 			"@type": "BreadcrumbList",
@@ -129,7 +133,7 @@
 			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/fr/hardware/">Référence matérielle</a></li>
 		</ul>
 	</div>
-	<figure class="diaporama"><img src="/assets/tab5-photo-lumieres.webp" width="800" height="602" alt="Photo d'un M5Stack Tab5 sur un pied : la fenêtre des lumières avec trois ampoules, l'arc de luminosité à 100 % et douze couleurs"><img src="/assets/tab5-photo-accueil.webp" width="800" height="602" decoding="async" alt="Photo du Tab5 : l'écran d'accueil avec l'heure, la météo et les prévisions"><img src="/assets/tab5-photo-chauffage.webp" width="800" height="602" decoding="async" alt="Photo du Tab5 : la fenêtre du chauffage avec le thermostat"></figure>
+	<figure class="diaporama"><img fetchpriority="high" src="/assets/tab5-photo-lumieres.webp" width="800" height="602" alt="Photo d'un M5Stack Tab5 sur un pied : la fenêtre des lumières avec trois ampoules, l'arc de luminosité à 100 % et douze couleurs"><img src="/assets/tab5-photo-accueil.webp" width="800" height="602" decoding="async" alt="Photo du Tab5 : l'écran d'accueil avec l'heure, la météo et les prévisions"><img src="/assets/tab5-photo-chauffage.webp" width="800" height="602" decoding="async" alt="Photo du Tab5 : la fenêtre du chauffage avec le thermostat"></figure>
 </div>
 
 <dl class="faits">
@@ -145,17 +149,17 @@
 	<p>M5Stack a changé plusieurs fois la puce qui pilote l'écran et le tactile. Chacune demande son propre micrologiciel : ils ne sont pas interchangeables. La page d'installation vous fait choisir la vôtre.</p>
 	<div class="grille">
 		<div>
-			<h3>ST7123</h3>
+			<h3 id="st7123">ST7123</h3>
 			<p>Fabriquée du 14 octobre 2025 au 28 avril 2026. Écran et tactile dans une seule puce.</p>
 			<p><strong>Prise en charge</strong> : la version sur laquelle le projet a été développé et vérifié, jusqu'à la panne de ma tablette le 11 octobre 2026. C'est le choix par défaut ; le micrologiciel de la 3.9.0 n'a pas encore tourné sur un appareil.</p>
 		</div>
 		<div>
-			<h3>ST7121</h3>
+			<h3 id="st7121">ST7121</h3>
 			<p>Fabriquée depuis le 28 avril 2026. Écran et tactile dans une seule puce.</p>
 			<p><strong>Tourne chez un utilisateur</strong> depuis octobre 2026 (écran, tactile et mot d'éveil) ; installée aussi sur ma deuxième tablette le 21 octobre 2026.</p>
 		</div>
 		<div>
-			<h3>ILI9881C</h3>
+			<h3 id="ili9881c">ILI9881C</h3>
 			<p>La version d'origine, fabriquée du 9 mai au 14 octobre 2025, avec une puce tactile GT911 séparée.</p>
 			<p><strong>Compile, jamais essayée</strong> : le micrologiciel est construit à chaque changement, mais personne ne l'a encore lancé sur cette version.</p>
 		</div>
