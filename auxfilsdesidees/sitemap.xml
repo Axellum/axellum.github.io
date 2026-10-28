@@ -11,9 +11,10 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/"/>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-fr.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/waveshare-7b.webp</image:loc></image:image>
-    <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-fr.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-maison-fr.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/ecran-home-assistant/</loc>
@@ -82,9 +83,10 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/"/>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-en.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/waveshare-7b.webp</image:loc></image:image>
-    <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-en.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-maison-en.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/home-assistant-display/</loc>

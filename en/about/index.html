@@ -18,10 +18,10 @@
 <meta property="og:url" content="https://auxfilsdesidees.fr/en/about/">
 <meta property="og:image" content="https://auxfilsdesidees.fr/assets/partage.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1319" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
 <link rel="icon" href="/assets/icone.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css?v=733da18cfa">
+<link rel="stylesheet" href="/assets/style.css?v=a1fecdb922">
 <script type="application/ld+json">
 {
 	"@context": "https://schema.org",
@@ -82,18 +82,18 @@
 </script>
 </head>
 <body>
-<div class="page">
+<a class="evitement" href="#contenu">Skip to content</a>
 <header class="haut">
-	<div class="ligne">
-		<a class="marque" href="/en/">Aux fils des idées</a>
+	<div class="page ligne">
+		<a class="marque" href="/en/"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M5 24C10 10 15 9 18 16s8 9 9-8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="5" cy="24" r="3"/><circle cx="18" cy="16" r="3"/><circle cx="27" cy="8" r="3"/></svg><span>Aux fils des idées</span></a>
+		<nav class="menu" aria-label="Main navigation"><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/" aria-current="page">About</a></li></ul></nav>
 		<a class="langue" href="/a-propos/" hreflang="fr" lang="fr">Français</a>
 	</div>
-	<nav class="menu" aria-label="Main navigation"><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/" aria-current="page">About</a></li></ul></nav>
+	<div class="progression" aria-hidden="true"><span></span></div>
 </header>
 
-<div class="colonnes">
-<aside class="cote unique"><nav aria-label="Project pages"><p class="cote-titre"><a href="/en/about/">About</a></p><ul><li><a href="/en/about/" aria-current="page">About</a><ul class="sections"><li><a href="#how-made">How these projects are made</a></li><li><a href="#where">Where to find me</a></li><li><a href="#legal">Legal notice and privacy</a></li></ul></li></ul></nav></aside>
-<main>
+<div class="page avec-sommaire">
+<main id="contenu">
 <nav class="fil" aria-label="Breadcrumb"><a href="/en/">Home</a> <span aria-hidden="true">›</span> <span aria-current="page">About</span></nav>
 <h1>About</h1>
 <p class="chapeau">I'm Axel Duviella. I tinker on Sundays: home automation, small screens and alerts, with the help of AI, and I share what I make in case it helps someone.</p>
@@ -119,12 +119,84 @@
 	<p>This site sets no cookies, loads no external script or font and does not measure its visits. Vigie has its own <a href="https://vigie.auxfilsdesidees.fr/about">legal and privacy page</a>.</p>
 </section>
 </main>
+<aside class="sommaire"><nav aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#how-made">How these projects are made</a></li><li><a href="#where">Where to find me</a></li><li><a href="#legal">Legal notice and privacy</a></li></ul></nav></aside>
 </div>
+<button class="sommaire-bouton" type="button" popovertarget="sommaire-mobile" aria-label="On this page"><span>On this page</span></button>
+<nav id="sommaire-mobile" class="sommaire-mobile" popover aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#how-made">How these projects are made</a></li><li><a href="#where">Where to find me</a></li><li><a href="#legal">Legal notice and privacy</a></li></ul></nav>
 
 <footer class="bas">
-	<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. Feedback welcome on <a href="https://github.com/Axellum">GitHub</a>.</p>
+	<div class="page">
+		<div class="bas-haut">
+			<div><a class="marque" href="/en/"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M5 24C10 10 15 9 18 16s8 9 9-8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="5" cy="24" r="3"/><circle cx="18" cy="16" r="3"/><circle cx="27" cy="8" r="3"/></svg><span>Aux fils des idées</span></a><p>Screens and tools for the home, made with AI and shared in case they help.</p></div>
+			<nav aria-label="Projects"><p class="bas-titre">Projects</p><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/">About</a></li></ul></nav>
+			<nav aria-label="Elsewhere"><p class="bas-titre">Elsewhere</p><ul><li><a href="https://github.com/Axellum">GitHub</a></li><li><a href="https://vigie.auxfilsdesidees.fr/">Vigie</a></li><li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/">Tab5 docs</a></li></ul></nav>
+		</div>
+		<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. Feedback welcome on <a href="https://github.com/Axellum">GitHub</a>.</p>
 	<p>Publisher: Axel Duviella, private individual, non-professional (France). Contact: <a href="https://github.com/Axellum">github.com/Axellum</a>. Host: OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/en/">ovhcloud.com</a>). This site sets no cookies and does not measure its visits.</p>
+	</div>
 </footer>
-</div>
+<script>
+/* Aux fils des idées : progression de lecture, sommaire qui suit la lecture, apparitions au défilement,
+   agrandissement des images. Sans bibliothèque ; rien ne bouge si le système demande moins d'animations. */
+(() => {
+	const d = document, h = d.documentElement, calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
+	h.classList.add("js");
+	const liens = [...d.querySelectorAll(".sommaire a, .sommaire-mobile a")];
+	const titres = [...new Set(liens.map(a => a.hash))].map(x => d.getElementById(x.slice(1))).filter(Boolean);
+	const pastille = d.querySelector(".sommaire-bouton span");
+	let actif = null, attente = false;
+	const maj = () => {
+		attente = false;
+		const max = h.scrollHeight - innerHeight;
+		h.style.setProperty("--p", max > 0 ? Math.min(scrollY / max, 1) : 0);
+		h.classList.toggle("defile", scrollY > 240);
+		let courant = null;
+		for (const t of titres) if (t.getBoundingClientRect().top < innerHeight * 0.32) courant = t;
+		if (courant !== actif) {
+			actif = courant;
+			for (const a of liens) a.classList.toggle("actif", !!courant && a.hash === "#" + courant.id);
+			if (pastille) pastille.textContent = courant ? courant.textContent : pastille.dataset.vide;
+		}
+	};
+	if (pastille) pastille.dataset.vide = pastille.textContent;
+	addEventListener("scroll", () => { if (!attente) { attente = true; requestAnimationFrame(maj); } }, { passive: true });
+	addEventListener("resize", maj);
+	maj();
+	d.getElementById("sommaire-mobile")?.addEventListener("click", e => e.target.closest("a") && e.currentTarget.hidePopover());
+	if (!calme && "IntersectionObserver" in window) {
+		const vu = new IntersectionObserver(es => es.forEach(e => {
+			if (e.isIntersecting) {
+				const x = e.target;
+				x.classList.add("vu");
+				vu.unobserve(x);
+				setTimeout(() => x.style.transitionDelay = "", 900);
+			}
+		}), { rootMargin: "0px 0px -6% 0px" });
+		d.querySelectorAll("main > section > :not(.grille, .cartes), main > .faits, .grille > *, .cartes > *, .journal li").forEach(x => {
+			if (x.getBoundingClientRect().top < innerHeight) return;
+			const rang = [...x.parentElement.children].indexOf(x);
+			if (x.parentElement.matches(".grille, .cartes, .journal ul")) x.style.transitionDelay = Math.min(rang, 4) * 70 + "ms";
+			x.classList.add("revele");
+			vu.observe(x);
+		});
+	}
+	const loupe = d.createElement("dialog");
+	loupe.className = "loupe";
+	loupe.innerHTML = '<img alt="">';
+	loupe.setAttribute("aria-label", h.lang === "fr" ? "Image agrandie" : "Enlarged image");
+	loupe.addEventListener("click", () => loupe.close());
+	d.body.append(loupe);
+	d.querySelectorAll("main figure img").forEach(img => {
+		if (img.closest(".diaporama, .collage")) return;
+		img.classList.add("agrandir");
+		img.addEventListener("click", () => {
+			const grande = loupe.firstChild;
+			grande.src = img.currentSrc || img.src;
+			grande.alt = img.alt;
+			loupe.showModal();
+		});
+	});
+})();
+</script>
 </body>
 </html>

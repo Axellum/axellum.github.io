@@ -3,82 +3,133 @@ paire: accueil
 titre: Aux fils des idées · projets d'Axel Duviella
 description: Projets personnels d'Axel Duviella, partagés au cas où : un écran Home Assistant natif pour M5Stack Tab5 et Waveshare ESP32-P4, Vigie (les alertes du monde au même endroit) et un moteur IA multi-agents.
 ---
-<h1>Mes projets, partagés au cas où</h1>
-<p class="chapeau">Je m'appelle Axel. Je fabrique des écrans et des outils pour ma maison, avec l'aide de l'IA, et je les partage au cas où ils serviraient à quelqu'un d'autre. Tout est gratuit, le code est ouvert, sans publicité ni pistage.</p>
-
-<section class="projet" id="ecran" aria-labelledby="titre-ecran">
-	<div class="corps">
-		<div class="texte">
-			<span class="etiquette">Home Assistant · ESP32-P4</span>
-			<h2 id="titre-ecran">Écran Home Assistant natif</h2>
-			<p>L'écran de ma maison, branché sur Home Assistant. Il tourne directement sur l'écran (ESPHome et LVGL), sans navigateur : Home Assistant lui envoie les données, l'écran n'interroge jamais.</p>
-			<p>Météo et vigilances, lumières, volets, chauffage, énergie solaire, musique, calendrier, réveil, assistant vocal avec mot d'éveil local. 21 thèmes, 7 langues, installation depuis le navigateur.</p>
-			<ul class="liens">
-				<li><a class="principal" href="/ecran-home-assistant/">Découvrir l'écran</a></li>
-				<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Installer</a></li>
-				<li><a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL">Code sur GitHub</a></li>
-			</ul>
-		</div>
-		<figure><img src="/assets/tab5.webp" width="800" height="600" alt="Le M5Stack Tab5 d'Axel sur son socle : l'heure, deux températures, une consigne de chauffage et les prévisions sur cinq jours"></figure>
+<section class="accueil-heros" aria-labelledby="titre">
+	<svg class="fils" viewBox="0 0 1440 520" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+		<path d="M-20 380C220 260 380 420 620 300S1020 120 1460 230"/>
+		<path d="M-20 300C260 200 420 340 700 250S1100 60 1460 140"/>
+		<path d="M-20 450C300 360 520 480 820 380S1200 260 1460 330"/>
+		<path d="M-20 200C200 150 460 260 760 170S1180 20 1460 70"/>
+	</svg>
+	<div>
+		<span class="etiquette">Domotique · écrans · IA</span>
+		<h1 id="titre">Mes projets, partagés au cas où</h1>
+		<p class="chapeau">Je m'appelle Axel. Je fabrique des écrans et des outils pour ma maison, avec l'aide de l'IA, et je les partage au cas où ils serviraient à quelqu'un d'autre. Tout est gratuit, le code est ouvert, sans publicité ni pistage.</p>
+		<ul class="liens">
+			<li><a class="principal" href="#projets">Voir les projets</a></li>
+			<li><a href="https://github.com/Axellum">GitHub</a></li>
+		</ul>
 	</div>
-	<div class="galerie">
+	<div class="collage">
+		<figure class="deux"><img src="/assets/vigie-fr.webp" width="960" height="600" alt="Vigie : la carte du monde avec les alertes en cours"></figure>
+		<figure class="un"><img src="/assets/tab5.webp" width="800" height="600" alt="Le M5Stack Tab5 d'Axel sur son socle : l'heure, deux températures, une consigne de chauffage et les prévisions sur cinq jours"></figure>
+		<figure class="trois"><img src="/assets/waveshare-7b.webp" width="800" height="469" alt="L'écran d'accueil sur la Waveshare ESP32-P4 7 pouces, en 1024 × 600"></figure>
+	</div>
+</section>
+
+<section class="bloc" aria-labelledby="projets">
+	<h2 id="projets">Les projets</h2>
+	<div class="cartes">
+		<article class="carte">
+			<figure><img src="/assets/ecran-maison-fr.webp" width="640" height="360" loading="lazy" alt="Vue Maison : cinq pièces en colonnes, chaque appareil avec son état, et un bouton pour tout éteindre"></figure>
+			<div>
+				<span class="etiquette">Home Assistant · ESP32-P4</span>
+				<h3><a href="/ecran-home-assistant/">Écran Home Assistant natif</a></h3>
+				<p>L'écran de ma maison, sans navigateur : Home Assistant lui envoie les données, l'écran n'interroge jamais. Météo, lumières, chauffage, énergie, musique, voix. 21 thèmes, 7 langues.</p>
+				<span class="suite">Découvrir l'écran</span>
+			</div>
+		</article>
+		<article class="carte">
+			<figure><img src="/assets/vigie-fr.webp" width="960" height="600" loading="lazy" alt="Vigie : la carte du monde et la liste des alertes par niveau"></figure>
+			<div>
+				<span class="etiquette">Alertes · carte du monde</span>
+				<h3><a href="/vigie/">Vigie</a></h3>
+				<p>Les alertes du monde au même endroit : vigilances officielles de 48 pays, séismes, cyclones, volcans, crues, feux. Un site, une API ouverte, une intégration Home Assistant et un écran.</p>
+				<span class="suite">Le projet en détail</span>
+			</div>
+		</article>
+		<article class="carte">
+			<figure>
+				<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false">
+					<rect width="320" height="200" fill="#0d1522"/>
+					<g stroke="#f0a46f" stroke-opacity=".55" stroke-width="1.5" fill="none">
+						<path d="M60 100L140 50M60 100L140 100M60 100L140 150M140 50L230 75M140 100L230 75M140 100L230 125M140 150L230 125M230 75L280 100M230 125L280 100"/>
+					</g>
+					<g fill="#8fc0ff"><circle cx="140" cy="50" r="7"/><circle cx="140" cy="100" r="7"/><circle cx="140" cy="150" r="7"/><circle cx="230" cy="75" r="7"/><circle cx="230" cy="125" r="7"/></g>
+					<g fill="#f0a46f"><circle cx="60" cy="100" r="10"/><circle cx="280" cy="100" r="10"/></g>
+				</svg>
+			</figure>
+			<div>
+				<span class="etiquette">IA · Python</span>
+				<h3><a href="/moteur-ia/">Moteur IA multi-agents</a></h3>
+				<p>Un orchestrateur qui choisit le bon modèle d'IA pour chaque tâche, travaille en parallèle et se répare seul. Né pour piloter l'écran Home Assistant.</p>
+				<span class="suite">Le moteur en détail</span>
+			</div>
+		</article>
+	</div>
+</section>
+
+<section class="bloc" aria-labelledby="choisir">
+	<h2 id="choisir">Quel écran choisir ?</h2>
+	<p>Le même micrologiciel, la même configuration dans Home Assistant : ce qui est testé, ce qui change, ce qui manque.</p>
+	<div class="choix">
+		<article class="carte">
+			<figure><img src="/assets/tab5.webp" width="800" height="600" loading="lazy" alt="Le M5Stack Tab5 sur son socle"></figure>
+			<div>
+				<span class="etiquette">5 pouces · 1280 × 720</span>
+				<h3><a href="/m5stack-tab5/">M5Stack Tab5</a></h3>
+				<p>La tablette pour laquelle le projet est né, en trois versions d'écran (ST7123, ST7121, ILI9881C) : comment reconnaître la vôtre.</p>
+				<span class="suite">Le Tab5 et ses versions</span>
+			</div>
+		</article>
+		<article class="carte">
+			<figure><img src="/assets/waveshare-7b.webp" width="800" height="469" loading="lazy" alt="L'écran d'accueil sur la Waveshare 7B"></figure>
+			<div>
+				<span class="etiquette">7 pouces · 1024 × 600</span>
+				<h3><a href="/waveshare-esp32-p4-7b/">Waveshare ESP32-P4 7B</a></h3>
+				<p>Plus grande, moins chère, avec moins de choses à bord. L'écran de ma maison depuis le 14 octobre 2026.</p>
+				<span class="suite">La Waveshare 7B</span>
+			</div>
+		</article>
+	</div>
+</section>
+
+<section class="bloc journal" aria-labelledby="nouveautes">
+	<h2 id="nouveautes">Nouveautés</h2>
+	<ul>
+		<li>
+			<time datetime="2026-10-27">27 oct. 2026</time>
+			<div>
+				<strong>Vigie API 1.1.0</strong>
+				<p>La première version publiée de l'API, avec son image de conteneur prête à lancer.</p>
+				<a href="https://github.com/Axellum/vigie-api/releases/tag/v1.1.0">Notes de version</a>
+			</div>
+		</li>
+		<li>
+			<time datetime="2026-10-25">25 oct. 2026</time>
+			<div>
+				<strong>Écran Home Assistant 3.9.0</strong>
+				<p>Une deuxième carte, la Waveshare 7B, désormais stable ; plusieurs écrans dans une même maison ; Home Assistant en anglais. 91 pull requests.</p>
+				<a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.9.0">Notes de version</a>
+			</div>
+		</li>
+	</ul>
+</section>
+
+<section class="bloc" aria-labelledby="principes">
+	<h2 id="principes">Comment c'est fait</h2>
+	<div class="principes">
 		<div>
-			<figure><img src="/assets/waveshare-7b.webp" width="800" height="469" loading="lazy" alt="L'écran d'accueil sur la Waveshare ESP32-P4 7 pouces, en 1024 × 600"></figure>
+			<h3>Gratuit et ouvert</h3>
+			<p>Le code de chaque projet est sur GitHub, sans publicité ni pistage, ni sur les projets ni sur ce site.</p>
 		</div>
-		<div class="brique">
-			<h3>Deux écrans</h3>
-			<p>Le M5Stack Tab5 (1280 × 720) et la Waveshare ESP32-P4 de 7 pouces (1024 × 600). Le même micrologiciel, la même configuration dans Home Assistant.</p>
-			<a href="/m5stack-tab5/">Le Tab5 et ses versions</a> · <a href="/waveshare-esp32-p4-7b/">La Waveshare 7B</a>
+		<div>
+			<h3>Fait avec l'IA</h3>
+			<p>Chaque projet est construit avec l'aide de l'IA, et le dit sur sa page.</p>
 		</div>
-	</div>
-</section>
-
-<section class="projet" id="vigie" aria-labelledby="titre-vigie">
-	<div class="corps">
-		<div class="texte">
-			<span class="etiquette">Alertes · carte du monde</span>
-			<h2 id="titre-vigie">Vigie</h2>
-			<p>Les alertes du monde au même endroit : vigilances météo officielles de 48 pays, séismes, cyclones, volcans, crues, feux vus par satellite. Sur une carte du monde, et une page « Autour de moi » pour un lieu précis.</p>
-			<p>Vigie rassemble des sources officielles sans les remplacer : suivez toujours les consignes de vos autorités.</p>
-			<ul class="liens">
-				<li><a class="principal" href="https://vigie.auxfilsdesidees.fr/">Ouvrir Vigie</a></li>
-				<li><a href="/vigie/">Le projet en détail</a></li>
-			</ul>
-		</div>
-		<figure class="entier"><img src="/assets/vigie-fr.webp" width="960" height="600" alt="Vigie : la carte du monde avec les alertes en cours, et la liste des alertes par niveau à gauche"></figure>
-	</div>
-	<div class="briques">
-		<div class="brique">
-			<h3>L'API</h3>
-			<p>Les sources officielles réunies dans un seul format (GeoJSON, CAP 1.2), avec une intégration Home Assistant. Python, FastAPI.</p>
-			<a href="https://github.com/Axellum/vigie-api">vigie-api sur GitHub</a>
-		</div>
-		<div class="brique">
-			<h3>Le site</h3>
-			<p>Cartes, pages pays, comptes sur invitation avec clé d'accès. SvelteKit et MapLibre.</p>
-			<a href="https://github.com/Axellum/vigie-web">vigie-web sur GitHub</a>
-		</div>
-		<div class="brique">
-			<h3>L'écran</h3>
-			<p>Un écran d'alerte autonome, sans Home Assistant, pour la Waveshare ESP32-P4 7B ou le M5Stack Tab5. ESPHome et LVGL.</p>
-			<a href="/ecran-vigie/">L'écran Vigie</a>
+		<div>
+			<h3>Testé chez moi</h3>
+			<p>Ce sont d'abord les écrans et les outils de ma maison ; chaque page dit ce qui est testé et ce qui ne l'est pas.</p>
 		</div>
 	</div>
-</section>
-
-<section class="projet" aria-labelledby="titre-autres">
-	<div class="briques deux">
-		<div class="brique">
-			<span class="etiquette">IA · Python</span>
-			<h2 id="titre-autres">Moteur IA multi-agents</h2>
-			<p>Un orchestrateur qui choisit le bon modèle d'IA pour chaque tâche, travaille en parallèle et se répare seul. Né pour piloter l'écran Home Assistant.</p>
-			<a href="/moteur-ia/">Le moteur en détail</a>
-		</div>
-		<div class="brique">
-			<span class="etiquette">Matériel · ESP32-P4</span>
-			<h2>Quel écran choisir ?</h2>
-			<p>Le M5Stack Tab5 en 5 pouces, et ses trois versions d'écran (ST7123, ST7121, ILI9881C), ou la Waveshare ESP32-P4 7B en 7 pouces : ce qui est testé, ce qui change, ce qui manque.</p>
-			<a href="/m5stack-tab5/">Le M5Stack Tab5</a> · <a href="/waveshare-esp32-p4-7b/">La Waveshare 7B</a>
-		</div>
-	</div>
+	<p><a href="/a-propos/">Plus sur moi et sur ces projets</a></p>
 </section>

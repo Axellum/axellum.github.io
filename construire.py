@@ -33,6 +33,12 @@ TEXTES = {
 		"autre": "English",
 		"presentation": "Présentation",
 		"cote": "Pages du projet",
+		"sommaire": "Sur cette page",
+		"evitement": "Aller au contenu",
+		"projets": "Projets",
+		"ailleurs": "Ailleurs",
+		"doc_tab5": "Doc du Tab5",
+		"devise": "Des écrans et des outils pour la maison, faits avec l'IA et partagés au cas où.",
 		"locale": "fr_FR",
 		"pied": (
 			"<p>Projets personnels, non commerciaux, faits avec l'aide de l'IA et testés surtout chez moi. "
@@ -51,6 +57,12 @@ TEXTES = {
 		"autre": "Français",
 		"presentation": "Overview",
 		"cote": "Project pages",
+		"sommaire": "On this page",
+		"evitement": "Skip to content",
+		"projets": "Projects",
+		"ailleurs": "Elsewhere",
+		"doc_tab5": "Tab5 docs",
+		"devise": "Screens and tools for the home, made with AI and shared in case they help.",
 		"locale": "en_US",
 		"pied": (
 			"<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. "
@@ -65,6 +77,15 @@ TEXTES = {
 # Empreinte de la feuille de style dans son adresse : /assets/ est gardé 7 jours en cache par les navigateurs
 # (Caddy), une feuille modifiée doit changer d'adresse pour être rechargée.
 STYLE = "/assets/style.css?v=" + hashlib.sha256((ICI / "assets" / "style.css").read_text(encoding="utf-8").encode()).hexdigest()[:10]
+# Monogramme : un fil qui relie trois idées. Repris en ligne dans l'en-tête et le pied de page.
+LOGO = (
+	'<svg class="logo" viewBox="0 0 32 32" aria-hidden="true" focusable="false">'
+	'<path d="M5 24C10 10 15 9 18 16s8 9 9-8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>'
+	'<circle cx="5" cy="24" r="3"/><circle cx="18" cy="16" r="3"/><circle cx="27" cy="8" r="3"/></svg>'
+)
+# Script de la page (progression de lecture, sommaire, apparitions, agrandissement des images), mis en ligne
+# dans chaque page : moins de 2 Ko, aucune requête de plus.
+SCRIPT = (ICI / "gabarits" / "site.js").read_text(encoding="utf-8").strip()
 PERSONNE = {
 	"@type": "Person",
 	"@id": f"{SITE}/#axel",
@@ -112,43 +133,80 @@ def entete_navigation(page: dict, pages: list[dict], autre: dict, projet: dict |
 		liens.append(f'<li><a href="{p["chemin"]}"{courant}>{html.escape(p.get("menu") or p["fil"])}</a></li>')
 	autre_langue = "en" if page["langue"] == "fr" else "fr"
 	return (
+		f'<a class="evitement" href="#contenu">{t["evitement"]}</a>\n'
 		'<header class="haut">\n'
-		'\t<div class="ligne">\n'
-		f'\t\t<a class="marque" href="{accueil}">{t["marque"]}</a>\n'
+		'\t<div class="page ligne">\n'
+		f'\t\t<a class="marque" href="{accueil}">{LOGO}<span>{t["marque"]}</span></a>\n'
+		f'\t\t<nav class="menu" aria-label="{t["navigation"]}"><ul>{"".join(liens)}</ul></nav>\n'
 		f'\t\t<a class="langue" href="{autre["chemin"]}" hreflang="{autre_langue}" lang="{autre_langue}">{t["autre"]}</a>\n'
 		'\t</div>\n'
-		f'\t<nav class="menu" aria-label="{t["navigation"]}"><ul>{"".join(liens)}</ul></nav>\n'
+		'\t<div class="progression" aria-hidden="true"><span></span></div>\n'
 		'</header>'
 	)
 
 
-def menu_cote(page: dict, pages: list[dict], projet: dict | None) -> str:
-	"""Menu de gauche : les pages du projet (la page du projet s'appelle « Présentation ») et, sous la page
-	ouverte, ses sections. Un projet d'une seule page ne montre que ses sections (rien sur téléphone)."""
+def onglets(page: dict, pages: list[dict], projet: dict | None) -> str:
+	"""Onglets du projet sous le fil d'Ariane : la page du projet (« Présentation ») et ses sous-pages.
+	Rien pour l'accueil ni pour un projet d'une seule page."""
 	if projet is None:
 		return ""
-	t = TEXTES[page["langue"]]
 	sous = sorted((p for p in pages if p.get("parent") == projet["paire"] and p["langue"] == page["langue"]),
 		key=lambda p: int(p["ordre"]))
-	sections = "".join(
-		f'<li><a href="#{ancre}">{texte}</a></li>'
-		for ancre, texte in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', page["corps"])
-	)
-	sections = f'<ul class="sections">{sections}</ul>' if sections else ""
 	if not sous:
-		elements = f'<li><a href="{page["chemin"]}" aria-current="page">{html.escape(page.get("menu") or page["fil"])}</a>{sections}</li>'
-	else:
-		elements = ""
-		for p in [projet, *sous]:
-			nom = t["presentation"] if p is projet else (p.get("menu") or p["fil"])
-			if p is page:
-				elements += f'<li><a href="{p["chemin"]}" aria-current="page">{html.escape(nom)}</a>{sections}</li>'
-			else:
-				elements += f'<li><a href="{p["chemin"]}">{html.escape(nom)}</a></li>'
-	titre = html.escape(projet.get("menu") or projet["fil"])
+		return ""
+	t = TEXTES[page["langue"]]
+	liens = []
+	for p in [projet, *sous]:
+		nom = t["presentation"] if p is projet else (p.get("menu") or p["fil"])
+		courant = ' aria-current="page"' if p is page else ""
+		liens.append(f'<li><a href="{p["chemin"]}"{courant}>{html.escape(nom)}</a></li>')
 	return (
-		f'<aside class="cote{"" if sous else " unique"}"><nav aria-label="{t["cote"]}">'
-		f'<p class="cote-titre"><a href="{projet["chemin"]}">{titre}</a></p><ul>{elements}</ul></nav></aside>\n'
+		f'<nav class="onglets" aria-label="{t["cote"]}"><span class="onglets-projet">'
+		f'{html.escape(projet.get("menu") or projet["fil"])}</span><ul>{"".join(liens)}</ul></nav>\n'
+	)
+
+
+def sommaire(page: dict, projet: dict | None) -> tuple[str, str]:
+	"""Sommaire de la page (ses <h2 id>) : colonne de droite sur grand écran, pastille flottante qui l'ouvre ailleurs.
+	La section en cours de lecture est allumée par gabarits/site.js."""
+	sections = re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', page["corps"])
+	if projet is None or len(sections) < 2:
+		return "", ""
+	t = TEXTES[page["langue"]]
+	liste = "".join(f'<li><a href="#{ancre}">{texte}</a></li>' for ancre, texte in sections)
+	colonne = (
+		f'<aside class="sommaire"><nav aria-label="{t["sommaire"]}"><p class="sommaire-titre">{t["sommaire"]}</p>'
+		f'<ul>{liste}</ul></nav></aside>\n'
+	)
+	pastille = (
+		f'<button class="sommaire-bouton" type="button" popovertarget="sommaire-mobile" aria-label="{t["sommaire"]}">'
+		f'<span>{t["sommaire"]}</span></button>\n'
+		f'<nav id="sommaire-mobile" class="sommaire-mobile" popover aria-label="{t["sommaire"]}">'
+		f'<p class="sommaire-titre">{t["sommaire"]}</p><ul>{liste}</ul></nav>\n'
+	)
+	return colonne, pastille
+
+
+def pied(page: dict, pages: list[dict]) -> str:
+	t = TEXTES[page["langue"]]
+	accueil = "/" if page["langue"] == "fr" else "/en/"
+	projets = sorted((p for p in pages if p["langue"] == page["langue"] and p.get("ordre") and not p.get("parent")),
+		key=lambda p: int(p["ordre"]))
+	liens = "".join(f'<li><a href="{p["chemin"]}">{html.escape(p.get("menu") or p["fil"])}</a></li>' for p in projets)
+	return (
+		'<footer class="bas">\n'
+		'\t<div class="page">\n'
+		'\t\t<div class="bas-haut">\n'
+		f'\t\t\t<div><a class="marque" href="{accueil}">{LOGO}<span>{t["marque"]}</span></a><p>{t["devise"]}</p></div>\n'
+		f'\t\t\t<nav aria-label="{t["projets"]}"><p class="bas-titre">{t["projets"]}</p><ul>{liens}</ul></nav>\n'
+		f'\t\t\t<nav aria-label="{t["ailleurs"]}"><p class="bas-titre">{t["ailleurs"]}</p><ul>'
+		'<li><a href="https://github.com/Axellum">GitHub</a></li>'
+		'<li><a href="https://vigie.auxfilsdesidees.fr/">Vigie</a></li>'
+		'<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/">' + t["doc_tab5"] + '</a></li></ul></nav>\n'
+		'\t\t</div>\n'
+		f'\t\t{t["pied"]}\n'
+		'\t</div>\n'
+		'</footer>'
 	)
 
 
@@ -184,7 +242,7 @@ def rendre(page: dict, pages: list[dict], par_paire: dict) -> str:
 	image = SITE + "/assets/" + (page.get("image") or "partage.jpg")
 	projet = projet_de(page, par_paire)
 	visible, ld_fil = fil_ariane(page, projet)
-	cote = menu_cote(page, pages, projet)
+	colonne, pastille = sommaire(page, projet)
 	graphe = [
 		{
 			"@type": "WebSite",
@@ -234,8 +292,8 @@ def rendre(page: dict, pages: list[dict], par_paire: dict) -> str:
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{image}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1319" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
 <link rel="icon" href="/assets/icone.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{STYLE}">
 <script type="application/ld+json">
@@ -243,19 +301,18 @@ def rendre(page: dict, pages: list[dict], par_paire: dict) -> str:
 </script>
 </head>
 <body>
-<div class="page">
 {entete_navigation(page, pages, autre, projet)}
 
-<div class="{"colonnes" if cote else "seule"}">
-{cote}<main>
-{visible}{page["corps"]}
+<div class="page{" avec-sommaire" if colonne else ""}">
+<main id="contenu">
+{visible}{onglets(page, pages, projet)}{page["corps"]}
 </main>
-</div>
-
-<footer class="bas">
-	{t["pied"]}
-</footer>
-</div>
+{colonne}</div>
+{pastille}
+{pied(page, pages)}
+<script>
+{SCRIPT}
+</script>
 </body>
 </html>
 """

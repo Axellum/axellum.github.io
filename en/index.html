@@ -18,10 +18,10 @@
 <meta property="og:url" content="https://auxfilsdesidees.fr/en/">
 <meta property="og:image" content="https://auxfilsdesidees.fr/assets/partage.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1319" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
 <link rel="icon" href="/assets/icone.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css?v=733da18cfa">
+<link rel="stylesheet" href="/assets/style.css?v=a1fecdb922">
 <script type="application/ld+json">
 {
 	"@context": "https://schema.org",
@@ -65,103 +65,224 @@
 </script>
 </head>
 <body>
-<div class="page">
+<a class="evitement" href="#contenu">Skip to content</a>
 <header class="haut">
-	<div class="ligne">
-		<a class="marque" href="/en/">Aux fils des idées</a>
+	<div class="page ligne">
+		<a class="marque" href="/en/"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M5 24C10 10 15 9 18 16s8 9 9-8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="5" cy="24" r="3"/><circle cx="18" cy="16" r="3"/><circle cx="27" cy="8" r="3"/></svg><span>Aux fils des idées</span></a>
+		<nav class="menu" aria-label="Main navigation"><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/">About</a></li></ul></nav>
 		<a class="langue" href="/" hreflang="fr" lang="fr">Français</a>
 	</div>
-	<nav class="menu" aria-label="Main navigation"><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/">About</a></li></ul></nav>
+	<div class="progression" aria-hidden="true"><span></span></div>
 </header>
 
-<div class="seule">
-<main>
-<h1>My projects, shared in case they help</h1>
-<p class="chapeau">I'm Axel. I build screens and tools for my home, with the help of AI, and share them in case they are useful to someone else. Everything is free, the code is open, with no ads or tracking.</p>
-
-<section class="projet" id="display" aria-labelledby="title-display">
-	<div class="corps">
-		<div class="texte">
-			<span class="etiquette">Home Assistant · ESP32-P4</span>
-			<h2 id="title-display">Native Home Assistant display</h2>
-			<p>The screen of my house, connected to Home Assistant. It runs directly on the device (ESPHome and LVGL), with no browser: Home Assistant sends it the data, the screen never polls.</p>
-			<p>Weather and warnings, lights, shutters, heating, solar energy, music, calendar, alarm clock, voice assistant with a local wake word. 21 themes, 7 languages, install from the browser.</p>
-			<ul class="liens">
-				<li><a class="principal" href="/en/home-assistant-display/">Discover the display</a></li>
-				<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Install</a></li>
-				<li><a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL">Code on GitHub</a></li>
-			</ul>
-		</div>
-		<figure><img src="/assets/tab5.webp" width="800" height="600" alt="Axel's M5Stack Tab5 on its stand: the time, two temperatures, a heating setpoint and a five-day forecast"></figure>
+<div class="page">
+<main id="contenu">
+<section class="accueil-heros" aria-labelledby="titre">
+	<svg class="fils" viewBox="0 0 1440 520" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+		<path d="M-20 380C220 260 380 420 620 300S1020 120 1460 230"/>
+		<path d="M-20 300C260 200 420 340 700 250S1100 60 1460 140"/>
+		<path d="M-20 450C300 360 520 480 820 380S1200 260 1460 330"/>
+		<path d="M-20 200C200 150 460 260 760 170S1180 20 1460 70"/>
+	</svg>
+	<div>
+		<span class="etiquette">Home automation · screens · AI</span>
+		<h1 id="titre">My projects, shared in case they help</h1>
+		<p class="chapeau">I'm Axel. I build screens and tools for my home, with the help of AI, and share them in case they are useful to someone else. Everything is free, the code is open, with no ads or tracking.</p>
+		<ul class="liens">
+			<li><a class="principal" href="#projects">See the projects</a></li>
+			<li><a href="https://github.com/Axellum">GitHub</a></li>
+		</ul>
 	</div>
-	<div class="galerie">
+	<div class="collage">
+		<figure class="deux"><img src="/assets/vigie-en.webp" width="960" height="600" alt="Vigie: the world map with current alerts"></figure>
+		<figure class="un"><img src="/assets/tab5.webp" width="800" height="600" alt="Axel's M5Stack Tab5 on its stand: the time, two temperatures, a heating set point and the five-day forecast"></figure>
+		<figure class="trois"><img src="/assets/waveshare-7b.webp" width="800" height="469" alt="The home screen on the 7-inch Waveshare ESP32-P4, at 1024 × 600"></figure>
+	</div>
+</section>
+
+<section class="bloc" aria-labelledby="projects">
+	<h2 id="projects">Projects</h2>
+	<div class="cartes">
+		<article class="carte">
+			<figure><img src="/assets/ecran-maison-en.webp" width="640" height="360" loading="lazy" alt="House view: five rooms in columns, each device with its state, and a Lights off button"></figure>
+			<div>
+				<span class="etiquette">Home Assistant · ESP32-P4</span>
+				<h3><a href="/en/home-assistant-display/">Native Home Assistant display</a></h3>
+				<p>The screen of my house, with no browser: Home Assistant sends it the data, the screen never polls. Weather, lights, heating, energy, music, voice. 21 themes, 7 languages.</p>
+				<span class="suite">Discover the display</span>
+			</div>
+		</article>
+		<article class="carte">
+			<figure><img src="/assets/vigie-en.webp" width="960" height="600" loading="lazy" alt="Vigie: the world map and the list of alerts by level"></figure>
+			<div>
+				<span class="etiquette">Alerts · world map</span>
+				<h3><a href="/en/vigie/">Vigie</a></h3>
+				<p>The world's alerts in one place: official warnings of 48 countries, earthquakes, cyclones, volcanoes, floods, fires. A website, an open API, a Home Assistant integration and a screen.</p>
+				<span class="suite">The project in detail</span>
+			</div>
+		</article>
+		<article class="carte">
+			<figure>
+				<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false">
+					<rect width="320" height="200" fill="#0d1522"/>
+					<g stroke="#f0a46f" stroke-opacity=".55" stroke-width="1.5" fill="none">
+						<path d="M60 100L140 50M60 100L140 100M60 100L140 150M140 50L230 75M140 100L230 75M140 100L230 125M140 150L230 125M230 75L280 100M230 125L280 100"/>
+					</g>
+					<g fill="#8fc0ff"><circle cx="140" cy="50" r="7"/><circle cx="140" cy="100" r="7"/><circle cx="140" cy="150" r="7"/><circle cx="230" cy="75" r="7"/><circle cx="230" cy="125" r="7"/></g>
+					<g fill="#f0a46f"><circle cx="60" cy="100" r="10"/><circle cx="280" cy="100" r="10"/></g>
+				</svg>
+			</figure>
+			<div>
+				<span class="etiquette">AI · Python</span>
+				<h3><a href="/en/ai-engine/">Multi-agent AI engine</a></h3>
+				<p>An orchestrator that picks the right AI model for each task, works in parallel and heals itself. Born to drive the Home Assistant display.</p>
+				<span class="suite">The engine in detail</span>
+			</div>
+		</article>
+	</div>
+</section>
+
+<section class="bloc" aria-labelledby="pick">
+	<h2 id="pick">Which screen to pick?</h2>
+	<p>The same firmware, the same setup in Home Assistant: what is tested, what changes, what is missing.</p>
+	<div class="choix">
+		<article class="carte">
+			<figure><img src="/assets/tab5.webp" width="800" height="600" loading="lazy" alt="The M5Stack Tab5 on its stand"></figure>
+			<div>
+				<span class="etiquette">5 inches · 1280 × 720</span>
+				<h3><a href="/en/m5stack-tab5/">M5Stack Tab5</a></h3>
+				<p>The tablet the project was born for, in three display versions (ST7123, ST7121, ILI9881C): how to tell yours.</p>
+				<span class="suite">The Tab5 and its versions</span>
+			</div>
+		</article>
+		<article class="carte">
+			<figure><img src="/assets/waveshare-7b.webp" width="800" height="469" loading="lazy" alt="The home screen on the Waveshare 7B"></figure>
+			<div>
+				<span class="etiquette">7 inches · 1024 × 600</span>
+				<h3><a href="/en/waveshare-esp32-p4-7b/">Waveshare ESP32-P4 7B</a></h3>
+				<p>Bigger, cheaper, with less on board. The screen of my house since 14 October 2026.</p>
+				<span class="suite">The Waveshare 7B</span>
+			</div>
+		</article>
+	</div>
+</section>
+
+<section class="bloc journal" aria-labelledby="whats-new">
+	<h2 id="whats-new">What's new</h2>
+	<ul>
+		<li>
+			<time datetime="2026-10-27">27 Oct 2026</time>
+			<div>
+				<strong>Vigie API 1.1.0</strong>
+				<p>The first tagged release of the API, with its ready-to-run container image.</p>
+				<a href="https://github.com/Axellum/vigie-api/releases/tag/v1.1.0">Release notes</a>
+			</div>
+		</li>
+		<li>
+			<time datetime="2026-10-25">25 Oct 2026</time>
+			<div>
+				<strong>Home Assistant display 3.9.0</strong>
+				<p>A second board, the Waveshare 7B, now stable; several screens in one home; Home Assistant in English. 91 pull requests.</p>
+				<a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.9.0">Release notes</a>
+			</div>
+		</li>
+	</ul>
+</section>
+
+<section class="bloc" aria-labelledby="how">
+	<h2 id="how">How it is made</h2>
+	<div class="principes">
 		<div>
-			<figure><img src="/assets/waveshare-7b.webp" width="800" height="469" loading="lazy" alt="The home screen on the 7-inch Waveshare ESP32-P4, at 1024 × 600"></figure>
+			<h3>Free and open</h3>
+			<p>The code of every project is on GitHub, with no ads or tracking, neither in the projects nor on this site.</p>
 		</div>
-		<div class="brique">
-			<h3>Two screens</h3>
-			<p>The M5Stack Tab5 (1280 × 720) and the 7-inch Waveshare ESP32-P4 (1024 × 600). The same firmware, the same setup in Home Assistant.</p>
-			<a href="/en/m5stack-tab5/">The Tab5 and its versions</a> · <a href="/en/waveshare-esp32-p4-7b/">The Waveshare 7B</a>
+		<div>
+			<h3>Made with AI</h3>
+			<p>Every project is built with the help of AI, and says so on its page.</p>
 		</div>
-	</div>
-</section>
-
-<section class="projet" id="vigie" aria-labelledby="title-vigie">
-	<div class="corps">
-		<div class="texte">
-			<span class="etiquette">Alerts · world map</span>
-			<h2 id="title-vigie">Vigie</h2>
-			<p>The world's alerts in one place: official weather warnings of 48 countries, earthquakes, cyclones, volcanoes, floods, fires seen by satellite. On a world map, and a "Near me" page for a given place.</p>
-			<p>Vigie gathers official sources without replacing them: always follow the instructions of your authorities.</p>
-			<ul class="liens">
-				<li><a class="principal" href="https://vigie.auxfilsdesidees.fr/">Open Vigie</a></li>
-				<li><a href="/en/vigie/">The project in detail</a></li>
-			</ul>
-		</div>
-		<figure class="entier"><img src="/assets/vigie-en.webp" width="960" height="600" alt="Vigie: the world map with current alerts, and the list of alerts by level on the left"></figure>
-	</div>
-	<div class="briques">
-		<div class="brique">
-			<h3>The API</h3>
-			<p>Official sources in a single format (GeoJSON, CAP 1.2), with a Home Assistant integration. Python, FastAPI.</p>
-			<a href="https://github.com/Axellum/vigie-api">vigie-api on GitHub</a>
-		</div>
-		<div class="brique">
-			<h3>The website</h3>
-			<p>Maps, country pages, invitation-only accounts with passkeys. SvelteKit and MapLibre.</p>
-			<a href="https://github.com/Axellum/vigie-web">vigie-web on GitHub</a>
-		</div>
-		<div class="brique">
-			<h3>The screen</h3>
-			<p>A standalone alert screen, without Home Assistant, for the Waveshare ESP32-P4 7B or the M5Stack Tab5. ESPHome and LVGL.</p>
-			<a href="/en/vigie-display/">The Vigie display</a>
+		<div>
+			<h3>Tested at home</h3>
+			<p>These are first the screens and tools of my own home; every page says what is tested and what is not.</p>
 		</div>
 	</div>
-</section>
-
-<section class="projet" aria-labelledby="title-others">
-	<div class="briques deux">
-		<div class="brique">
-			<span class="etiquette">AI · Python</span>
-			<h2 id="title-others">Multi-agent AI engine</h2>
-			<p>An orchestrator that picks the right AI model for each task, works in parallel and heals itself. Born to drive the Home Assistant display.</p>
-			<a href="/en/ai-engine/">The engine in detail</a>
-		</div>
-		<div class="brique">
-			<span class="etiquette">Hardware · ESP32-P4</span>
-			<h2>Which screen to pick?</h2>
-			<p>The 5-inch M5Stack Tab5 and its three display versions (ST7123, ST7121, ILI9881C), or the 7-inch Waveshare ESP32-P4 7B: what is tested, what changes, what is missing.</p>
-			<a href="/en/m5stack-tab5/">The M5Stack Tab5</a> · <a href="/en/waveshare-esp32-p4-7b/">The Waveshare 7B</a>
-		</div>
-	</div>
+	<p><a href="/en/about/">More about me and these projects</a></p>
 </section>
 </main>
 </div>
 
 <footer class="bas">
-	<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. Feedback welcome on <a href="https://github.com/Axellum">GitHub</a>.</p>
+	<div class="page">
+		<div class="bas-haut">
+			<div><a class="marque" href="/en/"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M5 24C10 10 15 9 18 16s8 9 9-8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="5" cy="24" r="3"/><circle cx="18" cy="16" r="3"/><circle cx="27" cy="8" r="3"/></svg><span>Aux fils des idées</span></a><p>Screens and tools for the home, made with AI and shared in case they help.</p></div>
+			<nav aria-label="Projects"><p class="bas-titre">Projects</p><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/">About</a></li></ul></nav>
+			<nav aria-label="Elsewhere"><p class="bas-titre">Elsewhere</p><ul><li><a href="https://github.com/Axellum">GitHub</a></li><li><a href="https://vigie.auxfilsdesidees.fr/">Vigie</a></li><li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/">Tab5 docs</a></li></ul></nav>
+		</div>
+		<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. Feedback welcome on <a href="https://github.com/Axellum">GitHub</a>.</p>
 	<p>Publisher: Axel Duviella, private individual, non-professional (France). Contact: <a href="https://github.com/Axellum">github.com/Axellum</a>. Host: OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/en/">ovhcloud.com</a>). This site sets no cookies and does not measure its visits.</p>
+	</div>
 </footer>
-</div>
+<script>
+/* Aux fils des idées : progression de lecture, sommaire qui suit la lecture, apparitions au défilement,
+   agrandissement des images. Sans bibliothèque ; rien ne bouge si le système demande moins d'animations. */
+(() => {
+	const d = document, h = d.documentElement, calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
+	h.classList.add("js");
+	const liens = [...d.querySelectorAll(".sommaire a, .sommaire-mobile a")];
+	const titres = [...new Set(liens.map(a => a.hash))].map(x => d.getElementById(x.slice(1))).filter(Boolean);
+	const pastille = d.querySelector(".sommaire-bouton span");
+	let actif = null, attente = false;
+	const maj = () => {
+		attente = false;
+		const max = h.scrollHeight - innerHeight;
+		h.style.setProperty("--p", max > 0 ? Math.min(scrollY / max, 1) : 0);
+		h.classList.toggle("defile", scrollY > 240);
+		let courant = null;
+		for (const t of titres) if (t.getBoundingClientRect().top < innerHeight * 0.32) courant = t;
+		if (courant !== actif) {
+			actif = courant;
+			for (const a of liens) a.classList.toggle("actif", !!courant && a.hash === "#" + courant.id);
+			if (pastille) pastille.textContent = courant ? courant.textContent : pastille.dataset.vide;
+		}
+	};
+	if (pastille) pastille.dataset.vide = pastille.textContent;
+	addEventListener("scroll", () => { if (!attente) { attente = true; requestAnimationFrame(maj); } }, { passive: true });
+	addEventListener("resize", maj);
+	maj();
+	d.getElementById("sommaire-mobile")?.addEventListener("click", e => e.target.closest("a") && e.currentTarget.hidePopover());
+	if (!calme && "IntersectionObserver" in window) {
+		const vu = new IntersectionObserver(es => es.forEach(e => {
+			if (e.isIntersecting) {
+				const x = e.target;
+				x.classList.add("vu");
+				vu.unobserve(x);
+				setTimeout(() => x.style.transitionDelay = "", 900);
+			}
+		}), { rootMargin: "0px 0px -6% 0px" });
+		d.querySelectorAll("main > section > :not(.grille, .cartes), main > .faits, .grille > *, .cartes > *, .journal li").forEach(x => {
+			if (x.getBoundingClientRect().top < innerHeight) return;
+			const rang = [...x.parentElement.children].indexOf(x);
+			if (x.parentElement.matches(".grille, .cartes, .journal ul")) x.style.transitionDelay = Math.min(rang, 4) * 70 + "ms";
+			x.classList.add("revele");
+			vu.observe(x);
+		});
+	}
+	const loupe = d.createElement("dialog");
+	loupe.className = "loupe";
+	loupe.innerHTML = '<img alt="">';
+	loupe.setAttribute("aria-label", h.lang === "fr" ? "Image agrandie" : "Enlarged image");
+	loupe.addEventListener("click", () => loupe.close());
+	d.body.append(loupe);
+	d.querySelectorAll("main figure img").forEach(img => {
+		if (img.closest(".diaporama, .collage")) return;
+		img.classList.add("agrandir");
+		img.addEventListener("click", () => {
+			const grande = loupe.firstChild;
+			grande.src = img.currentSrc || img.src;
+			grande.alt = img.alt;
+			loupe.showModal();
+		});
+	});
+})();
+</script>
 </body>
 </html>
