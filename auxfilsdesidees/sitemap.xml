@@ -65,12 +65,19 @@
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5-photo-chauffage.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://auxfilsdesidees.fr/ecran-vigie/</loc>
+    <loc>https://auxfilsdesidees.fr/vigie/waveshare-esp32-p4-7b/</loc>
     <lastmod>2026-10-28</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/ecran-vigie/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie-display/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie-display/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/vigie/waveshare-esp32-p4-7b/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie/waveshare-esp32-p4-7b/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie/waveshare-esp32-p4-7b/"/>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-ecran-waveshare-7b-fr.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://auxfilsdesidees.fr/vigie/m5stack-tab5/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/vigie/m5stack-tab5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie/m5stack-tab5/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie/m5stack-tab5/"/>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-ecran-tab5-fr.webp</image:loc></image:image>
   </url>
   <url>
@@ -80,6 +87,8 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie/"/>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-fr.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-ecran-tab5-fr.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-ecran-waveshare-7b-fr.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/waveshare-esp32-p4-7b/</loc>
@@ -156,12 +165,19 @@
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5-photo-chauffage.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://auxfilsdesidees.fr/en/vigie-display/</loc>
+    <loc>https://auxfilsdesidees.fr/en/vigie/waveshare-esp32-p4-7b/</loc>
     <lastmod>2026-10-28</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/ecran-vigie/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie-display/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie-display/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/vigie/waveshare-esp32-p4-7b/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie/waveshare-esp32-p4-7b/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie/waveshare-esp32-p4-7b/"/>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-ecran-waveshare-7b-en.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://auxfilsdesidees.fr/en/vigie/m5stack-tab5/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/vigie/m5stack-tab5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie/m5stack-tab5/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie/m5stack-tab5/"/>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-ecran-tab5-en.webp</image:loc></image:image>
   </url>
   <url>
@@ -171,6 +187,8 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie/"/>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-en.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-ecran-tab5-en.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/vigie-ecran-waveshare-7b-en.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/</loc>

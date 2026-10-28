@@ -1,0 +1,89 @@
+chemin: /vigie/m5stack-tab5/
+paire: vigie-tab5
+titre: M5Stack Tab5 sans Home Assistant : config ESPHome autonome
+description: Le M5Stack Tab5 en écran d'alerte autonome, sans Home Assistant : une configuration ESPHome et LVGL complète pour les versions ST7121, ST7123 et ILI9881C.
+maj: 2026-10-28
+image: vigie-ecran-tab5-fr.webp
+fil: M5Stack Tab5
+menu: M5Stack Tab5
+ordre: 1
+parent: vigie
+---
+<!--ld {
+	"@type": "TechArticle",
+	"headline": "M5Stack Tab5 sans Home Assistant : écran d'alerte Vigie et configuration ESPHome",
+	"about": { "@type": "Product", "name": "M5Stack Tab5", "brand": { "@type": "Brand", "name": "M5Stack" } },
+	"inLanguage": "fr",
+	"image": "https://auxfilsdesidees.fr/assets/vigie-ecran-tab5-fr.webp"
+} ld-->
+<div class="heros">
+	<div>
+		<span class="etiquette">Vigie · M5Stack · sans Home Assistant</span>
+		<h1>Vigie sur le M5Stack Tab5</h1>
+		<p class="chapeau">La tablette de 5 pouces en écran d'alerte autonome : la carte du monde des aléas en cours, les cinq plus graves et la météo de vos zones, en 1280 × 720. ESPHome sans Home Assistant : l'écran va chercher ses données lui-même, par le Wi-Fi.</p>
+		<ul class="liens">
+			<li><a class="principal" href="#configuration">La configuration ESPHome</a></li>
+			<li><a href="https://github.com/Axellum/vigie-display/blob/main/docs/installation.md">Guide d'installation</a></li>
+			<li><a href="https://github.com/Axellum/vigie-display">Code sur GitHub</a></li>
+		</ul>
+	</div>
+	<figure><img fetchpriority="high" src="/assets/vigie-ecran-tab5-fr.webp" width="1280" height="720" alt="L'écran Vigie sur le M5Stack Tab5 en 1280 × 720 : barre d'état, carte du monde avec les aléas en cours, liste des cinq plus graves et panneau météo"></figure>
+</div>
+
+<dl class="faits">
+	<div><dt>Écran</dt><dd>5", 1280 × 720</dd></div>
+	<div><dt>Micrologiciel</dt><dd>ESPHome 2026.9.1+, LVGL</dd></div>
+	<div><dt>Home Assistant</dt><dd>Pas nécessaire</dd></div>
+	<div><dt>Données</dt><dd>API Vigie, chaque minute</dd></div>
+	<div><dt>Statut</dt><dd>ST7121 testée le 28/10/2026</dd></div>
+</dl>
+
+<div class="note"><p>Vigie ne remplace pas les alertes officielles : suivez toujours les consignes de vos autorités.</p></div>
+
+<section class="bloc" aria-labelledby="ecran">
+	<h2 id="ecran">Ce que montre l'écran</h2>
+	<p>La mise en page de la Waveshare 7B, agrandie de 20 % pour remplir l'écran plus fin du Tab5 : la barre d'état (lien avec l'API, date et heure de la zone), la carte du monde avec les aléas en points colorés selon leur gravité, les cinq plus graves avec leur distance et leur direction, et le panneau météo de la zone. Un appui sur le panneau passe à la zone suivante.</p>
+	<p>Le détail de chaque partie, et ce que l'écran fait quand l'API ne répond plus : <a href="/vigie/#ecran">l'écran d'alerte Vigie</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="versions">
+	<h2 id="versions">Les trois versions du Tab5</h2>
+	<p>M5Stack a changé deux fois la puce qui pilote l'écran et le tactile ; chacune se choisit à la compilation.</p>
+	<ul>
+		<li><strong>ST7121</strong> (depuis le 28/04/2026) : Vigie y tourne depuis le 28/10/2026, Wi-Fi et données de l'API publique en HTTPS.</li>
+		<li><strong>ST7123</strong> (du 14/10/2025 au 28/04/2026) : compilée, pas encore lancée sur une tablette avec Vigie.</li>
+		<li><strong>ILI9881C</strong> (la première, du 09/05/2025 au 14/10/2025) : compilée, jamais lancée.</li>
+	</ul>
+	<p>La puce est écrite au dos de la tablette, au-dessus du logo Espressif ; comment la reconnaître, et les pièges : <a href="/m5stack-tab5/#versions">les versions du Tab5</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="configuration">
+	<h2 id="configuration">La configuration ESPHome, sans Home Assistant</h2>
+	<p>Pas de composant <code>api:</code> : rien ne relie l'écran à Home Assistant. Le Wi-Fi se donne après l'installation (Improv par USB, ou le point d'accès que l'écran ouvre seul), les données arrivent par <code>http_request</code> et LVGL les dessine.</p>
+	<p>Ci-dessous, un exemple complet et court, sur la même base matérielle que Vigie : il affiche la température et la vigilance météo d'un lieu, lues dans <a href="/vigie/#api">l'API publique de Vigie</a>. Choisissez la puce de votre Tab5 en tête du fichier ; changez la latitude et la longitude, ou l'adresse, pour lire une autre API.</p>
+	<!--exemple tab5-standalone-->
+	<p class="legende">Validé et compilé avec ESPHome 2026.9.1 le 28/10/2026, pas encore essayé tel quel sur la tablette : ses réglages matériels sont ceux de Vigie display, qui tourne sur un Tab5 ST7121.</p>
+	<h3>Les réglages qui comptent sur cette tablette</h3>
+	<ul>
+		<li><strong>L'ESP32-C6, qui porte le Wi-Fi, est alimenté par un expandeur</strong> (PI4IOE5V6408, broche 0 du second) : sans l'interrupteur <code>wifi_power</code> allumé au démarrage, le lien SDIO ne monte jamais (« sdmmc_card_init failed », vu sur une ST7121 le 28/10/2026). Son reset, GPIO15, est actif à l'état haut.</li>
+		<li><strong>Le reset de l'écran passe par l'autre expandeur</strong>, qui demande une seconde après le démarrage : sans l'attente de la ligne <code>on_boot</code>, écran noir après un redémarrage logiciel. Elle doit bloquer, d'où le <code>delay()</code> en C.</li>
+		<li><strong>La dalle est en portrait</strong> (720 × 1280) : LVGL la tourne en paysage par <code>rotation: 270</code>, et tourne les appuis avec elle.</li>
+		<li><strong>Pas de miroir</strong> sur l'écran ni sur le tactile : il abîme l'image d'une ST7121.</li>
+		<li><strong>Le lien MIPI-DSI</strong> est alimenté par le LDO 3 de l'ESP32-P4, à 2,5 V (<code>esp_ldo</code>).</li>
+		<li><strong>Le modèle d'écran et la puce tactile changent avec la version</strong> : M5STACK-TAB5-ST7123 ou -ST7121 avec le tactile <code>st7123</code>, M5STACK-TAB5 avec le <code>gt911</code> pour l'ILI9881C.</li>
+	</ul>
+	<h3>Le micrologiciel complet</h3>
+	<p><a href="https://github.com/Axellum/vigie-display/blob/main/vigie.yaml">vigie.yaml</a> assemble des packages : le matériel de la tablette (<a href="https://github.com/Axellum/vigie-display/blob/main/firmware/packages/board-tab5.yaml">board-tab5.yaml</a>, alimentations et chargeur compris), la taille de l'écran, de la carte du monde et des polices (<a href="https://github.com/Axellum/vigie-display/blob/main/firmware/packages/layout-tab5.yaml">layout-tab5.yaml</a>), l'écran LVGL, dessiné en C++, et le client de l'API : une requête par minute, une trame refusée si sa taille ou sa somme de contrôle ne collent pas.</p>
+</section>
+
+<section class="bloc" aria-labelledby="installer">
+	<h2 id="installer">Installer Vigie</h2>
+	<p>Pas encore de version publiée à installer depuis le navigateur : il faut compiler le micrologiciel soi-même. Comptez une demi-heure, surtout pour la première compilation.</p>
+	<ol class="etapes">
+		<li>Installez ESPHome 2026.9.1 ou plus récent et récupérez le dépôt <a href="https://github.com/Axellum/vigie-display">vigie-display</a>.</li>
+		<li>Créez une clé de signature : une fois installé, l'écran n'accepte que les mises à jour signées avec la même clé. Gardez-en une copie.</li>
+		<li>Compilez pour le Tab5 : <code>esphome -s vigie_board tab5 -s vigie_api_url https://vigie.auxfilsdesidees.fr -s vigie_language fr -s vigie_signing_key vigie_signing_key.pem compile vigie.yaml</code>. Avec une ST7121, ajoutez <code>-s board_tab5_panel M5STACK-TAB5-ST7121</code> ; avec une ILI9881C, <code>-s board_tab5_panel M5STACK-TAB5 -s board_tab5_touch gt911 -s board_tab5_touch_interval never</code>. Installez ensuite par USB avec ESPHome ou depuis <a href="https://web.esphome.io">ESPHome Web</a>.</li>
+		<li>Donnez le Wi-Fi par USB (Improv) ou par le point d'accès « Vigie setup » que l'écran ouvre au bout d'une minute. Moins d'une minute après, la barre d'état affiche « À jour ».</li>
+	</ol>
+	<p>Les réglages et les pannes courantes sont dans <a href="https://github.com/Axellum/vigie-display/blob/main/docs/installation.md">le guide d'installation</a> (en anglais). Les mises à jour suivantes passent par le Wi-Fi. La même tablette en écran Home Assistant : <a href="/m5stack-tab5/">le M5Stack Tab5</a>.</p>
+</section>

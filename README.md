@@ -15,6 +15,12 @@ Les pages des projets d'Axel Duviella, en français et en anglais (`/en/…`).
   `contenu/nouveautes.json` (versions publiées, hors préversions) ; écrire le titre français qu'il signale, puis
   `python construire.py` refait la page `/nouveautes/` (`/en/news/`), les trois dernières versions de l'accueil et les
   flux RSS (`rss.xml` dans le dossier de chaque page). La CI ne lit que le fichier, jamais GitHub.
+- **Exemples de configuration** : `exemples/fr/` et `exemples/en/` (même code, commentaires et textes traduits).
+  `<!--exemple nom-->` dans un corps les met en bloc de code (bouton « Copier »). Les valider avant de publier :
+  `esphome config`, et `esphome compile` avec ESPHome 2026.9.1 au moins (pour les essais, un `name:` à part pour ne
+  pas écraser le dossier de build d'un appareil) ; la CI ne le fait pas.
+- **Anciennes adresses** : `REDIRECTIONS` dans `construire.py` écrit à l'ancienne adresse une page qui renvoie vers la
+  nouvelle (`/ecran-vigie/` depuis le 28/10/2026). Ne pas en retirer une : des liens extérieurs peuvent y mener.
 
 - **auxfilsdesidees.fr** : servie par le Caddy du serveur de Vigie. `./deploy.sh` y copie toutes les pages, les images,
   `auxfilsdesidees/robots.txt`, la clé IndexNow (`auxfilsdesidees/<clé>.txt`) et `auxfilsdesidees/sitemap.xml` ;

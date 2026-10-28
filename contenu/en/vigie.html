@@ -125,9 +125,55 @@ logo: logo-vigie.svg
 		<div>
 			<h3>The screen</h3>
 			<p>A standalone alert screen, without Home Assistant, for the Waveshare ESP32-P4 7B or the M5Stack Tab5: world map, the 5 most severe hazards with distance and direction, weather. ESPHome and LVGL.</p>
-			<a href="/en/vigie-display/">The Vigie display</a>
+			<a href="#display">The alert display</a>
 		</div>
 	</div>
+</section>
+
+<section class="bloc" aria-labelledby="display">
+	<h2 id="display">The alert display</h2>
+	<p>A touch screen standing in the house, showing the disasters under way around the world and the weather of the places that matter to you. It stands on its own: no Home Assistant, no app, just Wi-Fi. Its firmware, <a href="https://github.com/Axellum/vigie-display">vigie-display</a>, is made with ESPHome and LVGL, under the MIT licence, in English or French.</p>
+	<div class="grille">
+		<div>
+			<h3>The status bar</h3>
+			<p>The link to the API (up to date, waiting, unreachable, with the age of the data), the date and time of the zone on screen.</p>
+		</div>
+		<div>
+			<h3>The world map</h3>
+			<p>Current hazards as dots coloured by severity (red, orange, yellow, green), and the zones you watch.</p>
+		</div>
+		<div>
+			<h3>The five most severe</h3>
+			<p>Earthquake, cyclone, volcano, flood, fire… with the magnitude when there is one, the source title, distance and direction from the zone on screen, and the age of the alert.</p>
+		</div>
+		<div>
+			<h3>The weather</h3>
+			<p>Current weather, wind and gusts, humidity, rain in the next hour, air quality, waves for coastal zones and a five-day forecast. Touch the panel to go to the next zone.</p>
+		</div>
+	</div>
+	<p>A value the API does not know is left off the screen, never invented. If the API stops answering, or an answer arrives incomplete, the screen keeps the last data and says so in the status bar.</p>
+	<div class="choix">
+		<article class="carte">
+			<figure><img src="/assets/vigie-ecran-tab5-en.webp" width="1280" height="720" loading="lazy" alt="Vigie on the M5Stack Tab5 at 1280 × 720"></figure>
+			<div>
+				<span class="etiquette">5 inch · 1280 × 720</span>
+				<h3><a href="/en/vigie/m5stack-tab5/">M5Stack Tab5</a></h3>
+				<p>The 7B layout scaled up by 20 %. Runs on an ST7121 since 2026-10-28; ST7123 and ILI9881C compiled, not yet run.</p>
+				<span class="suite">Vigie on the Tab5 and its configuration</span>
+			</div>
+		</article>
+		<article class="carte">
+			<figure><img src="/assets/vigie-ecran-waveshare-7b-en.webp" width="1024" height="600" loading="lazy" alt="Vigie on the Waveshare 7B at 1024 × 600"></figure>
+			<div>
+				<span class="etiquette">7 inch · 1024 × 600</span>
+				<h3><a href="/en/vigie/waveshare-esp32-p4-7b/">Waveshare ESP32-P4 7B</a></h3>
+				<p>The reference layout, to the pixel. Tested on the board on 2026-10-20.</p>
+				<span class="suite">Vigie on the 7B and its configuration</span>
+			</div>
+		</article>
+	</div>
+	<p class="legende">Rendered from the firmware itself on a PC by continuous integration, with a live frame of the public API.</p>
+	<p>Every minute the screen asks the Vigie API for one compact frame; it never talks to the sources directly, nor to Home Assistant. With the public API (<code>https://vigie.auxfilsdesidees.fr</code>, free but rate-limited and with no guarantee of service), it shows the demo zones: Paris, Tokyo, Pointe-à-Pitre, San Francisco and Reykjavik in October 2026. With your own API, on a PC, a NAS or a Raspberry Pi on your network, it shows the zones you add to it.</p>
 </section>
 
 <section class="bloc" aria-labelledby="api">

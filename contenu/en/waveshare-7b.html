@@ -1,7 +1,7 @@
 chemin: /en/waveshare-esp32-p4-7b/
 paire: waveshare-7b
 titre: Waveshare ESP32-P4 7B as a Home Assistant display (ESPHome)
-description: The Waveshare ESP32-P4-WIFI6-Touch-LCD-7B as a Home Assistant display: 7 inch, 1024 × 600, the same firmware as the Tab5, installed from the browser.
+description: The Waveshare ESP32-P4-WIFI6-Touch-LCD-7B as a Home Assistant display: 7 inch, 1024 × 600, installed from the browser, and an ESPHome config to copy.
 maj: 2026-10-28
 image: 7b-accueil.webp
 fil: Waveshare ESP32-P4 7B
@@ -23,6 +23,7 @@ parent: ecran
 		<p class="chapeau">A 7-inch 1024 × 600 touch screen built around the same chips as the Tab5. Bigger, cheaper, with fewer things on board. It has been the screen of my house since 14 October 2026.</p>
 		<ul class="liens">
 			<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Install from the browser</a></li>
+			<li><a href="#configuration">The ESPHome configuration</a></li>
 			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/waveshare-7b/">7B documentation</a></li>
 		</ul>
 	</div>
@@ -48,6 +49,26 @@ parent: ecran
 	<p class="legende">Renders of the firmware on a PC at 1024 × 600, the same pixels as on the board (French screen texts).</p>
 </section>
 
+<section class="bloc" aria-labelledby="configuration">
+	<h2 id="configuration">The ESPHome configuration</h2>
+	<p>To start from scratch with ESPHome on this board: a short, complete example that brings up the display, the touch, Wi-Fi and the backlight, shows a Home Assistant temperature and turns a light on. Replace the two entities with your own.</p>
+	<!--exemple waveshare-7b-home-assistant-->
+	<p class="legende">Validated and compiled with ESPHome 2026.9.1 on 2026-10-28, not tried as is on the board: its pins and settings are those of the full firmware, which runs on mine.</p>
+	<p>Each unusual setting is explained in a comment, and the problem it solves just below. Two things are not in it: the sound (ES8311 and amplifier, two microphones on an ES7210) and the full reset after a software restart; they are in <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/blob/main/Tab5/paquets/carte-waveshare-7b.yaml">carte-waveshare-7b.yaml</a>, the board's file in the full firmware. The same board without Home Assistant: <a href="/en/vigie/waveshare-esp32-p4-7b/">Vigie on the 7B</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="problems">
+	<h2 id="problems">Problems solved when it arrived</h2>
+	<p>All already fixed in the firmware; useful if you start from scratch with ESPHome on this board.</p>
+	<ul>
+		<li><strong>Boot loops</strong>: ESPHome 2026.9.0 crashes when setting up the display of revision 3 ESP32-P4 chips; ESPHome 2026.9.1 at least is needed.</li>
+		<li><strong>No Wi-Fi</strong>: the ESP32-C6 reset is active high, as on the Tab5.</li>
+		<li><strong>Touch almost dead</strong>: the panel is mounted upside down relative to the driver, and the GT911 touch controller must be reset through GPIO 23.</li>
+		<li><strong>Clipping speaker</strong>: the ES8311 driver goes up to +32 dB; the volume is capped at 0 dB and its bottom raised, for clean sound across the slider.</li>
+		<li><strong>Boot loop after a software restart</strong>: the link with the Wi-Fi chip stayed stuck; every restart now resets the whole digital core.</li>
+	</ul>
+</section>
+
 <section class="bloc" aria-labelledby="missing">
 	<h2 id="missing">What the board does not have</h2>
 	<ul>
@@ -67,18 +88,6 @@ parent: ecran
 	</ol>
 	<p>Updates then come through Home Assistant, from this board's own folder. Board mounted upside down? The device's "Screen direction" setting in Home Assistant flips the image at once, without rebuilding. Replacing a Tab5? Disable the old device in Home Assistant first.</p>
 	<div class="note"><p>Not yet tried from the install page on a real board: mine got the published firmware through an over-the-air update. Not checked on the board either: the microphone and wake word, cameras. If you try it, tell us in <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/discussions/categories/hardware-compatibility">the Discussions</a>.</p></div>
-</section>
-
-<section class="bloc" aria-labelledby="problems">
-	<h2 id="problems">Problems solved when it arrived</h2>
-	<p>All already fixed in the firmware; useful if you start from scratch with ESPHome on this board.</p>
-	<ul>
-		<li><strong>Boot loops</strong>: ESPHome 2026.9.0 crashes when setting up the display of revision 3 ESP32-P4 chips; ESPHome 2026.9.1 at least is needed.</li>
-		<li><strong>No Wi-Fi</strong>: the ESP32-C6 reset is active high, as on the Tab5.</li>
-		<li><strong>Touch almost dead</strong>: the panel is mounted upside down relative to the driver, and the GT911 touch controller must be reset through GPIO 23.</li>
-		<li><strong>Clipping speaker</strong>: the ES8311 driver goes up to +32 dB; the volume is capped at 0 dB and its bottom raised, for clean sound across the slider.</li>
-		<li><strong>Boot loop after a software restart</strong>: the link with the Wi-Fi chip stayed stuck; every restart now resets the whole digital core.</li>
-	</ul>
 </section>
 
 <section class="bloc" aria-labelledby="measures">

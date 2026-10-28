@@ -14,6 +14,8 @@ Un bloc <!--ld … ld--> dans le corps est un objet JSON-LD de plus, ajouté au 
 Nouveautés : contenu/nouveautes.json (versions publiées, tenu à jour par outils/nouveautes.py). Dans un corps,
 <!--nouveautes--> devient la liste complète par mois, <!--nouveautes 3--> les trois dernières ; la page de paire
 « nouveautes » porte aussi le flux RSS de sa langue (rss.xml dans son dossier).
+Exemples : <!--exemple nom--> devient exemples/<langue>/<nom>.yaml en bloc de code. Les anciennes adresses de
+REDIRECTIONS reçoivent une page qui renvoie vers la nouvelle.
 
   python construire.py            # écrit les pages, les flux RSS et auxfilsdesidees/sitemap.xml
   python construire.py --verifier # échoue si une page écrite diffère de ce que le contenu produit (CI)
@@ -121,7 +123,7 @@ LOGO = (
 	'<circle cx="52.2" cy="24.4" r="4.2" fill="#e8ecf1"/></svg>'
 )
 # Script de la page (progression de lecture, sommaire, apparitions, agrandissement des images), mis en ligne
-# dans chaque page : environ 3 Ko (1,4 Ko compressé), aucune requête de plus.
+# dans chaque page : environ 3,7 Ko (1,7 Ko compressé), aucune requête de plus.
 SCRIPT = (ICI / "gabarits" / "site.js").read_text(encoding="utf-8").strip()
 PERSONNE = {
 	"@type": "Person",
@@ -134,6 +136,13 @@ NOUVEAUTES = json.loads((ICI / "contenu" / "nouveautes.json").read_text(encoding
 # Nom d'un dépôt dans les nouveautés, quand ce n'est pas celui de la page de son projet
 NOMS_DEPOTS = {"vigie-api": "Vigie API", "vigie-web": "Vigie Web", "vigie-display": "Vigie display"}
 FLUX = "rss.xml"
+# Exemples de configuration ESPHome (exemples/<langue>/<nom>.yaml), compilés avant d'être publiés : dans un corps,
+# <!--exemple nom--> devient le fichier en bloc de code, avec un lien vers lui sur GitHub (gabarits/site.js y ajoute
+# un bouton « Copier »).
+DEPOT = "https://github.com/Axellum/axellum.github.io/blob/main"
+# Anciennes adresses, gardées pour les liens déjà donnés : une page qui renvoie aussitôt vers la nouvelle (meta
+# refresh à 0 s, que Google prend pour une redirection définitive ; Caddy et GitHub Pages servent le même fichier).
+REDIRECTIONS = {"/ecran-vigie/": "/vigie/#ecran", "/en/vigie-display/": "/en/vigie/#display"}
 
 
 def lire(fichier: Path, langue: str) -> dict:
@@ -302,6 +311,42 @@ def deplier_nouveautes(corps: str, langue: str, par_paire: dict) -> str:
 	return re.sub(r"<!--nouveautes(?: (\d+))?-->", liste, corps)
 
 
+def colorer_yaml(texte: str) -> str:
+	"""Commentaires (YAML et C++ des lambdas) et clés du YAML en couleur ; le reste tel quel."""
+	lignes = []
+	for ligne in html.escape(texte, quote=False).split("\n"):
+		if re.match(r"\s*(#|//)", ligne):
+			ligne = f'<span class="c">{ligne}</span>'
+		else:
+			ligne = re.sub(r"^(\s*(?:- )?)([A-Za-z_][A-Za-z0-9_]*)(:)(?=\s|$)", r'\1<span class="k">\2</span>\3', ligne)
+		lignes.append(ligne)
+	return "\n".join(lignes)
+
+
+def deplier_exemples(corps: str, langue: str) -> str:
+	"""<!--exemple nom--> : exemples/<langue>/<nom>.yaml en bloc de code."""
+	def bloc(m: re.Match) -> str:
+		nom = f"{m.group(1)}.yaml"
+		texte = (ICI / "exemples" / langue / nom).read_text(encoding="utf-8").rstrip("\n")
+		return (
+			f'<div class="code"><div class="code-tete"><span>{nom}</span>'
+			f'<a href="{DEPOT}/exemples/{langue}/{nom}">GitHub</a></div>\n'
+			f'<pre><code>{colorer_yaml(texte)}</code></pre></div>'
+		)
+
+	return re.sub(r"<!--exemple ([a-z0-9-]+)-->", bloc, corps)
+
+
+def redirection(ancien: str, nouveau: str) -> str:
+	"""Page d'une ancienne adresse : renvoie vers la nouvelle."""
+	langue = "en" if ancien.startswith("/en/") else "fr"
+	return (
+		f'<!doctype html>\n<html lang="{langue}">\n<meta charset="utf-8">\n<title>{TEXTES[langue]["marque"]}</title>\n'
+		f'<link rel="canonical" href="{SITE}{nouveau.split("#")[0]}">\n'
+		f'<meta http-equiv="refresh" content="0; url={nouveau}">\n<p><a href="{nouveau}">{SITE}{nouveau}</a></p>\n'
+	)
+
+
 def flux_rss(langue: str, par_paire: dict) -> str:
 	"""Flux RSS 2.0 des versions publiées, dans une langue ; daté de la dernière version (stable d'une construction à l'autre)."""
 	t = TEXTES[langue]
@@ -445,7 +490,7 @@ def rendre(page: dict, pages: list[dict], par_paire: dict) -> str:
 
 <div class="page{" avec-sommaire" if colonne else ""}">
 <main id="contenu">
-{visible}{onglets(page, pages, projet)}{deplier_nouveautes(page["corps"], page["langue"], par_paire)}
+{visible}{onglets(page, pages, projet)}{deplier_exemples(deplier_nouveautes(page["corps"], page["langue"], par_paire), page["langue"])}
 </main>
 {colonne}</div>
 {pastille}
@@ -498,6 +543,10 @@ def main() -> int:
 	attendu[ICI / "auxfilsdesidees" / "sitemap.xml"] = sitemap(pages, par_paire)
 	for langue in LANGUES:
 		attendu[ICI / par_paire["nouveautes"][langue]["chemin"].strip("/") / FLUX] = flux_rss(langue, par_paire)
+	for ancien, nouveau in REDIRECTIONS.items():
+		if sortie(ancien) in attendu:
+			sys.exit(f"redirection « {ancien} » : une page porte déjà cette adresse")
+		attendu[sortie(ancien)] = redirection(ancien, nouveau)
 	ecarts = []
 	for fichier, texte in attendu.items():
 		actuel = fichier.read_text(encoding="utf-8") if fichier.exists() else None

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Waveshare ESP32-P4 7B as a Home Assistant display (ESPHome)</title>
-<meta name="description" content="The Waveshare ESP32-P4-WIFI6-Touch-LCD-7B as a Home Assistant display: 7 inch, 1024 × 600, the same firmware as the Tab5, installed from the browser.">
+<meta name="description" content="The Waveshare ESP32-P4-WIFI6-Touch-LCD-7B as a Home Assistant display: 7 inch, 1024 × 600, installed from the browser, and an ESPHome config to copy.">
 <link rel="canonical" href="https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/">
 <link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/waveshare-esp32-p4-7b/">
 <link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/">
@@ -15,7 +15,7 @@
 <meta property="og:locale:alternate" content="fr_FR">
 <meta property="og:site_name" content="Aux fils des idées">
 <meta property="og:title" content="Waveshare ESP32-P4 7B as a Home Assistant display (ESPHome)">
-<meta property="og:description" content="The Waveshare ESP32-P4-WIFI6-Touch-LCD-7B as a Home Assistant display: 7 inch, 1024 × 600, the same firmware as the Tab5, installed from the browser.">
+<meta property="og:description" content="The Waveshare ESP32-P4-WIFI6-Touch-LCD-7B as a Home Assistant display: 7 inch, 1024 × 600, installed from the browser, and an ESPHome config to copy.">
 <meta property="og:url" content="https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/">
 <meta property="og:image" content="https://auxfilsdesidees.fr/assets/partage/en-waveshare-7b.jpg">
 <meta property="og:image:width" content="1200">
@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0e1319" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
 <link rel="icon" href="/assets/icone.svg?v=8d13847f41" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css?v=0d55d1d9f5">
+<link rel="stylesheet" href="/assets/style.css?v=081a595722">
 <script type="application/ld+json">
 {
 	"@context": "https://schema.org",
@@ -57,7 +57,7 @@
 			"@id": "https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/#page",
 			"url": "https://auxfilsdesidees.fr/en/waveshare-esp32-p4-7b/",
 			"name": "Waveshare ESP32-P4 7B as a Home Assistant display (ESPHome)",
-			"description": "The Waveshare ESP32-P4-WIFI6-Touch-LCD-7B as a Home Assistant display: 7 inch, 1024 × 600, the same firmware as the Tab5, installed from the browser.",
+			"description": "The Waveshare ESP32-P4-WIFI6-Touch-LCD-7B as a Home Assistant display: 7 inch, 1024 × 600, installed from the browser, and an ESPHome config to copy.",
 			"inLanguage": "en",
 			"isPartOf": {
 				"@id": "https://auxfilsdesidees.fr/#site"
@@ -131,6 +131,7 @@
 		<p class="chapeau">A 7-inch 1024 × 600 touch screen built around the same chips as the Tab5. Bigger, cheaper, with fewer things on board. It has been the screen of my house since 14 October 2026.</p>
 		<ul class="liens">
 			<li><a class="principal" href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/install/">Install from the browser</a></li>
+			<li><a href="#configuration">The ESPHome configuration</a></li>
 			<li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/waveshare-7b/">7B documentation</a></li>
 		</ul>
 	</div>
@@ -156,6 +157,203 @@
 	<p class="legende">Renders of the firmware on a PC at 1024 × 600, the same pixels as on the board (French screen texts).</p>
 </section>
 
+<section class="bloc" aria-labelledby="configuration">
+	<h2 id="configuration">The ESPHome configuration</h2>
+	<p>To start from scratch with ESPHome on this board: a short, complete example that brings up the display, the touch, Wi-Fi and the backlight, shows a Home Assistant temperature and turns a light on. Replace the two entities with your own.</p>
+	<div class="code"><div class="code-tete"><span>waveshare-7b-home-assistant.yaml</span><a href="https://github.com/Axellum/axellum.github.io/blob/main/exemples/en/waveshare-7b-home-assistant.yaml">GitHub</a></div>
+<pre><code><span class="c"># Waveshare ESP32-P4-WIFI6-Touch-LCD-7B with ESPHome and Home Assistant: display, touch, Wi-Fi</span>
+<span class="c"># and backlight, a Home Assistant temperature in the middle and a button that turns a light on.</span>
+<span class="c"># Pins and settings of the "Home Assistant display" firmware (3.9.0), which runs on the board;</span>
+<span class="c"># this example itself is compiled with ESPHome 2026.9.1 but not tried as is.</span>
+<span class="k">esphome</span>:
+  <span class="k">name</span>: waveshare-7b
+  <span class="k">friendly_name</span>: Waveshare 7B
+<span class="c">  # ESPHome 2026.9.0 crashes while setting up the display of an ESP32-P4 revision 3: 2026.9.1 at</span>
+<span class="c">  # least.</span>
+  <span class="k">min_version</span>: 2026.9.1
+
+<span class="k">esp32</span>:
+  <span class="k">variant</span>: esp32p4
+<span class="c">  # ESP32-P4 revision 3 (production silicon), whose normal frequency is 400 MHz.</span>
+  <span class="k">engineering_sample</span>: false
+  <span class="k">cpu_frequency</span>: 400MHz
+  <span class="k">flash_size</span>: 32MB
+  <span class="k">framework</span>:
+    <span class="k">type</span>: esp-idf
+    <span class="k">advanced</span>:
+      <span class="k">enable_idf_experimental_features</span>: true
+      <span class="k">execute_from_psram</span>: true
+
+<span class="c"># At its default speed, the PSRAM gave about thirty "lcd.dsi underrun" per second.</span>
+<span class="k">psram</span>:
+  <span class="k">mode</span>: hex
+  <span class="k">speed</span>: 200MHz
+
+<span class="c"># Wi-Fi is on a second chip, an ESP32-C6, linked over SDIO. Its reset (GPIO54) is active high:</span>
+<span class="c"># false gives "sdmmc_card_init failed".</span>
+<span class="k">esp32_hosted</span>:
+  <span class="k">variant</span>: esp32c6
+  <span class="k">active_high</span>: true
+  <span class="k">clk_pin</span>: GPIO18
+  <span class="k">cmd_pin</span>: GPIO19
+  <span class="k">d0_pin</span>: GPIO14
+  <span class="k">d1_pin</span>: GPIO15
+  <span class="k">d2_pin</span>: GPIO16
+  <span class="k">d3_pin</span>: GPIO17
+  <span class="k">reset_pin</span>: GPIO54
+  <span class="k">slot</span>: 1
+  <span class="k">sdio_frequency</span>: 20MHz
+  <span class="k">use_psram</span>: true
+
+<span class="k">wifi</span>:
+  <span class="k">ssid</span>: !secret wifi_ssid
+  <span class="k">password</span>: !secret wifi_password
+  <span class="k">ap</span>:
+    <span class="k">ssid</span>: "Waveshare 7B fallback"
+
+<span class="k">captive_portal</span>:
+
+<span class="k">api</span>:
+  <span class="k">encryption</span>:
+    <span class="k">key</span>: !secret api_encryption_key
+<span class="c">  # With no Home Assistant connected, ESPHome restarts after 15 min by default.</span>
+  <span class="k">reboot_timeout</span>: 60min
+
+<span class="k">ota</span>:
+  - <span class="k">platform</span>: esphome
+
+<span class="k">logger</span>:
+  <span class="k">hardware_uart</span>: USB_SERIAL_JTAG
+
+<span class="c"># Bus of the GT911 touch and of the audio chips.</span>
+<span class="k">i2c</span>:
+  - <span class="k">id</span>: bsp_bus
+    <span class="k">sda</span>: GPIO7
+    <span class="k">scl</span>: GPIO8
+    <span class="k">frequency</span>: 400kHz
+
+<span class="c"># Supply of the display's MIPI-DSI link: LDO 3 at 2.5 V.</span>
+<span class="k">esp_ldo</span>:
+  - <span class="k">voltage</span>: 2.5V
+    <span class="k">channel</span>: 3
+
+<span class="c"># EK79007 panel: ESPHome's model knows the board (GPIO33 reset included).</span>
+<span class="k">display</span>:
+  - <span class="k">id</span>: panel
+    <span class="k">platform</span>: mipi_dsi
+    <span class="k">model</span>: WAVESHARE-ESP32-P4-WIFI6-TOUCH-LCD-7B
+    <span class="k">dimensions</span>:
+      <span class="k">width</span>: 1024
+      <span class="k">height</span>: 600
+    <span class="k">pixel_mode</span>: 16bit
+    <span class="k">color_order</span>: RGB
+    <span class="k">update_interval</span>: never
+    <span class="k">auto_clear_enabled</span>: false
+
+<span class="c"># Waveshare's code says the GT911 reset is not connected, but it is on GPIO23: without it and</span>
+<span class="c"># without both mirrors, one touch recognised in five minutes.</span>
+<span class="k">touchscreen</span>:
+  - <span class="k">id</span>: touch
+    <span class="k">platform</span>: gt911
+    <span class="k">reset_pin</span>: GPIO23
+    <span class="k">update_interval</span>: 50ms
+    <span class="k">transform</span>:
+      <span class="k">swap_xy</span>: false
+      <span class="k">mirror_x</span>: true
+      <span class="k">mirror_y</span>: true
+
+<span class="c"># Backlight: inverted output, at 5 kHz.</span>
+<span class="k">output</span>:
+  - <span class="k">platform</span>: ledc
+    <span class="k">id</span>: backlight_pwm
+    <span class="k">pin</span>:
+      <span class="k">number</span>: GPIO32
+      <span class="k">inverted</span>: true
+    <span class="k">frequency</span>: 5000Hz
+
+<span class="k">light</span>:
+  - <span class="k">platform</span>: monochromatic
+    <span class="k">id</span>: backlight
+    <span class="k">name</span>: "Backlight"
+    <span class="k">output</span>: backlight_pwm
+    <span class="k">restore_mode</span>: RESTORE_DEFAULT_ON
+
+<span class="c"># Replace with your own entities. For the button, tick "Allow the device to perform Home</span>
+<span class="c"># Assistant actions" in Home Assistant (options of the ESPHome device).</span>
+<span class="k">sensor</span>:
+  - <span class="k">platform</span>: homeassistant
+    <span class="k">id</span>: living_room_temperature
+    <span class="k">entity_id</span>: sensor.living_room_temperature
+    <span class="k">on_value</span>:
+      - lvgl.label.update:
+          <span class="k">id</span>: temperature_label
+          <span class="k">text</span>:
+            <span class="k">format</span>: "%.1f °C"
+            <span class="k">args</span>: [x]
+
+<span class="c"># LVGL's built-in fonts have no accented letters: Roboto, downloaded at build time (it only</span>
+<span class="c"># lacks combining accents, hence ignore_missing_glyphs).</span>
+<span class="k">font</span>:
+  - <span class="k">file</span>: "gfonts://Roboto"
+    <span class="k">id</span>: font_text
+    <span class="k">size</span>: 28
+    <span class="k">glyphsets</span>: [GF_Latin_Core]
+    <span class="k">ignore_missing_glyphs</span>: true
+  - <span class="k">file</span>: "gfonts://Roboto@700"
+    <span class="k">id</span>: font_big
+    <span class="k">size</span>: 64
+    <span class="k">glyphsets</span>: [GF_Latin_Core]
+    <span class="k">ignore_missing_glyphs</span>: true
+
+<span class="k">lvgl</span>:
+  <span class="k">displays</span>: [panel]
+  <span class="k">touchscreens</span>: [touch]
+<span class="c">  # The panel is mounted upside down compared with its driver: 180 for the board the right way</span>
+<span class="c">  # up, 0 if you mount it upside down. The touch follows by itself.</span>
+  <span class="k">rotation</span>: 180
+  <span class="k">color_depth</span>: 16
+  <span class="k">byte_order</span>: little_endian
+  <span class="k">buffer_size</span>: 100%
+  <span class="k">default_font</span>: font_text
+  <span class="k">pages</span>:
+    - <span class="k">id</span>: home_page
+      <span class="k">widgets</span>:
+        - <span class="k">label</span>:
+            <span class="k">id</span>: temperature_label
+            <span class="k">align</span>: CENTER
+            <span class="k">y</span>: -70
+            <span class="k">text</span>: "--"
+            <span class="k">text_font</span>: font_big
+        - <span class="k">button</span>:
+            <span class="k">align</span>: CENTER
+            <span class="k">y</span>: 100
+            <span class="k">width</span>: 320
+            <span class="k">height</span>: 100
+            <span class="k">widgets</span>:
+              - <span class="k">label</span>:
+                  <span class="k">align</span>: CENTER
+                  <span class="k">text</span>: "Living room light"
+            <span class="k">on_click</span>:
+              - homeassistant.action:
+                  <span class="k">action</span>: light.toggle
+                  <span class="k">data</span>:
+                    <span class="k">entity_id</span>: light.living_room</code></pre></div>
+	<p class="legende">Validated and compiled with ESPHome 2026.9.1 on 2026-10-28, not tried as is on the board: its pins and settings are those of the full firmware, which runs on mine.</p>
+	<p>Each unusual setting is explained in a comment, and the problem it solves just below. Two things are not in it: the sound (ES8311 and amplifier, two microphones on an ES7210) and the full reset after a software restart; they are in <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/blob/main/Tab5/paquets/carte-waveshare-7b.yaml">carte-waveshare-7b.yaml</a>, the board's file in the full firmware. The same board without Home Assistant: <a href="/en/vigie/waveshare-esp32-p4-7b/">Vigie on the 7B</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="problems">
+	<h2 id="problems">Problems solved when it arrived</h2>
+	<p>All already fixed in the firmware; useful if you start from scratch with ESPHome on this board.</p>
+	<ul>
+		<li><strong>Boot loops</strong>: ESPHome 2026.9.0 crashes when setting up the display of revision 3 ESP32-P4 chips; ESPHome 2026.9.1 at least is needed.</li>
+		<li><strong>No Wi-Fi</strong>: the ESP32-C6 reset is active high, as on the Tab5.</li>
+		<li><strong>Touch almost dead</strong>: the panel is mounted upside down relative to the driver, and the GT911 touch controller must be reset through GPIO 23.</li>
+		<li><strong>Clipping speaker</strong>: the ES8311 driver goes up to +32 dB; the volume is capped at 0 dB and its bottom raised, for clean sound across the slider.</li>
+		<li><strong>Boot loop after a software restart</strong>: the link with the Wi-Fi chip stayed stuck; every restart now resets the whole digital core.</li>
+	</ul>
+</section>
+
 <section class="bloc" aria-labelledby="missing">
 	<h2 id="missing">What the board does not have</h2>
 	<ul>
@@ -177,18 +375,6 @@
 	<div class="note"><p>Not yet tried from the install page on a real board: mine got the published firmware through an over-the-air update. Not checked on the board either: the microphone and wake word, cameras. If you try it, tell us in <a href="https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/discussions/categories/hardware-compatibility">the Discussions</a>.</p></div>
 </section>
 
-<section class="bloc" aria-labelledby="problems">
-	<h2 id="problems">Problems solved when it arrived</h2>
-	<p>All already fixed in the firmware; useful if you start from scratch with ESPHome on this board.</p>
-	<ul>
-		<li><strong>Boot loops</strong>: ESPHome 2026.9.0 crashes when setting up the display of revision 3 ESP32-P4 chips; ESPHome 2026.9.1 at least is needed.</li>
-		<li><strong>No Wi-Fi</strong>: the ESP32-C6 reset is active high, as on the Tab5.</li>
-		<li><strong>Touch almost dead</strong>: the panel is mounted upside down relative to the driver, and the GT911 touch controller must be reset through GPIO 23.</li>
-		<li><strong>Clipping speaker</strong>: the ES8311 driver goes up to +32 dB; the volume is capped at 0 dB and its bottom raised, for clean sound across the slider.</li>
-		<li><strong>Boot loop after a software restart</strong>: the link with the Wi-Fi chip stayed stuck; every restart now resets the whole digital core.</li>
-	</ul>
-</section>
-
 <section class="bloc" aria-labelledby="measures">
 	<h2 id="measures">Measured on the board</h2>
 	<ul>
@@ -199,10 +385,10 @@
 	<p>Details (pins, schematic, measuring method) are in the <a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/en/waveshare-7b/">7B documentation</a>. The original tablet: <a href="/en/m5stack-tab5/">the M5Stack Tab5 and its versions</a>.</p>
 </section>
 </main>
-<aside class="sommaire"><nav aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#screen">What changes on screen</a></li><li><a href="#missing">What the board does not have</a></li><li><a href="#install">Install it</a></li><li><a href="#problems">Problems solved when it arrived</a></li><li><a href="#measures">Measured on the board</a></li></ul></nav></aside>
+<aside class="sommaire"><nav aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#screen">What changes on screen</a></li><li><a href="#configuration">The ESPHome configuration</a></li><li><a href="#problems">Problems solved when it arrived</a></li><li><a href="#missing">What the board does not have</a></li><li><a href="#install">Install it</a></li><li><a href="#measures">Measured on the board</a></li></ul></nav></aside>
 </div>
 <button class="sommaire-bouton" type="button" popovertarget="sommaire-mobile" aria-label="On this page"><span>On this page</span></button>
-<nav id="sommaire-mobile" class="sommaire-mobile" popover aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#screen">What changes on screen</a></li><li><a href="#missing">What the board does not have</a></li><li><a href="#install">Install it</a></li><li><a href="#problems">Problems solved when it arrived</a></li><li><a href="#measures">Measured on the board</a></li></ul></nav>
+<nav id="sommaire-mobile" class="sommaire-mobile" popover aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#screen">What changes on screen</a></li><li><a href="#configuration">The ESPHome configuration</a></li><li><a href="#problems">Problems solved when it arrived</a></li><li><a href="#missing">What the board does not have</a></li><li><a href="#install">Install it</a></li><li><a href="#measures">Measured on the board</a></li></ul></nav>
 
 <footer class="bas">
 	<div class="page">
@@ -217,7 +403,8 @@
 </footer>
 <script>
 /* Aux fils des idées : progression de lecture, sommaire qui suit la lecture, apparitions au défilement,
-   agrandissement des images. Sans bibliothèque ; rien ne bouge si le système demande moins d'animations. */
+   agrandissement des images, bouton « Copier » des exemples de code. Sans bibliothèque ; rien ne bouge si le
+   système demande moins d'animations. */
 (() => {
 	const d = document, h = d.documentElement, calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
 	h.classList.add("js");
@@ -260,10 +447,21 @@
 			vu.observe(x);
 		});
 	}
+	const fr = h.lang === "fr";
+	d.querySelectorAll(".code").forEach(bloc => {
+		const b = d.createElement("button"), code = bloc.querySelector("code");
+		const dire = (oui, non) => { b.textContent = fr ? oui : non; setTimeout(() => b.textContent = fr ? "Copier" : "Copy", 2500); };
+		b.type = "button";
+		b.textContent = fr ? "Copier" : "Copy";
+		// Copie refusée (page sans le focus, navigateur ancien) : le code reste sélectionné, prêt pour Ctrl+C
+		b.addEventListener("click", () => (navigator.clipboard ? navigator.clipboard.writeText(code.textContent) : Promise.reject())
+			.then(() => dire("Copié", "Copied"), () => { getSelection().selectAllChildren(code); dire("Sélectionné", "Selected"); }));
+		bloc.firstChild.append(b);
+	});
 	const loupe = d.createElement("dialog");
 	loupe.className = "loupe";
 	loupe.innerHTML = '<img alt="">';
-	loupe.setAttribute("aria-label", h.lang === "fr" ? "Image agrandie" : "Enlarged image");
+	loupe.setAttribute("aria-label", fr ? "Image agrandie" : "Enlarged image");
 	loupe.addEventListener("click", () => loupe.close());
 	d.body.append(loupe);
 	d.querySelectorAll("main figure img").forEach(img => {

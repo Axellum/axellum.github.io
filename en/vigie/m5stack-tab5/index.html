@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M5Stack Tab5 without Home Assistant: ESPHome config</title>
+<meta name="description" content="The M5Stack Tab5 as a standalone alert display, without Home Assistant: a full ESPHome and LVGL configuration for the ST7121, ST7123 and ILI9881C versions.">
+<link rel="canonical" href="https://auxfilsdesidees.fr/en/vigie/m5stack-tab5/">
+<link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/vigie/m5stack-tab5/">
+<link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/vigie/m5stack-tab5/">
+<link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/vigie/m5stack-tab5/">
+<link rel="alternate" type="application/rss+xml" title="What&#x27;s new · Aux fils des idées" href="/en/news/rss.xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:site_name" content="Aux fils des idées">
+<meta property="og:title" content="M5Stack Tab5 without Home Assistant: ESPHome config">
+<meta property="og:description" content="The M5Stack Tab5 as a standalone alert display, without Home Assistant: a full ESPHome and LVGL configuration for the ST7121, ST7123 and ILI9881C versions.">
+<meta property="og:url" content="https://auxfilsdesidees.fr/en/vigie/m5stack-tab5/">
+<meta property="og:image" content="https://auxfilsdesidees.fr/assets/partage/en-vigie-tab5.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="M5Stack Tab5 without Home Assistant: ESPHome config">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0e1319" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/assets/icone.svg?v=8d13847f41" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css?v=081a595722">
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebSite",
+			"@id": "https://auxfilsdesidees.fr/#site",
+			"url": "https://auxfilsdesidees.fr/",
+			"name": "Aux fils des idées",
+			"inLanguage": [
+				"fr",
+				"en"
+			],
+			"publisher": {
+				"@id": "https://auxfilsdesidees.fr/#axel"
+			}
+		},
+		{
+			"@type": "Person",
+			"@id": "https://auxfilsdesidees.fr/#axel",
+			"name": "Axel Duviella",
+			"url": "https://auxfilsdesidees.fr/",
+			"sameAs": [
+				"https://github.com/Axellum"
+			]
+		},
+		{
+			"@type": "WebPage",
+			"@id": "https://auxfilsdesidees.fr/en/vigie/m5stack-tab5/#page",
+			"url": "https://auxfilsdesidees.fr/en/vigie/m5stack-tab5/",
+			"name": "M5Stack Tab5 without Home Assistant: ESPHome config",
+			"description": "The M5Stack Tab5 as a standalone alert display, without Home Assistant: a full ESPHome and LVGL configuration for the ST7121, ST7123 and ILI9881C versions.",
+			"inLanguage": "en",
+			"isPartOf": {
+				"@id": "https://auxfilsdesidees.fr/#site"
+			},
+			"primaryImageOfPage": "https://auxfilsdesidees.fr/assets/vigie-ecran-tab5-en.webp",
+			"dateModified": "2026-10-28"
+		},
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{
+					"@type": "ListItem",
+					"position": 1,
+					"name": "Home",
+					"item": "https://auxfilsdesidees.fr/en/"
+				},
+				{
+					"@type": "ListItem",
+					"position": 2,
+					"name": "Vigie",
+					"item": "https://auxfilsdesidees.fr/en/vigie/"
+				},
+				{
+					"@type": "ListItem",
+					"position": 3,
+					"name": "M5Stack Tab5",
+					"item": "https://auxfilsdesidees.fr/en/vigie/m5stack-tab5/"
+				}
+			]
+		},
+		{
+			"@type": "TechArticle",
+			"headline": "M5Stack Tab5 without Home Assistant: Vigie alert display and ESPHome configuration",
+			"about": {
+				"@type": "Product",
+				"name": "M5Stack Tab5",
+				"brand": {
+					"@type": "Brand",
+					"name": "M5Stack"
+				}
+			},
+			"inLanguage": "en",
+			"image": "https://auxfilsdesidees.fr/assets/vigie-ecran-tab5-en.webp",
+			"author": {
+				"@id": "https://auxfilsdesidees.fr/#axel"
+			}
+		}
+	]
+}
+</script>
+</head>
+<body>
+<a class="evitement" href="#contenu">Skip to content</a>
+<header class="haut">
+	<div class="page ligne">
+		<a class="marque" href="/en/"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#10151c"/><path d="M30 55V41C30 33 23 29 20 21M30 41C30 35 35 31 39 29" fill="none" stroke="#f0a46f" stroke-width="4.8" stroke-linecap="round"/><path d="M39 29C40.5 24.5 41.5 20 43 15.5M39 29C43 28 47 28 50.5 25.5" fill="none" stroke="#f0a46f" stroke-width="3.8" stroke-linecap="round"/><circle cx="19.2" cy="18.6" r="5" fill="#8fc0ff"/><circle cx="43.6" cy="13.2" r="4.4" fill="#f0a46f"/><circle cx="52.2" cy="24.4" r="4.2" fill="#e8ecf1"/></svg><span>Aux fils des idées</span></a>
+		<nav class="menu" aria-label="Main navigation"><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie/" class="courant">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/">About</a></li></ul></nav>
+		<a class="langue" href="/vigie/m5stack-tab5/" hreflang="fr" lang="fr">Français</a>
+	</div>
+	<div class="progression" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="page avec-sommaire">
+<main id="contenu">
+<nav class="fil" aria-label="Breadcrumb"><a href="/en/">Home</a> <span aria-hidden="true">›</span> <a href="/en/vigie/">Vigie</a> <span aria-hidden="true">›</span> <span aria-current="page">M5Stack Tab5</span></nav>
+<nav class="onglets" aria-label="Project pages"><span class="onglets-projet"><img src="/assets/logo-vigie.svg" width="26" height="26" alt="">Vigie</span><ul><li><a href="/en/vigie/">Overview</a></li><li><a href="/en/vigie/m5stack-tab5/" aria-current="page">M5Stack Tab5</a></li><li><a href="/en/vigie/waveshare-esp32-p4-7b/">Waveshare 7B</a></li></ul></nav>
+<div class="heros">
+	<div>
+		<span class="etiquette">Vigie · M5Stack · no Home Assistant</span>
+		<h1>Vigie on the M5Stack Tab5</h1>
+		<p class="chapeau">The 5-inch tablet as a standalone alert display: the world map of current hazards, the five most severe and the weather of your zones, at 1280 × 720. ESPHome without Home Assistant: the screen fetches its data by itself, over Wi-Fi.</p>
+		<ul class="liens">
+			<li><a class="principal" href="#configuration">The ESPHome configuration</a></li>
+			<li><a href="https://github.com/Axellum/vigie-display/blob/main/docs/installation.md">Installation guide</a></li>
+			<li><a href="https://github.com/Axellum/vigie-display">Code on GitHub</a></li>
+		</ul>
+	</div>
+	<figure><img fetchpriority="high" src="/assets/vigie-ecran-tab5-en.webp" width="1280" height="720" alt="The Vigie screen on the M5Stack Tab5 at 1280 × 720: status bar, world map with current hazards, list of the five most severe and weather panel"></figure>
+</div>
+
+<dl class="faits">
+	<div><dt>Screen</dt><dd>5", 1280 × 720</dd></div>
+	<div><dt>Firmware</dt><dd>ESPHome 2026.9.1+, LVGL</dd></div>
+	<div><dt>Home Assistant</dt><dd>Not needed</dd></div>
+	<div><dt>Data</dt><dd>Vigie API, every minute</dd></div>
+	<div><dt>Status</dt><dd>ST7121 tested on 2026-10-28</dd></div>
+</dl>
+
+<div class="note"><p>Vigie does not replace official warnings: always follow the instructions of your authorities.</p></div>
+
+<section class="bloc" aria-labelledby="screen">
+	<h2 id="screen">What the screen shows</h2>
+	<p>The Waveshare 7B layout, scaled up by 20 % to fill the Tab5's sharper screen: the status bar (link to the API, date and time of the zone), the world map with hazards as dots coloured by severity, the five most severe with their distance and direction, and the weather panel of the zone. Touch the panel to go to the next zone.</p>
+	<p>Each part in detail, and what the screen does when the API stops answering: <a href="/en/vigie/#display">the Vigie alert display</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="versions">
+	<h2 id="versions">The three versions of the Tab5</h2>
+	<p>M5Stack changed the chip that drives the display and the touch twice; each one is picked at build time.</p>
+	<ul>
+		<li><strong>ST7121</strong> (since 2026-04-28): Vigie has run on one since 2026-10-28, Wi-Fi and data from the public API over HTTPS.</li>
+		<li><strong>ST7123</strong> (2025-10-14 to 2026-04-28): compiled, not yet run with Vigie on a tablet.</li>
+		<li><strong>ILI9881C</strong> (the first one, 2025-05-09 to 2025-10-14): compiled, never run.</li>
+	</ul>
+	<p>The chip is printed on the back of the tablet, above the Espressif logo; how to tell, and the traps: <a href="/en/m5stack-tab5/#versions">the versions of the Tab5</a>.</p>
+</section>
+
+<section class="bloc" aria-labelledby="configuration">
+	<h2 id="configuration">The ESPHome configuration, without Home Assistant</h2>
+	<p>No <code>api:</code> component: nothing links the screen to Home Assistant. Wi-Fi is given after the install (Improv over USB, or the access point the screen opens by itself), the data comes through <code>http_request</code> and LVGL draws it.</p>
+	<p>Below, a short, complete example on the same hardware base as Vigie: it shows the temperature and the weather warning of a place, read from <a href="/en/vigie/#api">the public Vigie API</a>. Pick your Tab5's chip at the top of the file; change the latitude and longitude, or the address, to read another API.</p>
+	<div class="code"><div class="code-tete"><span>tab5-standalone.yaml</span><a href="https://github.com/Axellum/axellum.github.io/blob/main/exemples/en/tab5-standalone.yaml">GitHub</a></div>
+<pre><code><span class="c"># M5Stack Tab5 with ESPHome, without Home Assistant: display, touch, Wi-Fi and backlight, and</span>
+<span class="c"># the screen reads a web API by itself to show the temperature and the weather warning of a</span>
+<span class="c"># place (the /v1/point route of the public Vigie API). Pins and settings of the Vigie display</span>
+<span class="c"># firmware, which runs on a Tab5 ST7121; this example itself is compiled with ESPHome 2026.9.1</span>
+<span class="c"># but not tried as is.</span>
+<span class="k">substitutions</span>:
+<span class="c">  # The display chip is printed on the back of the Tab5, above the Espressif logo:</span>
+<span class="c">  #   ST7123   : M5STACK-TAB5-ST7123, touch st7123, 100ms</span>
+<span class="c">  #   ST7121   : M5STACK-TAB5-ST7121, touch st7123, 100ms</span>
+<span class="c">  #   ILI9881C : M5STACK-TAB5,        touch gt911,  never</span>
+  <span class="k">panel_model</span>: M5STACK-TAB5-ST7123
+  <span class="k">touch_chip</span>: st7123
+  <span class="k">touch_interval</span>: 100ms
+<span class="c">  # The place shown (Paris here).</span>
+  <span class="k">latitude</span>: "48.86"
+  <span class="k">longitude</span>: "2.35"
+
+<span class="k">esphome</span>:
+  <span class="k">name</span>: tab5-standalone
+  <span class="k">friendly_name</span>: Tab5 standalone
+  <span class="k">min_version</span>: 2026.9.0
+  <span class="k">on_boot</span>:
+<span class="c">    # The panel reset goes through a PI4IOE5V6408 I/O expander, which needs a second after</span>
+<span class="c">    # start-up: without this wait, black screen after a software restart. A C delay(): ESPHome's</span>
+<span class="c">    # "delay:" does not hold the display setup back.</span>
+    - <span class="k">priority</span>: 700
+      <span class="k">then</span>:
+        - <span class="k">lambda</span>: "delay(1000);"
+
+<span class="k">esp32</span>:
+  <span class="k">board</span>: esp32-p4-evboard
+  <span class="k">flash_size</span>: 16MB
+  <span class="k">framework</span>:
+    <span class="k">type</span>: esp-idf
+    <span class="k">advanced</span>:
+      <span class="k">enable_idf_experimental_features</span>: true
+      <span class="k">execute_from_psram</span>: true
+
+<span class="c"># 32 MB of PSRAM, where LVGL keeps the whole picture (buffer_size: 100% below).</span>
+<span class="k">psram</span>:
+  <span class="k">mode</span>: hex
+  <span class="k">speed</span>: 200MHz
+
+<span class="c"># Wi-Fi is on a second chip, an ESP32-C6, linked over SDIO. Its reset is active high:</span>
+<span class="c"># active_high: false gives "sdmmc_card_init failed".</span>
+<span class="k">esp32_hosted</span>:
+  <span class="k">variant</span>: esp32c6
+  <span class="k">active_high</span>: true
+  <span class="k">clk_pin</span>: GPIO12
+  <span class="k">cmd_pin</span>: GPIO13
+  <span class="k">d0_pin</span>: GPIO11
+  <span class="k">d1_pin</span>: GPIO10
+  <span class="k">d2_pin</span>: GPIO9
+  <span class="k">d3_pin</span>: GPIO8
+  <span class="k">reset_pin</span>: GPIO15
+  <span class="k">slot</span>: 1
+  <span class="k">sdio_frequency</span>: 20MHz
+  <span class="k">use_psram</span>: true
+
+<span class="c"># No "api:": nothing links the screen to Home Assistant. No password in the file: Wi-Fi is given</span>
+<span class="c"># after the install, over USB (Improv, from ESPHome Web) or through the "Tab5 setup" access</span>
+<span class="c"># point and its settings page.</span>
+<span class="k">wifi</span>:
+  <span class="k">ap</span>:
+    <span class="k">ssid</span>: "Tab5 setup"
+
+<span class="k">improv_serial</span>:
+
+<span class="k">captive_portal</span>:
+
+<span class="k">ota</span>:
+  - <span class="k">platform</span>: esphome
+
+<span class="k">logger</span>:
+  <span class="k">hardware_uart</span>: USB_SERIAL_JTAG
+
+<span class="c"># One I2C bus for the touch, the two I/O expanders and the audio chips.</span>
+<span class="k">i2c</span>:
+  - <span class="k">id</span>: bsp_bus
+    <span class="k">sda</span>: GPIO31
+    <span class="k">scl</span>: GPIO32
+    <span class="k">frequency</span>: 400kHz
+
+<span class="k">pi4ioe5v6408</span>:
+  - <span class="k">id</span>: pi4ioe1
+    <span class="k">address</span>: 0x43
+  - <span class="k">id</span>: pi4ioe2
+    <span class="k">address</span>: 0x44
+
+<span class="c"># Power rails behind the expanders. "wifi_power" feeds the ESP32-C6: the expander starts off,</span>
+<span class="c"># and without this the Wi-Fi never comes up ("sdmmc_card_init failed"). The charger stays off,</span>
+<span class="c"># as with no battery.</span>
+<span class="k">switch</span>:
+  - <span class="k">platform</span>: gpio
+    <span class="k">id</span>: wifi_power
+    <span class="k">pin</span>:
+      <span class="k">pi4ioe5v6408</span>: pi4ioe2
+      <span class="k">number</span>: 0
+    <span class="k">restore_mode</span>: ALWAYS_ON
+  - <span class="k">platform</span>: gpio
+    <span class="k">id</span>: usb_5v_power
+    <span class="k">pin</span>:
+      <span class="k">pi4ioe5v6408</span>: pi4ioe2
+      <span class="k">number</span>: 3
+    <span class="k">restore_mode</span>: ALWAYS_ON
+  - <span class="k">platform</span>: gpio
+    <span class="k">id</span>: external_5v_power
+    <span class="k">pin</span>:
+      <span class="k">pi4ioe5v6408</span>: pi4ioe1
+      <span class="k">number</span>: 2
+    <span class="k">restore_mode</span>: ALWAYS_ON
+  - <span class="k">platform</span>: gpio
+    <span class="k">id</span>: charge_enable
+    <span class="k">pin</span>:
+      <span class="k">pi4ioe5v6408</span>: pi4ioe2
+      <span class="k">number</span>: 7
+    <span class="k">restore_mode</span>: ALWAYS_OFF
+
+<span class="c"># Supply of the display's MIPI-DSI link: LDO 3 at 2.5 V.</span>
+<span class="k">esp_ldo</span>:
+  - <span class="k">voltage</span>: 2.5V
+    <span class="k">channel</span>: 3
+
+<span class="c"># The panel is portrait (720 × 1280): LVGL turns it to landscape below.</span>
+<span class="k">display</span>:
+  - <span class="k">id</span>: panel
+    <span class="k">platform</span>: mipi_dsi
+    <span class="k">model</span>: ${panel_model}
+    <span class="k">dimensions</span>:
+      <span class="k">width</span>: 720
+      <span class="k">height</span>: 1280
+    <span class="k">reset_pin</span>:
+      <span class="k">pi4ioe5v6408</span>: pi4ioe1
+      <span class="k">number</span>: 4
+    <span class="k">pixel_mode</span>: 16bit
+    <span class="k">color_order</span>: RGB
+    <span class="k">update_interval</span>: never
+    <span class="k">auto_clear_enabled</span>: false
+
+<span class="c"># Same pins on the three versions. No mirroring (it corrupts the picture on an ST7121): LVGL</span>
+<span class="c"># turns the touches with the picture.</span>
+<span class="k">touchscreen</span>:
+  - <span class="k">id</span>: touch
+    <span class="k">platform</span>: ${touch_chip}
+    <span class="k">update_interval</span>: ${touch_interval}
+    <span class="k">interrupt_pin</span>: GPIO23
+    <span class="k">reset_pin</span>:
+      <span class="k">pi4ioe5v6408</span>: pi4ioe1
+      <span class="k">number</span>: 5
+    <span class="k">calibration</span>:
+      <span class="k">x_min</span>: 0
+      <span class="k">x_max</span>: 720
+      <span class="k">y_min</span>: 0
+      <span class="k">y_max</span>: 1280
+
+<span class="k">output</span>:
+  - <span class="k">platform</span>: ledc
+    <span class="k">id</span>: backlight_pwm
+    <span class="k">pin</span>: GPIO22
+    <span class="k">frequency</span>: 1000Hz
+
+<span class="k">light</span>:
+  - <span class="k">platform</span>: monochromatic
+    <span class="k">id</span>: backlight
+    <span class="k">name</span>: "Backlight"
+    <span class="k">output</span>: backlight_pwm
+    <span class="k">restore_mode</span>: RESTORE_DEFAULT_ON
+
+<span class="c"># The screen fetches its data by itself, over HTTPS. verify_ssl: false: the server certificate</span>
+<span class="c"># is not checked, as in Vigie display; fine for public data, never for a password.</span>
+<span class="k">http_request</span>:
+  <span class="k">id</span>: web
+  <span class="k">timeout</span>: 8s
+  <span class="k">verify_ssl</span>: false
+
+<span class="k">interval</span>:
+<span class="c">  # /v1/point takes 10 requests per minute and per address: one every 5 minutes is plenty.</span>
+  - <span class="k">interval</span>: 5min
+    <span class="k">startup_delay</span>: 10s
+    <span class="k">then</span>:
+      - <span class="k">if</span>:
+          <span class="k">condition</span>:
+            wifi.connected:
+          <span class="k">then</span>:
+            - http_request.get:
+                <span class="k">url</span>: "https://vigie.auxfilsdesidees.fr/v1/point?lat=${latitude}&amp;lon=${longitude}"
+                <span class="k">capture_response</span>: true
+                <span class="k">max_response_buffer_size</span>: 16384
+                <span class="k">on_response</span>:
+                  <span class="k">then</span>:
+                    - <span class="k">lambda</span>: |-
+                        if (response-&gt;status_code != 200) {
+                          ESP_LOGW("exemple", "HTTP %d", response-&gt;status_code);
+                          return;
+                        }
+                        json::parse_json(body, [](JsonObject root) -&gt; bool {
+<span class="c">                          // Highest weather warning at the point: GREEN, YELLOW, ORANGE or RED.</span>
+                          std::string level = root["local_alert_level"] | "";
+                          const char *text = "No warning";
+                          uint32_t colour = 0x3FA34D;
+                          if (level == "YELLOW") { text = "Yellow warning"; colour = 0xF2C230; }
+                          if (level == "ORANGE") { text = "Orange warning"; colour = 0xF08A24; }
+                          if (level == "RED") { text = "Red warning"; colour = 0xE5484D; }
+                          lv_label_set_text(id(level_label), text);
+                          lv_obj_set_style_text_color(id(level_label), lv_color_hex(colour), LV_PART_MAIN);
+<span class="c">                          // A missing value stays missing: nothing is made up.</span>
+                          JsonVariant temperature = root["current"]["temp_c"];
+                          if (temperature.is&lt;float&gt;()) {
+                            char value[16];
+                            snprintf(value, sizeof(value), "%.1f °C", temperature.as&lt;float&gt;());
+                            lv_label_set_text(id(temperature_label), value);
+                          }
+                          return true;
+                        });
+                <span class="k">on_error</span>:
+                  <span class="k">then</span>:
+                    - logger.log: "No answer (network or timeout)"
+
+<span class="c"># LVGL's built-in fonts have no accented letters: Roboto, downloaded at build time (it only</span>
+<span class="c"># lacks combining accents, hence ignore_missing_glyphs).</span>
+<span class="k">font</span>:
+  - <span class="k">file</span>: "gfonts://Roboto"
+    <span class="k">id</span>: font_text
+    <span class="k">size</span>: 32
+    <span class="k">glyphsets</span>: [GF_Latin_Core]
+    <span class="k">ignore_missing_glyphs</span>: true
+  - <span class="k">file</span>: "gfonts://Roboto@700"
+    <span class="k">id</span>: font_big
+    <span class="k">size</span>: 80
+    <span class="k">glyphsets</span>: [GF_Latin_Core]
+    <span class="k">ignore_missing_glyphs</span>: true
+
+<span class="k">lvgl</span>:
+  <span class="k">displays</span>: [panel]
+  <span class="k">touchscreens</span>: [touch]
+  <span class="k">rotation</span>: 270
+  <span class="k">color_depth</span>: 16
+  <span class="k">byte_order</span>: little_endian
+  <span class="k">buffer_size</span>: 100%
+  <span class="k">default_font</span>: font_text
+  <span class="k">pages</span>:
+    - <span class="k">id</span>: home_page
+      <span class="k">widgets</span>:
+        - <span class="k">label</span>:
+            <span class="k">id</span>: temperature_label
+            <span class="k">align</span>: CENTER
+            <span class="k">y</span>: -60
+            <span class="k">text</span>: "--"
+            <span class="k">text_font</span>: font_big
+        - <span class="k">label</span>:
+            <span class="k">id</span>: level_label
+            <span class="k">align</span>: CENTER
+            <span class="k">y</span>: 80
+            <span class="k">text</span>: "Waiting for data"</code></pre></div>
+	<p class="legende">Validated and compiled with ESPHome 2026.9.1 on 2026-10-28, not yet tried as is on the tablet: its hardware settings are those of Vigie display, which runs on a Tab5 ST7121.</p>
+	<h3>The settings that matter on this tablet</h3>
+	<ul>
+		<li><strong>The ESP32-C6, which carries the Wi-Fi, is powered through an I/O expander</strong> (PI4IOE5V6408, pin 0 of the second one): without the <code>wifi_power</code> switch turned on at start-up, the SDIO link never comes up ("sdmmc_card_init failed", seen on an ST7121 on 2026-10-28). Its reset, GPIO15, is active high.</li>
+		<li><strong>The panel reset goes through the other expander</strong>, which needs a second after start-up: without the wait in <code>on_boot</code>, black screen after a software restart. It has to block, hence the C <code>delay()</code>.</li>
+		<li><strong>The panel is portrait</strong> (720 × 1280): LVGL turns it to landscape with <code>rotation: 270</code>, and turns the touches with it.</li>
+		<li><strong>No mirroring</strong> on the display or the touch: it corrupts the picture on an ST7121.</li>
+		<li><strong>The MIPI-DSI link</strong> is powered by LDO 3 of the ESP32-P4, at 2.5 V (<code>esp_ldo</code>).</li>
+		<li><strong>The display model and the touch chip change with the version</strong>: M5STACK-TAB5-ST7123 or -ST7121 with the <code>st7123</code> touch, M5STACK-TAB5 with the <code>gt911</code> for the ILI9881C.</li>
+	</ul>
+	<h3>The full firmware</h3>
+	<p><a href="https://github.com/Axellum/vigie-display/blob/main/vigie.yaml">vigie.yaml</a> puts packages together: the tablet hardware (<a href="https://github.com/Axellum/vigie-display/blob/main/firmware/packages/board-tab5.yaml">board-tab5.yaml</a>, power rails and charger included), the size of the screen, the world map and the fonts (<a href="https://github.com/Axellum/vigie-display/blob/main/firmware/packages/layout-tab5.yaml">layout-tab5.yaml</a>), the LVGL screen, drawn in C++, and the API client: one request a minute, a frame refused if its size or checksum does not match.</p>
+</section>
+
+<section class="bloc" aria-labelledby="install">
+	<h2 id="install">Install Vigie</h2>
+	<p>No published release to install from the browser yet: you build the firmware yourself. Allow half an hour, mostly for the first build.</p>
+	<ol class="etapes">
+		<li>Install ESPHome 2026.9.1 or newer and get the <a href="https://github.com/Axellum/vigie-display">vigie-display</a> repository.</li>
+		<li>Create a signing key: once installed, the screen only accepts updates signed with the same key. Keep a copy.</li>
+		<li>Build for the Tab5: <code>esphome -s vigie_board tab5 -s vigie_api_url https://vigie.auxfilsdesidees.fr -s vigie_signing_key vigie_signing_key.pem compile vigie.yaml</code>. With an ST7121, add <code>-s board_tab5_panel M5STACK-TAB5-ST7121</code>; with an ILI9881C, <code>-s board_tab5_panel M5STACK-TAB5 -s board_tab5_touch gt911 -s board_tab5_touch_interval never</code>. Then install over USB with ESPHome or from <a href="https://web.esphome.io">ESPHome Web</a>.</li>
+		<li>Give it Wi-Fi over USB (Improv) or through the "Vigie setup" access point the screen opens after a minute. Within a minute, the status bar reads "Up to date".</li>
+	</ol>
+	<p>Settings and common problems are in <a href="https://github.com/Axellum/vigie-display/blob/main/docs/installation.md">the installation guide</a>. Later updates go over Wi-Fi. The same tablet as a Home Assistant display: <a href="/en/m5stack-tab5/">the M5Stack Tab5</a>.</p>
+</section>
+</main>
+<aside class="sommaire"><nav aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#screen">What the screen shows</a></li><li><a href="#versions">The three versions of the Tab5</a></li><li><a href="#configuration">The ESPHome configuration, without Home Assistant</a></li><li><a href="#install">Install Vigie</a></li></ul></nav></aside>
+</div>
+<button class="sommaire-bouton" type="button" popovertarget="sommaire-mobile" aria-label="On this page"><span>On this page</span></button>
+<nav id="sommaire-mobile" class="sommaire-mobile" popover aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#screen">What the screen shows</a></li><li><a href="#versions">The three versions of the Tab5</a></li><li><a href="#configuration">The ESPHome configuration, without Home Assistant</a></li><li><a href="#install">Install Vigie</a></li></ul></nav>
+
+<footer class="bas">
+	<div class="page">
+		<div class="bas-haut">
+			<div><a class="marque" href="/en/"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#10151c"/><path d="M30 55V41C30 33 23 29 20 21M30 41C30 35 35 31 39 29" fill="none" stroke="#f0a46f" stroke-width="4.8" stroke-linecap="round"/><path d="M39 29C40.5 24.5 41.5 20 43 15.5M39 29C43 28 47 28 50.5 25.5" fill="none" stroke="#f0a46f" stroke-width="3.8" stroke-linecap="round"/><circle cx="19.2" cy="18.6" r="5" fill="#8fc0ff"/><circle cx="43.6" cy="13.2" r="4.4" fill="#f0a46f"/><circle cx="52.2" cy="24.4" r="4.2" fill="#e8ecf1"/></svg><span>Aux fils des idées</span></a><p>Screens and tools for the home, made with AI and shared in case they help.</p></div>
+			<nav aria-label="Projects"><p class="bas-titre">Projects</p><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/about/">About</a></li><li><a href="/en/news/">What's new</a></li></ul></nav>
+			<nav aria-label="Elsewhere"><p class="bas-titre">Elsewhere</p><ul><li><a href="https://github.com/Axellum">GitHub</a></li><li><a href="https://vigie.auxfilsdesidees.fr/">Vigie</a></li><li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/">Tab5 docs</a></li><li><a href="/en/news/rss.xml">RSS feed</a></li></ul></nav>
+		</div>
+		<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. Feedback welcome on <a href="https://github.com/Axellum">GitHub</a>.</p>
+	<p>Publisher: Axel Duviella, private individual, non-professional (France). Contact: <a href="https://github.com/Axellum">github.com/Axellum</a>. Host: OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/en/">ovhcloud.com</a>). This site sets no cookies and does not measure its visits.</p>
+	</div>
+</footer>
+<script>
+/* Aux fils des idées : progression de lecture, sommaire qui suit la lecture, apparitions au défilement,
+   agrandissement des images, bouton « Copier » des exemples de code. Sans bibliothèque ; rien ne bouge si le
+   système demande moins d'animations. */
+(() => {
+	const d = document, h = d.documentElement, calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
+	h.classList.add("js");
+	const liens = [...d.querySelectorAll(".sommaire a, .sommaire-mobile a")];
+	const titres = [...new Set(liens.map(a => a.hash))].map(x => d.getElementById(x.slice(1))).filter(Boolean);
+	const pastille = d.querySelector(".sommaire-bouton span");
+	let actif = null, attente = false;
+	const maj = () => {
+		attente = false;
+		const max = h.scrollHeight - innerHeight;
+		h.style.setProperty("--p", max > 0 ? Math.min(scrollY / max, 1) : 0);
+		h.classList.toggle("defile", scrollY > 240);
+		let courant = null;
+		for (const t of titres) if (t.getBoundingClientRect().top < innerHeight * 0.32) courant = t;
+		if (courant !== actif) {
+			actif = courant;
+			for (const a of liens) a.classList.toggle("actif", !!courant && a.hash === "#" + courant.id);
+			if (pastille) pastille.textContent = courant ? courant.textContent : pastille.dataset.vide;
+		}
+	};
+	if (pastille) pastille.dataset.vide = pastille.textContent;
+	addEventListener("scroll", () => { if (!attente) { attente = true; requestAnimationFrame(maj); } }, { passive: true });
+	addEventListener("resize", maj);
+	maj();
+	d.getElementById("sommaire-mobile")?.addEventListener("click", e => e.target.closest("a") && e.currentTarget.hidePopover());
+	if (!calme && "IntersectionObserver" in window) {
+		const vu = new IntersectionObserver(es => es.forEach(e => {
+			if (e.isIntersecting) {
+				const x = e.target;
+				x.classList.add("vu");
+				vu.unobserve(x);
+				setTimeout(() => x.style.transitionDelay = "", 900);
+			}
+		}), { rootMargin: "0px 0px -6% 0px" });
+		d.querySelectorAll("main > section > :not(.grille, .cartes), main > .faits, .grille > *, .cartes > *, .journal li").forEach(x => {
+			if (x.getBoundingClientRect().top < innerHeight) return;
+			const rang = [...x.parentElement.children].indexOf(x);
+			if (x.parentElement.matches(".grille, .cartes, .journal ul")) x.style.transitionDelay = Math.min(rang, 4) * 70 + "ms";
+			x.classList.add("revele");
+			vu.observe(x);
+		});
+	}
+	const fr = h.lang === "fr";
+	d.querySelectorAll(".code").forEach(bloc => {
+		const b = d.createElement("button"), code = bloc.querySelector("code");
+		const dire = (oui, non) => { b.textContent = fr ? oui : non; setTimeout(() => b.textContent = fr ? "Copier" : "Copy", 2500); };
+		b.type = "button";
+		b.textContent = fr ? "Copier" : "Copy";
+		// Copie refusée (page sans le focus, navigateur ancien) : le code reste sélectionné, prêt pour Ctrl+C
+		b.addEventListener("click", () => (navigator.clipboard ? navigator.clipboard.writeText(code.textContent) : Promise.reject())
+			.then(() => dire("Copié", "Copied"), () => { getSelection().selectAllChildren(code); dire("Sélectionné", "Selected"); }));
+		bloc.firstChild.append(b);
+	});
+	const loupe = d.createElement("dialog");
+	loupe.className = "loupe";
+	loupe.innerHTML = '<img alt="">';
+	loupe.setAttribute("aria-label", fr ? "Image agrandie" : "Enlarged image");
+	loupe.addEventListener("click", () => loupe.close());
+	d.body.append(loupe);
+	d.querySelectorAll("main figure img").forEach(img => {
+		if (img.closest(".diaporama, .collage")) return;
+		img.classList.add("agrandir");
+		img.addEventListener("click", () => {
+			const grande = loupe.firstChild;
+			grande.src = img.currentSrc || img.src;
+			grande.alt = img.alt;
+			loupe.showModal();
+		});
+	});
+})();
+</script>
+</body>
+</html>
