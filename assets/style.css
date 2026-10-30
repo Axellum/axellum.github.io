@@ -233,6 +233,7 @@ main { padding-bottom: 72px; min-width: 0; }
 .carte { position: relative; display: flex; flex-direction: column; border: 1px solid var(--trait); border-radius: 18px; overflow: hidden; background: var(--carte); transition: transform .3s var(--courbe), box-shadow .3s, border-color .3s; }
 .carte:hover { transform: translateY(-4px); box-shadow: var(--ombre); border-color: color-mix(in srgb, var(--accent) 30%, var(--trait)); }
 .carte figure { margin: 0; aspect-ratio: 16 / 10; overflow: hidden; background: #0d1522; border-bottom: 1px solid var(--trait); }
+.carte.video figure { aspect-ratio: 16 / 9; }
 .carte figure img, .carte figure svg { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--courbe); }
 .carte:hover figure img, .carte:hover figure svg { transform: scale(1.04); }
 .carte > div { padding: 18px 22px 22px; display: flex; flex-direction: column; flex: 1; }

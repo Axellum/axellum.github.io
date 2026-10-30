@@ -9,7 +9,7 @@
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/"/>
@@ -20,14 +20,20 @@
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/logo-ecran.svg</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/logo-vigie.svg</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/logo-moteur.svg</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/video-tour.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/video-installation.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/video-reglages.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/ecran-home-assistant/</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/ecran-home-assistant/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/home-assistant-display/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/home-assistant-display/"/>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/video-tour.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/video-installation.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/video-reglages.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-maison-fr.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-lumieres-fr.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-climatisation-fr.webp</image:loc></image:image>
@@ -109,7 +115,7 @@
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/"/>
@@ -120,14 +126,20 @@
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/logo-ecran.svg</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/logo-vigie.svg</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/logo-moteur.svg</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/video-tour.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/video-installation.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/video-reglages.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://auxfilsdesidees.fr/en/home-assistant-display/</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/ecran-home-assistant/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/home-assistant-display/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/home-assistant-display/"/>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/tab5.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/video-tour.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/video-installation.webp</image:loc></image:image>
+    <image:image><image:loc>https://auxfilsdesidees.fr/assets/video-reglages.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-maison-en.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-lumieres-en.webp</image:loc></image:image>
     <image:image><image:loc>https://auxfilsdesidees.fr/assets/ecran-climatisation-en.webp</image:loc></image:image>
