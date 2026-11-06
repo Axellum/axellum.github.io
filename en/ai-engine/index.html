@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Multi-agent AI engine for Home Assistant (vromvrom-engine)</title>
-<meta name="description" content="vromvrom-engine: a Python multi-agent orchestrator that picks the right AI model per task (Elo routing), heals itself and offers an OpenAI-compatible API.">
+<meta name="description" content="vromvrom-engine: a Python server that answers with rules first and calls an AI model only when needed. Provider fallback, OpenAI-compatible API and MCP.">
 <link rel="canonical" href="https://auxfilsdesidees.fr/en/ai-engine/">
 <link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/moteur-ia/">
 <link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/ai-engine/">
@@ -15,7 +15,7 @@
 <meta property="og:locale:alternate" content="fr_FR">
 <meta property="og:site_name" content="Aux fils des idées">
 <meta property="og:title" content="Multi-agent AI engine for Home Assistant (vromvrom-engine)">
-<meta property="og:description" content="vromvrom-engine: a Python multi-agent orchestrator that picks the right AI model per task (Elo routing), heals itself and offers an OpenAI-compatible API.">
+<meta property="og:description" content="vromvrom-engine: a Python server that answers with rules first and calls an AI model only when needed. Provider fallback, OpenAI-compatible API and MCP.">
 <meta property="og:url" content="https://auxfilsdesidees.fr/en/ai-engine/">
 <meta property="og:image" content="https://auxfilsdesidees.fr/assets/partage/en-moteur.jpg">
 <meta property="og:image:width" content="1200">
@@ -57,13 +57,13 @@
 			"@id": "https://auxfilsdesidees.fr/en/ai-engine/#page",
 			"url": "https://auxfilsdesidees.fr/en/ai-engine/",
 			"name": "Multi-agent AI engine for Home Assistant (vromvrom-engine)",
-			"description": "vromvrom-engine: a Python multi-agent orchestrator that picks the right AI model per task (Elo routing), heals itself and offers an OpenAI-compatible API.",
+			"description": "vromvrom-engine: a Python server that answers with rules first and calls an AI model only when needed. Provider fallback, OpenAI-compatible API and MCP.",
 			"inLanguage": "en",
 			"isPartOf": {
 				"@id": "https://auxfilsdesidees.fr/#site"
 			},
 			"primaryImageOfPage": "https://auxfilsdesidees.fr/assets/partage.jpg",
-			"dateModified": "2026-10-28"
+			"dateModified": "2026-11-06"
 		},
 		{
 			"@type": "BreadcrumbList",
@@ -85,7 +85,7 @@
 		{
 			"@type": "SoftwareSourceCode",
 			"name": "vromvrom-engine",
-			"description": "Async multi-agent LLM orchestrator with Elo routing, self-healing, and an OpenAI-compatible Proxy API.",
+			"description": "A home-made brain for Home Assistant and your LLM providers: rules first, a model only when it helps.",
 			"codeRepository": "https://github.com/Axellum/vromvrom-engine",
 			"programmingLanguage": [
 				"Python",
@@ -119,71 +119,121 @@
 	<div>
 		<span class="etiquette">AI · Python · Home Assistant</span>
 		<h1>The multi-agent AI engine</h1>
-		<p class="chapeau">An orchestrator that takes a request, picks the best-suited AI model, splits the work into parallel tasks and switches to another provider on its own when one goes down. It was born to drive my Home Assistant display.</p>
+		<p class="chapeau">A Python server that sits between what asks (a chat, a script, a code editor, a voice assistant) and what answers (about eighteen AI providers, local models, Home Assistant). For each request it takes the cheapest path that is enough: a rule with no AI when possible, a model otherwise, with a fallback when a provider goes down. It was born to give a voice to <a href="/en/home-assistant-display/">my Home Assistant display</a>.</p>
 		<ul class="liens">
 			<li><a class="principal" href="https://github.com/Axellum/vromvrom-engine">Code on GitHub</a></li>
+			<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/docs/guide/en/README.md">User guide</a></li>
 		</ul>
 	</div>
 	<figure class="schema"><svg viewBox="0 0 400 300" role="img" aria-label="Diagram: the engine in the centre, linked to six AI providers"><rect width="400" height="300" fill="#0d1522"/><g class="flux" fill="none" stroke="#f0a46f" stroke-opacity=".7" stroke-width="1.6"><path d="M200 150L84 66"/><path d="M200 150L200 52"/><path d="M200 150L316 66"/><path d="M200 150L316 234"/><path d="M200 150L200 248"/><path d="M200 150L84 234"/></g><g fill="#8fc0ff"><circle cx="84" cy="66" r="7"/><circle cx="200" cy="52" r="7"/><circle cx="316" cy="66" r="7"/><circle cx="316" cy="234" r="7"/><circle cx="200" cy="248" r="7"/><circle cx="84" cy="234" r="7"/></g><g fill="#9aa6b4" font-size="13" text-anchor="middle"><text x="84" y="46">Gemini</text><text x="200" y="32">Anthropic</text><text x="316" y="46">DeepSeek</text><text x="316" y="266">Mistral</text><text x="200" y="282">OpenRouter</text><text x="84" y="266">Ollama</text></g><image href="/assets/logo-moteur.svg" x="160" y="110" width="80" height="80"/></svg></figure>
 </div>
 
 <dl class="faits">
-	<div><dt>Language</dt><dd>Python 3.11+</dd></div>
+	<div><dt>Language</dt><dd>Python 3.12+</dd></div>
 	<div><dt>API</dt><dd>OpenAI-compatible</dd></div>
-	<div><dt>AI providers</dt><dd>13</dd></div>
+	<div><dt>AI providers</dt><dd>About 18</dd></div>
 	<div><dt>License</dt><dd>MIT</dd></div>
 	<div><dt>Status</dt><dd>Active development</dd></div>
 </dl>
 
 <blockquote class="citation">
-	<p>"Async multi-agent LLM orchestrator with Elo routing, self-healing, and an OpenAI-compatible Proxy API. Built for Home Assistant, usable everywhere."</p>
-	<p class="source">Description of the vromvrom-engine repository.</p>
+	<p>"A home-made brain for Home Assistant and your LLM providers: rules first, a model only when it helps."</p>
+	<p class="source">First line of the vromvrom-engine README.</p>
 </blockquote>
 
 <section class="bloc" aria-labelledby="features">
 	<h2 id="features">What it does</h2>
+	<p>For each request the engine takes the cheapest path that is enough: <strong>a rule</strong>, with no AI, when the sentence is a known home command or question ("turn off the living room light"); <strong>a model</strong> otherwise, with a fallback when a provider fails; <strong>a plan of several agents</strong> only for a complex task. It also works without Home Assistant.</p>
 	<div class="grille">
 		<div>
 			<h3>Pick the right model</h3>
-			<p>Four-stage routing: simple rules, a small classifier, a model's opinion, then an Elo score that learns from use which model succeeds at which kind of task.</p>
+			<p>Keywords first, with no model; if the request is ambiguous, a small classifier or a small model sorts it. The models of a level are then ranked by an Elo score per domain, cost, remaining quota and latency.</p>
 		</div>
 		<div>
 			<h3>Work in parallel</h3>
-			<p>A complex request becomes a graph of tasks run at the same time (asyncio).</p>
+			<p>A complex request becomes a plan (planner, executors, reviewer) whose tasks run at the same time (asyncio). This is the least mature part: it works in the tests, but no complex task ran in 30 days on the author's instance.</p>
 		</div>
 		<div>
 			<h3>Heal itself</h3>
-			<p>Circuit breakers, spaced retries, failover to another provider depending on availability and budget.</p>
+			<p>A circuit breaker per provider, spaced retries, failover to the next one depending on availability and budget, and a health probe that turns failing models off.</p>
 		</div>
 		<div>
 			<h3>Remember</h3>
-			<p>Local document search (TF-IDF, BM25 and ChromaDB) to answer with the house's context.</p>
+			<p>Facts, session summaries and a graph, kept in SQLite, and a search in your documents by words and by meaning (ChromaDB, to be built once).</p>
 		</div>
 		<div>
 			<h3>Talk to your tools</h3>
-			<p>An OpenAI-compatible API (<code>/v1/chat/completions</code>) usable from Cursor, Cline or Continue, and routes dedicated to Home Assistant.</p>
+			<p>An OpenAI-compatible API (<code>/v1/chat/completions</code>, streaming) usable from Cursor, Cline or Continue; an MCP server of 17 tools for Claude or Cursor and a client for third-party MCP servers; routes dedicated to Home Assistant.</p>
 		</div>
 		<div>
 			<h3>Stay in control</h3>
-			<p>Human approval of sensitive actions, a plugin system, remote workers and a dashboard (FastAPI and React).</p>
+			<p>In a conversation the model only has read tools for Home Assistant: devices are commanded only by written rules. Risky actions need human approval. A plugin system, remote workers and a dashboard (FastAPI and React).</p>
 		</div>
 	</div>
+</section>
+
+<section class="bloc" aria-labelledby="state">
+	<h2 id="state">Where it stands</h2>
+	<div class="grille">
+		<div>
+			<h3>Used every day</h3>
+			<p>Home commands and questions without a model (110 to 196 ms on the engine side for a sentence of the catalog), chat with fallback between providers, cost counting: 86 real calls in 30 days cost $0.81 in the author's home.</p>
+		</div>
+		<div>
+			<h3>Tested, less used</h3>
+			<p>The OpenAI-compatible endpoint (streaming included), MCP both ways and, since November 2026, hot backups of the databases.</p>
+		</div>
+		<div>
+			<h3>Experimental</h3>
+			<p>Multi-agent plans, the local learning router (off on a fresh install) and the autonomous cycle (Dreamer, DreamCoder).</p>
+		</div>
+		<div>
+			<h3>Not plug-and-play</h3>
+			<p>End-to-end voice through Home Assistant Assist: the component that sends the recognized text to the engine (<code>moteur_ia_conversation</code>) is not in the repository. Chat, the API, the agents and MCP work without it.</p>
+		</div>
+	</div>
+	<div class="note"><p>Figures of 2026-11-01 from the author's installation (one household, in French, with Home Assistant). The full table, with its evidence, is in the <a href="https://github.com/Axellum/vromvrom-engine/blob/main/README.md#what-works-today">README</a>.</p></div>
+</section>
+
+<section class="bloc" aria-labelledby="guide">
+	<h2 id="guide">Where to start</h2>
+	<p>The repository has a five-page guide, in English and in French. It was checked by really starting the engine on Windows 11 with Python 3.13, with no provider key and no Home Assistant; Linux, macOS, Docker and systemd were not tried. In this order:</p>
+	<ol class="etapes">
+		<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/docs/guide/en/01_install.md">Install</a>: prerequisites, Windows or Linux, Docker, first start and first request.</li>
+		<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/docs/guide/en/05_operate.md">Operate</a>, the section on costs: read it before adding a provider key, to know what consumes tokens on its own.</li>
+		<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/docs/guide/en/02_understand.md">Understand</a>: what happens when a request is sent.</li>
+		<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/docs/guide/en/03_settings.md">Settings</a>: every <code>.env</code> variable and every <code>config.json</code> key, with its default.</li>
+		<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/docs/guide/en/04_home_and_voice.md">Home and voice</a>: only if you have Home Assistant.</li>
+	</ol>
+</section>
+
+<section class="bloc" aria-labelledby="limits">
+	<h2 id="limits">Its limits</h2>
+	<ul>
+		<li><strong>One person, one API key</strong>: no accounts, no roles, no per-person budget. For a team, a gateway like <a href="https://docs.litellm.ai/docs/proxy/budget_fallbacks">LiteLLM</a> fits better.</li>
+		<li><strong>Voice needs a component that is not published</strong> (see above).</li>
+		<li><strong>The cost statistics are skewed</strong>: the health probes are counted with the real calls (27,805 calls counted in 30 days, 86 of them real).</li>
+		<li><strong>Many providers, not all alive</strong>: on the author's instance the health probe turned off 42 models out of 76.</li>
+		<li><strong>Made for a developer first</strong>: the code, its comments and many of its names are in French; about half of the code is covered by tests (54% on 2026-11-01).</li>
+		<li><strong>One maintainer</strong>, code largely written with AI, no promise of support.</li>
+	</ul>
 </section>
 
 <section class="bloc" aria-labelledby="stack">
 	<h2 id="stack">Under the hood</h2>
 	<ul>
-		<li>Python 3.11+, FastAPI, asyncio, SQLite, ChromaDB, scikit-learn; dashboard in React, Vite and TypeScript.</li>
-		<li>13 supported AI providers, in the cloud (Gemini, GitHub Models, DeepSeek, Anthropic, Mistral, OpenRouter…) or local (LM Studio, Ollama).</li>
-		<li>Four documented configuration strategies, a Docker image and docker-compose, pytest tests and continuous integration.</li>
+		<li>Python 3.12+ (the version tested in CI), FastAPI, asyncio, SQLite, ChromaDB, scikit-learn; dashboard in React, Vite and TypeScript.</li>
+		<li>About eighteen AI providers supported by the code, in the cloud (Gemini, GitHub Models, DeepSeek, Anthropic, Mistral, OpenRouter…) or local (LM Studio, Ollama). A listed provider is not guaranteed to answer today: the health probe turns off those that fail.</li>
+		<li>Everything lives in SQLite files, with no database server to run: the author's instance runs on a Steam Deck, day and night.</li>
+		<li>A Docker image and docker-compose, pytest tests and continuous integration. Which models to use, at what price: <a href="https://github.com/Axellum/vromvrom-engine/blob/main/STRATEGIES.md">STRATEGIES</a>.</li>
 	</ul>
-	<div class="note"><p>A personal tool shared as is: the dashboard still has rough edges, and no release is published yet.</p></div>
+	<div class="note"><p>A personal tool shared as is, written with a lot of help from AI: the dashboard still has rough edges, and no release is published yet.</p></div>
 </section>
 </main>
-<aside class="sommaire"><nav aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#features">What it does</a></li><li><a href="#stack">Under the hood</a></li></ul></nav></aside>
+<aside class="sommaire"><nav aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#features">What it does</a></li><li><a href="#state">Where it stands</a></li><li><a href="#guide">Where to start</a></li><li><a href="#limits">Its limits</a></li><li><a href="#stack">Under the hood</a></li></ul></nav></aside>
 </div>
 <button class="sommaire-bouton" type="button" popovertarget="sommaire-mobile" aria-label="On this page"><span>On this page</span></button>
-<nav id="sommaire-mobile" class="sommaire-mobile" popover aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#features">What it does</a></li><li><a href="#stack">Under the hood</a></li></ul></nav>
+<nav id="sommaire-mobile" class="sommaire-mobile" popover aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#features">What it does</a></li><li><a href="#state">Where it stands</a></li><li><a href="#guide">Where to start</a></li><li><a href="#limits">Its limits</a></li><li><a href="#stack">Under the hood</a></li></ul></nav>
 
 <footer class="bas">
 	<div class="page">

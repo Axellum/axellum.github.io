@@ -1,8 +1,8 @@
 chemin: /moteur-ia/
 paire: moteur
 titre: Moteur IA multi-agents pour Home Assistant (vromvrom-engine)
-description: vromvrom-engine : orchestrateur multi-agents Python qui choisit le bon modèle d'IA par tâche (routage Elo) et se répare seul. API compatible OpenAI.
-maj: 2026-10-28
+description: vromvrom-engine : serveur Python qui répond d'abord par des règles et n'appelle un modèle d'IA que si besoin. Bascule entre fournisseurs, API OpenAI, MCP.
+maj: 2026-11-06
 fil: Moteur IA
 menu: Moteur IA
 ordre: 3
@@ -11,7 +11,7 @@ logo: logo-moteur.svg
 <!--ld {
 	"@type": "SoftwareSourceCode",
 	"name": "vromvrom-engine",
-	"description": "Orchestrateur multi-agents LLM asynchrone avec routage Elo, auto-réparation et API compatible OpenAI.",
+	"description": "Un cerveau fait maison pour Home Assistant et vos fournisseurs de LLM : des règles d'abord, un modèle seulement quand il sert.",
 	"codeRepository": "https://github.com/Axellum/vromvrom-engine",
 	"programmingLanguage": ["Python", "TypeScript"],
 	"license": "https://opensource.org/licenses/MIT",
@@ -21,9 +21,10 @@ logo: logo-moteur.svg
 	<div>
 		<span class="etiquette">IA · Python · Home Assistant</span>
 		<h1>Le moteur IA multi-agents</h1>
-		<p class="chapeau">Un orchestrateur qui reçoit une demande, choisit le modèle d'IA le plus adapté, découpe le travail en tâches parallèles et bascule seul sur un autre fournisseur quand l'un tombe. Il est né pour piloter mon écran Home Assistant.</p>
+		<p class="chapeau">Un serveur Python placé entre ce qui demande (une discussion, un script, un éditeur de code, un assistant vocal) et ce qui répond (environ dix-huit fournisseurs de modèles d'IA, des modèles locaux, Home Assistant). Pour chaque demande, il prend le chemin le moins cher qui suffit : une règle sans IA quand c'est possible, un modèle sinon, avec une bascule quand un fournisseur tombe. Il est né pour donner une voix à <a href="/ecran-home-assistant/">mon écran Home Assistant</a>.</p>
 		<ul class="liens">
 			<li><a class="principal" href="https://github.com/Axellum/vromvrom-engine">Code sur GitHub</a></li>
+			<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/docs/guide/README.md">Guide d'utilisation</a></li>
 			<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/README.fr.md">Lire en français</a></li>
 		</ul>
 	</div>
@@ -31,54 +32,103 @@ logo: logo-moteur.svg
 </div>
 
 <dl class="faits">
-	<div><dt>Langage</dt><dd>Python 3.11+</dd></div>
+	<div><dt>Langage</dt><dd>Python 3.12+</dd></div>
 	<div><dt>API</dt><dd>Compatible OpenAI</dd></div>
-	<div><dt>Fournisseurs d'IA</dt><dd>13</dd></div>
+	<div><dt>Fournisseurs d'IA</dt><dd>Environ 18</dd></div>
 	<div><dt>Licence</dt><dd>MIT</dd></div>
 	<div><dt>Statut</dt><dd>Développement actif</dd></div>
 </dl>
 
 <blockquote class="citation">
-	<p>« Async multi-agent LLM orchestrator with Elo routing, self-healing, and an OpenAI-compatible Proxy API. Built for Home Assistant, usable everywhere. »</p>
-	<p class="source">Description du dépôt vromvrom-engine.</p>
+	<p>« Un cerveau fait maison pour Home Assistant et vos fournisseurs de LLM : des règles d'abord, un modèle seulement quand il sert. »</p>
+	<p class="source">Première ligne du README de vromvrom-engine.</p>
 </blockquote>
 
 <section class="bloc" aria-labelledby="fonctions">
 	<h2 id="fonctions">Ce qu'il fait</h2>
+	<p>Pour chaque demande, le moteur prend le chemin le moins cher qui suffit : <strong>une règle</strong>, sans IA, quand la phrase est une commande ou une question connue de la maison (« éteins la lumière du salon ») ; <strong>un modèle</strong> sinon, avec une bascule quand un fournisseur échoue ; <strong>un plan de plusieurs agents</strong> seulement pour une tâche complexe. Il fonctionne aussi sans Home Assistant.</p>
 	<div class="grille">
 		<div>
 			<h3>Choisir le bon modèle</h3>
-			<p>Un routage en quatre étages : règles simples, petit classifieur, avis d'un modèle, puis un score Elo qui apprend de l'usage quel modèle réussit quel type de tâche.</p>
+			<p>Des mots-clés d'abord, sans modèle ; si la demande est ambiguë, un petit classifieur ou un petit modèle la range. Les modèles d'un même niveau sont ensuite classés selon un score Elo par domaine, le coût, le quota restant et la latence.</p>
 		</div>
 		<div>
 			<h3>Travailler en parallèle</h3>
-			<p>Une demande complexe devient un graphe de tâches exécutées en même temps (asyncio).</p>
+			<p>Une demande complexe devient un plan (planificateur, exécutants, relecteur) dont les tâches tournent en même temps (asyncio). C'est la partie la moins aboutie : elle marche dans les tests, mais aucune tâche complexe n'a tourné en 30 jours chez l'auteur.</p>
 		</div>
 		<div>
 			<h3>Se réparer seul</h3>
-			<p>Coupe-circuit, nouvelles tentatives espacées, bascule vers un autre fournisseur selon la disponibilité et le budget.</p>
+			<p>Un coupe-circuit par fournisseur, des nouvelles tentatives espacées, la bascule vers le suivant selon la disponibilité et le budget, et une sonde de santé qui coupe les modèles en panne.</p>
 		</div>
 		<div>
 			<h3>Se souvenir</h3>
-			<p>Une recherche locale dans les documents (TF-IDF, BM25 et ChromaDB) pour répondre avec le contexte de la maison.</p>
+			<p>Des faits, des résumés de sessions et un graphe, rangés dans SQLite, et une recherche dans vos documents par mots et par sens (ChromaDB, à construire une fois).</p>
 		</div>
 		<div>
 			<h3>Parler à vos outils</h3>
-			<p>Une API compatible OpenAI (<code>/v1/chat/completions</code>) utilisable depuis Cursor, Cline ou Continue, et des routes dédiées à Home Assistant.</p>
+			<p>Une API compatible OpenAI (<code>/v1/chat/completions</code>, en flux) utilisable depuis Cursor, Cline ou Continue ; un serveur MCP de 17 outils pour Claude ou Cursor et un client pour des serveurs MCP tiers ; des routes dédiées à Home Assistant.</p>
 		</div>
 		<div>
 			<h3>Garder la main</h3>
-			<p>Validation humaine des actions sensibles, système de plugins, travailleurs distants et un tableau de bord (FastAPI et React).</p>
+			<p>En discussion, le modèle n'a que des outils de lecture sur Home Assistant : les appareils ne sont commandés que par des règles écrites. Les actions risquées demandent une validation humaine. Un système de plugins, des travailleurs distants et un tableau de bord (FastAPI et React).</p>
 		</div>
 	</div>
+</section>
+
+<section class="bloc" aria-labelledby="etat">
+	<h2 id="etat">Où il en est</h2>
+	<div class="grille">
+		<div>
+			<h3>Utilisé tous les jours</h3>
+			<p>Les commandes et questions de la maison sans modèle (110 à 196 ms côté moteur pour une phrase du catalogue), la discussion avec bascule entre fournisseurs, le comptage des coûts : 86 vrais appels en 30 jours ont coûté 0,81&nbsp;$ chez l'auteur.</p>
+		</div>
+		<div>
+			<h3>Testé, moins utilisé</h3>
+			<p>Le point d'accès compatible OpenAI (flux compris), MCP dans les deux sens et, depuis novembre 2026, la sauvegarde à chaud des bases de données.</p>
+		</div>
+		<div>
+			<h3>Expérimental</h3>
+			<p>Les plans multi-agents, le routeur d'apprentissage local (éteint sur une installation neuve) et le cycle autonome (Dreamer, DreamCoder).</p>
+		</div>
+		<div>
+			<h3>Pas prêt à brancher</h3>
+			<p>La voix de bout en bout par Home Assistant Assist : le composant qui envoie le texte reconnu au moteur (<code>moteur_ia_conversation</code>) n'est pas dans le dépôt. Le chat, l'API, les agents et MCP marchent sans lui.</p>
+		</div>
+	</div>
+	<div class="note"><p>Mesures du 01/11/2026 sur l'installation de l'auteur (un foyer, en français, avec Home Assistant). Le tableau complet, avec ses preuves, est dans le <a href="https://github.com/Axellum/vromvrom-engine/blob/main/README.fr.md#ce-qui-marche-aujourdhui">README</a>.</p></div>
+</section>
+
+<section class="bloc" aria-labelledby="guide">
+	<h2 id="guide">Par où commencer</h2>
+	<p>Le dépôt a un guide en cinq pages, en français et en anglais. Il a été vérifié par un vrai démarrage du moteur sur Windows 11 avec Python 3.13, sans clé de fournisseur ni Home Assistant ; Linux, macOS, Docker et systemd n'ont pas été essayés. Dans l'ordre :</p>
+	<ol class="etapes">
+		<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/docs/guide/01_installer.md">Installer</a> : prérequis, Windows ou Linux, Docker, premier lancement et première demande.</li>
+		<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/docs/guide/05_exploiter.md">Exploiter</a>, paragraphe sur les coûts : à lire avant de poser une clé de fournisseur, pour savoir ce qui consomme des jetons tout seul.</li>
+		<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/docs/guide/02_comprendre.md">Comprendre</a> : ce qui se passe quand on envoie une demande.</li>
+		<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/docs/guide/03_reglages.md">Réglages</a> : chaque variable du <code>.env</code> et chaque clé de <code>config.json</code>, avec son défaut.</li>
+		<li><a href="https://github.com/Axellum/vromvrom-engine/blob/main/docs/guide/04_maison_et_voix.md">Maison et voix</a> : seulement si vous avez Home Assistant.</li>
+	</ol>
+</section>
+
+<section class="bloc" aria-labelledby="limites">
+	<h2 id="limites">Ses limites</h2>
+	<ul>
+		<li><strong>Une seule personne, une seule clé d'API</strong> : ni comptes, ni rôles, ni budget par personne. Pour une équipe, une passerelle comme <a href="https://docs.litellm.ai/docs/proxy/budget_fallbacks">LiteLLM</a> convient mieux.</li>
+		<li><strong>La voix demande un composant qui n'est pas publié</strong> (voir plus haut).</li>
+		<li><strong>Les statistiques de coût sont faussées</strong> : les sondes de santé sont comptées avec les vrais appels (27&nbsp;805 appels comptés en 30 jours, dont 86 vrais).</li>
+		<li><strong>Beaucoup de fournisseurs, pas tous vivants</strong> : sur l'instance de l'auteur, la sonde de santé a coupé 42 modèles sur 76.</li>
+		<li><strong>Fait d'abord pour un développeur</strong> : le code, ses commentaires et beaucoup de ses noms sont en français ; environ la moitié du code est couverte par les tests (54&nbsp;% le 01/11/2026).</li>
+		<li><strong>Un seul mainteneur</strong>, un code écrit en grande partie avec l'IA, aucune promesse de support.</li>
+	</ul>
 </section>
 
 <section class="bloc" aria-labelledby="pile">
 	<h2 id="pile">La technique</h2>
 	<ul>
-		<li>Python 3.11+, FastAPI, asyncio, SQLite, ChromaDB, scikit-learn ; tableau de bord en React, Vite et TypeScript.</li>
-		<li>13 fournisseurs d'IA pris en charge, dans le cloud (Gemini, GitHub Models, DeepSeek, Anthropic, Mistral, OpenRouter…) ou en local (LM Studio, Ollama).</li>
-		<li>Quatre stratégies de configuration documentées, une image Docker et docker-compose, des tests pytest et une intégration continue.</li>
+		<li>Python 3.12+ (la version testée en CI), FastAPI, asyncio, SQLite, ChromaDB, scikit-learn ; tableau de bord en React, Vite et TypeScript.</li>
+		<li>Environ dix-huit fournisseurs d'IA pris en charge par le code, dans le cloud (Gemini, GitHub Models, DeepSeek, Anthropic, Mistral, OpenRouter…) ou en local (LM Studio, Ollama). Un fournisseur listé ne répond pas forcément aujourd'hui : la sonde de santé coupe ceux qui échouent.</li>
+		<li>Tout tient dans des fichiers SQLite, sans serveur de base de données à faire tourner : l'instance de l'auteur tourne sur un Steam Deck, jour et nuit.</li>
+		<li>Une image Docker et docker-compose, des tests pytest et une intégration continue. Quels modèles utiliser, à quel prix : <a href="https://github.com/Axellum/vromvrom-engine/blob/main/STRATEGIES.fr.md">STRATEGIES</a>.</li>
 	</ul>
-	<div class="note"><p>Outil personnel partagé tel quel : le tableau de bord a encore des angles vifs, et aucune version n'est publiée pour l'instant.</p></div>
+	<div class="note"><p>Outil personnel partagé tel quel, écrit avec beaucoup d'aide de l'IA : le tableau de bord a encore des angles vifs, et aucune version n'est publiée pour l'instant.</p></div>
 </section>
