@@ -28,8 +28,10 @@ Les pages des projets d'Axel Duviella, en français et en anglais (`/en/…`).
   redémarre Caddy. Après un déploiement, `python outils/indexnow.py` signale les pages du sitemap à Bing et aux autres
   moteurs IndexNow.
 - **axellum.github.io** : GitHub Pages sert ce dépôt tel quel. Le `robots.txt` de la racine est celui de ce domaine :
-  il donne le sitemap du site du Tab5 (`/M5-Tab5-ESPHome-LVGL/`). Les pages y ont leur adresse officielle
-  (canonique) sur auxfilsdesidees.fr.
+  il donne le sitemap du site du Tab5 (`/M5-Tab5-ESPHome-LVGL/`), directement et par `sitemap.xml` (un index écrit à
+  la main, sans `lastmod`, qui renvoie à ce même sitemap ; c'est lui qu'on soumet dans la Search Console). Les pages y ont
+  leur adresse officielle (canonique) sur auxfilsdesidees.fr. Ce `sitemap.xml` de la racine n'est pas copié sur
+  auxfilsdesidees.fr (`deploy.sh` n'y envoie que `auxfilsdesidees/sitemap.xml`).
 - `googleffef8cbebd0245e5.html` : validation de la propriété `https://axellum.github.io/` dans la Search Console,
   à ne pas supprimer.
 
