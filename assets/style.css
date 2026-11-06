@@ -225,9 +225,8 @@ main { padding-bottom: 72px; min-width: 0; }
 .collage { position: relative; aspect-ratio: 6 / 5; animation: monte .9s .1s var(--courbe) both; }
 .collage figure { position: absolute; margin: 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--trait); background: #0d1522; box-shadow: var(--ombre); animation: flotte 9s ease-in-out infinite alternate; }
 .collage figure img { display: block; width: 100%; height: auto; }
-.collage .un { left: 0; top: 4%; width: 66%; z-index: 2; box-shadow: 0 30px 60px -26px color-mix(in srgb, var(--accent) 50%, transparent), var(--ombre); }
-.collage .deux { right: 0; top: 0; width: 52%; animation-delay: -3s; }
-.collage .trois { right: 4%; bottom: 0; width: 58%; z-index: 3; animation-delay: -6s; }
+.collage .un { left: 0; top: 0; width: 96%; z-index: 2; box-shadow: 0 30px 60px -26px color-mix(in srgb, var(--accent) 50%, transparent), var(--ombre); }
+.collage .deux { right: 0; bottom: 0; width: 56%; z-index: 3; animation-delay: -3s; }
 @keyframes flotte { to { transform: translateY(-8px); } }
 .cartes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 24px 0 0; }
 .cartes.quatre { grid-template-columns: repeat(2, 1fr); }
