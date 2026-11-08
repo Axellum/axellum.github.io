@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meridien, a standalone ESP32-P4 touch screen</title>
+<meta name="description" content="Meridien: native ESP-IDF and LVGL firmware for an ESP32-P4 touch screen (Tab5, Waveshare 7B). Time, weather, no Home Assistant. Early days.">
+<link rel="canonical" href="https://auxfilsdesidees.fr/en/meridien/">
+<link rel="alternate" hreflang="fr" href="https://auxfilsdesidees.fr/meridien/">
+<link rel="alternate" hreflang="en" href="https://auxfilsdesidees.fr/en/meridien/">
+<link rel="alternate" hreflang="x-default" href="https://auxfilsdesidees.fr/en/meridien/">
+<link rel="alternate" type="application/rss+xml" title="What&#x27;s new · Aux fils des idées" href="/en/news/rss.xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:site_name" content="Aux fils des idées">
+<meta property="og:title" content="Meridien, a standalone ESP32-P4 touch screen">
+<meta property="og:description" content="Meridien: native ESP-IDF and LVGL firmware for an ESP32-P4 touch screen (Tab5, Waveshare 7B). Time, weather, no Home Assistant. Early days.">
+<meta property="og:url" content="https://auxfilsdesidees.fr/en/meridien/">
+<meta property="og:image" content="https://auxfilsdesidees.fr/assets/partage/en-meridien.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Meridien, a standalone ESP32-P4 touch screen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0e1319" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/assets/icone.svg?v=8d13847f41" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css?v=b0223300f7">
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebSite",
+			"@id": "https://auxfilsdesidees.fr/#site",
+			"url": "https://auxfilsdesidees.fr/",
+			"name": "Aux fils des idées",
+			"inLanguage": [
+				"fr",
+				"en"
+			],
+			"publisher": {
+				"@id": "https://auxfilsdesidees.fr/#axel"
+			}
+		},
+		{
+			"@type": "Person",
+			"@id": "https://auxfilsdesidees.fr/#axel",
+			"name": "Axel Duviella",
+			"url": "https://auxfilsdesidees.fr/",
+			"sameAs": [
+				"https://github.com/Axellum"
+			]
+		},
+		{
+			"@type": "WebPage",
+			"@id": "https://auxfilsdesidees.fr/en/meridien/#page",
+			"url": "https://auxfilsdesidees.fr/en/meridien/",
+			"name": "Meridien, a standalone ESP32-P4 touch screen",
+			"description": "Meridien: native ESP-IDF and LVGL firmware for an ESP32-P4 touch screen (Tab5, Waveshare 7B). Time, weather, no Home Assistant. Early days.",
+			"inLanguage": "en",
+			"isPartOf": {
+				"@id": "https://auxfilsdesidees.fr/#site"
+			},
+			"primaryImageOfPage": "https://auxfilsdesidees.fr/assets/meridien-ecran.webp",
+			"dateModified": "2026-11-08"
+		},
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{
+					"@type": "ListItem",
+					"position": 1,
+					"name": "Home",
+					"item": "https://auxfilsdesidees.fr/en/"
+				},
+				{
+					"@type": "ListItem",
+					"position": 2,
+					"name": "Meridien",
+					"item": "https://auxfilsdesidees.fr/en/meridien/"
+				}
+			]
+		},
+		{
+			"@type": "SoftwareSourceCode",
+			"name": "Meridien",
+			"description": "Native ESP-IDF and LVGL firmware for a standalone ESP32-P4 touch screen: the time, the weather and settings served by the screen itself, with no Home Assistant and no ESPHome.",
+			"codeRepository": "https://github.com/Axellum/meridien",
+			"programmingLanguage": [
+				"C++"
+			],
+			"license": "https://opensource.org/licenses/MIT",
+			"dateCreated": "2026-11-06",
+			"author": {
+				"@id": "https://auxfilsdesidees.fr/#axel"
+			}
+		}
+	]
+}
+</script>
+</head>
+<body>
+<a class="evitement" href="#contenu">Skip to content</a>
+<header class="haut">
+	<div class="page ligne">
+		<a class="marque" href="/en/"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#10151c"/><path d="M30 55V41C30 33 23 29 20 21M30 41C30 35 35 31 39 29" fill="none" stroke="#f0a46f" stroke-width="4.8" stroke-linecap="round"/><path d="M39 29C40.5 24.5 41.5 20 43 15.5M39 29C43 28 47 28 50.5 25.5" fill="none" stroke="#f0a46f" stroke-width="3.8" stroke-linecap="round"/><circle cx="19.2" cy="18.6" r="5" fill="#8fc0ff"/><circle cx="43.6" cy="13.2" r="4.4" fill="#f0a46f"/><circle cx="52.2" cy="24.4" r="4.2" fill="#e8ecf1"/></svg><span>Aux fils des idées</span></a>
+		<nav class="menu" aria-label="Main navigation"><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/meridien/" aria-current="page">Meridien</a></li><li><a href="/en/about/">About</a></li></ul></nav>
+		<a class="langue" href="/meridien/" hreflang="fr" lang="fr">Français</a>
+	</div>
+	<div class="progression" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="page avec-sommaire">
+<main id="contenu">
+<nav class="fil" aria-label="Breadcrumb"><a href="/en/">Home</a> <span aria-hidden="true">›</span> <span aria-current="page">Meridien</span></nav>
+<div class="heros">
+	<div>
+		<span class="etiquette">ESP32-P4 · ESP-IDF · LVGL</span>
+		<h1>Meridien, a screen that runs on its own</h1>
+		<p class="chapeau">A touch screen for the ESP32-P4 that needs neither Home Assistant nor ESPHome. The goal: the time, the weather from an API, a voice assistant linked to the AI model of your choice, and a settings page served by the screen itself. It is native ESP-IDF and LVGL 9 firmware, a sibling of <a href="/en/home-assistant-display/">my Home Assistant display</a>: it keeps its taste (themes, fonts, short texts, accents) but not its dependency. The project is only at its beginning: this page says what runs and what does not exist yet.</p>
+		<ul class="liens">
+			<li><a class="principal" href="https://github.com/Axellum/meridien">Code on GitHub</a></li>
+			<li><a href="https://github.com/Axellum/meridien/blob/main/docs/compatibilite.md">What runs, board by board</a></li>
+			<li><a href="https://github.com/Axellum/meridien/blob/main/README.md">Read the README</a></li>
+		</ul>
+	</div>
+	<figure><img fetchpriority="high" src="/assets/meridien-ecran.webp" width="1024" height="600" alt="PC render of Meridien's main screen at 1024 × 600: the time, the weather, the hourly curve, a rain and alert banner, five days, and a wheel of three buttons (Settings, Details, Alerts) opened by a long press"></figure>
+</div>
+<p class="legende">A render of the firmware itself, made on a PC (example data), not a photo of the board.</p>
+
+<dl class="faits">
+	<div><dt>Boards</dt><dd>M5Stack Tab5 · Waveshare 7B</dd></div>
+	<div><dt>Built on</dt><dd>ESP-IDF 5.5 · LVGL 9</dd></div>
+	<div><dt>Screen languages</dt><dd>7</dd></div>
+	<div><dt>Licence</dt><dd>MIT</dd></div>
+	<div><dt>Status</dt><dd>Early days</dd></div>
+</dl>
+
+<section class="bloc" aria-labelledby="fonctions">
+	<h2 id="fonctions">What it shows</h2>
+	<p>A screen made to stay on in a room and look after itself: it fetches its own weather, sets its own time and remembers its settings.</p>
+	<div class="grille">
+		<div>
+			<h3>The main screen</h3>
+			<p>The time and date of the chosen place, the weather now, the curve of the coming hours, a banner for rain nearby and alerts, and five days of forecast. The background is a sky drawn from the time of day and the weather, with themes.</p>
+		</div>
+		<div>
+			<h3>A long press, no button</h3>
+			<p>A long press opens, under the finger, a wheel of round buttons: Settings, Details, Alerts. The Details page gathers seven quantities: wind, rain, humidity, pressure, UV, sun and moon.</p>
+		</div>
+		<div>
+			<h3>Weather without Home Assistant</h3>
+			<p>The screen queries Open-Meteo itself. If the network drops, it keeps the last weather, greyed out and marked as stale, and it sets its time from the network.</p>
+		</div>
+		<div>
+			<h3>Official alerts</h3>
+			<p>They come from <a href="/en/vigie/">Vigie</a> and are shown only while one is in force.</p>
+		</div>
+		<div>
+			<h3>Settings served by the screen</h3>
+			<p>A web page served by the screen itself, behind a six-digit pairing code, and settings screens on the display. When you change the Wi-Fi network, the screen goes back to the old one by itself if the new one does not work.</p>
+		</div>
+		<div>
+			<h3>Seven languages</h3>
+			<p>The screen texts exist in French, English, German, Dutch, Spanish, Italian and Turkish.</p>
+		</div>
+	</div>
+</section>
+
+<section class="bloc" aria-labelledby="etat">
+	<h2 id="etat">Where it stands</h2>
+	<p>Taken from the repository's <a href="https://github.com/Axellum/meridien/blob/main/docs/compatibilite.md">compatibility table</a>, kept up to date with the code. A function is written “observed” there only on the board where it was seen, with the commit and the date.</p>
+	<div class="grille">
+		<div>
+			<h3>Seen running on the board</h3>
+			<p>On the M5Stack Tab5 (ST7121 display): the display and the touch, Wi-Fi through the ESP32-C6 chip, the time, the weather from Open-Meteo, the main screen and the settings screens. On the Waveshare 7B: it boots, the display shows well, and Wi-Fi, the time and the weather at start-up work.</p>
+		</div>
+		<div>
+			<h3>Written and checked on a PC, not yet seen on a board</h3>
+			<p>The Vigie alerts, the time of the chosen place (time zones), the weather sources by country (MET Norway, the NWS in the United States). The redone home screen and the long-press wheel date from 8 November 2026: their trial on a board is not yet recorded in the table.</p>
+		</div>
+		<div>
+			<h3>Not started</h3>
+			<p>The voice assistant: its logic is written and checked on a PC, but no real speech-recognition or language-model service has been called, and echo cancellation and the wake word are not started. Neither are the Google calendar and the first-connection portal.</p>
+		</div>
+		<div>
+			<h3>Not tried on the 7B</h3>
+			<p>A finger on the screen, the sound, the settings screens, the alerts and changing the time zone have not been tried on this board.</p>
+		</div>
+	</div>
+	<div class="note"><p>What was not looked at or not measured is written as such in the table. The plan, the cost in time and tokens, the measurements, the research notes and the decisions of the repository are working documents, in French.</p></div>
+</section>
+
+<section class="bloc" aria-labelledby="limites">
+	<h2 id="limites">Its limits</h2>
+	<ul>
+		<li><strong>Early days</strong>: no version is published, so there is nothing to flash without building it yourself.</li>
+		<li><strong>Built only on the author's PC</strong>: Windows, with the ESP-IDF 5.5.5 that ESPHome had already installed; the build script has not been tried on any other PC.</li>
+		<li><strong>Modest security</strong>: the Wi-Fi password and the settings are kept in the device's flash memory <strong>without encryption</strong>, and the settings page is served over plain local HTTP behind a six-digit code (see <a href="https://github.com/Axellum/meridien/blob/main/SECURITY.md">SECURITY.md</a>).</li>
+		<li><strong>Tight internal memory</strong>: the repository's measurements show a slow drop in free memory, still unexplained on 7 November 2026.</li>
+		<li><strong>Translations not all reviewed</strong>: the German and Turkish texts have not been reviewed by a native speaker.</li>
+		<li><strong>One maintainer</strong>, code written with a lot of help from AI, no promise of support.</li>
+	</ul>
+</section>
+
+<section class="bloc" aria-labelledby="pile">
+	<h2 id="pile">The technical side</h2>
+	<ul>
+		<li>An ESP32-P4 (RISC-V) with an ESP32-C6 for Wi-Fi; developed on the Tab5, with a board layer for the Waveshare 7B.</li>
+		<li>Native C++ on ESP-IDF 5.5 and LVGL 9, without Home Assistant or ESPHome. Each zone of the main screen is a single LVGL object that draws everything, to save memory.</li>
+		<li>The core (weather, time and time zones, settings, voice-assistant logic) is C++ with no ESP-IDF or LVGL, tested on a PC with AddressSanitizer, UBSan and mutation tests (more than 1,400 tests on 7 November 2026). That says nothing about how it behaves on the board.</li>
+		<li>The images on this page are renders made on a PC by the same drawing code as the screen's.</li>
+	</ul>
+	<div class="note"><p>A personal project shared in case it helps, written with the help of AI: the author sets the goals and judges the result on the real screen.</p></div>
+</section>
+
+<section class="bloc" aria-labelledby="lire">
+	<h2 id="lire">Going further</h2>
+	<ul>
+		<li><a href="https://github.com/Axellum/meridien/blob/main/README.md">The README</a>: the project in two minutes, in English and French.</li>
+		<li><a href="https://github.com/Axellum/meridien/blob/main/docs/compatibilite.md">Compatibility and versions</a>: which board, which function, seen or not.</li>
+		<li><a href="https://github.com/Axellum/meridien/blob/main/docs/architecture.md">Architecture</a>: the layers and the folders.</li>
+		<li><a href="https://github.com/Axellum/meridien/blob/main/docs/depannage.md">Troubleshooting</a>: symptom, cause, solution, with the board it happened on.</li>
+	</ul>
+</section>
+</main>
+<aside class="sommaire"><nav aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#fonctions">What it shows</a></li><li><a href="#etat">Where it stands</a></li><li><a href="#limites">Its limits</a></li><li><a href="#pile">The technical side</a></li><li><a href="#lire">Going further</a></li></ul></nav></aside>
+</div>
+<button class="sommaire-bouton" type="button" popovertarget="sommaire-mobile" aria-label="On this page"><span>On this page</span></button>
+<nav id="sommaire-mobile" class="sommaire-mobile" popover aria-label="On this page"><p class="sommaire-titre">On this page</p><ul><li><a href="#fonctions">What it shows</a></li><li><a href="#etat">Where it stands</a></li><li><a href="#limites">Its limits</a></li><li><a href="#pile">The technical side</a></li><li><a href="#lire">Going further</a></li></ul></nav>
+
+<footer class="bas">
+	<div class="page">
+		<div class="bas-haut">
+			<div><a class="marque" href="/en/"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#10151c"/><path d="M30 55V41C30 33 23 29 20 21M30 41C30 35 35 31 39 29" fill="none" stroke="#f0a46f" stroke-width="4.8" stroke-linecap="round"/><path d="M39 29C40.5 24.5 41.5 20 43 15.5M39 29C43 28 47 28 50.5 25.5" fill="none" stroke="#f0a46f" stroke-width="3.8" stroke-linecap="round"/><circle cx="19.2" cy="18.6" r="5" fill="#8fc0ff"/><circle cx="43.6" cy="13.2" r="4.4" fill="#f0a46f"/><circle cx="52.2" cy="24.4" r="4.2" fill="#e8ecf1"/></svg><span>Aux fils des idées</span></a><p>Screens and tools for the home, made with AI and shared in case they help.</p></div>
+			<nav aria-label="Projects"><p class="bas-titre">Projects</p><ul><li><a href="/en/home-assistant-display/">Home Assistant display</a></li><li><a href="/en/vigie/">Vigie</a></li><li><a href="/en/ai-engine/">AI engine</a></li><li><a href="/en/meridien/">Meridien</a></li><li><a href="/en/about/">About</a></li><li><a href="/en/news/">What's new</a></li></ul></nav>
+			<nav aria-label="Elsewhere"><p class="bas-titre">Elsewhere</p><ul><li><a href="https://github.com/Axellum">GitHub</a></li><li><a href="https://vigie.auxfilsdesidees.fr/">Vigie</a></li><li><a href="https://axellum.github.io/M5-Tab5-ESPHome-LVGL/">Tab5 docs</a></li><li><a href="/en/news/rss.xml">RSS feed</a></li></ul></nav>
+		</div>
+		<p>Personal, non-commercial projects, made with the help of AI and tested mostly at home. Feedback welcome on <a href="https://github.com/Axellum">GitHub</a>.</p>
+	<p>Publisher: Axel Duviella, private individual, non-professional (France). Contact: <a href="https://github.com/Axellum">github.com/Axellum</a>. Host: OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (<a href="https://www.ovhcloud.com/en/">ovhcloud.com</a>). This site sets no cookies and does not measure its visits.</p>
+	</div>
+</footer>
+<script>
+/* Aux fils des idées : progression de lecture, sommaire qui suit la lecture, apparitions au défilement,
+   agrandissement des images, bouton « Copier » des exemples de code. Sans bibliothèque ; rien ne bouge si le
+   système demande moins d'animations. */
+(() => {
+	const d = document, h = d.documentElement, calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
+	h.classList.add("js");
+	const liens = [...d.querySelectorAll(".sommaire a, .sommaire-mobile a")];
+	const titres = [...new Set(liens.map(a => a.hash))].map(x => d.getElementById(x.slice(1))).filter(Boolean);
+	const pastille = d.querySelector(".sommaire-bouton span");
+	let actif = null, attente = false;
+	const maj = () => {
+		attente = false;
+		const max = h.scrollHeight - innerHeight;
+		h.style.setProperty("--p", max > 0 ? Math.min(scrollY / max, 1) : 0);
+		h.classList.toggle("defile", scrollY > 240);
+		let courant = null;
+		for (const t of titres) if (t.getBoundingClientRect().top < innerHeight * 0.32) courant = t;
+		if (courant !== actif) {
+			actif = courant;
+			for (const a of liens) a.classList.toggle("actif", !!courant && a.hash === "#" + courant.id);
+			if (pastille) pastille.textContent = courant ? courant.textContent : pastille.dataset.vide;
+		}
+	};
+	if (pastille) pastille.dataset.vide = pastille.textContent;
+	addEventListener("scroll", () => { if (!attente) { attente = true; requestAnimationFrame(maj); } }, { passive: true });
+	addEventListener("resize", maj);
+	maj();
+	d.getElementById("sommaire-mobile")?.addEventListener("click", e => e.target.closest("a") && e.currentTarget.hidePopover());
+	if (!calme && "IntersectionObserver" in window) {
+		const vu = new IntersectionObserver(es => es.forEach(e => {
+			if (e.isIntersecting) {
+				const x = e.target;
+				x.classList.add("vu");
+				vu.unobserve(x);
+				setTimeout(() => x.style.transitionDelay = "", 900);
+			}
+		}), { rootMargin: "0px 0px -6% 0px" });
+		d.querySelectorAll("main > section > :not(.grille, .cartes), main > .faits, .grille > *, .cartes > *, .journal li").forEach(x => {
+			if (x.getBoundingClientRect().top < innerHeight) return;
+			const rang = [...x.parentElement.children].indexOf(x);
+			if (x.parentElement.matches(".grille, .cartes, .journal ul")) x.style.transitionDelay = Math.min(rang, 4) * 70 + "ms";
+			x.classList.add("revele");
+			vu.observe(x);
+		});
+	}
+	const fr = h.lang === "fr";
+	d.querySelectorAll(".code").forEach(bloc => {
+		const b = d.createElement("button"), code = bloc.querySelector("code");
+		const dire = (oui, non) => { b.textContent = fr ? oui : non; setTimeout(() => b.textContent = fr ? "Copier" : "Copy", 2500); };
+		b.type = "button";
+		b.textContent = fr ? "Copier" : "Copy";
+		// Copie refusée (page sans le focus, navigateur ancien) : le code reste sélectionné, prêt pour Ctrl+C
+		b.addEventListener("click", () => (navigator.clipboard ? navigator.clipboard.writeText(code.textContent) : Promise.reject())
+			.then(() => dire("Copié", "Copied"), () => { getSelection().selectAllChildren(code); dire("Sélectionné", "Selected"); }));
+		bloc.firstChild.append(b);
+	});
+	const loupe = d.createElement("dialog");
+	loupe.className = "loupe";
+	loupe.innerHTML = '<img alt="">';
+	loupe.setAttribute("aria-label", fr ? "Image agrandie" : "Enlarged image");
+	loupe.addEventListener("click", () => loupe.close());
+	d.body.append(loupe);
+	d.querySelectorAll("main figure img").forEach(img => {
+		if (img.closest(".diaporama, .collage")) return;
+		img.classList.add("agrandir");
+		img.addEventListener("click", () => {
+			const grande = loupe.firstChild;
+			grande.src = img.currentSrc || img.src;
+			grande.alt = img.alt;
+			loupe.showModal();
+		});
+	});
+})();
+</script>
+</body>
+</html>
