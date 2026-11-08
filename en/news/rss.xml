@@ -6,7 +6,15 @@
     <atom:link href="https://auxfilsdesidees.fr/en/news/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Released versions of Axel Duviella&#x27;s projects: the Home Assistant display, Vigie and the AI engine.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 27 Oct 2026 23:24:39 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 08 Nov 2026 19:58:35 GMT</lastBuildDate>
+    <item>
+      <title>Home Assistant display 3.9.1: a few fixes (voice popup, crackling, theme name) and documentation</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.9.1</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.9.1</guid>
+      <pubDate>Sun, 08 Nov 2026 19:58:35 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>a few fixes (voice popup, crackling, theme name) and documentation</description>
+    </item>
     <item>
       <title>Vigie API 1.1.0: The first tagged release, with a ready-to-run container image</title>
       <link>https://github.com/Axellum/vigie-api/releases/tag/v1.1.0</link>
