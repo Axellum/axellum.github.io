@@ -1,0 +1,130 @@
+chemin: /en/meridien/
+paire: meridien
+titre: Meridien, a standalone ESP32-P4 touch screen
+description: Meridien: native ESP-IDF and LVGL firmware for an ESP32-P4 touch screen (Tab5, Waveshare 7B). Time, weather, no Home Assistant. Early days.
+maj: 2026-11-08
+image: meridien-ecran.webp
+fil: Meridien
+menu: Meridien
+ordre: 4
+logo: logo-meridien.svg
+---
+<!--ld {
+	"@type": "SoftwareSourceCode",
+	"name": "Meridien",
+	"description": "Native ESP-IDF and LVGL firmware for a standalone ESP32-P4 touch screen: the time, the weather and settings served by the screen itself, with no Home Assistant and no ESPHome.",
+	"codeRepository": "https://github.com/Axellum/meridien",
+	"programmingLanguage": ["C++"],
+	"license": "https://opensource.org/licenses/MIT",
+	"dateCreated": "2026-11-06"
+} ld-->
+<div class="heros">
+	<div>
+		<span class="etiquette">ESP32-P4 · ESP-IDF · LVGL</span>
+		<h1>Meridien, a screen that runs on its own</h1>
+		<p class="chapeau">A touch screen for the ESP32-P4 that needs neither Home Assistant nor ESPHome. The goal: the time, the weather from an API, a voice assistant linked to the AI model of your choice, and a settings page served by the screen itself. It is native ESP-IDF and LVGL 9 firmware, a sibling of <a href="/en/home-assistant-display/">my Home Assistant display</a>: it keeps its taste (themes, fonts, short texts, accents) but not its dependency. The project is only at its beginning: this page says what runs and what does not exist yet.</p>
+		<ul class="liens">
+			<li><a class="principal" href="https://github.com/Axellum/meridien">Code on GitHub</a></li>
+			<li><a href="https://github.com/Axellum/meridien/blob/main/docs/compatibilite.md">What runs, board by board</a></li>
+			<li><a href="https://github.com/Axellum/meridien/blob/main/README.md">Read the README</a></li>
+		</ul>
+	</div>
+	<figure><img fetchpriority="high" src="/assets/meridien-ecran.webp" width="1024" height="600" alt="PC render of Meridien's main screen at 1024 × 600: the time, the weather, the hourly curve, a rain and alert banner, five days, and a wheel of three buttons (Settings, Details, Alerts) opened by a long press"></figure>
+</div>
+<p class="legende">A render of the firmware itself, made on a PC (example data), not a photo of the board.</p>
+
+<dl class="faits">
+	<div><dt>Boards</dt><dd>M5Stack Tab5 · Waveshare 7B</dd></div>
+	<div><dt>Built on</dt><dd>ESP-IDF 5.5 · LVGL 9</dd></div>
+	<div><dt>Screen languages</dt><dd>7</dd></div>
+	<div><dt>Licence</dt><dd>MIT</dd></div>
+	<div><dt>Status</dt><dd>Early days</dd></div>
+</dl>
+
+<section class="bloc" aria-labelledby="fonctions">
+	<h2 id="fonctions">What it shows</h2>
+	<p>A screen made to stay on in a room and look after itself: it fetches its own weather, sets its own time and remembers its settings.</p>
+	<div class="grille">
+		<div>
+			<h3>The main screen</h3>
+			<p>The time and date of the chosen place, the weather now, the curve of the coming hours, a banner for rain nearby and alerts, and five days of forecast. The background is a sky drawn from the time of day and the weather, with themes.</p>
+		</div>
+		<div>
+			<h3>A long press, no button</h3>
+			<p>A long press opens, under the finger, a wheel of round buttons: Settings, Details, Alerts. The Details page gathers seven quantities: wind, rain, humidity, pressure, UV, sun and moon.</p>
+		</div>
+		<div>
+			<h3>Weather without Home Assistant</h3>
+			<p>The screen queries Open-Meteo itself. If the network drops, it keeps the last weather, greyed out and marked as stale, and it sets its time from the network.</p>
+		</div>
+		<div>
+			<h3>Official alerts</h3>
+			<p>They come from <a href="/en/vigie/">Vigie</a> and are shown only while one is in force.</p>
+		</div>
+		<div>
+			<h3>Settings served by the screen</h3>
+			<p>A web page served by the screen itself, behind a six-digit pairing code, and settings screens on the display. When you change the Wi-Fi network, the screen goes back to the old one by itself if the new one does not work.</p>
+		</div>
+		<div>
+			<h3>Seven languages</h3>
+			<p>The screen texts exist in French, English, German, Dutch, Spanish, Italian and Turkish.</p>
+		</div>
+	</div>
+</section>
+
+<section class="bloc" aria-labelledby="etat">
+	<h2 id="etat">Where it stands</h2>
+	<p>Taken from the repository's <a href="https://github.com/Axellum/meridien/blob/main/docs/compatibilite.md">compatibility table</a>, kept up to date with the code. A function is written “observed” there only on the board where it was seen, with the commit and the date.</p>
+	<div class="grille">
+		<div>
+			<h3>Seen running on the board</h3>
+			<p>On the M5Stack Tab5 (ST7121 display): the display and the touch, Wi-Fi through the ESP32-C6 chip, the time, the weather from Open-Meteo, the main screen and the settings screens. On the Waveshare 7B: it boots, the display shows well, and Wi-Fi, the time and the weather at start-up work.</p>
+		</div>
+		<div>
+			<h3>Written and checked on a PC, not yet seen on a board</h3>
+			<p>The Vigie alerts, the time of the chosen place (time zones), the weather sources by country (MET Norway, the NWS in the United States). The redone home screen and the long-press wheel date from 8 November 2026: their trial on a board is not yet recorded in the table.</p>
+		</div>
+		<div>
+			<h3>Not started</h3>
+			<p>The voice assistant: its logic is written and checked on a PC, but no real speech-recognition or language-model service has been called, and echo cancellation and the wake word are not started. Neither are the Google calendar and the first-connection portal.</p>
+		</div>
+		<div>
+			<h3>Not tried on the 7B</h3>
+			<p>A finger on the screen, the sound, the settings screens, the alerts and changing the time zone have not been tried on this board.</p>
+		</div>
+	</div>
+	<div class="note"><p>What was not looked at or not measured is written as such in the table. The plan, the cost in time and tokens, the measurements, the research notes and the decisions of the repository are working documents, in French.</p></div>
+</section>
+
+<section class="bloc" aria-labelledby="limites">
+	<h2 id="limites">Its limits</h2>
+	<ul>
+		<li><strong>Early days</strong>: no version is published, so there is nothing to flash without building it yourself.</li>
+		<li><strong>Built only on the author's PC</strong>: Windows, with the ESP-IDF 5.5.5 that ESPHome had already installed; the build script has not been tried on any other PC.</li>
+		<li><strong>Modest security</strong>: the Wi-Fi password and the settings are kept in the device's flash memory <strong>without encryption</strong>, and the settings page is served over plain local HTTP behind a six-digit code (see <a href="https://github.com/Axellum/meridien/blob/main/SECURITY.md">SECURITY.md</a>).</li>
+		<li><strong>Tight internal memory</strong>: the repository's measurements show a slow drop in free memory, still unexplained on 7 November 2026.</li>
+		<li><strong>Translations not all reviewed</strong>: the German and Turkish texts have not been reviewed by a native speaker.</li>
+		<li><strong>One maintainer</strong>, code written with a lot of help from AI, no promise of support.</li>
+	</ul>
+</section>
+
+<section class="bloc" aria-labelledby="pile">
+	<h2 id="pile">The technical side</h2>
+	<ul>
+		<li>An ESP32-P4 (RISC-V) with an ESP32-C6 for Wi-Fi; developed on the Tab5, with a board layer for the Waveshare 7B.</li>
+		<li>Native C++ on ESP-IDF 5.5 and LVGL 9, without Home Assistant or ESPHome. Each zone of the main screen is a single LVGL object that draws everything, to save memory.</li>
+		<li>The core (weather, time and time zones, settings, voice-assistant logic) is C++ with no ESP-IDF or LVGL, tested on a PC with AddressSanitizer, UBSan and mutation tests (more than 1,400 tests on 7 November 2026). That says nothing about how it behaves on the board.</li>
+		<li>The images on this page are renders made on a PC by the same drawing code as the screen's.</li>
+	</ul>
+	<div class="note"><p>A personal project shared in case it helps, written with the help of AI: the author sets the goals and judges the result on the real screen.</p></div>
+</section>
+
+<section class="bloc" aria-labelledby="lire">
+	<h2 id="lire">Going further</h2>
+	<ul>
+		<li><a href="https://github.com/Axellum/meridien/blob/main/README.md">The README</a>: the project in two minutes, in English and French.</li>
+		<li><a href="https://github.com/Axellum/meridien/blob/main/docs/compatibilite.md">Compatibility and versions</a>: which board, which function, seen or not.</li>
+		<li><a href="https://github.com/Axellum/meridien/blob/main/docs/architecture.md">Architecture</a>: the layers and the folders.</li>
+		<li><a href="https://github.com/Axellum/meridien/blob/main/docs/depannage.md">Troubleshooting</a>: symptom, cause, solution, with the board it happened on.</li>
+	</ul>
+</section>
