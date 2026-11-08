@@ -1,5 +1,17 @@
 [
 	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.9.1",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.9.1",
+		"date": "2026-11-08T19:58:35Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.9.1",
+		"titre": {
+			"en": "a few fixes (voice popup, crackling, theme name) and documentation",
+			"fr": "quelques corrections (popup vocal, grésillements, nom du thème) et de la documentation"
+		}
+	},
+	{
 		"cle": "vigie-api@v1.1.0",
 		"projet": "vigie",
 		"depot": "vigie-api",
