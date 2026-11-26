@@ -63,7 +63,7 @@
 				"@id": "https://auxfilsdesidees.fr/#site"
 			},
 			"primaryImageOfPage": "https://auxfilsdesidees.fr/assets/meridien-ecran.webp",
-			"dateModified": "2026-11-08"
+			"dateModified": "2026-11-26"
 		},
 		{
 			"@type": "BreadcrumbList",
@@ -147,15 +147,15 @@
 		</div>
 		<div>
 			<h3>Un appui long, pas de bouton</h3>
-			<p>Un appui long ouvre, sous le doigt, une roue de boutons ronds : Réglages, Détails, Alertes. La page Détails regroupe sept grandeurs : vent, pluie, humidité, pression, UV, soleil et lune.</p>
+			<p>Un appui long ouvre, sous le doigt, une roue de boutons ronds : Réglages, Détails et Sources, plus Alertes, Mer et Profil quand ils ont quelque chose à montrer. La page Détails regroupe sept grandeurs : vent, pluie, humidité, pression, UV, soleil et lune.</p>
 		</div>
 		<div>
 			<h3>Une météo sans Home Assistant</h3>
 			<p>L'écran interroge lui-même Open-Meteo. Si le réseau tombe, il garde la dernière météo, grisée et marquée périmée, et il règle son heure par le réseau.</p>
 		</div>
 		<div>
-			<h3>Les alertes officielles</h3>
-			<p>Elles viennent de <a href="/vigie/">Vigie</a> et ne s'affichent que lorsqu'il y en a une en vigueur.</p>
+			<h3>Alertes, mer et normales</h3>
+			<p>Par <a href="/vigie/">Vigie</a> : les alertes officielles, affichées seulement quand une est en vigueur ; une page mer pour un spot choisi depuis le téléphone ou sur l'écran (un verdict pour le surf, le kite, le bateau et la pêche du bord, la marée et son coefficient) ; en France et outre-mer, une pastille qui compare le maximum prévu du jour à la normale du mois (normales de Météo-France).</p>
 		</div>
 		<div>
 			<h3>Des réglages servis par l'écran</h3>
@@ -174,19 +174,19 @@
 	<div class="grille">
 		<div>
 			<h3>Vu tourner sur la carte</h3>
-			<p>Sur le M5Stack Tab5 (écran ST7121) : l'écran et le toucher, le Wi-Fi par la puce ESP32-C6, l'heure, la météo d'Open-Meteo, l'écran principal et les écrans de réglages. Sur la Waveshare 7B : elle démarre, l'écran s'affiche bien, le Wi-Fi, l'heure et la météo au démarrage fonctionnent.</p>
+			<p>Sur le M5Stack Tab5 (écran ST7121) : l'écran et le toucher, le Wi-Fi par la puce ESP32-C6, l'heure, la météo d'Open-Meteo, l'écran principal et les écrans de réglages. Sur la Waveshare 7B : elle démarre, l'écran s'affiche bien, le Wi-Fi, l'heure et la météo fonctionnent ; c'est l'écran de ma maison depuis le 7 novembre 2026.</p>
 		</div>
 		<div>
-			<h3>Écrit et vérifié sur ordinateur, pas encore vu sur la carte</h3>
-			<p>Les alertes de Vigie, l'heure du lieu choisi (fuseaux horaires), les sources météo par pays (MET Norway, NWS aux États-Unis). L'accueil refait et la roue d'appui long datent du 8 novembre 2026 : leur essai sur la carte n'est pas encore consigné dans le tableau.</p>
+			<h3>Sur la 7B, vu dans son journal seulement</h3>
+			<p>La roue d'appui long, la page Détails, le mode automatique de l'accueil, la bande de pluie et la page mer tournent sur la 7B depuis les 8 à 11 novembre 2026, et ses requêtes de météo, d'alertes et de mer répondent dans son journal série ; aucun de ces écrans n'a encore été regardé sur la dalle ni touché au doigt. Le doigt sur l'écran et le son n'ont pas été essayés sur cette carte.</p>
+		</div>
+		<div>
+			<h3>Écrit et vérifié sur ordinateur, pas encore vu sur une carte</h3>
+			<p>Les sources météo par pays lues directement (MET Norway, NWS aux États-Unis), la pastille des normales et la page Sources (21 novembre 2026 : compilées pour la 7B, jamais flashées).</p>
 		</div>
 		<div>
 			<h3>Pas démarré</h3>
 			<p>L'assistant vocal : sa logique est écrite et vérifiée sur ordinateur, mais aucun vrai service de reconnaissance vocale ni de modèle de langage n'a été appelé, et l'annulation d'écho et le mot de réveil ne sont pas commencés. L'agenda Google et le portail de première connexion non plus.</p>
-		</div>
-		<div>
-			<h3>Pas essayé sur la 7B</h3>
-			<p>Le doigt sur l'écran, le son, les écrans de réglages, les alertes et le changement de fuseau horaire n'ont pas été essayés sur cette carte.</p>
 		</div>
 	</div>
 	<div class="note"><p>Ce qui n'a pas été regardé ou mesuré est écrit comme tel dans le tableau. Le plan, le coût en temps et en jetons, les mesures, les notes de recherche et les décisions du dépôt sont des documents de travail, en français.</p></div>
@@ -198,8 +198,9 @@
 		<li><strong>Un début de projet</strong> : aucune version n'est publiée, donc rien à flasher sans compiler soi-même.</li>
 		<li><strong>Compilé seulement chez l'auteur</strong> : sous Windows, avec l'ESP-IDF 5.5.5 qu'ESPHome avait déjà installé ; le script de compilation n'a été essayé sur aucun autre PC.</li>
 		<li><strong>Sécurité modeste</strong> : le mot de passe Wi-Fi et les réglages sont gardés dans la mémoire flash de l'appareil <strong>sans chiffrement</strong>, et la page de réglages est servie en HTTP local, derrière un code à six chiffres (voir <a href="https://github.com/Axellum/meridien/blob/main/SECURITY.md">SECURITY.md</a>).</li>
-		<li><strong>Une mémoire interne serrée</strong> : les mesures du dépôt montrent une baisse lente de la mémoire libre, encore inexpliquée au 7 novembre 2026.</li>
-		<li><strong>Des traductions pas toutes relues</strong> : l'allemand et le turc n'ont pas été relus par un locuteur natif.</li>
+		<li><strong>Une mémoire comptée</strong> : la mémoire libre baisse lentement pendant que l'écran tourne ; d'après le dépôt, ce sont les caches de polices de LVGL qui se remplissent, pas une fuite (prouvé sur ordinateur le 12 novembre 2026, pas sur la carte).</li>
+		<li><strong>Un éclair blanc sur la 7B</strong>, quelques fois par heure : filmé le 25 novembre 2026, c'est le rétroéclairage qui saute un instant, juste après le début d'une requête HTTPS ; la cause n'est pas encore trouvée.</li>
+		<li><strong>Des traductions pas relues</strong> : seul le français a été relu ; les six autres langues ont été écrites par une IA, et aucune n'a été relue par un locuteur.</li>
 		<li><strong>Un seul mainteneur</strong>, un code écrit avec beaucoup d'aide de l'IA, aucune promesse de support.</li>
 	</ul>
 </section>
@@ -222,6 +223,7 @@
 		<li><a href="https://github.com/Axellum/meridien/blob/main/docs/compatibilite.md#version-française">Compatibilité et versions</a> : quelle carte, quelle fonction, vu ou non.</li>
 		<li><a href="https://github.com/Axellum/meridien/blob/main/docs/architecture.md#version-française">Architecture</a> : les couches et les dossiers.</li>
 		<li><a href="https://github.com/Axellum/meridien/blob/main/docs/depannage.md#version-française">Dépannage</a> : symptôme, cause, solution, avec la carte sur laquelle c'est arrivé.</li>
+		<li><a href="https://github.com/Axellum/meridien/blob/main/docs/reprendre-le-projet.md#version-française">Partir de Meridien pour son propre écran</a> : ce qu'on garde, ce qu'on change pour une autre carte.</li>
 	</ul>
 </section>
 </main>

@@ -154,7 +154,7 @@
 	<h2 id="versions">Les trois versions du Tab5</h2>
 	<p>M5Stack a changé deux fois la puce qui pilote l'écran et le tactile ; chacune se choisit à la compilation.</p>
 	<ul>
-		<li><strong>ST7121</strong> (depuis le 28/04/2026) : Vigie y tourne depuis le 28/10/2026, Wi-Fi et données de l'API publique en HTTPS.</li>
+		<li><strong>ST7121</strong> (depuis le 28/04/2026) : Vigie y a tourné à partir du 28/10/2026, Wi-Fi et données de l'API publique en HTTPS.</li>
 		<li><strong>ST7123</strong> (du 14/10/2025 au 28/04/2026) : compilée, pas encore lancée sur une tablette avec Vigie.</li>
 		<li><strong>ILI9881C</strong> (la première, du 09/05/2025 au 14/10/2025) : compilée, jamais lancée.</li>
 	</ul>
@@ -421,7 +421,7 @@
             <span class="k">align</span>: CENTER
             <span class="k">y</span>: 80
             <span class="k">text</span>: "En attente des données"</code></pre></div>
-	<p class="legende">Validé et compilé avec ESPHome 2026.9.1 le 28/10/2026, pas encore essayé tel quel sur la tablette : ses réglages matériels sont ceux de Vigie display, qui tourne sur un Tab5 ST7121.</p>
+	<p class="legende">Validé et compilé avec ESPHome 2026.9.1 le 28/10/2026, pas encore essayé tel quel sur la tablette : ses réglages matériels sont ceux de Vigie display, qui a tourné sur un Tab5 ST7121.</p>
 	<h3>Les réglages qui comptent sur cette tablette</h3>
 	<ul>
 		<li><strong>L'ESP32-C6, qui porte le Wi-Fi, est alimenté par un expandeur</strong> (PI4IOE5V6408, broche 0 du second) : sans l'interrupteur <code>wifi_power</code> allumé au démarrage, le lien SDIO ne monte jamais (« sdmmc_card_init failed », vu sur une ST7121 le 28/10/2026). Son reset, GPIO15, est actif à l'état haut.</li>

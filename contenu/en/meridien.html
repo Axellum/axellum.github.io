@@ -2,7 +2,7 @@ chemin: /en/meridien/
 paire: meridien
 titre: Meridien, a standalone ESP32-P4 touch screen
 description: Meridien: native ESP-IDF and LVGL firmware for an ESP32-P4 touch screen (Tab5, Waveshare 7B). Time, weather, no Home Assistant. Early days.
-maj: 2026-11-08
+maj: 2026-11-26
 image: meridien-ecran.webp
 fil: Meridien
 menu: Meridien
@@ -51,15 +51,15 @@ logo: logo-meridien.svg
 		</div>
 		<div>
 			<h3>A long press, no button</h3>
-			<p>A long press opens, under the finger, a wheel of round buttons: Settings, Details, Alerts. The Details page gathers seven quantities: wind, rain, humidity, pressure, UV, sun and moon.</p>
+			<p>A long press opens, under the finger, a wheel of round buttons: Settings, Details and Sources, plus Alerts, Sea and Profile when they have something to show. The Details page gathers seven quantities: wind, rain, humidity, pressure, UV, sun and moon.</p>
 		</div>
 		<div>
 			<h3>Weather without Home Assistant</h3>
 			<p>The screen queries Open-Meteo itself. If the network drops, it keeps the last weather, greyed out and marked as stale, and it sets its time from the network.</p>
 		</div>
 		<div>
-			<h3>Official alerts</h3>
-			<p>They come from <a href="/en/vigie/">Vigie</a> and are shown only while one is in force.</p>
+			<h3>Alerts, sea and normals</h3>
+			<p>Through <a href="/en/vigie/">Vigie</a>: the official alerts, shown only while one is in force; a sea page for a spot chosen from the phone or on the screen (a verdict for surfing, kiting, boating and shore fishing, the tide and its coefficient); in France and its overseas territories, a pill that compares today's forecast maximum with the month's normal (Météo-France normals).</p>
 		</div>
 		<div>
 			<h3>Settings served by the screen</h3>
@@ -78,19 +78,19 @@ logo: logo-meridien.svg
 	<div class="grille">
 		<div>
 			<h3>Seen running on the board</h3>
-			<p>On the M5Stack Tab5 (ST7121 display): the display and the touch, Wi-Fi through the ESP32-C6 chip, the time, the weather from Open-Meteo, the main screen and the settings screens. On the Waveshare 7B: it boots, the display shows well, and Wi-Fi, the time and the weather at start-up work.</p>
+			<p>On the M5Stack Tab5 (ST7121 display): the display and the touch, Wi-Fi through the ESP32-C6 chip, the time, the weather from Open-Meteo, the main screen and the settings screens. On the Waveshare 7B: it boots, the display shows well, and Wi-Fi, the time and the weather work; it has been the screen of my house since 7 November 2026.</p>
+		</div>
+		<div>
+			<h3>On the 7B, seen in its log only</h3>
+			<p>The long-press wheel, the Details page, the automatic mode of the home screen, the rain strip and the sea page have run on the 7B since 8 to 11 November 2026, and its weather, alert and sea requests answer in its serial log; none of these screens has yet been looked at on the panel or touched with a finger. A finger on the screen and the sound have not been tried on this board.</p>
 		</div>
 		<div>
 			<h3>Written and checked on a PC, not yet seen on a board</h3>
-			<p>The Vigie alerts, the time of the chosen place (time zones), the weather sources by country (MET Norway, the NWS in the United States). The redone home screen and the long-press wheel date from 8 November 2026: their trial on a board is not yet recorded in the table.</p>
+			<p>The weather sources by country read directly (MET Norway, the NWS in the United States), the normals pill and the Sources page (21 November 2026: built for the 7B, never flashed).</p>
 		</div>
 		<div>
 			<h3>Not started</h3>
 			<p>The voice assistant: its logic is written and checked on a PC, but no real speech-recognition or language-model service has been called, and echo cancellation and the wake word are not started. Neither are the Google calendar and the first-connection portal.</p>
-		</div>
-		<div>
-			<h3>Not tried on the 7B</h3>
-			<p>A finger on the screen, the sound, the settings screens, the alerts and changing the time zone have not been tried on this board.</p>
 		</div>
 	</div>
 	<div class="note"><p>What was not looked at or not measured is written as such in the table. The plan, the cost in time and tokens, the measurements, the research notes and the decisions of the repository are working documents, in French.</p></div>
@@ -102,8 +102,9 @@ logo: logo-meridien.svg
 		<li><strong>Early days</strong>: no version is published, so there is nothing to flash without building it yourself.</li>
 		<li><strong>Built only on the author's PC</strong>: Windows, with the ESP-IDF 5.5.5 that ESPHome had already installed; the build script has not been tried on any other PC.</li>
 		<li><strong>Modest security</strong>: the Wi-Fi password and the settings are kept in the device's flash memory <strong>without encryption</strong>, and the settings page is served over plain local HTTP behind a six-digit code (see <a href="https://github.com/Axellum/meridien/blob/main/SECURITY.md">SECURITY.md</a>).</li>
-		<li><strong>Tight internal memory</strong>: the repository's measurements show a slow drop in free memory, still unexplained on 7 November 2026.</li>
-		<li><strong>Translations not all reviewed</strong>: the German and Turkish texts have not been reviewed by a native speaker.</li>
+		<li><strong>Memory to watch</strong>: free memory drops slowly while the screen runs; according to the repository, it is LVGL's font caches filling up, not a leak (proven on a PC on 12 November 2026, not on the board).</li>
+		<li><strong>A white flash on the 7B</strong>, a few times an hour: filmed on 25 November 2026, it is the backlight jumping for an instant, just after an HTTPS request starts; the cause is not found yet.</li>
+		<li><strong>Translations not reviewed</strong>: only the French was reviewed; the six other languages were written by an AI, and none has been reviewed by a speaker.</li>
 		<li><strong>One maintainer</strong>, code written with a lot of help from AI, no promise of support.</li>
 	</ul>
 </section>
@@ -126,5 +127,6 @@ logo: logo-meridien.svg
 		<li><a href="https://github.com/Axellum/meridien/blob/main/docs/compatibilite.md">Compatibility and versions</a>: which board, which function, seen or not.</li>
 		<li><a href="https://github.com/Axellum/meridien/blob/main/docs/architecture.md">Architecture</a>: the layers and the folders.</li>
 		<li><a href="https://github.com/Axellum/meridien/blob/main/docs/depannage.md">Troubleshooting</a>: symptom, cause, solution, with the board it happened on.</li>
+		<li><a href="https://github.com/Axellum/meridien/blob/main/docs/reprendre-le-projet.md">Starting from Meridien for your own screen</a>: what you keep, what you change for another board.</li>
 	</ul>
 </section>
