@@ -1,5 +1,17 @@
 [
 	{
+		"cle": "M5-Tab5-ESPHome-LVGL@v3.10.0",
+		"projet": "ecran",
+		"depot": "M5-Tab5-ESPHome-LVGL",
+		"version": "3.10.0",
+		"date": "2026-11-26T07:28:32Z",
+		"url": "https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.10.0",
+		"titre": {
+			"en": "electric cars on the Energy screen and a Cars popup, rain and warnings through Vigie",
+			"fr": "voitures électriques sur l'écran Énergie et une fenêtre Voitures, pluie et vigilances par Vigie"
+		}
+	},
+	{
 		"cle": "M5-Tab5-ESPHome-LVGL@v3.9.1",
 		"projet": "ecran",
 		"depot": "M5-Tab5-ESPHome-LVGL",

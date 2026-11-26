@@ -6,7 +6,15 @@
     <atom:link href="https://auxfilsdesidees.fr/nouveautes/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Les versions publiées des projets d&#x27;Axel Duviella : l&#x27;écran Home Assistant, Vigie et le moteur IA.</description>
     <language>fr</language>
-    <lastBuildDate>Sun, 08 Nov 2026 19:58:35 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 26 Nov 2026 07:28:32 GMT</lastBuildDate>
+    <item>
+      <title>Écran Home Assistant 3.10.0 : voitures électriques sur l&#x27;écran Énergie et une fenêtre Voitures, pluie et vigilances par Vigie</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.10.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.10.0</guid>
+      <pubDate>Thu, 26 Nov 2026 07:28:32 GMT</pubDate>
+      <category>Écran Home Assistant</category>
+      <description>voitures électriques sur l&#x27;écran Énergie et une fenêtre Voitures, pluie et vigilances par Vigie</description>
+    </item>
     <item>
       <title>Écran Home Assistant 3.9.1 : quelques corrections (popup vocal, grésillements, nom du thème) et de la documentation</title>
       <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.9.1</link>
