@@ -12,6 +12,30 @@
 		}
 	},
 	{
+		"cle": "vigie-api@v1.3.0",
+		"projet": "vigie",
+		"depot": "vigie-api",
+		"version": "1.3.0",
+		"date": "2026-11-22T19:55:40Z",
+		"url": "https://github.com/Axellum/vigie-api/releases/tag/v1.3.0",
+		"titre": {
+			"en": "France's weather from Météo-France's models, the radar, and the place's weather in Home Assistant",
+			"fr": "la météo de France par les modèles de Météo-France, le radar, et la météo du lieu dans Home Assistant"
+		}
+	},
+	{
+		"cle": "vigie-api@v1.2.0",
+		"projet": "vigie",
+		"depot": "vigie-api",
+		"version": "1.2.0",
+		"date": "2026-11-08T21:03:38Z",
+		"url": "https://github.com/Axellum/vigie-api/releases/tag/v1.2.0",
+		"titre": {
+			"en": "surf spots, four sea activities, tides, sea temperature, eclipses and the aurora",
+			"fr": "spots de surf, quatre activités en mer, marées, température de la mer, éclipses et aurores"
+		}
+	},
+	{
 		"cle": "M5-Tab5-ESPHome-LVGL@v3.9.1",
 		"projet": "ecran",
 		"depot": "M5-Tab5-ESPHome-LVGL",
