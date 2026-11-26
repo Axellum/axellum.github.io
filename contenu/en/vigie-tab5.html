@@ -50,7 +50,7 @@ parent: vigie
 	<h2 id="versions">The three versions of the Tab5</h2>
 	<p>M5Stack changed the chip that drives the display and the touch twice; each one is picked at build time.</p>
 	<ul>
-		<li><strong>ST7121</strong> (since 2026-04-28): Vigie has run on one since 2026-10-28, Wi-Fi and data from the public API over HTTPS.</li>
+		<li><strong>ST7121</strong> (since 2026-04-28): Vigie ran on one from 2026-10-28, Wi-Fi and data from the public API over HTTPS.</li>
 		<li><strong>ST7123</strong> (2025-10-14 to 2026-04-28): compiled, not yet run with Vigie on a tablet.</li>
 		<li><strong>ILI9881C</strong> (the first one, 2025-05-09 to 2025-10-14): compiled, never run.</li>
 	</ul>
@@ -62,7 +62,7 @@ parent: vigie
 	<p>No <code>api:</code> component: nothing links the screen to Home Assistant. Wi-Fi is given after the install (Improv over USB, or the access point the screen opens by itself), the data comes through <code>http_request</code> and LVGL draws it.</p>
 	<p>Below, a short, complete example on the same hardware base as Vigie: it shows the temperature and the weather warning of a place, read from <a href="/en/vigie/#api">the public Vigie API</a>. Pick your Tab5's chip at the top of the file; change the latitude and longitude, or the address, to read another API.</p>
 	<!--exemple tab5-standalone-->
-	<p class="legende">Validated and compiled with ESPHome 2026.9.1 on 2026-10-28, not yet tried as is on the tablet: its hardware settings are those of Vigie display, which runs on a Tab5 ST7121.</p>
+	<p class="legende">Validated and compiled with ESPHome 2026.9.1 on 2026-10-28, not yet tried as is on the tablet: its hardware settings are those of Vigie display, which ran on a Tab5 ST7121.</p>
 	<h3>The settings that matter on this tablet</h3>
 	<ul>
 		<li><strong>The ESP32-C6, which carries the Wi-Fi, is powered through an I/O expander</strong> (PI4IOE5V6408, pin 0 of the second one): without the <code>wifi_power</code> switch turned on at start-up, the SDIO link never comes up ("sdmmc_card_init failed", seen on an ST7121 on 2026-10-28). Its reset, GPIO15, is active high.</li>
