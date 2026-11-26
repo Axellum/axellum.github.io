@@ -6,7 +6,15 @@
     <atom:link href="https://auxfilsdesidees.fr/en/news/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Released versions of Axel Duviella&#x27;s projects: the Home Assistant display, Vigie and the AI engine.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 08 Nov 2026 19:58:35 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 26 Nov 2026 07:28:32 GMT</lastBuildDate>
+    <item>
+      <title>Home Assistant display 3.10.0: electric cars on the Energy screen and a Cars popup, rain and warnings through Vigie</title>
+      <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.10.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.10.0</guid>
+      <pubDate>Thu, 26 Nov 2026 07:28:32 GMT</pubDate>
+      <category>Home Assistant display</category>
+      <description>electric cars on the Energy screen and a Cars popup, rain and warnings through Vigie</description>
+    </item>
     <item>
       <title>Home Assistant display 3.9.1: a few fixes (voice popup, crackling, theme name) and documentation</title>
       <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.9.1</link>
