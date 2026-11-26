@@ -16,6 +16,22 @@
       <description>electric cars on the Energy screen and a Cars popup, rain and warnings through Vigie</description>
     </item>
     <item>
+      <title>Vigie API 1.3.0: France&#x27;s weather from Météo-France&#x27;s models, the radar, and the place&#x27;s weather in Home Assistant</title>
+      <link>https://github.com/Axellum/vigie-api/releases/tag/v1.3.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/vigie-api/releases/tag/v1.3.0</guid>
+      <pubDate>Sun, 22 Nov 2026 19:55:40 GMT</pubDate>
+      <category>Vigie API</category>
+      <description>France&#x27;s weather from Météo-France&#x27;s models, the radar, and the place&#x27;s weather in Home Assistant</description>
+    </item>
+    <item>
+      <title>Vigie API 1.2.0: surf spots, four sea activities, tides, sea temperature, eclipses and the aurora</title>
+      <link>https://github.com/Axellum/vigie-api/releases/tag/v1.2.0</link>
+      <guid isPermaLink="true">https://github.com/Axellum/vigie-api/releases/tag/v1.2.0</guid>
+      <pubDate>Sun, 08 Nov 2026 21:03:38 GMT</pubDate>
+      <category>Vigie API</category>
+      <description>surf spots, four sea activities, tides, sea temperature, eclipses and the aurora</description>
+    </item>
+    <item>
       <title>Home Assistant display 3.9.1: a few fixes (voice popup, crackling, theme name) and documentation</title>
       <link>https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.9.1</link>
       <guid isPermaLink="true">https://github.com/Axellum/M5-Tab5-ESPHome-LVGL/releases/tag/v3.9.1</guid>
